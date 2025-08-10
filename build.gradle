@@ -18,6 +18,9 @@ version = mod_version
 group = mod_group_id
 
 repositories {
+    mavenLocal()
+
+    maven { url 'https://api.modrinth.com/maven' }
     // Add here additional repositories if required by some of the dependencies below.
 }
 
@@ -38,7 +41,7 @@ neoForge {
     }
 
     // This line is optional. Access Transformers are automatically detected
-    // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.

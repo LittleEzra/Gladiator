@@ -1,0 +1,23 @@
+{
+  "item.claymore.block": {
+    "sounds": [
+      { "name": "gladius:item/claymore_block" }
+    ],
+    "subtitle": "subtitle.gladius.item.claymore.block"
+  },
+  "entity.firebrand.light": {
+    "sounds": [
+      "mob/ghast/fireball4"
+    ],
+    "subtitle": "subtitle.gladius.entity.firebrand.light"
+  },
+  "item.flash_powder.crackle": {
+  "sounds": [
+    { "name": "gladius:item/flash_powder_crackle_0" },
+    { "name": "gladius:item/flash_powder_crackle_1" },
+    { "name": "gladius:item/flash_powder_crackle_2" },
+    { "name": "gladius:item/flash_powder_crackle_3" }
+  ],
+  "subtitle": "subtitle.gladius.item.flash_powder.crackle"
+  }
+}

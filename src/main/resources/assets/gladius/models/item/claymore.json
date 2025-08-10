@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "gladius:item/claymore_in_hand"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "gladius:item/claymore_flat"
+    },
+    "ground": {
+      "parent": "gladius:item/claymore_flat"
+    },
+    "fixed": {
+      "parent": "gladius:item/claymore_flat"
+    }
+  }
+}

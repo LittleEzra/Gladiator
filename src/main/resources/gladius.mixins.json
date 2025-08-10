@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "com.feliscape.gladius.content.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "LivingEntityMixin",
+    "MobMixin"
+  ],
+  "client": [
+    "EntityRenderDispatcherMixin",
+    "FogRendererMixin",
+    "LevelRendererMixin",
+    "ScreenEffectRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
