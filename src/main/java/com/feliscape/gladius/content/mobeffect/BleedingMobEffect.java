@@ -26,7 +26,7 @@ public class BleedingMobEffect extends MobEffect {
 
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
-        int i = 40 - Mth.clamp(amplifier + 1, 0, 5) * 4;
+        int i = 25 >> amplifier;
         return i == 0 || duration % i == 0;
     }
 

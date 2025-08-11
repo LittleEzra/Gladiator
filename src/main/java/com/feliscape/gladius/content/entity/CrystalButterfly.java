@@ -1,9 +1,10 @@
 package com.feliscape.gladius.content.entity;
 
-import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.GladiusServerConfig;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
 import com.feliscape.gladius.registry.GladiusItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -18,27 +19,22 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
 import net.minecraft.world.entity.ai.util.HoverRandomPos;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
-import net.minecraft.world.entity.animal.Bee;
-import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
 import java.util.UUID;
 
 public class CrystalButterfly extends PathfinderMob {
@@ -49,7 +45,8 @@ public class CrystalButterfly extends PathfinderMob {
     private UUID searchTargetUUID = null;
     @Nullable
     private Entity cachedSearchTarget = null;
-    private boolean foundIdlePosition;
+    private boolean decorative;
+    BlockPos anchorPos;
 
     public CrystalButterfly(EntityType<CrystalButterfly> entityType, Level level) {
         super(entityType, level);
@@ -59,8 +56,14 @@ public class CrystalButterfly extends PathfinderMob {
     public CrystalButterfly(Level level, double x, double y, double z, @Nullable Component targetName) {
         this(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), level);
         this.setPos(x, y, z);
+        this.anchorPos = this.blockPosition();
+        if (targetName == null){
+            this.decorative = true;
+            return;
+        }
+
         this.setCustomName(targetName);
-        if (!level.isClientSide() && targetName != null) {
+        if (!level.isClientSide()) {
             var players = level.players();
             for (Player player : players) {
                 if (player.getName().getString().equals(targetName.getString())) {
@@ -76,7 +79,7 @@ public class CrystalButterfly extends PathfinderMob {
         return Mob.createMobAttributes()
                 .add(Attributes.GRAVITY, 0.08)
                 .add(Attributes.MAX_HEALTH, 4.0)
-                .add(Attributes.FLYING_SPEED, 0.15F)
+                .add(Attributes.FLYING_SPEED, 0.1F)
                 .add(Attributes.MOVEMENT_SPEED, 0.1F)
                 .add(Attributes.ATTACK_DAMAGE, 2.0)
                 .add(Attributes.FOLLOW_RANGE, 48.0);
@@ -172,6 +175,7 @@ public class CrystalButterfly extends PathfinderMob {
             compound.putUUID("SearchTarget", this.searchTargetUUID);
         }
         compound.putBoolean("Idle", this.isIdle());
+        compound.putBoolean("Decorative", this.isDecorative());
     }
 
     @Override
@@ -182,6 +186,11 @@ public class CrystalButterfly extends PathfinderMob {
             this.setClientHasTarget(true);
         }
         this.setIdle(compound.getBoolean("Idle"));
+        this.decorative = compound.getBoolean("Decorative");
+    }
+
+    public boolean isDecorative(){
+        return decorative;
     }
 
     public boolean isIdle() {
@@ -228,6 +237,15 @@ public class CrystalButterfly extends PathfinderMob {
         }
     }
 
+    public void reanchor(){
+        this.anchorPos = this.blockPosition();
+    }
+
+    @Override
+    public boolean isWithinRestriction(BlockPos pos) {
+        return super.isWithinRestriction(pos);
+    }
+
     public ItemStack asItem() {
         ItemStack itemStack = new ItemStack(GladiusItems.CRYSTAL_BUTTERFLY.get());
         itemStack.set(DataComponents.CUSTOM_NAME, getCustomName());
@@ -247,9 +265,24 @@ public class CrystalButterfly extends PathfinderMob {
 
     @Override
     public float getWalkTargetValue(BlockPos pos, LevelReader level) {
-        float f = pos.getY() > this.getY() ? 2.0F : 1.0F;
-        if (level.isEmptyBlock(pos) && level.isEmptyBlock(pos.above())) {
-            return 10.0F * f;
+        float f = pos.getY() + 1.0D > this.getY() ? 2.0F : 1.0F;
+
+        int blockedSides = 0;
+        int perchness = 0;
+        for (Direction d : Direction.Plane.HORIZONTAL){
+            BlockPos relative = pos.relative(d);
+            if (!level.isEmptyBlock(pos.relative(d))){
+                blockedSides++;
+                if (level.isEmptyBlock(relative.below())){
+                    perchness++;
+                }
+            }
+        }
+
+        BlockPos below = pos.below();
+        if (!level.getBlockState(below).isCollisionShapeFullBlock(level, below) && level.isEmptyBlock(pos)) {
+            float value = (10.0F - blockedSides * 2.0F + (Mth.square(perchness) * 5)) * f;
+            return value;
         }
         return 0.0F;
     }
@@ -267,10 +300,14 @@ public class CrystalButterfly extends PathfinderMob {
 
         @Override
         public boolean canUse() {
+            if (this.butterfly.isDecorative()) return false;
+
             Entity target = this.butterfly.getSearchTarget();
             if (target == null) {
                 return false;
             } else if (!target.isAlive()) {
+                return false;
+            } else if (this.butterfly.distanceTo(target) > GladiusServerConfig.CONFIG.crystalButterflySearchRange.get()) {
                 return false;
             } else {
                 Path path = this.butterfly.getNavigation().createPath(target, 1);
@@ -280,10 +317,14 @@ public class CrystalButterfly extends PathfinderMob {
 
         @Override
         public boolean canContinueToUse() {
+            if (this.butterfly.isDecorative()) return false;
+
             Entity target = this.butterfly.getSearchTarget();
             if (target == null) {
                 return false;
             } else if (!target.isAlive()) {
+                return false;
+            } else if (this.butterfly.distanceTo(target) > GladiusServerConfig.CONFIG.crystalButterflySearchRange.get()) {
                 return false;
             } else {
                 return this.butterfly.isWithinRestriction(target.blockPosition());
@@ -302,7 +343,7 @@ public class CrystalButterfly extends PathfinderMob {
                 this.butterfly.getLookControl().setLookAt(target, 30.0F, 30.0F);
                 if (this.butterfly.distanceTo(target) < 2.5D) {
                     circlingTicks++;
-                    double theta = circlingTicks * 0.5D * this.butterfly.getSpeed();
+                    double theta = circlingTicks * 0.35D * this.butterfly.getSpeed();
                     this.pathedTargetX = target.getX() + Math.cos(theta) * 1.5D;
                     this.pathedTargetY = target.getY(0.75D);
                     this.pathedTargetZ = target.getZ() + Math.sin(theta) * 1.5D;
@@ -323,6 +364,7 @@ public class CrystalButterfly extends PathfinderMob {
         @Override
         public void stop() {
             this.butterfly.getNavigation().stop();
+            this.butterfly.reanchor();
         }
     }
 
@@ -336,7 +378,7 @@ public class CrystalButterfly extends PathfinderMob {
 
         @Override
         public boolean canUse() {
-            if (this.butterfly.isIdle() || this.butterfly.hasSearchTarget()) return false;
+            if (this.butterfly.isIdle() || this.butterfly.hasSearchTarget() || this.butterfly.isDecorative()) return false;
 
             Entity target = this.butterfly.getSearchTarget();
             if (target != null) {
@@ -347,14 +389,13 @@ public class CrystalButterfly extends PathfinderMob {
                     return false;
                 }
                 Path path = this.butterfly.getNavigation().createPath(blockPos, 1);
-                if (path != null) this.butterfly.foundIdlePosition = true;
                 return path != null;
             }
         }
 
         @Override
         public boolean canContinueToUse() {
-            if (this.butterfly.isIdle() || this.butterfly.hasSearchTarget()) return false;
+            if (this.butterfly.isIdle() || this.butterfly.hasSearchTarget() || this.butterfly.isDecorative()) return false;
 
             Entity target = this.butterfly.getSearchTarget();
             if (target != null) {
@@ -382,8 +423,18 @@ public class CrystalButterfly extends PathfinderMob {
                     }
                 }
             }*/
-            var randomPos = LandRandomPos.getPos(this.butterfly, 8, 4);
-            return randomPos == null ? null : BlockPos.containing(randomPos);
+            var randomPos1 = getBlockPosOrNull(LandRandomPos.getPos(this.butterfly, 8, 6));
+            var randomPos2 = getBlockPosOrNull(LandRandomPos.getPos(this.butterfly, 8, 6));
+            if (randomPos1 == null) return randomPos2;
+            if (randomPos2 == null) return randomPos1;
+
+            if (this.butterfly.getWalkTargetValue(randomPos1) > this.butterfly.getWalkTargetValue(randomPos2))
+                return randomPos1;
+            return randomPos2;
+        }
+
+        private BlockPos getBlockPosOrNull(Vec3 position){
+            return position == null ? null : BlockPos.containing(position);
         }
 
         @Override
@@ -400,7 +451,7 @@ public class CrystalButterfly extends PathfinderMob {
                 this.butterfly.getNavigation().moveTo(pathedTargetX, pathedTargetY, pathedTargetZ, 1.0D);
             }
 
-            if (this.butterfly.distanceToSqr(pathedTargetX, pathedTargetY, pathedTargetZ) < Mth.square(2.0D)) {
+            if (this.butterfly.distanceToSqr(pathedTargetX, pathedTargetY, pathedTargetZ) < Mth.square(0.75D)) {
                 this.butterfly.setIdle(true);
                 this.stop();
             }

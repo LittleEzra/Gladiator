@@ -2,6 +2,7 @@ package com.feliscape.gladius.data.datagen.model;
 
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.client.GladiusItemProperties;
 import com.feliscape.gladius.registry.GladiusItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -23,27 +24,24 @@ public class GladiusItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        basicItem(GladiusItems.BLAZING_HEART.get());
+
         basicItem(GladiusItems.EXPLOSIVE_ARROW.get());
         basicItem(GladiusItems.PRISMARINE_ARROW.get());
         basicItem(GladiusItems.WINGED_ARROW.get());
 
-        slingshotItem(GladiusItems.SLINGSHOT.get());
-        basicItem(GladiusItems.STEEL_SHOT.get());
-        basicItem(GladiusItems.GOLD_SHOT.get());
-        simpleDoubleLayered(GladiusItems.COATED_STEEL_SHOT);
-
         basicItem(GladiusItems.OIL_BOTTLE.get());
         basicItem(GladiusItems.CRYSTAL_BUTTERFLY.get());
-        rodItem(GladiusItems.FIREBRAND.get());
+        handheldUnrotatedItem(GladiusItems.FIREBRAND.get());
 
         basicItem(GladiusItems.FLASH_POWDER.get());
 
-        handheldItem(GladiusItems.GILDED_DAGGER.get());
+        gildedDaggerItem(GladiusItems.GILDED_DAGGER.get());
     }
 
     public ItemModelBuilder potionBundleItem(Item item) {
         ResourceLocation location = Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item));
-        return this.getBuilder(location.toString()).parent(new ModelFile.UncheckedModelFile("nuanced_combat:item/potion_bundle_template"))
+        return this.getBuilder(location.toString()).parent(new ModelFile.UncheckedModelFile("gladius:item/potion_bundle_template"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(location.getNamespace(), "item/" + location.getPath()))
                 .texture("layer1", ResourceLocation.fromNamespaceAndPath(location.getNamespace(), "item/" + location.getPath() + "_layer1"))
                 .texture("layer2", ResourceLocation.fromNamespaceAndPath(location.getNamespace(), "item/" + location.getPath() + "_layer2"))
@@ -54,8 +52,20 @@ public class GladiusItemModelProvider extends ItemModelProvider {
     public ItemModelBuilder boomerangItem(Item item) {
         ResourceLocation location = Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item));
 
-        return this.getBuilder(location.toString()).parent(new ModelFile.UncheckedModelFile("nuanced_combat:item/template_boomerang"))
+        return this.getBuilder(location.toString()).parent(new ModelFile.UncheckedModelFile("gladius:item/template_boomerang"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(location.getNamespace(), "item/" + location.getPath()));
+    }
+    public ItemModelBuilder gildedDaggerItem(Item item) {
+        ResourceLocation bloodyLocation = Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)).withSuffix("_bloody");
+        handheldUnrotatedItem(bloodyLocation);
+
+        var bloody = new ModelFile.UncheckedModelFile(bloodyLocation.withPrefix("item/"));
+
+        return handheldUnrotatedItem(item)
+                .override()
+                .predicate(GladiusItemProperties.BLOOD, 0.2F)
+                .model(bloody)
+                .end();
     }
 
     private ItemModelBuilder simpleDoubleLayered(Supplier<? extends Item> item){
@@ -73,6 +83,15 @@ public class GladiusItemModelProvider extends ItemModelProvider {
     public ItemModelBuilder rodItem(ResourceLocation item) {
         return getBuilder(item.toString())
                 .parent(new ModelFile.UncheckedModelFile("item/handheld_rod"))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + item.getPath()));
+    }
+    public ItemModelBuilder handheldUnrotatedItem(Item item) {
+        return handheldUnrotatedItem(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)));
+    }
+
+    public ItemModelBuilder handheldUnrotatedItem(ResourceLocation item) {
+        return getBuilder(item.toString())
+                .parent(new ModelFile.UncheckedModelFile("gladius:item/handheld_unrotated"))
                 .texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + item.getPath()));
     }
 

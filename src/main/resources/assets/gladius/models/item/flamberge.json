@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "gladius:item/flamberge_in_hand"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "gladius:item/flamberge_flat"
+    },
+    "ground": {
+      "parent": "gladius:item/flamberge_flat"
+    },
+    "fixed": {
+      "parent": "gladius:item/flamberge_flat"
+    }
+  }
+}

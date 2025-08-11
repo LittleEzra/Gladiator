@@ -12,7 +12,8 @@ import java.util.concurrent.CompletableFuture;
 public class GladiusLootTableProvider extends LootTableProvider {
     public GladiusLootTableProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, Collections.emptySet(), List.of(
-                        new LootTableProvider.SubProviderEntry(GladiusChestLootTableProvider::new, LootContextParamSets.CHEST)
+                        new LootTableProvider.SubProviderEntry(GladiusChestLootTableProvider::new, LootContextParamSets.CHEST),
+                        new LootTableProvider.SubProviderEntry(GladiusEntityModifierLootTableProvider::new, LootContextParamSets.ENTITY)
                 ),
                 registries);
     }

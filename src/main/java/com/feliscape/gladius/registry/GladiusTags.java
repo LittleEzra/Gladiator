@@ -30,8 +30,6 @@ public class GladiusTags {
         public static final TagKey<Item> INNATE_STUN = create("innate_stun");
         public static final TagKey<Item> TWO_HANDED = create("two_handed");
 
-        public static final TagKey<Item> SLINGSHOT_AMMO = create("slingshot_ammo");
-
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Gladius.location(name));
         }

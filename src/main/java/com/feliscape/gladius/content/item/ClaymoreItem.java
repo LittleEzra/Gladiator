@@ -30,11 +30,6 @@ public class ClaymoreItem extends SwordItem implements CustomShieldExtension {
     }
 
     @Override
-    public int getMaxDamage(ItemStack stack) {
-        return super.getMaxDamage(stack);
-    }
-
-    @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.BLOCK;
     }

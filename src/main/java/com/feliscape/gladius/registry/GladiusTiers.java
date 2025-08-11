@@ -11,7 +11,8 @@ import net.minecraft.world.level.block.Block;
 import java.util.function.Supplier;
 
 public enum GladiusTiers implements Tier {
-    CLAYMORE(BlockTags.INCORRECT_FOR_IRON_TOOL, 1400, 6.0F, 2.0F, 14, () -> Ingredient.of(Items.IRON_INGOT))
+    CLAYMORE(BlockTags.INCORRECT_FOR_IRON_TOOL, 1451, 6.0F, 2.0F, 14, () -> Ingredient.of(Items.IRON_INGOT)),
+    FLAMBERGE(BlockTags.INCORRECT_FOR_IRON_TOOL, 1451, 6.0F, 2.0F, 14, () -> Ingredient.of(Items.BLAZE_POWDER))
     ;
 
     private final TagKey<Block> incorrectBlocksForDrops;

@@ -4,9 +4,6 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
 import com.feliscape.gladius.content.entity.projectile.*;
-import com.feliscape.gladius.content.entity.projectile.slingshot.CoatedSteelShot;
-import com.feliscape.gladius.content.entity.projectile.slingshot.GoldShot;
-import com.feliscape.gladius.content.entity.projectile.slingshot.SteelShot;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -54,25 +51,6 @@ public class GladiusEntityTypes {
     );
     public static final Supplier<EntityType<Firebrand>> FIREBRAND = ENTITY_TYPES.registerEntityType("firebrand",
             Firebrand::new, MobCategory.MISC, b -> b
-                    .sized(0.25F, 0.25F)
-                    .clientTrackingRange(4)
-                    .updateInterval(10)
-    );
-
-    public static final Supplier<EntityType<SteelShot>> STEEL_SHOT = ENTITY_TYPES.registerEntityType("steel_shot",
-            SteelShot::new, MobCategory.MISC, b -> b
-                    .sized(0.25F, 0.25F)
-                    .clientTrackingRange(4)
-                    .updateInterval(10)
-    );
-    public static final Supplier<EntityType<CoatedSteelShot>> COATED_STEEL_SHOT = ENTITY_TYPES.registerEntityType("coated_steel_shot",
-            CoatedSteelShot::new, MobCategory.MISC, b -> b
-                    .sized(0.25F, 0.25F)
-                    .clientTrackingRange(4)
-                    .updateInterval(10)
-    );
-    public static final Supplier<EntityType<GoldShot>> GOLD_SHOT = ENTITY_TYPES.registerEntityType("gold_shot",
-            GoldShot::new, MobCategory.MISC, b -> b
                     .sized(0.25F, 0.25F)
                     .clientTrackingRange(4)
                     .updateInterval(10)

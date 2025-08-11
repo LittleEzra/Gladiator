@@ -17,6 +17,9 @@ public class GladiusComponents {
     public static final Supplier<DataComponentType<Integer>> POWER = DATA_COMPONENTS.registerComponentType(
             "power", b -> b.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT)
     );
+    public static final Supplier<DataComponentType<Integer>> BLOOD = DATA_COMPONENTS.registerComponentType(
+            "blood", b -> b.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
 
     public static void register(IEventBus eventBus){
         DATA_COMPONENTS.register(eventBus);

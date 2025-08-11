@@ -10,6 +10,8 @@ public class GladiusModifierLootTables {
     public static ResourceKey<LootTable> PILLAGER_OUTPOST = key("glm/chests/pillager_outpost");
     public static ResourceKey<LootTable> TRIAL_CHAMBERS = key("glm/chests/trial_chambers/reward");
 
+    public static ResourceKey<LootTable> BLAZE = key("glm/entity/blaze");
+
     private static ResourceKey<LootTable> key(String path) {
         return ResourceKey.create(Registries.LOOT_TABLE, Gladius.location(path));
     }

@@ -26,7 +26,6 @@ public class Gladius {
 
         GladiusItems.register(modEventBus);
         GladiusComponents.register(modEventBus);
-        GladiusCreativeModeTabs.register(modEventBus);
 
         GladiusSoundEvents.register(modEventBus);
         GladiusParticles.register(modEventBus);
@@ -37,6 +36,7 @@ public class Gladius {
         GladiusPotions.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
+        modEventBus.addListener(GladiusCreativeModeTabs::addToVanilla);
         modContainer.registerConfig(ModConfig.Type.SERVER, GladiusServerConfig.SPEC);
         modContainer.registerConfig(ModConfig.Type.CLIENT, GladiusClientConfig.SPEC);
     }

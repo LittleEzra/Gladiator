@@ -3,7 +3,6 @@ package com.feliscape.gladius.networking;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.networking.payload.ClientMobEffectsPayload;
 import com.feliscape.gladius.networking.payload.GladiusLevelEventPayload;
-import com.feliscape.gladius.networking.payload.SlingshotProjectileHitPayload;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -24,11 +23,6 @@ public class GladiusPayloads {
                 GladiusLevelEventPayload.TYPE,
                 GladiusLevelEventPayload.STREAM_CODEC,
                 GladiusLevelEventPayload::handle
-        );
-        registrar.playToClient(
-                SlingshotProjectileHitPayload.TYPE,
-                SlingshotProjectileHitPayload.STREAM_CODEC,
-                SlingshotProjectileHitPayload::handle
         );
     }
 }

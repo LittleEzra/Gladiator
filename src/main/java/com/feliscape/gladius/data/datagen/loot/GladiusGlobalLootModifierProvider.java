@@ -37,5 +37,11 @@ public class GladiusGlobalLootModifierProvider extends GlobalLootModifierProvide
                 },
                         GladiusModifierLootTables.TRIAL_CHAMBERS
                 ));
+        add("add_to_blaze",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        LootTableIdCondition.builder(ResourceLocation.withDefaultNamespace("entities/blaze")).build()
+                },
+                        GladiusModifierLootTables.BLAZE
+                ));
     }
 }

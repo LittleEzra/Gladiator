@@ -29,15 +29,9 @@ public class GladiusEntityTypeTagGenerator extends EntityTypeTagsProvider {
                 .add(EntityType.ELDER_GUARDIAN)
         ;
         this.tag(GladiusTags.EntityTypes.BLEEDING_IMMUNE)
-                .add(EntityType.WITHER)
                 .add(EntityType.IRON_GOLEM)
                 .add(EntityType.SNOW_GOLEM)
                 .add(EntityType.ARMOR_STAND)
-                .add(EntityType.MAGMA_CUBE)
-                .add(EntityType.SLIME)
-                .add(EntityType.VEX)
-                .add(EntityType.BLAZE)
-                .add(EntityType.BREEZE)
         ;
     }
 }

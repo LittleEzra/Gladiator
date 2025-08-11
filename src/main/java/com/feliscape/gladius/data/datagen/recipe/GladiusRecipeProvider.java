@@ -1,10 +1,12 @@
 package com.feliscape.gladius.data.datagen.recipe;
 
+import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.projectile.arrow.ExplosiveArrowItem;
 import com.feliscape.gladius.registry.GladiusItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
@@ -60,6 +62,27 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .define('/', Items.STICK)
                 .unlockedBy(getHasName(Blocks.HEAVY_CORE), has(Blocks.HEAVY_CORE))
                 .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.FLAMBERGE.get())
+                .pattern("  #")
+                .pattern("#C ")
+                .pattern("/# ")
+                .define('#', Items.IRON_INGOT)
+                .define('C', GladiusItems.BLAZING_HEART)
+                .define('/', Items.BLAZE_ROD)
+                .unlockedBy(getHasName(Items.BLAZE_ROD), has(Items.BLAZE_ROD))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, GladiusItems.CRYSTAL_BUTTERFLY.get())
+                .pattern("# #")
+                .pattern("#/#")
+                .pattern("# #")
+                .define('#', Items.AMETHYST_SHARD)
+                .define('/', Items.BREEZE_ROD)
+                .unlockedBy(getHasName(Items.BREEZE_ROD), has(Items.BREEZE_ROD))
+                .save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BLAZE_POWDER, 6)
+                .requires(GladiusItems.BLAZING_HEART)
+                .unlockedBy(getHasName(GladiusItems.BLAZING_HEART), has(GladiusItems.BLAZING_HEART))
+                .save(recipeOutput, Gladius.location("blazing_heart_into_blaze_powder"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, GladiusItems.FIREBRAND.get(), 4)
                 .requires(Tags.Items.RODS_WOODEN)

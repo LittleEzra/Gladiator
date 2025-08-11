@@ -26,18 +26,15 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
                 .add(GladiusItems.PRISMARINE_ARROW.get())
                 .add(GladiusItems.WINGED_ARROW.get())
         ;
-        this.tag(GladiusTags.Items.SLINGSHOT_AMMO)
-                .add(GladiusItems.STEEL_SHOT.get())
-                .add(GladiusItems.GOLD_SHOT.get())
-                .add(GladiusItems.COATED_STEEL_SHOT.get())
-        ;
 
         this.tag(GladiusTags.Items.TWO_HANDED)
                 .add(GladiusItems.CLAYMORE.get())
+                .add(GladiusItems.FLAMBERGE.get())
         ;
         this.tag(ItemTags.SWORDS)
                 .add(GladiusItems.GILDED_DAGGER.get())
                 .add(GladiusItems.CLAYMORE.get())
+                .add(GladiusItems.FLAMBERGE.get())
         ;
         this.tag(GladiusTags.Items.BLOCKING_ENCHANTABLE)
                 .add(Items.SHIELD)

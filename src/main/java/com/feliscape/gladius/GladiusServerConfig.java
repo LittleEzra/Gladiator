@@ -13,14 +13,23 @@ public class GladiusServerConfig {
     public static final ModConfigSpec SPEC;
 
     public final ModConfigSpec.BooleanValue firebrandMakesFire;
+    public final ModConfigSpec.IntValue crystalButterflySearchRange;
 
     public GladiusServerConfig(ModConfigSpec.Builder builder){
+        builder.push("entities");
+        crystalButterflySearchRange = builder
+                .translation("gladius.configuration.server.entities.crystal_butterfly_search_range")
+                .comment("How far a Crystal Butterfly will track a player for.", "If the player is further than the defined distance, it will simply sit down.")
+                .defineInRange("crystal_butterfly_search_range", 64, 16, 1028)
+        ;
         builder.push("projectiles");
         firebrandMakesFire = builder
-                .translation("gladius.configuration.server.projectiles.firebrand_makes_fire")
+                .translation("gladius.configuration..entities.projectiles.firebrand_makes_fire")
                 .comment("If true, firebrands will place fire when hitting a flammable block")
                 .define("firebrand_makes_fire", true)
         ;
+        builder.pop();
+        builder.pop();
     }
 
 
