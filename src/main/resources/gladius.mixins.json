@@ -3,6 +3,7 @@
   "package": "com.feliscape.gladius.content.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BrainMixin",
     "LivingEntityMixin",
     "MobMixin"
   ],

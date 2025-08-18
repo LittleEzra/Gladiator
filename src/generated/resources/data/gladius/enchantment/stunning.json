@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.gladius.stunning"
+  },
+  "max_cost": {
+    "base": 5,
+    "per_level_above_first": 3
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 4,
+    "per_level_above_first": 2
+  },
+  "slots": [
+    "offhand",
+    "mainhand"
+  ],
+  "supported_items": "#gladius:blocking_enchantable",
+  "weight": 30
+}

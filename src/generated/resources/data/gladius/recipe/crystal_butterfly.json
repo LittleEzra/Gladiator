@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "/": {
+      "item": "minecraft:breeze_rod"
+    }
+  },
+  "pattern": [
+    "# #",
+    "#/#",
+    "# #"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gladius:crystal_butterfly"
+  }
+}

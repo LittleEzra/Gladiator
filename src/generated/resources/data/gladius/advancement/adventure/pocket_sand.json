@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft:adventure/kill_a_mob",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "item": {
+          "items": "gladius:flash_powder"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.gladius.adventure.pocket_sand.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "gladius:flash_powder"
+    },
+    "title": {
+      "translate": "advancements.gladius.adventure.pocket_sand.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

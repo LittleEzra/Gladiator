@@ -1,0 +1,6 @@
+{
+  "parent": "gladius:item/handheld_unrotated",
+  "textures": {
+    "layer0": "gladius:item/gilded_dagger_bloody"
+  }
+}

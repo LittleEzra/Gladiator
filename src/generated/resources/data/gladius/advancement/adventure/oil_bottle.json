@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/kill_a_mob",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gladius:oil_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.gladius.adventure.oil_bottle.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "gladius:oil_bottle"
+    },
+    "title": {
+      "translate": "advancements.gladius.adventure.oil_bottle.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

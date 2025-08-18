@@ -1,0 +1,6 @@
+// 1.21.1	2025-08-11T13:18:08.9498069	Global Loot Modifiers : gladius
+c4b469f851386974c91ac1fedbef653cd22b01a7 data/gladius/loot_modifiers/add_to_blaze.json
+7dbdf6a5d6dad29983d952db541f11555d8604e1 data/gladius/loot_modifiers/add_to_pillager_outpost.json
+f7cb925d97cf1797019029bcbe07ff1602655277 data/gladius/loot_modifiers/add_to_ruined_portal.json
+1fc19ba327fe894bf165a281f8e7b894843d8708 data/gladius/loot_modifiers/add_to_trial_chambers_reward.json
+39095b622485c827dc7348917edc55ce73d74ea9 data/neoforge/loot_modifiers/global_loot_modifiers.json

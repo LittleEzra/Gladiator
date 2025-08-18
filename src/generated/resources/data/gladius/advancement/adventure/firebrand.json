@@ -1,0 +1,31 @@
+{
+  "parent": "gladius:adventure/oil_bottle",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "item": {
+          "items": "gladius:firebrand"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.gladius.adventure.firebrand.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "gladius:firebrand"
+    },
+    "title": {
+      "translate": "advancements.gladius.adventure.firebrand.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

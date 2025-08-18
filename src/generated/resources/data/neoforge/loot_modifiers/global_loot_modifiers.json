@@ -1,0 +1,9 @@
+{
+  "entries": [
+    "gladius:add_to_pillager_outpost",
+    "gladius:add_to_ruined_portal",
+    "gladius:add_to_trial_chambers_reward",
+    "gladius:add_to_blaze"
+  ],
+  "replace": false
+}

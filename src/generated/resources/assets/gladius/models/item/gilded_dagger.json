@@ -1,0 +1,14 @@
+{
+  "parent": "gladius:item/handheld_unrotated",
+  "overrides": [
+    {
+      "model": "gladius:item/gilded_dagger_bloody",
+      "predicate": {
+        "gladius:blood": 0.2
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "gladius:item/gilded_dagger"
+  }
+}

@@ -32,7 +32,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
 
         basicItem(GladiusItems.OIL_BOTTLE.get());
         basicItem(GladiusItems.CRYSTAL_BUTTERFLY.get());
-        handheldUnrotatedItem(GladiusItems.FIREBRAND.get());
+        rodItem(GladiusItems.FIREBRAND.get());
 
         basicItem(GladiusItems.FLASH_POWDER.get());
 

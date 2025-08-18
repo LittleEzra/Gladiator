@@ -1,0 +1,6 @@
+// 1.21.1	2025-08-11T13:18:08.9468108	Tags for minecraft:item mod id gladius
+8c814c9a1e07a5218138afee18c724503420b270 data/gladius/tags/item/blocking_enchantable.json
+84a7ba41a041824cf8097010deb5f08d7f4c2f7e data/gladius/tags/item/innate_stun.json
+9e1ed64c6f769fd7afb1f0e3855b707c283db047 data/gladius/tags/item/two_handed.json
+f2706b1f776c0dfc389eb0d99a63efa6ffdb59e5 data/minecraft/tags/item/arrows.json
+71eab3ac5b0ef64ceab6369ce7d7076b428d2ba2 data/minecraft/tags/item/swords.json
