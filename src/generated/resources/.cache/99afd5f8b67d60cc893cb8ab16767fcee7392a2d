@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-14T13:01:33.0550495	Item Models: gladius
+// 1.21.1	2025-11-22T22:12:20.1817286	Item Models: gladius
 6de42e37e536ac74fe8005d164682ec50fc4a93a assets/gladius/models/item/blazing_heart.json
 a061635c1156f917a5c16639939ab3d76a443d7b assets/gladius/models/item/crystal_butterfly.json
 50a0b3aeb1b113f4fef3a804f9fb7ffb70dde236 assets/gladius/models/item/explosive_arrow.json
@@ -6,6 +6,7 @@ a061635c1156f917a5c16639939ab3d76a443d7b assets/gladius/models/item/crystal_butt
 f6126acf15852a9c7b6307e4b2fd27b0ecf3b590 assets/gladius/models/item/flash_powder.json
 d8902c57608449ed189d49e0a341c5e965e32845 assets/gladius/models/item/gilded_dagger.json
 2710fd4b0b4feb8b22081df176e1aeb2216d0482 assets/gladius/models/item/gilded_dagger_bloody.json
+11915c819fbf2e6caa7b2d5ce1f688de4b8c1aed assets/gladius/models/item/golden_wand.json
 5df739a457936ae3d0ca9ee2b63189c2a0be74bd assets/gladius/models/item/oil_bottle.json
 f17d415b5e31eda279ff2a244ba152d1cffa1b40 assets/gladius/models/item/prismarine_arrow.json
 b5744230e5391ffa2274b52be5f3b9092ee07939 assets/gladius/models/item/winged_arrow.json

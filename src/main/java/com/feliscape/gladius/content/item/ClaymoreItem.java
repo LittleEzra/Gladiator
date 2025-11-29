@@ -59,7 +59,7 @@ public class ClaymoreItem extends SwordItem implements CustomShieldExtension {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if (ModList.get().isLoaded("bettercombat")) return;
-        tooltipComponents.add(Component.translatable("item.gladius.tooltip.two_handed").withStyle(ChatFormatting.GRAY));
+
+
     }
 }

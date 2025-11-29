@@ -28,7 +28,7 @@ public class GladiusEntityModifierLootTableProvider implements LootTableSubProvi
     @Override
     public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
         output.accept(GladiusModifierLootTables.BLAZE, lootTable().withPool(
-                lootPool().add(lootTableItem(GladiusItems.BLAZING_HEART).when(randomChance(0.1F)))
+                lootPool().add(lootTableItem(GladiusItems.BLAZING_HEART).when(randomChance(0.03F)))
         ));
     }
 }

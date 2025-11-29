@@ -5,12 +5,12 @@ import com.feliscape.gladius.GladiusServerConfig;
 import com.feliscape.gladius.data.damage.GladiusDamageTypes;
 import com.feliscape.gladius.data.datagen.advancement.GladiusAdvancements;
 import com.feliscape.gladius.data.enchantment.GladiusEnchantments;
+import com.feliscape.gladius.data.registry.GladiusAspects;
 import com.feliscape.gladius.registry.*;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.Potions;
 
 public class GladiusEnUsProvider extends GladiusLanguageProvider{
     public GladiusEnUsProvider(PackOutput output) {
@@ -35,8 +35,15 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.GILDED_DAGGER, "Gilded Dagger");
         this.addItem(GladiusItems.CLAYMORE, "Claymore");
         this.addItem(GladiusItems.FLAMBERGE, "Flamberge");
+        this.addItem(GladiusItems.GOLDEN_WAND, "Golden Wand");
         this.add("item.gladius.tooltip.two_handed", "Two-Handed");
 
+        this.addAspect(GladiusAspects.FIRE, "🔥 Fire");
+        this.addAspect(GladiusAspects.MAGIC, "🧪 Magic");
+        this.addAspect(GladiusAspects.ICE, "❄ Ice");
+        this.addAspect(GladiusAspects.POISON, "☠ Poison");
+
+        this.addEntityType(GladiusEntityTypes.MAGIC_ORB, "Magic Orb");
         this.addEntityType(GladiusEntityTypes.EXPLOSIVE_ARROW, "Explosive Arrow");
         this.addEntityType(GladiusEntityTypes.PRISMARINE_ARROW, "Prismarine Arrow");
         this.addEntityType(GladiusEntityTypes.WINGED_ARROW, "Winged Arrow");
@@ -55,8 +62,10 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEnchantment(GladiusEnchantments.STUNNING, "Stunning");
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore blocks");
+        this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Gilded Dagger stabs");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Firebrand lights fire");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Flash Powder crackles");
+        this.addSubtitle(GladiusSoundEvents.SPELL, "Spell is cast");
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s bled out");
 
@@ -74,6 +83,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addConfigValue("client", GladiusClientConfig.CONFIG.stunTrailResolution, "Stun Trail Resolution");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.showBlood, "Show Blood");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.extraOil, "Extra Oil");
+        this.addConfigValue("client", GladiusClientConfig.CONFIG.oilSplatDisappearStyle, "Oil Splat Disappear Effect");
         this.addConfigSection("flash_powder", "Flash Powder");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowderFlashing, "Flash Powder Flashing");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowderLightChance, "Flash Powder Light Chance");

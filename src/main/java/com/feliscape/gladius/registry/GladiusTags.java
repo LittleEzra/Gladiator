@@ -3,6 +3,7 @@ package com.feliscape.gladius.registry;
 import com.feliscape.gladius.Gladius;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -13,6 +14,14 @@ public class GladiusTags {
 
         private static TagKey<Block> create(String name){
             return TagKey.create(Registries.BLOCK, Gladius.location(name));
+        }
+    }
+    public static class DamageTypes{
+        public static final TagKey<DamageType> IS_MAGIC = create("is_magic");
+        public static final TagKey<DamageType> IS_ATTACK = create("is_attack");
+
+        private static TagKey<DamageType> create(String name){
+            return TagKey.create(Registries.DAMAGE_TYPE, Gladius.location(name));
         }
     }
     public static class EntityTypes{
@@ -28,7 +37,7 @@ public class GladiusTags {
     public static class Items{
         public static final TagKey<Item> BLOCKING_ENCHANTABLE = create("blocking_enchantable");
         public static final TagKey<Item> INNATE_STUN = create("innate_stun");
-        public static final TagKey<Item> TWO_HANDED = create("two_handed");
+        public static final TagKey<Item> NO_OIL_PROTECTION = create("no_oil_protection");
 
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Gladius.location(name));

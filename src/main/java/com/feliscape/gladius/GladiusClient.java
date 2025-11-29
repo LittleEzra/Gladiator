@@ -1,5 +1,7 @@
 package com.feliscape.gladius;
 
+import com.feliscape.gladius.client.GladiusModelLayers;
+import com.feliscape.gladius.client.GladiusModelManager;
 import com.feliscape.gladius.foundation.MobEffectRenderDispatcher;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
 import net.minecraft.client.Minecraft;
@@ -32,6 +34,7 @@ public class GladiusClient {
     }
 
     public static class ReloadListener {
+        GladiusModelManager modelManager;
         private final MobEffectRenderDispatcher mobEffectRenderDispatcher;
 
         public ReloadListener(RegisterClientReloadListenersEvent event){
@@ -47,6 +50,13 @@ public class GladiusClient {
                     minecraft.getEntityModels()
             );
             event.registerReloadListener(mobEffectRenderDispatcher);
+            modelManager = new GladiusModelManager();
+            event.registerReloadListener(modelManager);
+
+        }
+
+        public GladiusModelManager getModelManager(){
+            return modelManager;
         }
 
         public MobEffectRenderDispatcher getMobEffectRenderDispatcher() {

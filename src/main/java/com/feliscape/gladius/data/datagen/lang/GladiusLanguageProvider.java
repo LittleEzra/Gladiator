@@ -2,6 +2,7 @@ package com.feliscape.gladius.data.datagen.lang;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.data.advancement.CustomAdvancement;
+import com.feliscape.gladius.data.element.Aspect;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -12,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
@@ -62,6 +64,9 @@ public abstract class GladiusLanguageProvider extends LanguageProvider {
         if (advancement.getDescription().getContents() instanceof TranslatableContents translatable)
             add(translatable.getKey(), description);
     }
+    protected void addAspect(ResourceKey<Aspect> key, String name) {
+        add(Util.makeDescriptionId("aspect", key.location()), name);
+    }
     protected void addEnchantment(ResourceKey<Enchantment> key, String name) {
         add(Util.makeDescriptionId("enchantment", key.location()), name);
     }
@@ -70,6 +75,9 @@ public abstract class GladiusLanguageProvider extends LanguageProvider {
     }
     protected void addTab(Supplier<CreativeModeTab> key, String name) {
         add(Util.makeDescriptionId("itemGroup", BuiltInRegistries.CREATIVE_MODE_TAB.getKey(key.get())), name);
+    }
+    protected void addAttribute(Holder<Attribute> key, String name) {
+        add(key.value().getDescriptionId(), name);
     }
 
     protected void addConfigSection(String section, String name){

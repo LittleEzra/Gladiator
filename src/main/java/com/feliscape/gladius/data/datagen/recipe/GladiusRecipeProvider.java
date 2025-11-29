@@ -54,9 +54,9 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.AMETHYST_SHARD), has(Items.AMETHYST_SHARD))
                 .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.CLAYMORE.get())
-                .pattern(" # ")
-                .pattern("#C#")
-                .pattern(" / ")
+                .pattern("  #")
+                .pattern("#C ")
+                .pattern("/# ")
                 .define('#', Items.IRON_INGOT)
                 .define('C', Blocks.HEAVY_CORE)
                 .define('/', Items.STICK)
@@ -68,8 +68,8 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .pattern("/# ")
                 .define('#', Items.IRON_INGOT)
                 .define('C', GladiusItems.BLAZING_HEART)
-                .define('/', Items.BLAZE_ROD)
-                .unlockedBy(getHasName(Items.BLAZE_ROD), has(Items.BLAZE_ROD))
+                .define('/', Items.NETHERITE_SWORD)
+                .unlockedBy(getHasName(GladiusItems.BLAZING_HEART), has(GladiusItems.BLAZING_HEART))
                 .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, GladiusItems.CRYSTAL_BUTTERFLY.get())
                 .pattern("# #")
@@ -78,6 +78,14 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .define('#', Items.AMETHYST_SHARD)
                 .define('/', Items.BREEZE_ROD)
                 .unlockedBy(getHasName(Items.BREEZE_ROD), has(Items.BREEZE_ROD))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.GOLDEN_WAND.get())
+                .pattern("  #")
+                .pattern(" / ")
+                .pattern("#  ")
+                .define('#', Items.GOLD_INGOT)
+                .define('/', Items.STICK)
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
                 .save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BLAZE_POWDER, 6)
                 .requires(GladiusItems.BLAZING_HEART)

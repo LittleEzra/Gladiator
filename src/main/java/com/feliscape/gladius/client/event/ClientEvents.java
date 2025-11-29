@@ -4,21 +4,21 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusClient;
 import com.feliscape.gladius.client.GladiusModelLayers;
 import com.feliscape.gladius.client.extension.ClaymoreClientExtensions;
+import com.feliscape.gladius.client.extension.SmallArmorClientExtension;
 import com.feliscape.gladius.client.hud.BloodLayer;
 import com.feliscape.gladius.client.model.CrystalButterflyModel;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
-import com.feliscape.gladius.registry.GladiusComponents;
-import com.feliscape.gladius.registry.GladiusEntityTypes;
-import com.feliscape.gladius.registry.GladiusItems;
-import com.feliscape.gladius.registry.GladiusMobEffects;
+import com.feliscape.gladius.registry.*;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -40,6 +40,13 @@ public class ClientEvents {
     public static void registerClientExtensions(RegisterClientExtensionsEvent event)
     {
         event.registerItem(new ClaymoreClientExtensions(), GladiusItems.CLAYMORE);
+
+        /*event.registerItem(new SmallArmorClientExtension(),
+                GladiusItems.ARCHER_CAP,
+                GladiusItems.ARCHER_TUNIC,
+                GladiusItems.ARCHER_LEGGINGS,
+                GladiusItems.ARCHER_BOOTS
+        );*/
     }
     @SubscribeEvent
     public static void registerClientReloadListeners(RegisterClientReloadListenersEvent event)
@@ -49,24 +56,36 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
+        event.registerEntityRenderer(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterflyRenderer::new);
+
         event.registerEntityRenderer(GladiusEntityTypes.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PRISMARINE_ARROW.get(), PrismarineArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.WINGED_ARROW.get(), WingedArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.OIL_BOTTLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FIREBRAND.get(), FirebrandRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.MAGIC_ORB.get(), MagicOrbRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.FLASH_POWDER_CLOUD.get(), NoopRenderer::new);
-        event.registerEntityRenderer(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterflyRenderer::new);
-    }
-    @SubscribeEvent
-    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event)
-    {
-        event.registerLayerDefinition(GladiusModelLayers.CRYSTAL_BUTTERFLY, CrystalButterflyModel::createBodyLayer);
     }
     @SubscribeEvent
     public static void registerGuiLayers(RegisterGuiLayersEvent event)
     {
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, BloodLayer.LOCATION, new BloodLayer());
+    }
+    @SubscribeEvent
+    public static void preRenderPlayer(RenderPlayerEvent.Pre event)
+    {
+        if (event.getEntity().getData(GladiusDataAttachments.GRAVITY_DIRECTION) == Direction.UP){
+            event.getPoseStack().pushPose();
+            event.getPoseStack().mulPose(Axis.ZP.rotationDegrees(180.0F));
+        }
+    }
+    @SubscribeEvent
+    public static void afterRenderPlayer(RenderPlayerEvent.Post event)
+    {
+        if (event.getEntity().getData(GladiusDataAttachments.GRAVITY_DIRECTION) == Direction.UP){
+            event.getPoseStack().popPose();
+        }
     }
 
     @SubscribeEvent

@@ -22,6 +22,14 @@ public class GladiusEntityTypes {
                     .updateInterval(Integer.MAX_VALUE)
     );
 
+    public static final Supplier<EntityType<MagicOrb>> MAGIC_ORB = ENTITY_TYPES.registerEntityType("magic_orb",
+            MagicOrb::new, MobCategory.MISC, b -> b
+                    .sized(0.25F, 0.25F)
+                    .eyeHeight(0.125F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+    );
+
     public static final Supplier<EntityType<ExplosiveArrow>> EXPLOSIVE_ARROW = ENTITY_TYPES.registerEntityType("explosive_arrow",
             ExplosiveArrow::new, MobCategory.MISC, b -> b
                     .sized(0.5F, 0.5F)

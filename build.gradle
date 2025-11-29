@@ -52,6 +52,11 @@ neoForge {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
+        clientAuth{
+            client()
+            devLogin = true
+        }
+
 
         server {
             server()
@@ -88,7 +93,7 @@ neoForge {
 
             // Recommended logging level for the console
             // You can set various levels here.
-            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+            // Please read: https://stacko>verflow.com/questions/2031163/when-to-use-the-different-log-levels
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }

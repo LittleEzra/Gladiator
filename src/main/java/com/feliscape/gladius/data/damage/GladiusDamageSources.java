@@ -18,4 +18,15 @@ public class GladiusDamageSources {
                 access.lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(GladiusDamageTypes.BLEEDING), (Entity) null
         );
     }
+
+    public static DamageSource magicProjectile(Level level, Entity projectile, Entity owner){
+        return new DamageSource(
+                level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(GladiusDamageTypes.MAGIC_PROJECTILE), projectile, owner
+        );
+    }
+    public static DamageSource magicProjectile(RegistryAccess access, Entity projectile, Entity owner){
+        return new DamageSource(
+                access.lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(GladiusDamageTypes.MAGIC_PROJECTILE), (Entity) null
+        );
+    }
 }

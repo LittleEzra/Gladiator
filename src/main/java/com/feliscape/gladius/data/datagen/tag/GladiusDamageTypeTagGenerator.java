@@ -10,7 +10,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
@@ -23,6 +25,16 @@ public class GladiusDamageTypeTagGenerator extends DamageTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        this.tag(GladiusTags.DamageTypes.IS_MAGIC)
+                .addTag(Tags.DamageTypes.IS_MAGIC)
+                .remove(Tags.DamageTypes.IS_POISON); // Exclude Poison from magic damage
+
+        this.tag(GladiusTags.DamageTypes.IS_ATTACK)
+                .add(DamageTypes.MOB_ATTACK)
+                .add(DamageTypes.MOB_ATTACK_NO_AGGRO)
+                .add(DamageTypes.PLAYER_ATTACK)
+        ;
+
         this.tag(DamageTypeTags.NO_IMPACT)
                 .add(GladiusDamageTypes.BLEEDING);
         this.tag(DamageTypeTags.NO_KNOCKBACK)

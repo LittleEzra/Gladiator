@@ -5,6 +5,10 @@
   "advancements.gladius.adventure.oil_bottle.title": "Kitchen Nightmares",
   "advancements.gladius.adventure.pocket_sand.description": "Toss Flash Powder into the air to confuse your enemies",
   "advancements.gladius.adventure.pocket_sand.title": "Pocket Sand!",
+  "aspect.gladius.fire": "🔥 Fire",
+  "aspect.gladius.ice": "❄ Ice",
+  "aspect.gladius.magic": "🧪 Magic",
+  "aspect.gladius.poison": "☠ Poison",
   "death.attack.gladius:bleeding": "%1$s bled out",
   "effect.gladius.bleeding": "Bleeding",
   "effect.gladius.flammable": "Flammable",
@@ -16,6 +20,7 @@
   "entity.gladius.explosive_arrow": "Explosive Arrow",
   "entity.gladius.firebrand": "Firebrand",
   "entity.gladius.flash_powder_cloud": "Flash Powder Cloud",
+  "entity.gladius.magic_orb": "Magic Orb",
   "entity.gladius.oil_bottle": "Oil Bottle",
   "entity.gladius.prismarine_arrow": "Prismarine Arrow",
   "entity.gladius.winged_arrow": "Winged Arrow",
@@ -23,6 +28,7 @@
   "gladius.configuration.client.effects.flash_powder.dark_flash": "Dark Flash",
   "gladius.configuration.client.effects.flash_powder.flash_powder_flashing": "Flash Powder Flashing",
   "gladius.configuration.client.effects.flash_powder.flash_powder_light_chance": "Flash Powder Light Chance",
+  "gladius.configuration.client.effects.oil_splat_disappear_style": "Oil Splat Disappear Effect",
   "gladius.configuration.client.effects.show_blood": "Show Blood",
   "gladius.configuration.client.effects.stun_trail_resolution": "Stun Trail Resolution",
   "gladius.configuration.effects": "Effects",
@@ -39,6 +45,7 @@
   "item.gladius.flamberge": "Flamberge",
   "item.gladius.flash_powder": "Flash Powder",
   "item.gladius.gilded_dagger": "Gilded Dagger",
+  "item.gladius.golden_wand": "Golden Wand",
   "item.gladius.oil_bottle": "Oil Bottle",
   "item.gladius.prismarine_arrow": "Prismarine Arrow",
   "item.gladius.tooltip.two_handed": "Two-Handed",
@@ -46,5 +53,7 @@
   "item.nuanced_combat.explosive_arrow.power": "Power: %1$s",
   "subtitle.gladius.entity.firebrand.light": "Firebrand lights fire",
   "subtitle.gladius.item.claymore.block": "Claymore blocks",
-  "subtitle.gladius.item.flash_powder.crackle": "Flash Powder crackles"
+  "subtitle.gladius.item.flash_powder.crackle": "Flash Powder crackles",
+  "subtitle.gladius.item.gilded_dagger.stab": "Gilded Dagger stabs",
+  "subtitle.gladius.item.spell": "Spell is cast"
 }

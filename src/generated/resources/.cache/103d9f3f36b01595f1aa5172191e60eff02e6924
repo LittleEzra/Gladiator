@@ -1,3 +1,8 @@
-// 1.21.1	2025-08-09T19:03:21.9947083	Registries
+// 1.21.1	2025-11-22T22:12:20.1805262	Registries
 acac2ca9be3f1e5d9b3e0dff1db765ad79e56ca5 data/gladius/damage_type/bleeding.json
+2034ae494412625868fd9746250e12969e42cfba data/gladius/damage_type/magic_projectile.json
 8d641f0fbafc37b7d630426d5f028b363b140b54 data/gladius/enchantment/stunning.json
+2aacff8376f58e1be8f48718cedfb425111978d8 data/gladius/gladius/aspect/fire.json
+f5ec599ee72ec3140cc62114080a02fcf26d3257 data/gladius/gladius/aspect/ice.json
+3efbc7aaec82e3eb9c25b9b9bd25197d9a062f00 data/gladius/gladius/aspect/magic.json
+e5bb0f0c56c00ea725bfd4dde645d2cb9985df73 data/gladius/gladius/aspect/poison.json

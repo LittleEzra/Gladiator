@@ -1,5 +1,6 @@
 package com.feliscape.gladius;
 
+import com.feliscape.gladius.client.particle.OilSplatParticle;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -16,6 +17,7 @@ public class GladiusClientConfig {
     public final ModConfigSpec.IntValue flashPowderFlashing;
     public final ModConfigSpec.IntValue flashPowderLightChance;
     public final ModConfigSpec.BooleanValue darkFlash;
+    public final ModConfigSpec.EnumValue<OilSplatParticle.DisappearStyle> oilSplatDisappearStyle;
 
     public GladiusClientConfig(ModConfigSpec.Builder builder){
         builder.push("effects");
@@ -33,6 +35,13 @@ public class GladiusClientConfig {
                 .translation("gladius.configuration.client.effects.extra_oil")
                 .comment("If true, makes entities with the Flammable effect drip more oil.")
                 .define("extra_oil", true)
+        ;
+        oilSplatDisappearStyle = builder
+                .translation("gladius.configuration.client.effects.oil_splat_disappear_style")
+                .comment("Controls how oil splats will fade.")
+                .comment("FADE: Oil splats will lower in opacity. Can cause artifacts due to translucent rendering.")
+                .comment("SCALE: Oil splats will become smaller when disappearing.")
+                .defineEnum("oil_splat_disappear_style", OilSplatParticle.DisappearStyle.FADE)
         ;
         builder.push("flash_powder");
         flashPowderFlashing = builder

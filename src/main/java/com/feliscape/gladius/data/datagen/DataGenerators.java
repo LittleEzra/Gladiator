@@ -5,6 +5,7 @@ import com.feliscape.gladius.data.datagen.advancement.GladiusAdvancementProvider
 import com.feliscape.gladius.data.datagen.lang.GladiusEnUsProvider;
 import com.feliscape.gladius.data.datagen.loot.GladiusGlobalLootModifierProvider;
 import com.feliscape.gladius.data.datagen.loot.GladiusLootTableProvider;
+import com.feliscape.gladius.data.datagen.map.GladiusDataMapProvider;
 import com.feliscape.gladius.data.datagen.model.GladiusItemModelProvider;
 import com.feliscape.gladius.data.datagen.recipe.GladiusRecipeProvider;
 import com.feliscape.gladius.data.datagen.tag.*;
@@ -39,6 +40,7 @@ public class DataGenerators {
         generator.addProvider(true, new GladiusEntityTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(true, new GladiusMobEffectTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(true, new GladiusDamageTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(true, new GladiusDataMapProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeServer(), new GladiusAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
 

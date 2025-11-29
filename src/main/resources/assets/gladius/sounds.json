@@ -5,6 +5,13 @@
     ],
     "subtitle": "subtitle.gladius.item.claymore.block"
   },
+  "item.gilded_dagger.stab": {
+    "sounds": [
+      { "name": "gladius:item/gilded_dagger_slash_0" },
+      { "name": "gladius:item/gilded_dagger_slash_1" }
+    ],
+    "subtitle": "subtitle.gladius.item.gilded_dagger.stab"
+  },
   "entity.firebrand.light": {
     "sounds": [
       "mob/ghast/fireball4"
@@ -19,5 +26,11 @@
     { "name": "gladius:item/flash_powder_crackle_3" }
   ],
   "subtitle": "subtitle.gladius.item.flash_powder.crackle"
+  },
+  "item.spell": {
+    "sounds": [
+      "gladius:item/spell"
+    ],
+    "subtitle": "subtitle.gladius.item.spell"
   }
 }

@@ -26,11 +26,13 @@ public class Gladius {
 
         GladiusItems.register(modEventBus);
         GladiusComponents.register(modEventBus);
+        GladiusArmorMaterials.register(modEventBus);
 
         GladiusSoundEvents.register(modEventBus);
         GladiusParticles.register(modEventBus);
 
         GladiusEntityTypes.register(modEventBus);
+        GladiusAttributes.register(modEventBus);
         GladiusDataAttachments.register(modEventBus);
         GladiusMobEffects.register(modEventBus);
         GladiusPotions.register(modEventBus);

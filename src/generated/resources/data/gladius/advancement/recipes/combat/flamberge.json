@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blaze_rod": {
+    "has_blazing_heart": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:blaze_rod"
+            "items": "gladius:blazing_heart"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_blaze_rod"
+      "has_blazing_heart"
     ]
   ],
   "rewards": {

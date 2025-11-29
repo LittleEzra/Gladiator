@@ -2,14 +2,15 @@ package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.*;
+import com.feliscape.gladius.content.item.component.AspectComponent;
 import com.feliscape.gladius.content.item.projectile.FirebrandItem;
 import com.feliscape.gladius.content.item.projectile.OilBottleItem;
 import com.feliscape.gladius.content.item.projectile.arrow.ExplosiveArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.PrismarineArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.WingedArrowItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tiers;
+import com.feliscape.gladius.data.registry.GladiusAspects;
+import net.minecraft.util.Unit;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -42,10 +43,20 @@ public class GladiusItems {
             p -> new GildedDaggerItem(p.attributes(SwordItem.createAttributes(Tiers.IRON, 1, -1.9F))
                     .component(GladiusComponents.BLOOD, 0)));
     public static final DeferredItem<ClaymoreItem> CLAYMORE = ITEMS.registerItem("claymore",
-            p -> new ClaymoreItem(p.attributes(SwordItem.createAttributes(GladiusTiers.CLAYMORE, 5, -3.0F))));
+            p -> new ClaymoreItem(p.attributes(SwordItem.createAttributes(GladiusTiers.CLAYMORE, 5, -3.0F))
+                    .component(GladiusComponents.TWO_HANDED, Unit.INSTANCE))
+    );
     public static final DeferredItem<FlambergeItem> FLAMBERGE = ITEMS.registerItem("flamberge",
-            p -> new FlambergeItem(p.attributes(SwordItem.createAttributes(GladiusTiers.FLAMBERGE, 6, -2.8F))));
-
+            p -> new FlambergeItem(p.attributes(SwordItem.createAttributes(GladiusTiers.FLAMBERGE, 7, -2.8F))
+                    .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.FIRE, true))
+                    .component(GladiusComponents.TWO_HANDED, Unit.INSTANCE)
+            ));
+    public static final DeferredItem<WandItem> GOLDEN_WAND = ITEMS.registerItem("golden_wand",
+            p -> new WandItem(p.stacksTo(1)
+                    .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.MAGIC, false))
+                    .component(GladiusComponents.MAGIC_CHARGES, 10)
+                    .component(GladiusComponents.MAX_MAGIC_CHARGES, 10)
+            ));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

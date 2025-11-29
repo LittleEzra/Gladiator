@@ -1,10 +1,13 @@
 package com.feliscape.gladius.client.particle;
 
+import com.feliscape.gladius.GladiusClient;
 import com.feliscape.gladius.GladiusClientConfig;
+import com.feliscape.gladius.registry.GladiusParticles;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
@@ -14,15 +17,24 @@ import org.joml.Quaternionf;
 import javax.annotation.Nullable;
 
 public class OilSplatParticle extends TextureSheetParticle {
-    private final SpriteSet spriteSet;
+    public enum DisappearStyle {
+        SCALE,
+        FADE
+    }
 
-    protected OilSplatParticle(ClientLevel level, SpriteSet spriteSet, float scale, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    private final SpriteSet spriteSet;
+    private float startQuadSize;
+
+    protected OilSplatParticle(ClientLevel level, SpriteSet spriteSet, float scale,
+                               double x, double y, double z,
+                               double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z);
         this.spriteSet = spriteSet;
         this.pickSprite(spriteSet);
         this.setParticleSpeed(xSpeed, ySpeed, zSpeed);
         this.quadSize = 0.125f * scale;
-        this.lifetime = random.nextInt(60, 80);
+        this.startQuadSize = quadSize;
+        this.lifetime = random.nextInt(80, 100);
         this.hasPhysics = false;
         this.alpha = 1.0F;
     }
@@ -35,7 +47,14 @@ public class OilSplatParticle extends TextureSheetParticle {
         if (this.age++ >= this.lifetime) {
             this.remove();
         } else{
-            this.alpha = easing((float)age / (float)lifetime);
+            var disappearStyle = GladiusClientConfig.CONFIG.oilSplatDisappearStyle.get();
+            if (disappearStyle == DisappearStyle.FADE){
+                this.alpha = easing((float)age / (float)lifetime);
+                this.quadSize = startQuadSize;
+            } else if (disappearStyle == DisappearStyle.SCALE){
+                this.alpha = 1.0F;
+                this.quadSize = startQuadSize * easing((float)age / (float)lifetime);
+            }
         }
     }
 
@@ -45,7 +64,7 @@ public class OilSplatParticle extends TextureSheetParticle {
 
     @Override
     public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @Override

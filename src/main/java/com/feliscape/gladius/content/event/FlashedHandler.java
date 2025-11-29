@@ -9,14 +9,21 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.ai.util.RandomPos;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+
+import java.util.stream.Stream;
 
 @EventBusSubscriber(modid = Gladius.MOD_ID)
 public class FlashedHandler {
@@ -27,10 +34,18 @@ public class FlashedHandler {
                 mob.getNavigation().stop();
                 var randomPos = DefaultRandomPos.getPos(mob, 8, 4);
                 if (randomPos != null) {
-                    mob.getNavigation().moveTo(randomPos.x, randomPos.y, randomPos.z, 1.0D);
+                    double speed = getFlashedSpeed(mob);
+                    mob.getNavigation().moveTo(randomPos.x, randomPos.y, randomPos.z, speed);
                 }
             }
         }
+    }
+
+    private static double getFlashedSpeed(PathfinderMob mob) {
+        if (mob instanceof AbstractVillager) {
+            return 0.5D;
+        }
+        return 1.0D;
     }
 
     @EventBusSubscriber(modid = Gladius.MOD_ID, value = Dist.CLIENT)

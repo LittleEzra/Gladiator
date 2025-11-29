@@ -27,10 +27,6 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
                 .add(GladiusItems.WINGED_ARROW.get())
         ;
 
-        this.tag(GladiusTags.Items.TWO_HANDED)
-                .add(GladiusItems.CLAYMORE.get())
-                .add(GladiusItems.FLAMBERGE.get())
-        ;
         this.tag(ItemTags.SWORDS)
                 .add(GladiusItems.GILDED_DAGGER.get())
                 .add(GladiusItems.CLAYMORE.get())
@@ -42,6 +38,15 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
         ;
         this.tag(GladiusTags.Items.INNATE_STUN)
                 .add(GladiusItems.CLAYMORE.get())
+        ;
+
+        this.tag(GladiusTags.Items.NO_OIL_PROTECTION)
+                .add(Items.ELYTRA)
+                .add(Items.LEATHER_HELMET)
+                .add(Items.LEATHER_CHESTPLATE)
+                .add(Items.LEATHER_LEGGINGS)
+                .add(Items.LEATHER_BOOTS)
+                .add(Items.LEATHER_HORSE_ARMOR)
         ;
     }
 }

@@ -6,8 +6,10 @@ import com.feliscape.gladius.networking.payload.GladiusLevelEventPayload;
 import com.feliscape.gladius.networking.payload.GladiusLevelEvents;
 import com.feliscape.gladius.registry.GladiusComponents;
 import com.feliscape.gladius.registry.GladiusMobEffects;
+import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -60,13 +62,14 @@ public class GildedDaggerItem extends SwordItem {
                 if (blood < 5) {
                     usedItem.set(GladiusComponents.BLOOD, blood + 1);
                 }
-
                 player.getCooldowns().addCooldown(this, 40);
                 PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.STAB_EFFECTS,
                         interactionTarget.position().add(0.0D, interactionTarget.getBbHeight() * 0.5D, 0.0D)));
 
                 return InteractionResult.SUCCESS;
             }
+            player.playSound(GladiusSoundEvents.GILDED_DAGGER_STAB.get(), 1.0F, 0.9F + player.level().random.nextFloat() * 0.2F);
+            return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }

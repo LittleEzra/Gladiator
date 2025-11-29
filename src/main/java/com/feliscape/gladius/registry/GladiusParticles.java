@@ -1,10 +1,7 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.client.particle.DropletParticle;
-import com.feliscape.gladius.client.particle.FlashPowderParticle;
-import com.feliscape.gladius.client.particle.OilDropletParticle;
-import com.feliscape.gladius.client.particle.OilSplatParticle;
+import com.feliscape.gladius.client.particle.*;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -49,6 +46,9 @@ public class GladiusParticles {
     public static final Supplier<SimpleParticleType> FLASH_POWDER_LIGHT = PARTICLE_TYPES.register("flash_powder_light",
             () -> new SimpleParticleType(false));
 
+    public static final Supplier<SimpleParticleType> MAGIC_SPARK = PARTICLE_TYPES.register("magic_spark",
+            () -> new SimpleParticleType(false));
+
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event)
     {
@@ -63,6 +63,8 @@ public class GladiusParticles {
 
         event.registerSpriteSet(GladiusParticles.FLASH_POWDER.get(), FlashPowderParticle.Provider::new);
         event.registerSpriteSet(GladiusParticles.FLASH_POWDER_LIGHT.get(), FlashPowderParticle.FlashProvider::new);
+
+        event.registerSpriteSet(GladiusParticles.MAGIC_SPARK.get(), MagicSparkParticle.Provider::new);
     }
 
     private static <T extends ParticleOptions> Supplier<ParticleType<T>> register(

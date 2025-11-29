@@ -1,6 +1,7 @@
 package com.feliscape.gladius.content.event;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.registry.GladiusComponents;
 import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.world.InteractionHand;
@@ -26,8 +27,8 @@ public class TwoHandedHandler {
         if (event.getEntity() instanceof LivingEntity livingEntity){
             ItemStack mainHand = livingEntity.getItemInHand(InteractionHand.MAIN_HAND);
             ItemStack offHand = livingEntity.getItemInHand(InteractionHand.OFF_HAND);
-            if ((mainHand.is(GladiusTags.Items.TWO_HANDED) && !offHand.isEmpty()) ||
-                    (offHand.is(GladiusTags.Items.TWO_HANDED) && !mainHand.isEmpty())){
+            if ((mainHand.has(GladiusComponents.TWO_HANDED) && !offHand.isEmpty()) ||
+                    (offHand.has(GladiusComponents.TWO_HANDED) && !mainHand.isEmpty())){
                 livingEntity.addEffect(new MobEffectInstance(GladiusMobEffects.OVERBURDENED, 210));
             } else if (livingEntity.hasEffect(GladiusMobEffects.OVERBURDENED)){
                 livingEntity.removeEffect(GladiusMobEffects.OVERBURDENED);

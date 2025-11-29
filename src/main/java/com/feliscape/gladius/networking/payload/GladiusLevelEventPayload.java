@@ -61,7 +61,7 @@ public record GladiusLevelEventPayload(int id, double x, double y, double z, int
         Vec3 location = new Vec3(x, y, z);
         switch (payload.id()){
             case GladiusLevelEvents.STAB_EFFECTS:{
-                int particleCount = random.nextInt(5) + 3;
+                int particleCount = random.nextInt(6) + 10;
                 for (int i = 0; i < particleCount; i++){
                     double theta = random.nextDouble() * Math.TAU;
                     double xSpeed = Math.cos(theta) * random.nextDouble() * 0.1D;
@@ -102,11 +102,11 @@ public record GladiusLevelEventPayload(int id, double x, double y, double z, int
                             random.nextGaussian() * 0.15
                     );
                 }
-                for(int i = 0; i < 20; i++){
-                    double velocity = random.nextDouble() * 0.25D;
+                for(int i = 0; i < 30; i++){
+                    double velocity = random.nextDouble() * 0.2D;
                     double theta = random.nextDouble() * Math.PI * 2.0;
                     double xSpeed = Math.cos(theta) * velocity;
-                    double ySpeed = 0.01 + random.nextDouble() * 0.25;
+                    double ySpeed = 0.01 + random.nextDouble() * 0.2;
                     double zSpeed = Math.sin(theta) * velocity;
                     level.addParticle(GladiusParticles.BIG_OIL_DROPLET.get(), x, y, z, xSpeed, ySpeed, zSpeed);
                 }

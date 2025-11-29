@@ -1,0 +1,14 @@
+{
+  "values": {
+    "minecraft:iron_golem": {
+      "values": {
+        "gladius:fire": 0.5
+      }
+    },
+    "minecraft:slime": {
+      "values": {
+        "gladius:poison": 0.0
+      }
+    }
+  }
+}

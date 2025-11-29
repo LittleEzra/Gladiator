@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 public class OilDropletParticle extends TextureSheetParticle {
     private final SpriteSet spriteSet;
     private final ParticleOptions splatParticle;
-    private float startQuadSize;
+    private final float startQuadSize;
 
     protected OilDropletParticle(ClientLevel level, SpriteSet spriteSet, ParticleOptions splatParticle, float scale, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z);
