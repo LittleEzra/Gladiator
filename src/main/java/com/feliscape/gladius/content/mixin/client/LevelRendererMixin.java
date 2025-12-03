@@ -1,9 +1,8 @@
-package com.feliscape.gladius.content.mixin;
+package com.feliscape.gladius.content.mixin.client;
 
 import com.feliscape.gladius.registry.GladiusMobEffects;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

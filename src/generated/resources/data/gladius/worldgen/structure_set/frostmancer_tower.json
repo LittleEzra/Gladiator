@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 12358943,
+    "separation": 8,
+    "spacing": 25
+  },
+  "structures": [
+    {
+      "structure": "gladius:frostmancer_tower",
+      "weight": 1
+    }
+  ]
+}

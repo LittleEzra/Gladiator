@@ -6,6 +6,7 @@ import com.feliscape.gladius.registry.GladiusParticles;
 import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.feliscape.gladius.util.RandomUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -14,7 +15,9 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -140,6 +143,13 @@ public record GladiusLevelEventPayload(int id, double x, double y, double z, int
                 level.playLocalSound(BlockPos.containing(location), GladiusSoundEvents.FIREBRAND_LIGHT.get(), SoundSource.NEUTRAL, 1.0F, random.nextFloat() * 0.1F + 0.9F, false);
                 break;
             }
+            case GladiusLevelEvents.FRIGID_ICE_SPREAD:
+                BlockPos blockPos = BlockPos.containing(x, y, z);
+                for(Direction direction : Direction.values()) {
+                    ParticleUtils.spawnParticlesOnBlockFace(level, blockPos, GladiusParticles.SNOWFLAKE.get(), UniformInt.of(4, 7),
+                            direction, () -> Vec3.ZERO, 0.55);
+                }
+                break;
             default:
                 break;
         }

@@ -1,4 +1,7 @@
-// 1.21.1	2025-08-11T10:22:57.0170552	Tags for minecraft:entity_type mod id gladius
+// 1.21.1	2025-11-30T17:24:59.8288176	Tags for minecraft:entity_type mod id gladius
 1468aeb82c2ba13bc893364d422d85e93d822234 data/gladius/tags/entity_type/bleeding_immune.json
 6d5fac15fdbdd172a48665720857f3e7cd52ea07 data/gladius/tags/entity_type/stab_immune.json
 0bd42505f1a38d27b5161da104200852765a77af data/gladius/tags/entity_type/stun_immune.json
+08d2dbd87ccfa31d4acdac0b21815e02466fb2a3 data/minecraft/tags/entity_type/freeze_immune_entity_types.json
+08d2dbd87ccfa31d4acdac0b21815e02466fb2a3 data/minecraft/tags/entity_type/illager.json
+08d2dbd87ccfa31d4acdac0b21815e02466fb2a3 data/minecraft/tags/entity_type/raiders.json

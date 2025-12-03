@@ -91,6 +91,15 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .requires(GladiusItems.BLAZING_HEART)
                 .unlockedBy(getHasName(GladiusItems.BLAZING_HEART), has(GladiusItems.BLAZING_HEART))
                 .save(recipeOutput, Gladius.location("blazing_heart_into_blaze_powder"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.ICE_BOMB.get(), 4)
+                .pattern(" #S")
+                .pattern("#G#")
+                .pattern(" # ")
+                .define('#', GladiusItems.FRIGID_SHARD)
+                .define('G', Items.GUNPOWDER)
+                .define('S', Items.STRING)
+                .unlockedBy(getHasName(GladiusItems.FRIGID_SHARD), has(GladiusItems.FRIGID_SHARD))
+                .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, GladiusItems.FIREBRAND.get(), 4)
                 .requires(Tags.Items.RODS_WOODEN)
@@ -103,6 +112,13 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .requires(Items.GLOW_INK_SAC)
                 .requires(Items.GUNPOWDER)
                 .unlockedBy(getHasName(Items.AMETHYST_SHARD), has(Items.AMETHYST_SHARD))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, GladiusItems.HEARTH_STONE)
+                .requires(Items.FLINT)
+                .requires(Items.IRON_NUGGET)
+                .requires(Items.GOLD_NUGGET)
+                .unlockedBy(getHasName(Items.FLINT), has(Items.FLINT))
                 .save(recipeOutput);
     }
 }

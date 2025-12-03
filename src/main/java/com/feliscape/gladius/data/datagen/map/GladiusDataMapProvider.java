@@ -3,6 +3,7 @@ package com.feliscape.gladius.data.datagen.map;
 import com.feliscape.gladius.data.element.AspectMap;
 import com.feliscape.gladius.data.registry.GladiusAspects;
 import com.feliscape.gladius.data.registry.GladiusDataMapTypes;
+import com.feliscape.gladius.registry.GladiusEntityTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
@@ -24,6 +25,10 @@ public class GladiusDataMapProvider extends DataMapProvider {
                         .build(), false)
                 .add(EntityType.SLIME.builtInRegistryHolder(), AspectMap.builder(provider)
                         .put(GladiusAspects.POISON, 0.0F)
+                        .build(), false)
+                .add(GladiusEntityTypes.FROSTMANCER.get().builtInRegistryHolder(), AspectMap.builder(provider)
+                        .put(GladiusAspects.FIRE, 1.5F)
+                        .put(GladiusAspects.ICE, 0.5F)
                         .build(), false)
         ;
     }

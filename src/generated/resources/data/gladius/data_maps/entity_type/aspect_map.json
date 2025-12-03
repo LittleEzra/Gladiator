@@ -1,5 +1,11 @@
 {
   "values": {
+    "gladius:frostmancer": {
+      "values": {
+        "gladius:fire": 1.5,
+        "gladius:ice": 0.5
+      }
+    },
     "minecraft:iron_golem": {
       "values": {
         "gladius:fire": 0.5

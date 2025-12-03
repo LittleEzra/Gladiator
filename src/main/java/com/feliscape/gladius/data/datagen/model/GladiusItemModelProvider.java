@@ -25,6 +25,9 @@ public class GladiusItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(GladiusItems.BLAZING_HEART.get());
+        basicItem(GladiusItems.FRIGID_SEED.get());
+        basicItem(GladiusItems.FRIGID_SHARD.get());
+        basicItem(GladiusItems.HEARTH_STONE.get());
 
         basicItem(GladiusItems.EXPLOSIVE_ARROW.get());
         basicItem(GladiusItems.PRISMARINE_ARROW.get());
@@ -33,6 +36,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         basicItem(GladiusItems.OIL_BOTTLE.get());
         basicItem(GladiusItems.CRYSTAL_BUTTERFLY.get());
         rodItem(GladiusItems.FIREBRAND.get());
+        basicItem(GladiusItems.ICE_BOMB.get());
 
         basicItem(GladiusItems.FLASH_POWDER.get());
 

@@ -7,10 +7,12 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
 public class GladiusTags {
     public static class Blocks{
+        public static final TagKey<Block> FRIGID_ICE_SPREADABLE = create("frigid_ice_spreadable");
 
         private static TagKey<Block> create(String name){
             return TagKey.create(Registries.BLOCK, Gladius.location(name));
@@ -49,6 +51,13 @@ public class GladiusTags {
 
         private static TagKey<MobEffect> create(String name){
             return TagKey.create(Registries.MOB_EFFECT, Gladius.location(name));
+        }
+    }
+    public static class Biomes{
+        public static final TagKey<Biome> HAS_FROSTMANCER_TOWER = create("has_structure/frostmancer_tower");
+
+        private static TagKey<Biome> create(String name){
+            return TagKey.create(Registries.BIOME, Gladius.location(name));
         }
     }
 }

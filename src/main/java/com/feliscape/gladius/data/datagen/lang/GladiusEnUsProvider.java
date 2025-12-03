@@ -19,7 +19,13 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
     @Override
     protected void addTranslations() {
+        this.addBlock(GladiusBlocks.FRIGID_ICE, "Frigid Ice");
+
         this.addItem(GladiusItems.BLAZING_HEART, "Blazing Heart");
+        this.addItem(GladiusItems.FRIGID_SEED, "Frigid Seed");
+        this.addItemTooltip(GladiusItems.FRIGID_SEED, "Can be planted inside of Blue Ice");
+        this.addItem(GladiusItems.FRIGID_SHARD, "Frigid Shard");
+        this.addItem(GladiusItems.HEARTH_STONE, "Hearth Stone");
 
         this.addItem(GladiusItems.EXPLOSIVE_ARROW, "Explosive Arrow");
         this.add("item.nuanced_combat.explosive_arrow.power", "Power: %1$s");
@@ -28,6 +34,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
         this.addItem(GladiusItems.OIL_BOTTLE, "Oil Bottle");
         this.addItem(GladiusItems.FIREBRAND, "Firebrand");
+        this.addItem(GladiusItems.ICE_BOMB, "Ice Bomb");
 
         this.addItem(GladiusItems.FLASH_POWDER, "Flash Powder");
         this.addItem(GladiusItems.CRYSTAL_BUTTERFLY, "Crystal Butterfly");
@@ -50,6 +57,12 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.OIL_BOTTLE, "Oil Bottle");
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Firebrand");
 
+        this.addEntityType(GladiusEntityTypes.ICE_BOMB, "Ice Bomb");
+        this.addEntityType(GladiusEntityTypes.ICE_SPIKE_SPAWNER, "Ice Spike Spawner");
+        this.addEntityType(GladiusEntityTypes.ICE_SPIKE, "Ice Spike");
+        this.addEntityType(GladiusEntityTypes.ICE_BLOCK, "Ice Block");
+        this.addEntityType(GladiusEntityTypes.FROSTMANCER, "Frostmancer");
+
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Flash Powder Cloud");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Crystal Butterfly");
 
@@ -58,6 +71,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.BLEEDING, "Bleeding");
         this.addMobEffect(GladiusMobEffects.FLAMMABLE, "Flammable");
         this.addMobEffect(GladiusMobEffects.FLASHED, "Flashed");
+        this.addMobEffect(GladiusMobEffects.FREEZING, "Freezing");
+        this.addMobEffect(GladiusMobEffects.FROST_RESISTANCE, "Frost Resistance");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Stunning");
 
@@ -65,9 +80,26 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Gilded Dagger stabs");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Firebrand lights fire");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Flash Powder crackles");
+        this.addSubtitle(GladiusSoundEvents.HEARTH_STONE_USE, "Hearth Stone ignites");
+
+        this.addSubtitle(GladiusSoundEvents.ICE_BOMB_THROW, "Ice Bomb flies");
+        this.addSubtitle(GladiusSoundEvents.ICE_BOMB_SHATTER, "Ice Bomb explodes");
+        this.addSubtitle(GladiusSoundEvents.ICE_SPIKE_RISE, "Ice Spike rise");
+        this.addSubtitle(GladiusSoundEvents.ICE_BLOCK_SHATTER, "Ice Block shatters");
+
+        this.addSubtitle(GladiusSoundEvents.FROSTMANCER_SHIELD_BREAK, "Frostmancer's shield breaks");
+
         this.addSubtitle(GladiusSoundEvents.SPELL, "Spell is cast");
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s bled out");
+
+        this.addDeathMessage(GladiusDamageTypes.MAGIC_PROJECTILE, "%1$s was shot by %2$s");
+        this.addDeathMessageItem(GladiusDamageTypes.MAGIC_PROJECTILE, "%1$s was shot by %2$s using %3$s");
+
+        this.addDeathMessage(GladiusDamageTypes.INDIRECT_SKEWERING, "%1$s was skewered by %2$s");
+        this.addDeathMessageItem(GladiusDamageTypes.INDIRECT_SKEWERING, "%1$s was skewered by %2$s using %3$s");
+        this.addDeathMessage(GladiusDamageTypes.SKEWERING, "%1$s was skewered");
+        this.addDeathMessagePlayer(GladiusDamageTypes.SKEWERING, "%1$s was skewered whilst trying to escape %2$s");
 
         this.addAdvancement(GladiusAdvancements.FIREBRAND,
                 "Pyromaniac",

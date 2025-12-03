@@ -2,6 +2,7 @@ package com.feliscape.gladius.content.event;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
+import com.feliscape.gladius.content.entity.Frostmancer;
 import com.feliscape.gladius.content.item.WandItem;
 import com.feliscape.gladius.data.damage.GladiusDamageSources;
 import com.feliscape.gladius.networking.payload.ClientMobEffectsPayload;
@@ -32,6 +33,7 @@ public class GeneralEvents {
     @SubscribeEvent
     public static void createEntityAttributes(EntityAttributeCreationEvent event){
         event.put(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterfly.createAttributes().build());
+        event.put(GladiusEntityTypes.FROSTMANCER.get(), Frostmancer.createAttributes().build());
     }
 
     @SubscribeEvent

@@ -3,6 +3,7 @@ package com.feliscape.gladius.registry;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
+import com.feliscape.gladius.content.entity.Frostmancer;
 import com.feliscape.gladius.content.entity.projectile.*;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
 import net.minecraft.world.entity.EntityType;
@@ -63,7 +64,37 @@ public class GladiusEntityTypes {
                     .clientTrackingRange(4)
                     .updateInterval(10)
     );
+    public static final Supplier<EntityType<IceBomb>> ICE_BOMB = ENTITY_TYPES.registerEntityType("ice_bomb",
+            IceBomb::new, MobCategory.MISC, b -> b
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+    );
+    public static final Supplier<EntityType<IceSpikeSpawner>> ICE_SPIKE_SPAWNER = ENTITY_TYPES.registerEntityType("ice_spike_spawner",
+            IceSpikeSpawner::new, MobCategory.MISC, b -> b
+                    .sized(3.0F, 2.0F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+    );
+    public static final Supplier<EntityType<IceSpike>> ICE_SPIKE = ENTITY_TYPES.registerEntityType("ice_spike",
+            IceSpike::new, MobCategory.MISC, b -> b
+                    .sized(0.65F, 2.0F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+    );
+    public static final Supplier<EntityType<IceBlockProjectile>> ICE_BLOCK = ENTITY_TYPES.registerEntityType("ice_block",
+            IceBlockProjectile::new, MobCategory.MISC, b -> b
+                    .sized(1.5F, 0.65F)
+                    .clientTrackingRange(4)
+                    .updateInterval(1)
+    );
 
+    public static final Supplier<EntityType<Frostmancer>> FROSTMANCER = ENTITY_TYPES.registerEntityType("frostmancer",
+            Frostmancer::new, MobCategory.MONSTER, b -> b
+                    .sized(0.6F, 1.95F).passengerAttachments(2.0F).ridingOffset(-0.6F)
+                    .clientTrackingRange(8)
+                    .updateInterval(2)
+    );
     public static final Supplier<EntityType<CrystalButterfly>> CRYSTAL_BUTTERFLY = ENTITY_TYPES.registerEntityType("crystal_butterfly",
             CrystalButterfly::new, MobCategory.MISC, b -> b
                     .sized(0.35F, 0.35F)

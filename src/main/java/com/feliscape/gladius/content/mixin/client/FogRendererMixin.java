@@ -1,4 +1,4 @@
-package com.feliscape.gladius.content.mixin;
+package com.feliscape.gladius.content.mixin.client;
 
 import com.feliscape.gladius.client.FlashedFogFunction;
 import com.feliscape.gladius.registry.GladiusMobEffects;

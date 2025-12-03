@@ -2,6 +2,7 @@ package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.component.AspectComponent;
+import com.feliscape.gladius.content.item.component.RecipeComponent;
 import com.feliscape.gladius.data.element.Aspect;
 import com.feliscape.gladius.util.GladiusStreamCodecs;
 import com.mojang.serialization.Codec;
@@ -33,6 +34,9 @@ public class GladiusComponents {
     );
     public static final Supplier<DataComponentType<AspectComponent>> ASPECT = DATA_COMPONENTS.registerComponentType(
             "aspect", b -> b.persistent(AspectComponent.CODEC).networkSynchronized(AspectComponent.STREAM_CODEC)
+    );
+    public static final Supplier<DataComponentType<RecipeComponent>> RECIPE = DATA_COMPONENTS.registerComponentType(
+            "recipe", b -> b.persistent(RecipeComponent.CODEC).networkSynchronized(RecipeComponent.STREAM_CODEC)
     );
 
     private static Supplier<DataComponentType<Integer>> integerComponent(String name){

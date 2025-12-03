@@ -4,6 +4,7 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.*;
 import com.feliscape.gladius.content.item.component.AspectComponent;
 import com.feliscape.gladius.content.item.projectile.FirebrandItem;
+import com.feliscape.gladius.content.item.projectile.IceBombItem;
 import com.feliscape.gladius.content.item.projectile.OilBottleItem;
 import com.feliscape.gladius.content.item.projectile.arrow.ExplosiveArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.PrismarineArrowItem;
@@ -20,6 +21,11 @@ public class GladiusItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Gladius.MOD_ID);
 
     public static final DeferredItem<Item> BLAZING_HEART = ITEMS.registerSimpleItem("blazing_heart");
+    public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed", FrigidSeedItem::new);
+    public static final DeferredItem<Item> FRIGID_SHARD = ITEMS.registerSimpleItem("frigid_shard");
+
+    public static final DeferredItem<HearthStoneItem> HEARTH_STONE = ITEMS.registerItem("hearth_stone",
+            p -> new HearthStoneItem(p.stacksTo(16)));
 
     public static final DeferredItem<ExplosiveArrowItem> EXPLOSIVE_ARROW = ITEMS.registerItem("explosive_arrow",
             p -> new ExplosiveArrowItem(p.component(GladiusComponents.POWER, 3)));
@@ -31,7 +37,9 @@ public class GladiusItems {
     public static final DeferredItem<OilBottleItem> OIL_BOTTLE = ITEMS.registerItem("oil_bottle",
             p -> new OilBottleItem(p.stacksTo(16)));
     public static final DeferredItem<FirebrandItem> FIREBRAND = ITEMS.registerItem("firebrand",
-            p -> new FirebrandItem(p));
+            p -> new FirebrandItem(p.stacksTo(16)));
+    public static final DeferredItem<IceBombItem> ICE_BOMB = ITEMS.registerItem("ice_bomb",
+            p -> new IceBombItem(p.stacksTo(16)));
 
     public static final DeferredItem<FlashPowderItem> FLASH_POWDER = ITEMS.registerItem("flash_powder",
             p -> new FlashPowderItem(p));
@@ -68,5 +76,6 @@ public class GladiusItems {
         DispenserBlock.registerProjectileBehavior(WINGED_ARROW);
         DispenserBlock.registerProjectileBehavior(OIL_BOTTLE);
         DispenserBlock.registerProjectileBehavior(FIREBRAND);
+        DispenserBlock.registerProjectileBehavior(ICE_BOMB);
     }
 }

@@ -6,13 +6,14 @@
     "BrainMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
-    "MobMixin"
+    "MobMixin",
+    "client.ClientPacketListenerMixin"
   ],
   "client": [
-    "EntityRenderDispatcherMixin",
-    "FogRendererMixin",
-    "LevelRendererMixin",
-    "ScreenEffectRendererMixin"
+    "client.EntityRenderDispatcherMixin",
+    "client.FogRendererMixin",
+    "client.LevelRendererMixin",
+    "client.ScreenEffectRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

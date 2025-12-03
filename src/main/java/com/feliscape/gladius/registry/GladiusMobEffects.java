@@ -32,6 +32,12 @@ public class GladiusMobEffects {
     public static final DeferredHolder<MobEffect, FlashedMobEffect> FLASHED = MOB_EFFECTS.register(
             "flashed", () -> new FlashedMobEffect(MobEffectCategory.HARMFUL, 0x80ffc0)
     );
+    public static final DeferredHolder<MobEffect, FreezingMobEffect> FREEZING = MOB_EFFECTS.register(
+            "freezing", () -> new FreezingMobEffect(MobEffectCategory.HARMFUL, 0x80e5ef)
+    );
+    public static final DeferredHolder<MobEffect, FrostResistanceMobEffect> FROST_RESISTANCE = MOB_EFFECTS.register(
+            "frost_protection", () -> new FrostResistanceMobEffect(MobEffectCategory.BENEFICIAL, 0xa2adca)
+    );
 
     public static boolean hasEffectEitherSide(LivingEntity living, Holder<MobEffect> effect){
         return living.hasEffect(effect) || living.getData(ClientMobEffectData.type()).hasEffect(effect);

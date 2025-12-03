@@ -30,6 +30,7 @@ public class GladiusCreativeModeTabs {
             before(arrow, GladiusItems.WINGED_ARROW, event);
             before(bow, GladiusItems.OIL_BOTTLE, event);
             before(bow, GladiusItems.FIREBRAND, event);
+            before(bow, GladiusItems.ICE_BOMB, event);
             before(bow, GladiusItems.FLASH_POWDER, event);
             before(bow, GladiusItems.CRYSTAL_BUTTERFLY, event);
             before(woodenAxe, GladiusItems.GILDED_DAGGER, event);
@@ -40,6 +41,16 @@ public class GladiusCreativeModeTabs {
             ItemStack blazeRod = Items.BLAZE_ROD.getDefaultInstance();
 
             before(blazeRod, GladiusItems.BLAZING_HEART, event);
+            after(blazeRod, GladiusItems.FRIGID_SEED, event);
+            after(blazeRod, GladiusItems.FRIGID_SHARD, event);
+        } else if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES){
+            ItemStack fireCharge = Items.FIRE_CHARGE.getDefaultInstance();
+
+            after(fireCharge, GladiusItems.HEARTH_STONE, event);
+        } else if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS){
+            ItemStack blueIce = Items.BLUE_ICE.getDefaultInstance();
+
+            after(blueIce, GladiusBlocks.FRIGID_ICE, event);
         }
     }
 
@@ -48,5 +59,11 @@ public class GladiusCreativeModeTabs {
     }
     private static void before(ItemStack existing, ItemLike itemLike, BuildCreativeModeTabContentsEvent event){
         event.insertBefore(existing, itemLike.asItem().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+    private static void after(ItemStack existing, ItemStack itemStack, BuildCreativeModeTabContentsEvent event){
+        event.insertAfter(existing, itemStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    }
+    private static void after(ItemStack existing, ItemLike itemLike, BuildCreativeModeTabContentsEvent event){
+        event.insertAfter(existing, itemLike.asItem().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 }

@@ -32,5 +32,41 @@
       "gladius:item/spell"
     ],
     "subtitle": "subtitle.gladius.item.spell"
+  },
+  "entity.ice_bomb.throw": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitle.gladius.entity.ice_bomb.throw"
+  },
+  "entity.ice_bomb.shatter": {
+    "sounds": [
+      "gladius:entity/ice_bomb_shatter"
+    ],
+    "subtitle": "subtitle.gladius.entity.ice_bomb.shatter"
+  },
+  "entity.ice_spike.rise": {
+    "sounds": [
+      "gladius:entity/ice_spike_rise"
+    ],
+    "subtitle": "subtitle.gladius.entity.ice_spike.rise"
+  },
+  "entity.ice_block.shatter": {
+    "sounds": [
+      "gladius:entity/ice_bomb_shatter"
+    ],
+    "subtitle": "subtitle.gladius.entity.ice_block.shatter"
+  },
+  "entity.frostmancer.shield_break": {
+    "sounds": [
+      "gladius:entity/frostmancer_shield_break"
+    ],
+    "subtitle": "subtitle.gladius.entity.frostmancer.shield_break"
+  },
+  "item.hearth_stone.use": {
+    "sounds": [
+      "mob/ghast/fireball4"
+    ],
+    "subtitle": "subtitle.gladius.item.hearth_stone.use"
   }
 }

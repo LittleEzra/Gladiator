@@ -1,6 +1,7 @@
 package com.feliscape.gladius.data.datagen.tag;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.registry.GladiusEntityTypes;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -32,6 +33,16 @@ public class GladiusEntityTypeTagGenerator extends EntityTypeTagsProvider {
                 .add(EntityType.IRON_GOLEM)
                 .add(EntityType.SNOW_GOLEM)
                 .add(EntityType.ARMOR_STAND)
+        ;
+
+        this.tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)
+                .add(GladiusEntityTypes.FROSTMANCER.get())
+        ;
+        this.tag(EntityTypeTags.ILLAGER)
+                .add(GladiusEntityTypes.FROSTMANCER.get())
+        ;
+        this.tag(EntityTypeTags.RAIDERS)
+                .add(GladiusEntityTypes.FROSTMANCER.get())
         ;
     }
 }

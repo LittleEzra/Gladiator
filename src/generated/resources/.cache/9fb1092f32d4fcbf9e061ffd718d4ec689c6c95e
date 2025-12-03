@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-23T15:12:32.1499259	Recipes
+// 1.21.1	2025-12-03T18:19:41.7719708	Recipes
 aeec702d6cf959ae9ec6b01f084eb7d38793f775 data/gladius/advancement/recipes/combat/claymore.json
 41a0ced1f4fbe98b1a4b2749ddb8a3bfe848fb5f data/gladius/advancement/recipes/combat/explosive_arrow.json
 63c895f843002c84d14766fc0c851681482d54b3 data/gladius/advancement/recipes/combat/firebrand.json
@@ -6,9 +6,11 @@ aeec702d6cf959ae9ec6b01f084eb7d38793f775 data/gladius/advancement/recipes/combat
 cf03417de2beb892320c44b1bfc5335ae4e565f4 data/gladius/advancement/recipes/combat/flash_powder.json
 01a0ae14b9c7817003fbe09f8f01c65f44e7fbf5 data/gladius/advancement/recipes/combat/gilded_dagger.json
 6de92ac0bcbb133429702b8e8e05d26aabb32e3a data/gladius/advancement/recipes/combat/golden_wand.json
+b3b82afaef28719e79bcacd8d559b7dba35f35d4 data/gladius/advancement/recipes/combat/ice_bomb.json
 94653d7ade93d480f8bb2d5fe7a4ee62a6eb90a1 data/gladius/advancement/recipes/combat/prismarine_arrow.json
 007fc8f24eed71ae3a7ea17f2f534f13fa1e0343 data/gladius/advancement/recipes/combat/winged_arrow.json
 ddf9c41e70bec0f1c876e95735e8fc4b5e31daec data/gladius/advancement/recipes/misc/blazing_heart_into_blaze_powder.json
+0ed479f1e0ce16a79851f8b02d36f5735be78703 data/gladius/advancement/recipes/misc/hearth_stone.json
 ad17342afa1b886c29403c622b1a8e78780fc66a data/gladius/advancement/recipes/tools/crystal_butterfly.json
 76691c20ce5e89c1d7abebb6bbb68fd44317a4ff data/gladius/recipe/blazing_heart_into_blaze_powder.json
 d331b81e3f276e25dd76d656816d494188303d3e data/gladius/recipe/claymore.json
@@ -19,5 +21,7 @@ ad1d9af8819b38bd2f27134cdbb21760bdc26729 data/gladius/recipe/flamberge.json
 c4f9ced55a230c518bc444b3a82c9993e601f663 data/gladius/recipe/flash_powder.json
 fd710d2d4793d2d913248bbeaa9cee5c2fc9dbb7 data/gladius/recipe/gilded_dagger.json
 c645bdbef9bf21211ec06928b2c74a9e70529593 data/gladius/recipe/golden_wand.json
+0ae4cd79b3f30596945669eea4df36b892c778c2 data/gladius/recipe/hearth_stone.json
+948a82f0fb0717737daead4c6f5f5806d5f62331 data/gladius/recipe/ice_bomb.json
 413d7f407a78a382b789217180c86bdd8ea9442d data/gladius/recipe/prismarine_arrow.json
 ef6ab158a400c0083e45c89bdecfec23ae954daf data/gladius/recipe/winged_arrow.json

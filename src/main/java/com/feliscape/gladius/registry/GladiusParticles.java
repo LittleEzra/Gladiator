@@ -49,6 +49,13 @@ public class GladiusParticles {
     public static final Supplier<SimpleParticleType> MAGIC_SPARK = PARTICLE_TYPES.register("magic_spark",
             () -> new SimpleParticleType(false));
 
+    public static final Supplier<SimpleParticleType> SNOWFLAKE = PARTICLE_TYPES.register("snowflake",
+            () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> FALLING_SNOWFLAKE = PARTICLE_TYPES.register("falling_snowflake",
+            () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> ICE_EXPLOSION = PARTICLE_TYPES.register("ice_explosion",
+            () -> new SimpleParticleType(false));
+
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event)
     {
@@ -65,6 +72,10 @@ public class GladiusParticles {
         event.registerSpriteSet(GladiusParticles.FLASH_POWDER_LIGHT.get(), FlashPowderParticle.FlashProvider::new);
 
         event.registerSpriteSet(GladiusParticles.MAGIC_SPARK.get(), MagicSparkParticle.Provider::new);
+
+        event.registerSpriteSet(GladiusParticles.SNOWFLAKE.get(), SnowflakeParticle.Provider::new);
+        event.registerSpriteSet(GladiusParticles.FALLING_SNOWFLAKE.get(), SnowflakeParticle.FastProvider::new);
+        event.registerSpriteSet(GladiusParticles.ICE_EXPLOSION.get(), SnowflakeParticle.ExplosionProvider::new);
     }
 
     private static <T extends ParticleOptions> Supplier<ParticleType<T>> register(
