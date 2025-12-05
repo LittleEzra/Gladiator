@@ -21,6 +21,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
     protected void addTranslations() {
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frigid Ice");
 
+        this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmancer Spawn Egg");
+
         this.addItem(GladiusItems.BLAZING_HEART, "Blazing Heart");
         this.addItem(GladiusItems.FRIGID_SEED, "Frigid Seed");
         this.addItemTooltip(GladiusItems.FRIGID_SEED, "Can be planted inside of Blue Ice");

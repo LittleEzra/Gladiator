@@ -24,6 +24,8 @@ public class GladiusItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        spawnEggItem(GladiusItems.FROSTMANCER_SPAWN_EGG.get());
+
         basicItem(GladiusItems.BLAZING_HEART.get());
         basicItem(GladiusItems.FRIGID_SEED.get());
         basicItem(GladiusItems.FRIGID_SHARD.get());

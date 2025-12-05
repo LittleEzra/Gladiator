@@ -14,11 +14,15 @@ import net.minecraft.util.Unit;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class GladiusItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Gladius.MOD_ID);
+
+    public static final DeferredItem<Item> FROSTMANCER_SPAWN_EGG = ITEMS.registerItem("frostmancer_spawn_egg",
+            p -> new DeferredSpawnEggItem(GladiusEntityTypes.FROSTMANCER, 0x959b9b, 0x273355, p));
 
     public static final DeferredItem<Item> BLAZING_HEART = ITEMS.registerSimpleItem("blazing_heart");
     public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed",

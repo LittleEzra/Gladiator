@@ -2,6 +2,7 @@ package com.feliscape.gladius.data.datagen;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.data.datagen.advancement.GladiusAdvancementProvider;
+import com.feliscape.gladius.data.datagen.lang.GladiusDeDeProvider;
 import com.feliscape.gladius.data.datagen.lang.GladiusEnUsProvider;
 import com.feliscape.gladius.data.datagen.loot.GladiusGlobalLootModifierProvider;
 import com.feliscape.gladius.data.datagen.loot.GladiusLootTableProvider;
@@ -54,5 +55,6 @@ public class DataGenerators {
         generator.addProvider(true, new GladiusItemModelProvider(packOutput, existingFileHelper));
 
         generator.addProvider(true, new GladiusEnUsProvider(packOutput));
+        generator.addProvider(true, new GladiusDeDeProvider(packOutput));
     }
 }

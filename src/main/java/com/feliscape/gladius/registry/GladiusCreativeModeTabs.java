@@ -51,6 +51,8 @@ public class GladiusCreativeModeTabs {
             ItemStack blueIce = Items.BLUE_ICE.getDefaultInstance();
 
             after(blueIce, GladiusBlocks.FRIGID_ICE, event);
+        } else if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS){
+            event.accept(GladiusItems.FROSTMANCER_SPAWN_EGG);
         }
     }
 
