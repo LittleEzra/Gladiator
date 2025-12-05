@@ -33,6 +33,11 @@ public class WandItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
+
+        int charges = getCharges(itemStack);
+        if (charges <= 0)
+            return InteractionResultHolder.fail(itemStack);
+
         level.playSound(
                 null,
                 player.getX(),
@@ -43,10 +48,6 @@ public class WandItem extends Item {
                 1.2F,
                 level.getRandom().nextFloat() * 0.4F + 0.8F
         );
-
-        int charges = getCharges(itemStack);
-        if (charges <= 0)
-            return InteractionResultHolder.fail(itemStack);
 
         if (!level.isClientSide) {
             MagicOrb magicOrb = new MagicOrb(level, player);
