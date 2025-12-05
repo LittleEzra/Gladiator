@@ -38,6 +38,8 @@
   "entity.gladius.oil_bottle": "Oil Bottle",
   "entity.gladius.prismarine_arrow": "Prismarine Arrow",
   "entity.gladius.winged_arrow": "Winged Arrow",
+  "gladius.configuration.aspects": "Aspects",
+  "gladius.configuration.client.aspects.show_aspect_tooltips": "Show Aspect Tooltips",
   "gladius.configuration.client.effects.extra_oil": "Extra Oil",
   "gladius.configuration.client.effects.flash_powder.dark_flash": "Dark Flash",
   "gladius.configuration.client.effects.flash_powder.flash_powder_flashing": "Flash Powder Flashing",

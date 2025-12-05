@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipProvider;
+import net.minecraft.world.level.Level;
 import net.neoforged.fml.ModList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -34,7 +35,8 @@ public abstract class ItemStackMixin implements DataComponentHolder {
     ordinal = 5), locals = LocalCapture.CAPTURE_FAILSOFT)
     public void addAdditionalGlobalTooltips(Item.TooltipContext tooltipContext, Player player, TooltipFlag tooltipFlag, CallbackInfoReturnable<List<Component>> cir,
                                             List<Component> list){
-        if (!player.level().isClientSide || GladiusClientConfig.CONFIG.aspects.showAspectTooltips.getAsBoolean())
+        Level level = tooltipContext.level();
+        if (level != null && level.isClientSide && GladiusClientConfig.CONFIG.aspects.showAspectTooltips.getAsBoolean())
             this.addToTooltip(GladiusComponents.ASPECT.get(), tooltipContext, list::add, tooltipFlag);
 
         if (!ModList.get().isLoaded("bettercombat") && has(GladiusComponents.TWO_HANDED)) {

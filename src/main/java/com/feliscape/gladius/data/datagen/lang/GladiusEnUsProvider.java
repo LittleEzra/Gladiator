@@ -120,7 +120,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderFlashing, "Flash Powder Flashing");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderLightChance, "Flash Powder Light Chance");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.darkFlash, "Dark Flash");
-
+        this.addConfigSection("aspects", "Aspects");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.aspects.showAspectTooltips, "Show Aspect Tooltips");
 
         this.addConfigSection("entities", "Entities");

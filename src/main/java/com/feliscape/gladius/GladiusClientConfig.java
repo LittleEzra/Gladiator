@@ -72,7 +72,7 @@ public class GladiusClientConfig {
             showAspectTooltips = builder
                     .translation("gladius.configuration.client.aspects.show_aspect_tooltips")
                     .comment("Toggles the Aspect tooltip, which shows what aspect a weapon uses.")
-                    .define("show_aspect_tooltips", false)
+                    .define("show_aspect_tooltips", true)
             ;
 
             builder.pop();
