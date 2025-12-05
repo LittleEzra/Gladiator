@@ -117,9 +117,11 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addConfigValue("client", GladiusClientConfig.CONFIG.extraOil, "Extra Oil");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.oilSplatDisappearStyle, "Oil Splat Disappear Effect");
         this.addConfigSection("flash_powder", "Flash Powder");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowderFlashing, "Flash Powder Flashing");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowderLightChance, "Flash Powder Light Chance");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.darkFlash, "Dark Flash");
+        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderFlashing, "Flash Powder Flashing");
+        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderLightChance, "Flash Powder Light Chance");
+        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.darkFlash, "Dark Flash");
+
+        this.addConfigValue("client", GladiusClientConfig.CONFIG.aspects.showAspectTooltips, "Show Aspect Tooltips");
 
         this.addConfigSection("entities", "Entities");
         this.addConfigValue("server", GladiusServerConfig.CONFIG.crystalButterflySearchRange, "Crystal Butterfly Search Range");

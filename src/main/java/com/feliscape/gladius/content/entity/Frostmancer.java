@@ -351,9 +351,14 @@ public class Frostmancer extends SpellcasterIllager {
         @Override
         public boolean canUse() {
             LivingEntity target = getTarget();
-            if (target == null || Frostmancer.this.distanceTo(target) > 2.5D){
+            if (target == null){
                 return false;
             }
+
+            if (distanceTo(target) > 2.5D) return false;
+            Vec3 futurePosition = target.position().add(target.getDeltaMovement().scale(2.0D));
+            if (distanceToSqr(futurePosition) > 2.5D * 2.5D) return false;
+
             return super.canUse();
         }
 

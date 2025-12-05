@@ -44,11 +44,11 @@ public class FlashPowderParticle extends TextureSheetParticle {
         } else {
             this.roll += (float)Math.PI * this.rotSpeed * 2.0F;
 
-            int flashTime = GladiusClientConfig.CONFIG.flashPowderFlashing.getAsInt();
+            int flashTime = GladiusClientConfig.CONFIG.flashPowder.flashPowderFlashing.getAsInt();
             if (flashTime > 0 && this.age % flashTime == 0){
                 this.pickSprite(spriteSet);
             }
-            int flashChance = GladiusClientConfig.CONFIG.flashPowderLightChance.getAsInt();
+            int flashChance = GladiusClientConfig.CONFIG.flashPowder.flashPowderLightChance.getAsInt();
             if (flashChance > 0 && level.random.nextInt(flashChance) == 0){
                 if (level.random.nextBoolean()) {
                     this.level.playLocalSound(this.x, this.y, this.z, GladiusSoundEvents.FLASH_POWDER_CRACKLE.get(), SoundSource.NEUTRAL,

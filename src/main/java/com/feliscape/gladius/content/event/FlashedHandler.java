@@ -59,7 +59,7 @@ public class FlashedHandler {
                     if (!instance.isInfiniteDuration() && instance.getDuration() <= 20)
                         t = (float) instance.getDuration() / 20.0F;
 
-                    float color = GladiusClientConfig.CONFIG.darkFlash.getAsBoolean() ? 0.0F : 1.0F;
+                    float color = GladiusClientConfig.CONFIG.flashPowder.darkFlash.getAsBoolean() ? 0.0F : 1.0F;
 
                     event.setRed(Mth.lerp(t, event.getRed(), color));
                     event.setGreen(Mth.lerp(t, event.getGreen(), color));

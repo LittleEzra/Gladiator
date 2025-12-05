@@ -36,7 +36,7 @@ public class GladiusMobEffects {
             "freezing", () -> new FreezingMobEffect(MobEffectCategory.HARMFUL, 0x80e5ef)
     );
     public static final DeferredHolder<MobEffect, FrostResistanceMobEffect> FROST_RESISTANCE = MOB_EFFECTS.register(
-            "frost_protection", () -> new FrostResistanceMobEffect(MobEffectCategory.BENEFICIAL, 0xa2adca)
+            "frost_resistance", () -> new FrostResistanceMobEffect(MobEffectCategory.BENEFICIAL, 0xa2adca)
     );
 
     public static boolean hasEffectEitherSide(LivingEntity living, Holder<MobEffect> effect){

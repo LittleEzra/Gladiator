@@ -14,13 +14,14 @@ public class GladiusClientConfig {
     public final ModConfigSpec.IntValue stunTrailResolution;
     public final ModConfigSpec.BooleanValue showBlood;
     public final ModConfigSpec.BooleanValue extraOil;
-    public final ModConfigSpec.IntValue flashPowderFlashing;
-    public final ModConfigSpec.IntValue flashPowderLightChance;
-    public final ModConfigSpec.BooleanValue darkFlash;
     public final ModConfigSpec.EnumValue<OilSplatParticle.DisappearStyle> oilSplatDisappearStyle;
+    public final FlashPowder flashPowder;
+    public final Aspects aspects;
+
 
     public GladiusClientConfig(ModConfigSpec.Builder builder){
         builder.push("effects");
+
         stunTrailResolution = builder
                 .translation("gladius.configuration.client.effects.stun_trail_resolution")
                 .comment("The resolution of the trails from the Stun effect. Set to 0 to disable.")
@@ -43,24 +44,12 @@ public class GladiusClientConfig {
                 .comment("SCALE: Oil splats will become smaller when disappearing.")
                 .defineEnum("oil_splat_disappear_style", OilSplatParticle.DisappearStyle.FADE)
         ;
-        builder.push("flash_powder");
-        flashPowderFlashing = builder
-                .translation("gladius.configuration.client.effects.flash_powder.flash_powder_flashing")
-                .comment("How much Flash Powder particles flash. Flashes once every nth tick, or not at all when set to 0")
-                .defineInRange("flash_powder_flashing", 2, 0,20)
-        ;
-        flashPowderLightChance = builder
-                .translation("gladius.configuration.client.effects.flash_powder.flash_powder_light_chance")
-                .comment("The chance of a Flash Powder particle making a burst of light. Higher value means lower chance.", "On average once every nth tick.", "Set to 0 to disable.")
-                .defineInRange("flash_powder_light_chance", 20, 0,100)
-        ;
-        darkFlash = builder
-                .translation("gladius.configuration.client.effects.flash_powder.dark_flash")
-                .comment("Makes the screen turn black (like Blindness) instead of white with the Flashed effect")
-                .define("dark_flash", false)
-        ;
-        builder.pop();
-        builder.pop();
+
+        flashPowder = new FlashPowder(builder);
+
+        builder.pop(); // effects
+
+        aspects = new Aspects(builder);
     }
 
     private static boolean validateItemName(final Object obj) {
@@ -72,5 +61,47 @@ public class GladiusClientConfig {
 
         CONFIG = pair.getLeft();
         SPEC = pair.getRight();
+    }
+
+    public static class Aspects{
+        public final ModConfigSpec.BooleanValue showAspectTooltips;
+
+        public Aspects(ModConfigSpec.Builder builder) {
+            builder.push("aspects");
+
+            showAspectTooltips = builder
+                    .translation("gladius.configuration.client.aspects.show_aspect_tooltips")
+                    .comment("Toggles the Aspect tooltip, which shows what aspect a weapon uses.")
+                    .define("show_aspect_tooltips", false)
+            ;
+
+            builder.pop();
+        }
+    }
+
+    public static class FlashPowder{
+        public final ModConfigSpec.IntValue flashPowderFlashing;
+        public final ModConfigSpec.IntValue flashPowderLightChance;
+        public final ModConfigSpec.BooleanValue darkFlash;
+
+        public FlashPowder(ModConfigSpec.Builder builder) {
+            builder.push("flash_powder");
+            flashPowderFlashing = builder
+                    .translation("gladius.configuration.client.effects.flash_powder.flash_powder_flashing")
+                    .comment("How much Flash Powder particles flash. Flashes once every nth tick, or not at all when set to 0")
+                    .defineInRange("flash_powder_flashing", 2, 0,20)
+            ;
+            flashPowderLightChance = builder
+                    .translation("gladius.configuration.client.effects.flash_powder.flash_powder_light_chance")
+                    .comment("The chance of a Flash Powder particle making a burst of light. Higher value means lower chance.", "On average once every nth tick.", "Set to 0 to disable.")
+                    .defineInRange("flash_powder_light_chance", 20, 0,100)
+            ;
+            darkFlash = builder
+                    .translation("gladius.configuration.client.effects.flash_powder.dark_flash")
+                    .comment("Makes the screen turn black (like Blindness) instead of white with the Flashed effect")
+                    .define("dark_flash", false)
+            ;
+            builder.pop(); // flash_powder
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.feliscape.gladius.content.mixin;
 
+import com.feliscape.gladius.GladiusClient;
+import com.feliscape.gladius.GladiusClientConfig;
 import com.feliscape.gladius.registry.GladiusComponents;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.ChatFormatting;
@@ -32,7 +34,8 @@ public abstract class ItemStackMixin implements DataComponentHolder {
     ordinal = 5), locals = LocalCapture.CAPTURE_FAILSOFT)
     public void addAdditionalGlobalTooltips(Item.TooltipContext tooltipContext, Player player, TooltipFlag tooltipFlag, CallbackInfoReturnable<List<Component>> cir,
                                             List<Component> list){
-        this.addToTooltip(GladiusComponents.ASPECT.get(), tooltipContext, list::add, tooltipFlag);
+        if (!player.level().isClientSide || GladiusClientConfig.CONFIG.aspects.showAspectTooltips.getAsBoolean())
+            this.addToTooltip(GladiusComponents.ASPECT.get(), tooltipContext, list::add, tooltipFlag);
 
         if (!ModList.get().isLoaded("bettercombat") && has(GladiusComponents.TWO_HANDED)) {
             list.add(Component.translatable("item.gladius.tooltip.two_handed").withStyle(ChatFormatting.GRAY));
