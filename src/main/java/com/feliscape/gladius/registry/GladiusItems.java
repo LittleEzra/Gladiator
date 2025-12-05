@@ -21,7 +21,8 @@ public class GladiusItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Gladius.MOD_ID);
 
     public static final DeferredItem<Item> BLAZING_HEART = ITEMS.registerSimpleItem("blazing_heart");
-    public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed", FrigidSeedItem::new);
+    public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed",
+            p -> new FrigidSeedItem(p.rarity(Rarity.RARE)));
     public static final DeferredItem<Item> FRIGID_SHARD = ITEMS.registerSimpleItem("frigid_shard");
 
     public static final DeferredItem<HearthStoneItem> HEARTH_STONE = ITEMS.registerItem("hearth_stone",
@@ -51,11 +52,13 @@ public class GladiusItems {
             p -> new GildedDaggerItem(p.attributes(SwordItem.createAttributes(Tiers.IRON, 1, -1.9F))
                     .component(GladiusComponents.BLOOD, 0)));
     public static final DeferredItem<ClaymoreItem> CLAYMORE = ITEMS.registerItem("claymore",
-            p -> new ClaymoreItem(p.attributes(SwordItem.createAttributes(GladiusTiers.CLAYMORE, 5, -3.0F))
+            p -> new ClaymoreItem(p.rarity(Rarity.EPIC)
+                    .attributes(SwordItem.createAttributes(GladiusTiers.CLAYMORE, 5, -3.0F))
                     .component(GladiusComponents.TWO_HANDED, Unit.INSTANCE))
     );
     public static final DeferredItem<FlambergeItem> FLAMBERGE = ITEMS.registerItem("flamberge",
-            p -> new FlambergeItem(p.attributes(SwordItem.createAttributes(GladiusTiers.FLAMBERGE, 7, -2.8F))
+            p -> new FlambergeItem(p.rarity(Rarity.RARE)
+                    .attributes(SwordItem.createAttributes(GladiusTiers.FLAMBERGE, 7, -2.8F))
                     .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.FIRE, true))
                     .component(GladiusComponents.TWO_HANDED, Unit.INSTANCE)
             ));
