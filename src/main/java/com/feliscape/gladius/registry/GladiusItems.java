@@ -57,7 +57,7 @@ public class GladiusItems {
                     .component(GladiusComponents.BLOOD, 0)));
     public static final DeferredItem<ClaymoreItem> CLAYMORE = ITEMS.registerItem("claymore",
             p -> new ClaymoreItem(p.rarity(Rarity.EPIC)
-                    .attributes(SwordItem.createAttributes(GladiusTiers.CLAYMORE, 5, -3.0F))
+                    .attributes(SwordItem.createAttributes(GladiusTiers.CLAYMORE, 6, -3.0F))
                     .component(GladiusComponents.TWO_HANDED, Unit.INSTANCE))
     );
     public static final DeferredItem<FlambergeItem> FLAMBERGE = ITEMS.registerItem("flamberge",

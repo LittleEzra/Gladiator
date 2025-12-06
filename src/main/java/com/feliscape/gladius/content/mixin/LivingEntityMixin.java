@@ -1,11 +1,8 @@
 package com.feliscape.gladius.content.mixin;
 
 import com.feliscape.gladius.content.item.CustomShieldExtension;
-import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.GladiusMobEffects;
-import com.feliscape.gladius.registry.GladiusSoundEvents;
 import net.minecraft.core.Holder;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -40,7 +37,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "handleEntityEvent", at = @At(value = "HEAD"), cancellable = true)
     public void handleEntityEvent(byte id, CallbackInfo ci){
         if (id == 29 && getUseItem().getItem() instanceof CustomShieldExtension customShield){
-            this.playSound(customShield.getSound(), 1.0F, 0.9F + this.level().random.nextFloat() * 0.2F);
+            this.playSound(customShield.getBlockSound(), 1.0F, 0.9F + this.level().random.nextFloat() * 0.2F);
             ci.cancel();
         }
     }

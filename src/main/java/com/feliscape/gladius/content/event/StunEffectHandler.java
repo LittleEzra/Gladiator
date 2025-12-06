@@ -2,6 +2,7 @@ package com.feliscape.gladius.content.event;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusServerConfig;
+import com.feliscape.gladius.content.item.CustomShieldExtension;
 import com.feliscape.gladius.data.enchantment.GladiusEnchantments;
 import com.feliscape.gladius.networking.payload.GladiusLevelEventPayload;
 import com.feliscape.gladius.networking.payload.GladiusLevelEvents;
@@ -38,9 +39,13 @@ public class StunEffectHandler {
                 itemStack.canPerformAction(ItemAbilities.SHIELD_BLOCK) && !livingAttacker.getType().is(GladiusTags.EntityTypes.STUN_IMMUNE)){
             var lookup = entity.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
             int level = itemStack.getEnchantmentLevel(lookup.getOrThrow(GladiusEnchantments.STUNNING));
-            if (itemStack.is(GladiusTags.Items.INNATE_STUN)){
+            if (itemStack.getItem() instanceof CustomShieldExtension shieldExtension){
+                level += shieldExtension.getBaseStunLevel();
+            }
+            else if (itemStack.is(GladiusTags.Items.INNATE_STUN)){
                 level += 1;
             }
+            
             if (level > 0){
                 int duration = 20 + 10 * (level);
                 if (livingAttacker instanceof Player) duration /= 2;

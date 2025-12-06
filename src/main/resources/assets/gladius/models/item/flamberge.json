@@ -1,5 +1,13 @@
 {
   "parent": "item/handheld",
+  "overrides": [
+    {
+      "predicate": {
+        "gladius:has_fire_aspect": 1
+      },
+      "model": "gladius:item/flamberge_soul"
+    }
+  ],
   "loader": "neoforge:separate_transforms",
   "base": {
     "parent": "gladius:item/flamberge_in_hand"

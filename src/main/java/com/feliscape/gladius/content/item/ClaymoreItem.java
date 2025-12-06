@@ -53,8 +53,13 @@ public class ClaymoreItem extends SwordItem implements CustomShieldExtension {
     }
 
     @Override
-    public SoundEvent getSound() {
+    public SoundEvent getBlockSound() {
         return GladiusSoundEvents.CLAYMORE_BLOCK.get();
+    }
+
+    @Override
+    public int getBaseStunLevel() {
+        return 2;
     }
 
     @Override

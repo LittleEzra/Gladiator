@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ClaymoreClientExtensions implements IClientItemExtensions {
 
+    // Affects first person transform
     @Override
     public boolean applyForgeHandTransform(PoseStack poseStack, LocalPlayer player, HumanoidArm arm, ItemStack itemInHand, float partialTick, float equipProcess, float swingProcess) {
         if (player.isUsingItem()){

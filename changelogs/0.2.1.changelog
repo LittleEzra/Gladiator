@@ -1,0 +1,14 @@
+## Added:
+- Frostmancer
+- Frigid Seed
+- Frigid Shard
+- Ice Bomb
+- Hearth Stone
+
+- Added option toggling the Aspect tooltip in the client config
+## Changes:
+- Increased Claymore damage from 8 to 9
+- Increased Claymore innate stun level to 2
+- Added Item rarities
+## Fixes:
+- Spell cast sound no longer plays when using an empty wand
