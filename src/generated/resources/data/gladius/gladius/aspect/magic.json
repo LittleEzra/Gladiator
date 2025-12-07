@@ -1,4 +1,5 @@
 {
   "color": -7649572,
-  "damage_types": "#neoforge:is_magic"
+  "damage_types": "#neoforge:is_magic",
+  "icon": "gladius:textures/aspect/magic.png"
 }

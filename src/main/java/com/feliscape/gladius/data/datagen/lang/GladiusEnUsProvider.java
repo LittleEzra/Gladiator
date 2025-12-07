@@ -84,6 +84,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Flash Powder crackles");
         this.addSubtitle(GladiusSoundEvents.HEARTH_STONE_USE, "Hearth Stone ignites");
 
+        this.addSubtitle(GladiusSoundEvents.SPELL, "Spell is cast");
+
         this.addSubtitle(GladiusSoundEvents.ICE_BOMB_THROW, "Ice Bomb flies");
         this.addSubtitle(GladiusSoundEvents.ICE_BOMB_SHATTER, "Ice Bomb explodes");
         this.addSubtitle(GladiusSoundEvents.ICE_SPIKE_RISE, "Ice Spike rise");
@@ -91,7 +93,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
         this.addSubtitle(GladiusSoundEvents.FROSTMANCER_SHIELD_BREAK, "Frostmancer's shield breaks");
 
-        this.addSubtitle(GladiusSoundEvents.SPELL, "Spell is cast");
+        this.addSubtitle(GladiusSoundEvents.FRIGID_ICE_FREEZE, "Frigid Ice spreads");
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s bled out");
 
@@ -102,6 +104,11 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addDeathMessageItem(GladiusDamageTypes.INDIRECT_SKEWERING, "%1$s was skewered by %2$s using %3$s");
         this.addDeathMessage(GladiusDamageTypes.SKEWERING, "%1$s was skewered");
         this.addDeathMessagePlayer(GladiusDamageTypes.SKEWERING, "%1$s was skewered whilst trying to escape %2$s");
+
+        this.addPotion(GladiusPotions.FROST_RESISTANCE, "Potion of Frost Resistance");
+        this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Splash Potion of Frost Resistance");
+        this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Lingering Potion of Frost Resistance");
+        this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Arrow of Frost Resistance");
 
         this.addAdvancement(GladiusAdvancements.FIREBRAND,
                 "Pyromaniac",
@@ -129,13 +136,5 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addConfigValue("server", GladiusServerConfig.CONFIG.crystalButterflySearchRange, "Crystal Butterfly Search Range");
         this.addConfigSection("projectiles", "Projectiles");
         this.addConfigValue("server", GladiusServerConfig.CONFIG.firebrandMakesFire, "Firebrand Makes Fire");
-    }
-
-    protected void addPotion(Holder<Potion> key, String name) {
-        String location = ResourceLocation.parse(key.getRegisteredName()).getPath();
-        add("item.minecraft.tipped_arrow.effect.%s".formatted(location), "Arrow of " + name);
-        add("item.minecraft.potion.effect.%s".formatted(location), "Potion of " + name);
-        add("item.minecraft.splash_potion.effect.%s".formatted(location), "Splash Potion of " + name);
-        add("item.minecraft.lingering_potion.effect.%s".formatted(location), "Lingering Potion of " + name);
     }
 }

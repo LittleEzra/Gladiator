@@ -146,7 +146,7 @@ public record GladiusLevelEventPayload(int id, double x, double y, double z, int
             case GladiusLevelEvents.FRIGID_ICE_SPREAD:
                 BlockPos blockPos = BlockPos.containing(x, y, z);
                 for(Direction direction : Direction.values()) {
-                    ParticleUtils.spawnParticlesOnBlockFace(level, blockPos, GladiusParticles.SNOWFLAKE.get(), UniformInt.of(4, 7),
+                    ParticleUtils.spawnParticlesOnBlockFace(level, blockPos, GladiusParticles.SNOWFLAKE.get(), UniformInt.of(2, 4),
                             direction, () -> Vec3.ZERO, 0.55);
                 }
                 break;

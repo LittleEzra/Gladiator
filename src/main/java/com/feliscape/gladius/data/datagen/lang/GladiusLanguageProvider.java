@@ -24,6 +24,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public abstract class GladiusLanguageProvider extends LanguageProvider {
@@ -88,6 +89,19 @@ public abstract class GladiusLanguageProvider extends LanguageProvider {
     }
     protected void addConfigValue(String environment, ModConfigSpec.ConfigValue<?> value, String name){
         add("%s.configuration.%s.%s".formatted(Gladius.MOD_ID, environment, combineConfigValuePath(value.getPath())), name);
+    }
+
+    protected void addPotion(Holder<Potion> key, String name) {
+        add(Potion.getName(Optional.of(key), "item.minecraft.potion.effect."), name);
+    }
+    protected void addTippedArrow(Holder<Potion> key, String name) {
+        add(Potion.getName(Optional.of(key), "item.minecraft.tipped_arrow.effect."), name);
+    }
+    protected void addSplashPotion(Holder<Potion> key, String name) {
+        add(Potion.getName(Optional.of(key), "item.minecraft.splash_potion.effect."), name);
+    }
+    protected void addLingeringPotion(Holder<Potion> key, String name) {
+        add(Potion.getName(Optional.of(key), "item.minecraft.lingering_potion.effect."), name);
     }
 
     protected String combineConfigValuePath(List<String> path){

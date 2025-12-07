@@ -18,6 +18,8 @@ public class GladiusSoundEvents {
     public static final Supplier<SoundEvent> FLASH_POWDER_CRACKLE = registerVariable("item.flash_powder.crackle"); // range: 12.0F
     public static final Supplier<SoundEvent> HEARTH_STONE_USE = registerVariable("item.hearth_stone.use");
 
+    public static final Supplier<SoundEvent> SPELL = registerSoundEvent("item.spell", 12.0F);
+
     public static final Supplier<SoundEvent> ICE_BOMB_THROW = registerVariable("entity.ice_bomb.throw");
     public static final Supplier<SoundEvent> ICE_BOMB_SHATTER = registerVariable("entity.ice_bomb.shatter");
     public static final Supplier<SoundEvent> ICE_SPIKE_RISE = registerVariable("entity.ice_spike.rise");
@@ -25,7 +27,7 @@ public class GladiusSoundEvents {
 
     public static final Supplier<SoundEvent> FROSTMANCER_SHIELD_BREAK = registerVariable("entity.frostmancer.shield_break");
 
-    public static final Supplier<SoundEvent> SPELL = registerSoundEvent("item.spell", 12.0F);
+    public static final Supplier<SoundEvent> FRIGID_ICE_FREEZE = registerVariable("block.frigid_ice.freeze");
 
     public static void register(IEventBus eventBus)
     {

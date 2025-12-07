@@ -14,26 +14,25 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-//@EventBusSubscriber(modid = Gladius.MOD_ID)
+@EventBusSubscriber(modid = Gladius.MOD_ID)
 public class GladiusPotions {
     public static final DeferredRegister<Potion> POTIONS =
             DeferredRegister.create(Registries.POTION, Gladius.MOD_ID);
 
-    /*public static final Holder<Potion> COMBUSTION = POTIONS.register("combustion", name -> new Potion(
-            name.getPath(),
-            new MobEffectInstance(GladiusMobEffects.COMBUSTION, 1)
-    ));*/
+    public static final Holder<Potion> FROST_RESISTANCE = POTIONS.register("frost_resistance", name -> new Potion(
+            "frost_resistance", new MobEffectInstance(GladiusMobEffects.FROST_RESISTANCE, 3600)
+    ));
+    public static final Holder<Potion> LONG_FROST_RESISTANCE = POTIONS.register("long_frost_resistance", name -> new Potion(
+            "frost_resistance", new MobEffectInstance(GladiusMobEffects.FROST_RESISTANCE, 9600)
+    ));
 
-    /*@SubscribeEvent
+    @SubscribeEvent
     public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event){
         PotionBrewing.Builder builder = event.getBuilder();
 
-        builder.addMix(
-                Potions.AWKWARD,
-                Items.TNT,
-                GladiusPotions.COMBUSTION
-        );
-    }*/
+        builder.addStartMix(GladiusItems.FRIGID_SHARD.get(), GladiusPotions.FROST_RESISTANCE);
+        builder.addMix(GladiusPotions.FROST_RESISTANCE, Items.REDSTONE, GladiusPotions.LONG_FROST_RESISTANCE);
+    }
 
     public static void register(IEventBus eventBus){
         POTIONS.register(eventBus);

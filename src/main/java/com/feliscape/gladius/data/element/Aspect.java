@@ -15,23 +15,28 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.HolderSetCodec;
 import net.minecraft.resources.RegistryFixedCodec;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-public record Aspect(HolderSet<DamageType> damageTypes, int color) {
+public record Aspect(HolderSet<DamageType> damageTypes, int color, ResourceLocation icon) {
     public static final Codec<Aspect> DIRECT_CODEC = RecordCodecBuilder.create(inst -> inst.group(
             HolderSetCodec.create(Registries.DAMAGE_TYPE, DamageType.CODEC, false)
                     .fieldOf("damage_types").forGetter(Aspect::damageTypes),
-            Codec.INT.fieldOf("color").forGetter(Aspect::color)
+            Codec.INT.fieldOf("color").forGetter(Aspect::color),
+            ResourceLocation.CODEC.fieldOf("icon").forGetter(Aspect::icon)
     ).apply(inst, Aspect::new));
 
     public static final Codec<Holder<Aspect>> CODEC = RegistryFixedCodec.create(GladiusDatapackRegistries.ASPECT);
     public static final StreamCodec<RegistryFriendlyByteBuf, Holder<Aspect>> STREAM_CODEC =
             ByteBufCodecs.holderRegistry(GladiusDatapackRegistries.ASPECT);
 
+    public Aspect(HolderSet<DamageType> damageTypes, int color) {
+        this(damageTypes, color, null);
+    }
 
     public static boolean isSameAspect(Aspect a, Aspect b){
         if (a == b) return true;

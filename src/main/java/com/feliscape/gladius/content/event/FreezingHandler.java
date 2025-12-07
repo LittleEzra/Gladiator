@@ -32,14 +32,14 @@ public class FreezingHandler {
                     living.removeEffect(GladiusMobEffects.FREEZING);
 
                 if (living.getTicksFrozen() > 0){
-                    living.setTicksFrozen(0);
+                    living.setTicksFrozen(Math.max(living.getTicksFrozen() - 20, 0));
                 }
             }
             if (hasFreezing(living)) {
                 if (living.getRemainingFireTicks() > 0) {
                     living.removeEffect(GladiusMobEffects.FREEZING);
                 } else if (living.getTicksFrozen() <= living.getTicksRequiredToFreeze()) {
-                    living.setTicksFrozen(living.getTicksRequiredToFreeze() + 4);
+                    living.setTicksFrozen(living.getTicksFrozen() + 12);
                 }
             }
         }

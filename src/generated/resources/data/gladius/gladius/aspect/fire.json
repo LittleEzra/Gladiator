@@ -1,4 +1,5 @@
 {
   "color": -742862,
-  "damage_types": "#minecraft:is_fire"
+  "damage_types": "#minecraft:is_fire",
+  "icon": "gladius:textures/aspect/fire.png"
 }

@@ -68,5 +68,14 @@
       "mob/ghast/fireball4"
     ],
     "subtitle": "subtitle.gladius.item.hearth_stone.use"
+  },
+  "block.frigid_ice.freeze": {
+    "sounds": [
+      "gladius:block/frigid_ice/freeze_0",
+      "gladius:block/frigid_ice/freeze_1",
+      "gladius:block/frigid_ice/freeze_2",
+      "gladius:block/frigid_ice/freeze_3"
+    ],
+    "subtitle": "subtitle.gladius.block.frigid_ice.freeze"
   }
 }

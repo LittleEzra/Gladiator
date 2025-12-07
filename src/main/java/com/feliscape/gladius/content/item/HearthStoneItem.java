@@ -31,7 +31,6 @@ public class HearthStoneItem extends Item {
         if(livingEntity.hasEffect(GladiusMobEffects.FREEZING)) {
             livingEntity.removeEffect(GladiusMobEffects.FREEZING);
         }
-        livingEntity.setTicksFrozen(0);
 
         if (livingEntity instanceof ServerPlayer serverplayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, stack);

@@ -22,10 +22,14 @@ public class GladiusAspects {
     public static void bootstrap(BootstrapContext<Aspect> context){
         HolderGetter<DamageType> lookup = context.lookup(Registries.DAMAGE_TYPE);
 
-        context.register(FIRE, new Aspect(lookup.getOrThrow(DamageTypeTags.IS_FIRE), 0xfff4aa32));
-        context.register(ICE, new Aspect(lookup.getOrThrow(DamageTypeTags.IS_FREEZING), 0xff6acce6));
-        context.register(MAGIC, new Aspect(lookup.getOrThrow(Tags.DamageTypes.IS_MAGIC), 0xff8b46dc));
-        context.register(POISON, new Aspect(lookup.getOrThrow(Tags.DamageTypes.IS_POISON), 0xff76db4c));
+        context.register(FIRE, new Aspect(lookup.getOrThrow(DamageTypeTags.IS_FIRE),
+                0xfff4aa32, Gladius.location("textures/aspect/fire.png")));
+        context.register(ICE, new Aspect(lookup.getOrThrow(DamageTypeTags.IS_FREEZING),
+                0xff6acce6, Gladius.location("textures/aspect/ice.png")));
+        context.register(MAGIC, new Aspect(lookup.getOrThrow(Tags.DamageTypes.IS_MAGIC),
+                0xff8b46dc, Gladius.location("textures/aspect/magic.png")));
+        context.register(POISON, new Aspect(lookup.getOrThrow(Tags.DamageTypes.IS_POISON),
+                0xff76db4c, Gladius.location("textures/aspect/poison.png")));
     }
 
     private static ResourceKey<Aspect> createKey(String name){

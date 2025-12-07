@@ -7,14 +7,17 @@ import com.feliscape.gladius.data.datagen.advancement.GladiusAdvancements;
 import com.feliscape.gladius.data.enchantment.GladiusEnchantments;
 import com.feliscape.gladius.data.registry.GladiusAspects;
 import com.feliscape.gladius.registry.*;
+import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.alchemy.Potion;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class GladiusDeDeProvider extends GladiusLanguageProvider{
     public GladiusDeDeProvider(PackOutput output) {
         super(output, "de_de");
     }
 
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     protected void addTranslations() {
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frostiges Eis");
@@ -87,9 +90,12 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.ICE_SPIKE_RISE, "Eisstachel steigt");
         this.addSubtitle(GladiusSoundEvents.ICE_BLOCK_SHATTER, "Eisblock zerbricht");
 
+        this.addSubtitle(GladiusSoundEvents.SPELL, "Zauber ist benutzt worden");
+
         this.addSubtitle(GladiusSoundEvents.FROSTMANCER_SHIELD_BREAK, "Frostmagiers Schild zerbricht");
 
-        this.addSubtitle(GladiusSoundEvents.SPELL, "Zauber ist benutzt worden");
+        this.addSubtitle(GladiusSoundEvents.FRIGID_ICE_FREEZE, "Frostiges Eis breitet sich aus");
+
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s verblutete");
 
@@ -101,6 +107,11 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addDeathMessage(GladiusDamageTypes.SKEWERING, "%1$s wurde aufgespießt");
         this.addDeathMessagePlayer(GladiusDamageTypes.SKEWERING, "%1$s wurde beim Versuch, %2$s zu entkommen, aufgespießt");
 
+        this.addPotion(GladiusPotions.FROST_RESISTANCE, "Trank der Frostresistenz");
+        this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Wurftrank der Frostresistenz");
+        this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Verweiltrank der Frostresistenz");
+        this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Pfeil der Frostresistenz");
+
         this.addAdvancement(GladiusAdvancements.FIREBRAND,
                 "Pyromane",
                 "Werfe einen Feuerstock ohne jeglicher Rücksicht auf deine Umgebung");
@@ -110,22 +121,12 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addAdvancement(GladiusAdvancements.POCKET_SAND,
                 "Taschen-Sand!",
                 "Werfe Blitzpulver in die Luft, um deine Feinde abzulenken");
-
-        this.addConfigSection("effects", "Effects");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.stunTrailResolution, "Stun Trail Resolution");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.showBlood, "Show Blood");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.extraOil, "Extra Oil");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.oilSplatDisappearStyle, "Oil Splat Disappear Effect");
-        this.addConfigSection("flash_powder", "Flash Powder");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderFlashing, "Flash Powder Flashing");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderLightChance, "Flash Powder Light Chance");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.darkFlash, "Dark Flash");
-        this.addConfigSection("aspects", "Aspects");
-        this.addConfigValue("client", GladiusClientConfig.CONFIG.aspects.showAspectTooltips, "Show Aspect Tooltips");
-
-        this.addConfigSection("entities", "Entities");
-        this.addConfigValue("server", GladiusServerConfig.CONFIG.crystalButterflySearchRange, "Crystal Butterfly Search Range");
-        this.addConfigSection("projectiles", "Projectiles");
-        this.addConfigValue("server", GladiusServerConfig.CONFIG.firebrandMakesFire, "Firebrand Makes Fire");
     }
+
+    /*
+        item.minecraft.tipped_arrow.effect.{potion}:     Pfeil der ...
+        item.minecraft.potion.effect.{potion}:           Trank der ...
+        item.minecraft.splash_potion.effect.{potion}:    Wurftrank der ...
+        item.minecraft.lingering_potion.effect.{potion}: Verweiltrank der ...
+     */
 }

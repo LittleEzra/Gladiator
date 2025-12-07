@@ -3,10 +3,12 @@ package com.feliscape.gladius.content.block;
 import com.feliscape.gladius.networking.payload.GladiusLevelEvents;
 import com.feliscape.gladius.registry.GladiusBlocks;
 import com.feliscape.gladius.registry.GladiusMobEffects;
+import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -58,6 +60,9 @@ public class FrigidIceBlock extends HalfTransparentBlock {
                             .defaultBlockState().setValue(COLDNESS, coldness - 1),
                     Block.UPDATE_ALL);
             level.scheduleTick(pos, this, Mth.nextInt(random, 2, 5));
+            level.playSound(null, relativePos, GladiusSoundEvents.FRIGID_ICE_FREEZE.get(), SoundSource.BLOCKS,
+                    0.6F, 0.9F / (0.4F + random.nextFloat() * 0.9F));
+
             GladiusLevelEvents.send(level, GladiusLevelEvents.FRIGID_ICE_SPREAD, relativePos);
         }
     }
