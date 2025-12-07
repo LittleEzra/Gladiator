@@ -36,7 +36,7 @@ public class FrigidIceBlock extends HalfTransparentBlock {
 
     @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        level.scheduleTick(pos, this, Mth.nextInt(level.getRandom(), 2, 5));
+        level.scheduleTick(pos, this, Mth.nextInt(level.getRandom(), 3, 6));
     }
 
     @Override
@@ -54,11 +54,12 @@ public class FrigidIceBlock extends HalfTransparentBlock {
         if (validDirections.isEmpty()){
             level.setBlock(pos, state.setValue(COLDNESS, 0), Block.UPDATE_ALL);
         } else{
-            int coldness = state.getValue(COLDNESS);
+            int coldness = Math.max(state.getValue(COLDNESS) - (random.nextInt(3) + 1), 0);
             BlockPos relativePos = pos.relative(validDirections.get(random.nextInt(validDirections.size())));
             level.setBlock(relativePos, GladiusBlocks.FRIGID_ICE.get()
-                            .defaultBlockState().setValue(COLDNESS, coldness - 1),
+                            .defaultBlockState().setValue(COLDNESS, coldness),
                     Block.UPDATE_ALL);
+
             level.scheduleTick(pos, this, Mth.nextInt(random, 2, 5));
             level.playSound(null, relativePos, GladiusSoundEvents.FRIGID_ICE_FREEZE.get(), SoundSource.BLOCKS,
                     0.6F, 0.9F / (0.4F + random.nextFloat() * 0.9F));

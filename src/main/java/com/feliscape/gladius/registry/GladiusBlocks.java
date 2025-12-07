@@ -30,7 +30,7 @@ public class GladiusBlocks {
             p -> new FrigidIceBlock(p
                     .mapColor(MapColor.ICE)
                     .strength(2.8F)
-                    .friction(0.99F)
+                    .friction(0.98F)
                     .sound(SoundType.GLASS)
             ));
 

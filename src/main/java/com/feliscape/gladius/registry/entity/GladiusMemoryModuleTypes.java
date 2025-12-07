@@ -15,10 +15,6 @@ public class GladiusMemoryModuleTypes {
             Registries.MEMORY_MODULE_TYPE, Gladius.MOD_ID
     );
 
-    public static final Supplier<MemoryModuleType<Integer>> INVULNERABLE_ATTACK_COOLDOWN = MEMORY_MODULES.register(
-            "invulnerable_attack_cooldown", () -> new MemoryModuleType<>(Optional.of(Codec.INT))
-    );
-
     public static void register(IEventBus eventBus){
         MEMORY_MODULES.register(eventBus);
     }

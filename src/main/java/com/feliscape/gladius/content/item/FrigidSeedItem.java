@@ -3,12 +3,14 @@ package com.feliscape.gladius.content.item;
 import com.feliscape.gladius.content.block.FrigidIceBlock;
 import com.feliscape.gladius.networking.payload.GladiusLevelEvents;
 import com.feliscape.gladius.registry.GladiusBlocks;
+import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -38,6 +40,8 @@ public class FrigidSeedItem extends Item {
         if (state.is(GladiusTags.Blocks.FRIGID_ICE_SPREADABLE)) {
             level.setBlock(pos, GladiusBlocks.FRIGID_ICE.get()
                     .defaultBlockState().setValue(FrigidIceBlock.COLDNESS, 6), Block.UPDATE_ALL);
+            level.playSound(null, pos, GladiusSoundEvents.FRIGID_ICE_FREEZE.get(), SoundSource.BLOCKS,
+                    0.9F, 0.9F / (0.4F + level.random.nextFloat() * 0.9F));
             if (player != null) {
                 itemInHand.consume(1, player);
                 player.awardStat(Stats.ITEM_USED.get(this));

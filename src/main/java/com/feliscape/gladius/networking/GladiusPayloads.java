@@ -1,6 +1,7 @@
 package com.feliscape.gladius.networking;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.networking.payload.AshifyEntityPayload;
 import com.feliscape.gladius.networking.payload.ClientMobEffectsPayload;
 import com.feliscape.gladius.networking.payload.GladiusLevelEventPayload;
 import com.feliscape.gladius.networking.payload.SyncIceBlockTargetPayload;
@@ -15,6 +16,11 @@ public class GladiusPayloads {
     public static void register(final RegisterPayloadHandlersEvent event){
         final PayloadRegistrar registrar = event.registrar("1");
 
+        registrar.playToClient(
+                AshifyEntityPayload.TYPE,
+                AshifyEntityPayload.STREAM_CODEC,
+                AshifyEntityPayload::handle
+        );
         registrar.playToClient(
                 ClientMobEffectsPayload.TYPE,
                 ClientMobEffectsPayload.STREAM_CODEC,

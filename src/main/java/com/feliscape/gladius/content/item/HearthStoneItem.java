@@ -1,5 +1,7 @@
 package com.feliscape.gladius.content.item;
 
+import com.feliscape.gladius.networking.payload.GladiusLevelEventPayload;
+import com.feliscape.gladius.networking.payload.GladiusLevelEvents;
 import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.feliscape.gladius.registry.GladiusSoundEvents;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -15,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public class HearthStoneItem extends Item {
     public HearthStoneItem(Properties properties) {
@@ -41,6 +44,8 @@ public class HearthStoneItem extends Item {
             level.playSound((Player)null, livingEntity.blockPosition(), GladiusSoundEvents.HEARTH_STONE_USE.get(),
                     livingEntity.getSoundSource(), 1.0F, 0.9F + level.random.nextFloat() * 0.2F);
             livingEntity.addEffect(new MobEffectInstance(GladiusMobEffects.FROST_RESISTANCE, 5 * 20, 0));
+            PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.HEARTHSTONE_USE,
+                    livingEntity.getX(), livingEntity.getY(0.7D), livingEntity.getZ()));
         }
 
         stack.consume(1, livingEntity);

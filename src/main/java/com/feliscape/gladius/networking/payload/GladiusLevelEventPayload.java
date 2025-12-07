@@ -143,6 +143,18 @@ public record GladiusLevelEventPayload(int id, double x, double y, double z, int
                 level.playLocalSound(BlockPos.containing(location), GladiusSoundEvents.FIREBRAND_LIGHT.get(), SoundSource.NEUTRAL, 1.0F, random.nextFloat() * 0.1F + 0.9F, false);
                 break;
             }
+            case GladiusLevelEvents.HEARTHSTONE_USE:{
+                int particleCount = random.nextInt(4) + 5;
+                for (int j = 0; j < particleCount; j++) {
+                    level.addParticle(
+                            ParticleTypes.FLAME, x, y, z,
+                            random.nextGaussian() * 0.03,
+                            random.nextGaussian() * 0.03,
+                            random.nextGaussian() * 0.03
+                    );
+                }
+                break;
+            }
             case GladiusLevelEvents.FRIGID_ICE_SPREAD:
                 BlockPos blockPos = BlockPos.containing(x, y, z);
                 for(Direction direction : Direction.values()) {
