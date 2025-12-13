@@ -6,16 +6,21 @@ import com.feliscape.gladius.client.extension.ClaymoreClientExtensions;
 import com.feliscape.gladius.client.hud.BloodLayer;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
+import com.feliscape.gladius.client.render.layer.PowerGauntletsLayer;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
 import com.feliscape.gladius.registry.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.entity.NoopRenderer;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
@@ -41,6 +46,12 @@ public class ClientEvents {
                 GladiusItems.ARCHER_BOOTS
         );*/
     }
+
+    public static <E extends LivingEntity, M extends EntityModel<E>>
+    void addLayer(EntityType<E> entityType, LivingEntityRenderer<E, M> renderer, RenderLayer<E, M> layer){
+        renderer.addLayer(layer);
+    }
+
     @SubscribeEvent
     public static void registerClientReloadListeners(RegisterClientReloadListenersEvent event)
     {
@@ -57,10 +68,13 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.WINGED_ARROW.get(), WingedArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.OIL_BOTTLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FIREBRAND.get(), FirebrandRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.MAGMA_POOL.get(), MagmaPoolRenderer::new);
+
         event.registerEntityRenderer(GladiusEntityTypes.ICE_BOMB.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_SPIKE_SPAWNER.get(), IceSpikeSpawnerRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_SPIKE.get(), IceSpikeRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_BLOCK.get(), IceBlockRenderer::new);
+
         event.registerEntityRenderer(GladiusEntityTypes.MAGIC_ORB.get(), MagicOrbRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.FLASH_POWDER_CLOUD.get(), NoopRenderer::new);

@@ -45,6 +45,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.CLAYMORE, "Claymore");
         this.addItem(GladiusItems.FLAMBERGE, "Flamberge");
         this.addItem(GladiusItems.GOLDEN_WAND, "Golden Wand");
+        this.addItem(GladiusItems.FLAMEWALKERS, "Flamewalkers");
+        this.addItem(GladiusItems.POWER_GAUNTLETS, "Power Gauntlets");
         this.add("item.gladius.tooltip.two_handed", "Two-Handed");
 
         this.addAspect(GladiusAspects.FIRE, "🔥 Fire");
@@ -58,6 +60,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.WINGED_ARROW, "Winged Arrow");
         this.addEntityType(GladiusEntityTypes.OIL_BOTTLE, "Oil Bottle");
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Firebrand");
+
+        this.addEntityType(GladiusEntityTypes.MAGMA_POOL, "Magma Pool");
 
         this.addEntityType(GladiusEntityTypes.ICE_BOMB, "Ice Bomb");
         this.addEntityType(GladiusEntityTypes.ICE_SPIKE_SPAWNER, "Ice Spike Spawner");

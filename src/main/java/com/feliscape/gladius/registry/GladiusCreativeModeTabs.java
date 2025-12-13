@@ -24,6 +24,7 @@ public class GladiusCreativeModeTabs {
             ItemStack arrow = Items.ARROW.getDefaultInstance();
             ItemStack bow = Items.BOW.getDefaultInstance();
             ItemStack woodenAxe = Items.WOODEN_AXE.getDefaultInstance();
+            ItemStack turtleHelmet = Items.TURTLE_HELMET.getDefaultInstance();
 
             before(arrow, GladiusItems.EXPLOSIVE_ARROW, event);
             before(arrow, GladiusItems.PRISMARINE_ARROW, event);
@@ -37,6 +38,8 @@ public class GladiusCreativeModeTabs {
             before(woodenAxe, GladiusItems.CLAYMORE, event);
             before(woodenAxe, GladiusItems.FLAMBERGE, event);
             before(woodenAxe, GladiusItems.GOLDEN_WAND, event);
+
+            after(turtleHelmet, GladiusItems.FLAMEWALKERS, event);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             ItemStack blazeRod = Items.BLAZE_ROD.getDefaultInstance();
 

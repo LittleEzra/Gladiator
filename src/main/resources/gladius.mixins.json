@@ -12,6 +12,7 @@
   "client": [
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
+    "client.HumanoidArmorLayerMixin",
     "client.LevelRendererMixin",
     "client.ScreenEffectRendererMixin"
   ],

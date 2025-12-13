@@ -72,6 +72,10 @@ public class GladiusItems {
                     .component(GladiusComponents.MAGIC_CHARGES, 10)
                     .component(GladiusComponents.MAX_MAGIC_CHARGES, 10)
             ));
+    public static final DeferredItem<ArmorItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
+            p -> new ArmorItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p));
+    public static final DeferredItem<PowerGauntletsItem> POWER_GAUNTLETS = ITEMS.registerItem("power_gauntlets",
+            p -> new PowerGauntletsItem(p.attributes(PowerGauntletsItem.createAttributes())));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

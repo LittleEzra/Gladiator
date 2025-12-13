@@ -6,17 +6,17 @@ import com.feliscape.gladius.content.entity.Frostmancer;
 import com.feliscape.gladius.content.item.WandItem;
 import com.feliscape.gladius.data.damage.GladiusDamageSources;
 import com.feliscape.gladius.networking.payload.ClientMobEffectsPayload;
-import com.feliscape.gladius.registry.GladiusAttributes;
-import com.feliscape.gladius.registry.GladiusComponents;
-import com.feliscape.gladius.registry.GladiusEntityTypes;
-import com.feliscape.gladius.registry.GladiusMobEffects;
+import com.feliscape.gladius.registry.*;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.Tags;
@@ -34,6 +34,25 @@ public class GeneralEvents {
     public static void createEntityAttributes(EntityAttributeCreationEvent event){
         event.put(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterfly.createAttributes().build());
         event.put(GladiusEntityTypes.FROSTMANCER.get(), Frostmancer.createAttributes().build());
+    }
+
+
+    @SubscribeEvent
+    public static void onEntityTick(EntityTickEvent.Post event){
+        Level level = event.getEntity().level();
+        if (event.getEntity() instanceof LivingEntity living && level.isClientSide){
+            if (living.onGround() && living.getItemBySlot(EquipmentSlot.FEET).is(GladiusItems.FLAMEWALKERS)){
+                if (level.random.nextInt(3) == 0) {
+                    level.addParticle(GladiusParticles.MAGMA_TRAIL.get(),
+                            living.getRandomX(0.5D), living.getY() + level.random.nextFloat() * 0.01D, living.getRandomZ(0.5D),
+                            0.0D, 0.0D, 0.0D);
+                } else{
+                    level.addParticle(ParticleTypes.FLAME,
+                            living.getRandomX(0.5D), living.getY(), living.getRandomZ(0.5D),
+                            0.0D, 0.0D, 0.0D);
+                }
+            }
+        }
     }
 
     @SubscribeEvent

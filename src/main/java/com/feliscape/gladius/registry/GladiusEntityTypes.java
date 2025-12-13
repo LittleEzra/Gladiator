@@ -64,6 +64,14 @@ public class GladiusEntityTypes {
                     .clientTrackingRange(4)
                     .updateInterval(10)
     );
+
+    public static final Supplier<EntityType<MagmaPool>> MAGMA_POOL = ENTITY_TYPES.registerEntityType("magma_pool",
+            MagmaPool::new, MobCategory.MISC, b -> b
+                    .sized(4.0F, 4.0F)
+                    .clientTrackingRange(4)
+                    .updateInterval(5)
+    );
+
     public static final Supplier<EntityType<IceBomb>> ICE_BOMB = ENTITY_TYPES.registerEntityType("ice_bomb",
             IceBomb::new, MobCategory.MISC, b -> b
                     .sized(0.25F, 0.25F)
@@ -80,7 +88,7 @@ public class GladiusEntityTypes {
             IceSpike::new, MobCategory.MISC, b -> b
                     .sized(0.65F, 2.0F)
                     .clientTrackingRange(4)
-                    .updateInterval(10)
+                    .updateInterval(5)
     );
     public static final Supplier<EntityType<IceBlockProjectile>> ICE_BLOCK = ENTITY_TYPES.registerEntityType("ice_block",
             IceBlockProjectile::new, MobCategory.MISC, b -> b

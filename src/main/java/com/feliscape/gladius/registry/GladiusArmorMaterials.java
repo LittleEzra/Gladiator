@@ -42,8 +42,8 @@ public class GladiusArmorMaterials {
                     new ArmorMaterial.Layer(Gladius.location("archer"), "", false)
             )
     );
-    public static final Holder<ArmorMaterial> GRAVITY_BOOTS = register(
-            "gravity_boots",
+    public static final Holder<ArmorMaterial> FLAMEWALKERS = register(
+            "flamewalkers",
             Util.make(new EnumMap<>(ArmorItem.Type.class), p_323384_ -> {
                 p_323384_.put(ArmorItem.Type.BOOTS, 2);
                 p_323384_.put(ArmorItem.Type.LEGGINGS, 3);
@@ -52,12 +52,12 @@ public class GladiusArmorMaterials {
                 p_323384_.put(ArmorItem.Type.BODY, 4);
             }),
             15,
-            SoundEvents.ARMOR_EQUIP_IRON,
+            Holder.direct(SoundEvents.BASALT_PLACE),
             0.0F,
             0.0F,
-            () -> Ingredient.of(Items.COPPER_INGOT),
+            () -> Ingredient.of(Items.BASALT),
             List.of(
-                    new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("iron"), "", false)
+                    new ArmorMaterial.Layer(Gladius.location("flamewalkers"), "", false)
             )
     );
 

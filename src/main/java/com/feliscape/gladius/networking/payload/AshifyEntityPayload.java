@@ -1,6 +1,7 @@
 package com.feliscape.gladius.networking.payload;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.registry.GladiusParticles;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -29,16 +30,21 @@ public record AshifyEntityPayload(int id, boolean soul) implements CustomPacketP
         Level level = context.player().level();
         Entity entity = level.getEntity(payload.id);
         if (entity instanceof LivingEntity living && !living.isAlive()){
-            int particleCount = (int)(living.getBbHeight() * living.getBbHeight() * living.getBbWidth() * 30);
+            int particleCount = (int)(living.getBbHeight() * living.getBbWidth() * living.getBbWidth() * 30) + 1;
             for (int i = 0; i < particleCount; i++) {
+                boolean flame = level.random.nextBoolean();
                 if (payload.soul) {
-                    level.addParticle(level.random.nextBoolean() ? ParticleTypes.SOUL : ParticleTypes.SOUL_FIRE_FLAME,
+                    level.addParticle(flame ? ParticleTypes.SOUL_FIRE_FLAME : ParticleTypes.SOUL,
                             entity.getRandomX(0.75D), entity.getRandomY(), entity.getRandomZ(0.75D),
-                            0.0D, 0.0D, 0.0D);
+                            level.random.nextGaussian() * 0.03D,
+                            0.0D,
+                            level.random.nextGaussian() * 0.03D);
                 } else{
-                    level.addParticle(level.random.nextBoolean() ? new DustParticleOptions(new Vector3f(0.23F, 0.23F, 0.23F), 1.5F) : ParticleTypes.FLAME,
+                    level.addParticle(flame ? ParticleTypes.FLAME : GladiusParticles.ASH.get(),
                             entity.getRandomX(0.75D), entity.getRandomY(), entity.getRandomZ(0.75D),
-                            0.0D, 0.0D, 0.0D);
+                            level.random.nextGaussian() * 0.03D,
+                            flame ? 0.0D : 0.15D,
+                            level.random.nextGaussian() * 0.03D);
                 }
             }
         }

@@ -28,6 +28,7 @@ public class GladiusModelLayers {
 
     public static final ModelLayerLocation SMALL_ARMOR_INNER = registerInnerArmor("small_armor");
     public static final ModelLayerLocation SMALL_ARMOR_OUTER = registerOuterArmor("small_armor");
+    public static final ModelLayerLocation POWER_GAUNTLETS = registerOuterArmor("power_gauntlets");
 
     private static ModelLayerLocation register(String path) {
         return register(path, "main");
@@ -75,5 +76,7 @@ public class GladiusModelLayers {
                 LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_SMALL_ARMOR_DEFORMATION), 64, 32));
         event.registerLayerDefinition(GladiusModelLayers.SMALL_ARMOR_OUTER, () ->
                 LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_SMALL_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(GladiusModelLayers.POWER_GAUNTLETS, () ->
+                LayerDefinition.create(PowerGauntletsModel.createBodyLayer(), 64, 32));
     }
 }

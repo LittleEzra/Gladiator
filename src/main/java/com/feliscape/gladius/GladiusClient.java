@@ -2,6 +2,7 @@ package com.feliscape.gladius;
 
 import com.feliscape.gladius.client.GladiusModelLayers;
 import com.feliscape.gladius.client.GladiusModelManager;
+import com.feliscape.gladius.client.render.layer.PowerGauntletsLayer;
 import com.feliscape.gladius.foundation.MobEffectRenderDispatcher;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
 import net.minecraft.client.Minecraft;

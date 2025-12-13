@@ -1,10 +1,7 @@
 package com.feliscape.gladius.networking;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.networking.payload.AshifyEntityPayload;
-import com.feliscape.gladius.networking.payload.ClientMobEffectsPayload;
-import com.feliscape.gladius.networking.payload.GladiusLevelEventPayload;
-import com.feliscape.gladius.networking.payload.SyncIceBlockTargetPayload;
+import com.feliscape.gladius.networking.payload.*;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -35,6 +32,11 @@ public class GladiusPayloads {
                 SyncIceBlockTargetPayload.TYPE,
                 SyncIceBlockTargetPayload.STREAM_CODEC,
                 SyncIceBlockTargetPayload::handle
+        );
+        registrar.playToServer(
+                SyncPowerGauntletDataPayload.TYPE,
+                SyncPowerGauntletDataPayload.STREAM_CODEC,
+                SyncPowerGauntletDataPayload::handle
         );
     }
 }

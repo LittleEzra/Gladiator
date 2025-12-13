@@ -1,6 +1,7 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.client.MagmaTrailParticle;
 import com.feliscape.gladius.client.particle.*;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleOptions;
@@ -56,6 +57,13 @@ public class GladiusParticles {
     public static final Supplier<SimpleParticleType> ICE_EXPLOSION = PARTICLE_TYPES.register("ice_explosion",
             () -> new SimpleParticleType(false));
 
+    public static final Supplier<SimpleParticleType> ASH = PARTICLE_TYPES.register("ash",
+            () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> MAGMA_PUDDLE = PARTICLE_TYPES.register("magma_puddle",
+            () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> MAGMA_TRAIL = PARTICLE_TYPES.register("magma_trail",
+            () -> new SimpleParticleType(false));
+
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event)
     {
@@ -76,6 +84,10 @@ public class GladiusParticles {
         event.registerSpriteSet(GladiusParticles.SNOWFLAKE.get(), SnowflakeParticle.Provider::new);
         event.registerSpriteSet(GladiusParticles.FALLING_SNOWFLAKE.get(), SnowflakeParticle.FastProvider::new);
         event.registerSpriteSet(GladiusParticles.ICE_EXPLOSION.get(), SnowflakeParticle.ExplosionProvider::new);
+
+        event.registerSpriteSet(GladiusParticles.ASH.get(), AshParticle.Provider::new);
+        event.registerSpriteSet(GladiusParticles.MAGMA_PUDDLE.get(), MagmaPuddleParticle.Provider::new);
+        event.registerSpriteSet(GladiusParticles.MAGMA_TRAIL.get(), MagmaTrailParticle.Provider::new);
     }
 
     private static <T extends ParticleOptions> Supplier<ParticleType<T>> register(

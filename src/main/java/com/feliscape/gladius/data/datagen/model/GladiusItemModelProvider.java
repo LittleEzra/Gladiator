@@ -44,6 +44,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
 
         gildedDaggerItem(GladiusItems.GILDED_DAGGER.get());
         handheldItem(GladiusItems.GOLDEN_WAND.get());
+        basicItem(GladiusItems.FLAMEWALKERS.get());
     }
 
     public ItemModelBuilder potionBundleItem(Item item) {
