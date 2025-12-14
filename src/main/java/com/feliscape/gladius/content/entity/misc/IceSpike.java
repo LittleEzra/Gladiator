@@ -1,4 +1,4 @@
-package com.feliscape.gladius.content.entity.projectile;
+package com.feliscape.gladius.content.entity.misc;
 
 import com.feliscape.gladius.data.damage.GladiusDamageSources;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
@@ -14,6 +14,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -105,6 +106,13 @@ public class IceSpike extends Entity implements TraceableEntity {
         }
 
         if (!level().isClientSide) {
+
+            if (this.isOnFire()){
+                this.level().broadcastEntityEvent(this, (byte) 4);
+                this.discard();
+                return;
+            }
+
             if (riseTime <= 0){
                 if (tickCount % 5 == 0) {
                     for (LivingEntity livingentity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(0.2, 0.0, 0.2))) {
@@ -167,7 +175,28 @@ public class IceSpike extends Entity implements TraceableEntity {
                                 false
                         );
             }
-        } else{
+        } else if (id == 4){
+            int particleCount = 14;
+            for (int i = 0; i < particleCount; i++){
+                level().addParticle(ParticleTypes.LARGE_SMOKE,
+                        getRandomX(0.5D), getRandomY(), getRandomZ(0.5D),
+                        0.0D, 0.0D, 0.0D);
+            }
+
+            if (!this.isSilent()) {
+                this.level()
+                        .playLocalSound(
+                                this.getX(),
+                                this.getY(),
+                                this.getZ(),
+                                SoundEvents.FIRE_EXTINGUISH,
+                                this.getSoundSource(),
+                                1.0F,
+                                this.random.nextFloat() * 0.4F + 0.65F,
+                                false
+                        );
+            }
+        }else{
             super.handleEntityEvent(id);
         }
     }

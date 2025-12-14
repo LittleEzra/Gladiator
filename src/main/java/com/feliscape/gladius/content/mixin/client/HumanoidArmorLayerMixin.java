@@ -1,13 +1,12 @@
 package com.feliscape.gladius.content.mixin.client;
 
-import com.feliscape.gladius.client.render.layer.PowerGauntletsLayer;
+import com.feliscape.gladius.client.render.layer.GauntletsRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,7 +33,7 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
             float netHeadYaw,
             float headPitch,
             CallbackInfo ci){
-        PowerGauntletsLayer.renderGauntlets(poseStack, buffer, livingEntity, packedLight, getParentModel(),
+        GauntletsRenderer.renderGauntlets(poseStack, buffer, livingEntity, packedLight, getParentModel(),
                 limbSwing, limbSwingAmount,
                 partialTicks, ageInTicks,
                 netHeadYaw, headPitch);

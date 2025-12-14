@@ -1,5 +1,6 @@
 package com.feliscape.gladius.content.item;
 
+import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.networking.payload.AshifyEntityPayload;
 import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.feliscape.gladius.registry.GladiusTiers;

@@ -45,6 +45,9 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         gildedDaggerItem(GladiusItems.GILDED_DAGGER.get());
         handheldItem(GladiusItems.GOLDEN_WAND.get());
         basicItem(GladiusItems.FLAMEWALKERS.get());
+
+        gauntlets(GladiusItems.POWER_GAUNTLETS.get());
+        gauntlets(GladiusItems.LEATHER_GAUNTLETS.get());
     }
 
     public ItemModelBuilder potionBundleItem(Item item) {
@@ -84,6 +87,15 @@ public class GladiusItemModelProvider extends ItemModelProvider {
                 ;
     }
 
+    public ItemModelBuilder gauntlets(Item item) {
+        return gauntlets(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)));
+    }
+
+    public ItemModelBuilder gauntlets(ResourceLocation item) {
+        return getBuilder(item.toString())
+                .parent(new ModelFile.UncheckedModelFile(Gladius.location("item/gauntlets")))
+                .texture("layer0", ResourceLocation.fromNamespaceAndPath(item.getNamespace(), "item/" + item.getPath()));
+    }
     public ItemModelBuilder rodItem(Item item) {
         return rodItem(Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item)));
     }

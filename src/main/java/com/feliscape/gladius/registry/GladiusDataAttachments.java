@@ -3,6 +3,7 @@ package com.feliscape.gladius.registry;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
 import com.feliscape.gladius.content.attachment.ExplosiveChargeData;
+import com.feliscape.gladius.content.attachment.GauntletData;
 import com.feliscape.gladius.content.attachment.PowerGauntletData;
 import net.minecraft.core.Direction;
 import net.neoforged.bus.api.IEventBus;
@@ -30,6 +31,11 @@ public class GladiusDataAttachments {
             () -> AttachmentType.builder(PowerGauntletData::getInstance)
                     .serialize(new PowerGauntletData.Serializer())
                     .sync(new PowerGauntletData.SyncHandler())
+                    .build());
+    public static final Supplier<AttachmentType<GauntletData>> GAUNTLET = ATTACHMENT_TYPES.register("gauntlets",
+            () -> AttachmentType.builder(GauntletData::new)
+                    .serialize(GauntletData.CODEC)
+                    .sync(GauntletData.STREAM_CODEC)
                     .build());
 
     public static void register(IEventBus eventBus){

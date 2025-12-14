@@ -19,6 +19,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
     @Override
     protected void addTranslations() {
+        this.add("item.gladius.wip", "WIP - Unobtainable in Survival");
+
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frigid Ice");
 
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmancer Spawn Egg");
@@ -47,6 +49,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.GOLDEN_WAND, "Golden Wand");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flamewalkers");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Power Gauntlets");
+        this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Leather Gauntlets");
         this.add("item.gladius.tooltip.two_handed", "Two-Handed");
 
         this.addAspect(GladiusAspects.FIRE, "🔥 Fire");
@@ -62,6 +65,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Firebrand");
 
         this.addEntityType(GladiusEntityTypes.MAGMA_POOL, "Magma Pool");
+        this.addEntityType(GladiusEntityTypes.FIRE_WAKE, "Fire Wake");
 
         this.addEntityType(GladiusEntityTypes.ICE_BOMB, "Ice Bomb");
         this.addEntityType(GladiusEntityTypes.ICE_SPIKE_SPAWNER, "Ice Spike Spawner");

@@ -1,4 +1,4 @@
-package com.feliscape.gladius.content.entity.projectile;
+package com.feliscape.gladius.content.entity.misc;
 
 import com.feliscape.gladius.registry.GladiusParticles;
 import net.minecraft.core.particles.ParticleTypes;

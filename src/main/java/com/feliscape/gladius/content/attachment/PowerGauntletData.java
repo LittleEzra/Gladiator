@@ -17,7 +17,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -89,10 +91,8 @@ public class PowerGauntletData {
         if (owner.onGround())
         {
             groundedTime = 5;
-            if (projectileTime > 0){
-                if (couldCreateExplosion){
-                    causeExplosion();
-                }
+            if (projectileTime > 0 && couldCreateExplosion){
+                causeExplosion();
                 projectileTime = 0;
             }
         }
@@ -107,10 +107,10 @@ public class PowerGauntletData {
             var deltaMovement = owner.getDeltaMovement();
             double velocity = Math.max(Math.sqrt(deltaMovement.x * deltaMovement.x + deltaMovement.z * deltaMovement.z), 0.9D);
             double x = launchVector.x * velocity;
-            double y = owner.getDeltaMovement().y + launchVector.y * 0.01D;
+            double y = owner.getDeltaMovement().y - 0.04D;
             double z = launchVector.z * velocity;
             owner.setDeltaMovement(x, y, z);
-            if (hurtDelay <= 0 && hurtNearbyEntities()){
+            if (hurtNearbyEntities()){
                 hurtDelay = 3;
                 projectileTime = 0;
                 if (couldCreateExplosion && launchVector.y < -0.65D){
@@ -159,13 +159,6 @@ public class PowerGauntletData {
     }
 
     public boolean hurtNearbyEntities(){
-        /*List<LivingEntity> entities = owner.level().getNearbyEntities(LivingEntity.class, TargetingConditions.DEFAULT, owner, owner.getBoundingBox().inflate(1.0D));
-        for (LivingEntity living : entities){
-            if (living.is(owner)) continue;
-            living.hurt(owner.level().damageSources().onFire(), 4.0F);
-            projectileTime /= 2;
-        }
-        return !entities.isEmpty();*/
         var result = ProjectileUtil.getHitResultOnMoveVector(owner, entity -> entity instanceof LivingEntity living && owner.canAttack(living));
         if (result.getType() != HitResult.Type.ENTITY) return false;
 

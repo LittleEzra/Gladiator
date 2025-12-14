@@ -1,8 +1,5 @@
 {
 	"parent": "minecraft:item/generated",
-	"textures": {
-		"layer0": "gladius:item/power_gauntlets"
-	},
 	"display": {
 		"thirdperson_righthand": {
           "translation": [0, 3, 1],

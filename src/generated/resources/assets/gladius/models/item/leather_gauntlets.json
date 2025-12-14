@@ -1,0 +1,6 @@
+{
+  "parent": "gladius:item/gauntlets",
+  "textures": {
+    "layer0": "gladius:item/leather_gauntlets"
+  }
+}

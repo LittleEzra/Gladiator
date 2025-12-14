@@ -1,9 +1,7 @@
 package com.feliscape.gladius.client.render.entity;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.client.render.GladiusRenderTypes;
-import com.feliscape.gladius.content.entity.projectile.IceSpike;
-import com.feliscape.gladius.content.entity.projectile.IceSpikeSpawner;
+import com.feliscape.gladius.content.entity.misc.IceSpikeSpawner;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -13,8 +11,6 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import org.joml.Quaternionf;
 
 public class IceSpikeSpawnerRenderer extends EntityRenderer<IceSpikeSpawner> {
     private static final ResourceLocation TEXTURE = Gladius.location("textures/entity/projectile/ice_spike_spawner.png");

@@ -39,6 +39,10 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
         this.tag(GladiusTags.Items.INNATE_STUN)
                 .add(GladiusItems.CLAYMORE.get())
         ;
+        this.tag(GladiusTags.Items.GAUNTLETS)
+                .add(GladiusItems.POWER_GAUNTLETS.get())
+                .add(GladiusItems.LEATHER_GAUNTLETS.get())
+        ;
 
         this.tag(GladiusTags.Items.NO_OIL_PROTECTION)
                 .add(Items.ELYTRA)

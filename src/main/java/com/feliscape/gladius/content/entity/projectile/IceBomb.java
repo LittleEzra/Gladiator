@@ -1,5 +1,7 @@
 package com.feliscape.gladius.content.entity.projectile;
 
+import com.feliscape.gladius.content.entity.misc.IceSpike;
+import com.feliscape.gladius.content.entity.misc.IceSpikeSpawner;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
 import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.GladiusParticles;

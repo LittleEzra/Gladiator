@@ -20,6 +20,8 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
 
     @Override
     protected void addTranslations() {
+        this.add("item.gladius.wip", "WIP - Im Überlebensmodus nicht erhältlich");
+
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frostiges Eis");
 
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmagier-Spawn-Ei");
@@ -46,6 +48,9 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.CLAYMORE, "Claymore");
         this.addItem(GladiusItems.FLAMBERGE, "Flammenschwert");
         this.addItem(GladiusItems.GOLDEN_WAND, "Goldener Zauberstab");
+        this.addItem(GladiusItems.FLAMEWALKERS, "Flammenläufer");
+        this.addItem(GladiusItems.POWER_GAUNTLETS, "Macht-Handschuhe");
+        this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Lederhandschuhe");
         this.add("item.gladius.tooltip.two_handed", "Beidhändig");
 
         this.addAspect(GladiusAspects.FIRE, "🔥 Feuer");
@@ -59,6 +64,9 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.WINGED_ARROW, "Geflügelter Pfeil");
         this.addEntityType(GladiusEntityTypes.OIL_BOTTLE, "Ölflasche");
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Feuerstock");
+
+        this.addEntityType(GladiusEntityTypes.MAGMA_POOL, "Lavasee");
+        this.addEntityType(GladiusEntityTypes.FIRE_WAKE, "Feuerwake");
 
         this.addEntityType(GladiusEntityTypes.ICE_BOMB, "Eisbombe");
         this.addEntityType(GladiusEntityTypes.ICE_SPIKE_SPAWNER, "Eisstachel-Spawner");

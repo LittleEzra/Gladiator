@@ -1,5 +1,6 @@
-// 1.21.1	2025-11-16T12:59:18.6411641	Tags for minecraft:item mod id gladius
+// 1.21.1	2025-12-14T11:00:24.7742028	Tags for minecraft:item mod id gladius
 8c814c9a1e07a5218138afee18c724503420b270 data/gladius/tags/item/blocking_enchantable.json
+f14a392ecb556eb53e5eb8b952ee9db79341e656 data/gladius/tags/item/gauntlets.json
 84a7ba41a041824cf8097010deb5f08d7f4c2f7e data/gladius/tags/item/innate_stun.json
 dc21241135f375efd04202b1d78d982e5c017f3a data/gladius/tags/item/no_oil_protection.json
 f2706b1f776c0dfc389eb0d99a63efa6ffdb59e5 data/minecraft/tags/item/arrows.json

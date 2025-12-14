@@ -4,6 +4,10 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
 import com.feliscape.gladius.content.entity.Frostmancer;
+import com.feliscape.gladius.content.entity.misc.FireWake;
+import com.feliscape.gladius.content.entity.misc.IceSpike;
+import com.feliscape.gladius.content.entity.misc.IceSpikeSpawner;
+import com.feliscape.gladius.content.entity.misc.MagmaPool;
 import com.feliscape.gladius.content.entity.projectile.*;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
 import net.minecraft.world.entity.EntityType;
@@ -68,6 +72,12 @@ public class GladiusEntityTypes {
     public static final Supplier<EntityType<MagmaPool>> MAGMA_POOL = ENTITY_TYPES.registerEntityType("magma_pool",
             MagmaPool::new, MobCategory.MISC, b -> b
                     .sized(4.0F, 4.0F)
+                    .clientTrackingRange(4)
+                    .updateInterval(5)
+    );
+    public static final Supplier<EntityType<FireWake>> FIRE_WAKE = ENTITY_TYPES.registerEntityType("fire_wake",
+            FireWake::new, MobCategory.MISC, b -> b
+                    .sized(0.5F, 0.5F)
                     .clientTrackingRange(4)
                     .updateInterval(5)
     );

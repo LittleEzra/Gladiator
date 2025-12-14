@@ -4,22 +4,21 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusClient;
 import com.feliscape.gladius.client.extension.ClaymoreClientExtensions;
 import com.feliscape.gladius.client.hud.BloodLayer;
+import com.feliscape.gladius.client.hud.FlamewalkersHeatLayer;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
-import com.feliscape.gladius.client.render.layer.PowerGauntletsLayer;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
+import com.feliscape.gladius.content.item.FlamewalkersItem;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
 import com.feliscape.gladius.registry.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -68,7 +67,9 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.WINGED_ARROW.get(), WingedArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.OIL_BOTTLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FIREBRAND.get(), FirebrandRenderer::new);
+
         event.registerEntityRenderer(GladiusEntityTypes.MAGMA_POOL.get(), MagmaPoolRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.FIRE_WAKE.get(), NoopRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.ICE_BOMB.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_SPIKE_SPAWNER.get(), IceSpikeSpawnerRenderer::new);
@@ -83,6 +84,7 @@ public class ClientEvents {
     public static void registerGuiLayers(RegisterGuiLayersEvent event)
     {
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, BloodLayer.LOCATION, new BloodLayer());
+        event.registerBelow(VanillaGuiLayers.HOTBAR, FlamewalkersHeatLayer.LOCATION, new FlamewalkersHeatLayer());
     }
     @SubscribeEvent
     public static void preRenderPlayer(RenderPlayerEvent.Pre event)

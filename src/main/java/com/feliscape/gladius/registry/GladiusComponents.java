@@ -2,6 +2,7 @@ package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.component.AspectComponent;
+import com.feliscape.gladius.content.item.component.FlamewalkersHeat;
 import com.feliscape.gladius.content.item.component.RecipeComponent;
 import com.feliscape.gladius.data.element.Aspect;
 import com.feliscape.gladius.util.GladiusStreamCodecs;
@@ -25,6 +26,9 @@ public class GladiusComponents {
     );
     public static final Supplier<DataComponentType<Integer>> BLOOD = DATA_COMPONENTS.registerComponentType(
             "blood", b -> b.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT)
+    );
+    public static final Supplier<DataComponentType<FlamewalkersHeat>> HEAT = DATA_COMPONENTS.registerComponentType(
+            "heat", b -> b.persistent(FlamewalkersHeat.CODEC).networkSynchronized(FlamewalkersHeat.STREAM_CODEC)
     );
     public static final Supplier<DataComponentType<Integer>> MAGIC_CHARGES = integerComponent("magic_charges");
     public static final Supplier<DataComponentType<Integer>> MAX_MAGIC_CHARGES = integerComponent("max_magic_charges");

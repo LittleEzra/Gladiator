@@ -3,6 +3,7 @@ package com.feliscape.gladius.registry;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.*;
 import com.feliscape.gladius.content.item.component.AspectComponent;
+import com.feliscape.gladius.content.item.component.FlamewalkersHeat;
 import com.feliscape.gladius.content.item.projectile.FirebrandItem;
 import com.feliscape.gladius.content.item.projectile.IceBombItem;
 import com.feliscape.gladius.content.item.projectile.OilBottleItem;
@@ -72,10 +73,14 @@ public class GladiusItems {
                     .component(GladiusComponents.MAGIC_CHARGES, 10)
                     .component(GladiusComponents.MAX_MAGIC_CHARGES, 10)
             ));
-    public static final DeferredItem<ArmorItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
-            p -> new ArmorItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p));
+    public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
+            p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p
+                    .component(GladiusComponents.HEAT, FlamewalkersHeat.create(20))));
+
     public static final DeferredItem<PowerGauntletsItem> POWER_GAUNTLETS = ITEMS.registerItem("power_gauntlets",
             p -> new PowerGauntletsItem(p.attributes(PowerGauntletsItem.createAttributes())));
+    public static final DeferredItem<GauntletsItem> LEATHER_GAUNTLETS = ITEMS.registerItem("leather_gauntlets",
+            p -> new GauntletsItem(p.attributes(GauntletsItem.createAttributes(1.0D, 0.0D, -0.5D))));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

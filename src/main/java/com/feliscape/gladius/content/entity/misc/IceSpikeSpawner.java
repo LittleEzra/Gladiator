@@ -1,6 +1,5 @@
-package com.feliscape.gladius.content.entity.projectile;
+package com.feliscape.gladius.content.entity.misc;
 
-import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -29,6 +28,11 @@ public class IceSpikeSpawner extends Entity implements TraceableEntity {
     int totalIceSpikes;
     int iceSpikesLeft;
     double theta;
+
+    @Override
+    public boolean fireImmune() {
+        return true;
+    }
 
     public IceSpikeSpawner(EntityType<?> entityType, Level level) {
         super(entityType, level);

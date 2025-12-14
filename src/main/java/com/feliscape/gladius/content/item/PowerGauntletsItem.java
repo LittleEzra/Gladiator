@@ -17,20 +17,13 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class PowerGauntletsItem extends Item {
+public class PowerGauntletsItem extends GauntletsItem {
     public PowerGauntletsItem(Properties properties) {
-        super(properties);
+        super(properties, 28);
     }
 
     public static ItemAttributeModifiers createAttributes() {
-        return ItemAttributeModifiers.builder()
-                .add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(
-                        Gladius.location("item.power_gauntlets"),
-                        -0.75D,
-                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-                        EquipmentSlotGroup.MAINHAND
-                )
-                .build();
+        return createAttributes(3.0D, 1.0D, -0.75D);
     }
 
     @Override
@@ -53,7 +46,7 @@ public class PowerGauntletsItem extends Item {
             data.launch(12, viewVector);
 
             double x = viewVector.x * 0.5D;
-            double y = viewVector.y + 0.2D;
+            double y = viewVector.y * 0.4D + 0.2D;
             double z = viewVector.z * 0.5D;
             if (slamAttack){
                 x *= 0.1D;

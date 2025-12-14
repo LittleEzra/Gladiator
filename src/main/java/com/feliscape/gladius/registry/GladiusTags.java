@@ -40,6 +40,7 @@ public class GladiusTags {
         public static final TagKey<Item> BLOCKING_ENCHANTABLE = create("blocking_enchantable");
         public static final TagKey<Item> INNATE_STUN = create("innate_stun");
         public static final TagKey<Item> NO_OIL_PROTECTION = create("no_oil_protection");
+        public static final TagKey<Item> GAUNTLETS = create("gauntlets");
 
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Gladius.location(name));
