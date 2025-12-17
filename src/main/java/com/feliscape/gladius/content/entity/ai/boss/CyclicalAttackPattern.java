@@ -1,35 +1,27 @@
 package com.feliscape.gladius.content.entity.ai.boss;
 
-import com.feliscape.gladius.content.entity.Boss;
-import org.checkerframework.checker.units.qual.A;
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.WrappedGoal;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.function.Supplier;
 
-public class CyclicalAttackPattern<T extends Boss> extends BossAttackPattern{
-    private ArrayList<WrappedBossAttack> transitionAttacks;
-    private ArrayList<WrappedBossAttack> finishAttacks;
-    private int cycleDuration;
-    int positionInCycle;
+public class CyclicalAttackPattern extends BossAttackPattern{
+    private final Set<WrappedGoal> transitionAttacks = new ObjectLinkedOpenHashSet<>();
+    private final Set<WrappedGoal> cycleAttacks = new ObjectLinkedOpenHashSet<>();
 
-    public CyclicalAttackPattern(int cycleDuration, List<BossAttack<T>> transitionAttacks, List<BossAttack<T>> finishAttacks) {
-        this.cycleDuration = cycleDuration;
-        this.transitionAttacks = new ArrayList<>(transitionAttacks.stream().map(attack -> new WrappedBossAttack(attack)).toList());
-        this.finishAttacks = new ArrayList<>(finishAttacks.stream().map(attack -> new WrappedBossAttack(attack)).toList());
-        for (var attack : transitionAttacks){
-            this.registerAttack(attack);
-        }
-        for (var attack : finishAttacks){
-            this.registerAttack(attack);
-        }
+    public CyclicalAttackPattern(Supplier<ProfilerFiller> profiler) {
+        super(profiler);
     }
 
-    @Override
-    public WrappedBossAttack chooseAttack(Boss boss) {
-        positionInCycle = (positionInCycle + 1) % cycleDuration;
-        if (positionInCycle == 0){
-            return finishAttacks.get(boss.getRandom().nextInt(finishAttacks.size()));
-        }
-        return transitionAttacks.get(boss.getRandom().nextInt(transitionAttacks.size()));
+
+    public void addTransitionAttack(int priority, Goal goal) {
+        
+    }
+
+    public void addCycleAttack(int priority, Goal goal) {
+
     }
 }

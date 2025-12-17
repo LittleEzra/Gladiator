@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blazing_heart": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gladius:blazing_heart"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gladius:flamewalkers"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blazing_heart"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gladius:flamewalkers"
+    ]
+  }
+}

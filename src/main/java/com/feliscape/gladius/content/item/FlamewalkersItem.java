@@ -38,9 +38,4 @@ public class FlamewalkersItem extends ArmorItem {
     public boolean isBarVisible(ItemStack stack) {
         return stack.has(GladiusComponents.HEAT);
     }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("item.gladius.wip").withStyle(ChatFormatting.GRAY));
-    }
 }

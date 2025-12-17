@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.valueproviders.ConstantFloat;
 import net.minecraft.util.valueproviders.UniformFloat;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.function.BiConsumer;
@@ -36,6 +38,13 @@ public class GladiusEntityLootProvider extends EntityLootSubProvider {
 
     @Override
     public void generate() {
+        /*this.add(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), lootTable()
+                .withPool(lootPool()
+                        .add(lootTableItem(GladiusItems.BLAZING_HEART)
+                                .apply(setCount(ConstantValue.exactly(1.0F)))
+                        )
+                )
+        );*/
         this.add(GladiusEntityTypes.FROSTMANCER.get(), lootTable()
                 .withPool(lootPool()
                         .add(lootTableItem(GladiusItems.FRIGID_SEED)

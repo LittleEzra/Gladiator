@@ -34,9 +34,7 @@ public class FlamewalkersHeatLayer extends HudLayer{
             RenderSystem.depthMask(false);
             RenderSystem.enableBlend();
             RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_COLOR, GlStateManager.DestFactor.ONE);
-            /*RenderSystem.blendFuncSeparate(
-                    GlStateManager.SourceFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.DestFactor.ZERO
-            );*/
+
             guiGraphics.blit(VIGNETTE_LOCATION,
                     0, 0, -90,
                     0.0F, 0.0F,

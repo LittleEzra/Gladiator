@@ -24,6 +24,8 @@ public class GladiusItems {
 
     public static final DeferredItem<Item> FROSTMANCER_SPAWN_EGG = ITEMS.registerItem("frostmancer_spawn_egg",
             p -> new DeferredSpawnEggItem(GladiusEntityTypes.FROSTMANCER, 0x959b9b, 0x273355, p));
+    //public static final DeferredItem<Item> BLACKSTONE_GOLEM_SPAWN_EGG = ITEMS.registerItem("blackstone_golem_spawn_egg",
+    //        p -> new DeferredSpawnEggItem(GladiusEntityTypes.BLACKSTONE_GOLEM, 0x312c36, 0xeb8924, p));
 
     public static final DeferredItem<Item> BLAZING_HEART = ITEMS.registerSimpleItem("blazing_heart");
     public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed",

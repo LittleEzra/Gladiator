@@ -24,6 +24,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frigid Ice");
 
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmancer Spawn Egg");
+        //this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Blackstone Golem Spawn Egg");
 
         this.addItem(GladiusItems.BLAZING_HEART, "Blazing Heart");
         this.addItem(GladiusItems.FRIGID_SEED, "Frigid Seed");
@@ -72,6 +73,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.ICE_SPIKE, "Ice Spike");
         this.addEntityType(GladiusEntityTypes.ICE_BLOCK, "Ice Block");
         this.addEntityType(GladiusEntityTypes.FROSTMANCER, "Frostmancer");
+        //this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Blackstone Golem");
 
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Flash Powder Cloud");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Crystal Butterfly");

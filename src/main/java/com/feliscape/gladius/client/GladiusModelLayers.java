@@ -21,6 +21,7 @@ public class GladiusModelLayers {
 
     public static final ModelLayerLocation CRYSTAL_BUTTERFLY = register("crystal_butterfly");
     public static final ModelLayerLocation FROSTMANCER = register("frostmancer");
+    public static final ModelLayerLocation BLACKSTONE_GOLEM = register("blackstone_golem");
 
     public static final ModelLayerLocation MAGIC_ORB = register("magic_orb");
     public static final ModelLayerLocation ICE_BLOCK = register("ice_block");
@@ -67,6 +68,7 @@ public class GladiusModelLayers {
     {
         event.registerLayerDefinition(GladiusModelLayers.CRYSTAL_BUTTERFLY, CrystalButterflyModel::createBodyLayer);
         event.registerLayerDefinition(GladiusModelLayers.FROSTMANCER, FrostmancerModel::createBodyLayer);
+        event.registerLayerDefinition(GladiusModelLayers.BLACKSTONE_GOLEM, BlackstoneGolemModel::createBodyLayer);
 
         event.registerLayerDefinition(GladiusModelLayers.MAGIC_ORB, MagicOrbModel::createLayer);
         event.registerLayerDefinition(GladiusModelLayers.ICE_BLOCK, IceBlockModel::createLayer);

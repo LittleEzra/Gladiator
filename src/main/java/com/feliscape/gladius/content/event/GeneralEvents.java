@@ -1,6 +1,7 @@
 package com.feliscape.gladius.content.event;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.content.entity.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.Frostmancer;
 import com.feliscape.gladius.content.entity.misc.FireWake;

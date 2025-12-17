@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
@@ -99,6 +100,14 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .define('G', Items.GUNPOWDER)
                 .define('S', Items.STRING)
                 .unlockedBy(getHasName(GladiusItems.FRIGID_SHARD), has(GladiusItems.FRIGID_SHARD))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.FLAMEWALKERS.get())
+                .pattern("#B#")
+                .pattern("M M")
+                .define('B', GladiusItems.BLAZING_HEART)
+                .define('#', Items.BASALT)
+                .define('M', Items.MAGMA_BLOCK)
+                .unlockedBy(getHasName(GladiusItems.BLAZING_HEART), has(GladiusItems.BLAZING_HEART))
                 .save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, GladiusItems.FIREBRAND.get(), 4)

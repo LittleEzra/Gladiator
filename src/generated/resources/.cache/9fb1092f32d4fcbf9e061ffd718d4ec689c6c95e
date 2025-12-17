@@ -1,8 +1,9 @@
-// 1.21.1	2025-12-03T18:19:41.7719708	Recipes
+// 1.21.1	2025-12-17T20:09:01.2946111	Recipes
 aeec702d6cf959ae9ec6b01f084eb7d38793f775 data/gladius/advancement/recipes/combat/claymore.json
 41a0ced1f4fbe98b1a4b2749ddb8a3bfe848fb5f data/gladius/advancement/recipes/combat/explosive_arrow.json
 63c895f843002c84d14766fc0c851681482d54b3 data/gladius/advancement/recipes/combat/firebrand.json
 66bcba5cd999ac30ca5a81938388b850321ae865 data/gladius/advancement/recipes/combat/flamberge.json
+2e122978ef48b8c81e7e7d9fb85654de93564769 data/gladius/advancement/recipes/combat/flamewalkers.json
 cf03417de2beb892320c44b1bfc5335ae4e565f4 data/gladius/advancement/recipes/combat/flash_powder.json
 01a0ae14b9c7817003fbe09f8f01c65f44e7fbf5 data/gladius/advancement/recipes/combat/gilded_dagger.json
 6de92ac0bcbb133429702b8e8e05d26aabb32e3a data/gladius/advancement/recipes/combat/golden_wand.json
@@ -18,6 +19,7 @@ d331b81e3f276e25dd76d656816d494188303d3e data/gladius/recipe/claymore.json
 aff7a8ba614b47d42685384d6a203d29de92fba3 data/gladius/recipe/explosive_arrow.json
 fdbf8498de7ea6f4597a23b76fac3b9a73a399ed data/gladius/recipe/firebrand.json
 ad1d9af8819b38bd2f27134cdbb21760bdc26729 data/gladius/recipe/flamberge.json
+d9e561b03913a00fbda4c7d3d56492bfbc558f66 data/gladius/recipe/flamewalkers.json
 c4f9ced55a230c518bc444b3a82c9993e601f663 data/gladius/recipe/flash_powder.json
 fd710d2d4793d2d913248bbeaa9cee5c2fc9dbb7 data/gladius/recipe/gilded_dagger.json
 c645bdbef9bf21211ec06928b2c74a9e70529593 data/gladius/recipe/golden_wand.json

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:basalt"
+    },
+    "B": {
+      "item": "gladius:blazing_heart"
+    },
+    "M": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "pattern": [
+    "#B#",
+    "M M"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gladius:flamewalkers"
+  }
+}
