@@ -144,6 +144,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
         this.addConfigSection("entities", "Entities");
         this.addConfigValue("server", GladiusServerConfig.CONFIG.crystalButterflySearchRange, "Crystal Butterfly Search Range");
+        this.addConfigValue("server", GladiusServerConfig.CONFIG.wolvesRetrieveArrows, "Wolves Retrieve Arrows");
         this.addConfigSection("projectiles", "Projectiles");
         this.addConfigValue("server", GladiusServerConfig.CONFIG.firebrandMakesFire, "Firebrand Makes Fire");
     }

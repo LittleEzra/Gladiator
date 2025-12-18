@@ -1,14 +1,19 @@
 ## Added:
+### Items and Blocks:
 - Frostmancer
 - Frigid Seed
+- Frigid Ice
 - Frigid Shard
 - Ice Bomb
 - Hearth Stone
+- Flamewalkers
+### Tweaks:
+- Wolves can retrieve arrows (toggleable in the server config)
+- Added option for toggling the Aspect tooltip to the client config
 
-- Added option toggling the Aspect tooltip in the client config
 ## Changes:
 - Increased Claymore damage from 8 to 9
-- Increased Claymore innate stun level to 2
+- Increased Claymore stun duration
 - Added Item rarities
 ## Fixes:
 - Spell cast sound no longer plays when using an empty wand

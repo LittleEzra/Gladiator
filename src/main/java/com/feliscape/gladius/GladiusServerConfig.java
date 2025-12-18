@@ -13,10 +13,16 @@ public class GladiusServerConfig {
     public static final ModConfigSpec SPEC;
 
     public final ModConfigSpec.BooleanValue firebrandMakesFire;
+    public final ModConfigSpec.BooleanValue wolvesRetrieveArrows;
     public final ModConfigSpec.IntValue crystalButterflySearchRange;
 
     public GladiusServerConfig(ModConfigSpec.Builder builder){
         builder.push("entities");
+        wolvesRetrieveArrows = builder
+                .translation("gladius.configuration.server.entities.wolves_retrieve_arrows")
+                .comment("Toggles whether or not wolves can fetch arrows")
+                .define("wolves_retrieve_arrows", true)
+        ;
         crystalButterflySearchRange = builder
                 .translation("gladius.configuration.server.entities.crystal_butterfly_search_range")
                 .comment("How far a Crystal Butterfly will track a player for.", "If the player is further than the defined distance, it will simply sit down.")

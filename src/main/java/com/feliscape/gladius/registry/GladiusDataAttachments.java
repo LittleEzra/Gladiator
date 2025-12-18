@@ -6,6 +6,7 @@ import com.feliscape.gladius.content.attachment.ExplosiveChargeData;
 import com.feliscape.gladius.content.attachment.GauntletData;
 import com.feliscape.gladius.content.attachment.PowerGauntletData;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -36,6 +37,11 @@ public class GladiusDataAttachments {
             () -> AttachmentType.builder(GauntletData::new)
                     .serialize(GauntletData.CODEC)
                     .sync(GauntletData.STREAM_CODEC)
+                    .build());
+    public static final Supplier<AttachmentType<ItemStack>> PICKED_UP_ARROW = ATTACHMENT_TYPES.register("picked_up_arrow",
+            () -> AttachmentType.builder(() -> ItemStack.EMPTY)
+                    .serialize(ItemStack.OPTIONAL_CODEC)
+                    .sync(ItemStack.OPTIONAL_STREAM_CODEC)
                     .build());
 
     public static void register(IEventBus eventBus){

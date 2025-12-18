@@ -55,6 +55,7 @@
   "gladius.configuration.projectiles": "Projectiles",
   "gladius.configuration.server.entities.crystal_butterfly_search_range": "Crystal Butterfly Search Range",
   "gladius.configuration.server.entities.projectiles.firebrand_makes_fire": "Firebrand Makes Fire",
+  "gladius.configuration.server.entities.wolves_retrieve_arrows": "Wolves Retrieve Arrows",
   "item.gladius.blazing_heart": "Blazing Heart",
   "item.gladius.claymore": "Claymore",
   "item.gladius.crystal_butterfly": "Crystal Butterfly",

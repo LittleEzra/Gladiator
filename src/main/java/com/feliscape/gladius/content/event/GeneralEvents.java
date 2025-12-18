@@ -4,6 +4,8 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.entity.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.Frostmancer;
+import com.feliscape.gladius.content.entity.ai.RetrieveArrowGoal;
+import com.feliscape.gladius.content.entity.ai.ReturnArrowGoal;
 import com.feliscape.gladius.content.entity.misc.FireWake;
 import com.feliscape.gladius.content.item.WandItem;
 import com.feliscape.gladius.registry.*;
@@ -12,12 +14,15 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
@@ -70,6 +75,14 @@ public class GeneralEvents {
                     }
                 }
             }
+        }
+    }
+    @SubscribeEvent
+    public static void entitySpawn(EntityJoinLevelEvent event){
+        Entity entity = event.getEntity();
+        if (entity.isAlive() && event.getEntity() instanceof Wolf wolf){
+            wolf.goalSelector.addGoal(4, new ReturnArrowGoal(wolf));
+            wolf.goalSelector.addGoal(6, new RetrieveArrowGoal(wolf));
         }
     }
 
