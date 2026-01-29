@@ -5,10 +5,7 @@ import com.feliscape.gladius.content.entity.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
 import com.feliscape.gladius.content.entity.Frostmancer;
-import com.feliscape.gladius.content.entity.misc.FireWake;
-import com.feliscape.gladius.content.entity.misc.IceSpike;
-import com.feliscape.gladius.content.entity.misc.IceSpikeSpawner;
-import com.feliscape.gladius.content.entity.misc.MagmaPool;
+import com.feliscape.gladius.content.entity.misc.*;
 import com.feliscape.gladius.content.entity.projectile.*;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
 import net.minecraft.world.entity.EntityType;
@@ -24,6 +21,12 @@ public class GladiusEntityTypes {
     public static final Supplier<EntityType<FlashPowderCloud>> FLASH_POWDER_CLOUD = ENTITY_TYPES.registerEntityType("flash_powder_cloud",
             FlashPowderCloud::new, MobCategory.MISC, b -> b
                     .sized(6.0F, 4.5F)
+                    .clientTrackingRange(10)
+                    .updateInterval(Integer.MAX_VALUE)
+    );
+    public static final Supplier<EntityType<MistCloud>> MIST_CLOUD = ENTITY_TYPES.registerEntityType("mist_cloud",
+            MistCloud::new, MobCategory.MISC, b -> b
+                    .sized(4.5F, 2.5F)
                     .clientTrackingRange(10)
                     .updateInterval(Integer.MAX_VALUE)
     );

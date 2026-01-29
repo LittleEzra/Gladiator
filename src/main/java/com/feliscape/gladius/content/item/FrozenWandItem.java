@@ -45,7 +45,7 @@ public class FrozenWandItem extends Item {
             level.addFreshEntity(iceCharge);
         }
 
-        player.getCooldowns().addCooldown(this, 15);
+        player.getCooldowns().addCooldown(this, 5 * 20);
 
         player.awardStat(Stats.ITEM_USED.get(this));
         return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());

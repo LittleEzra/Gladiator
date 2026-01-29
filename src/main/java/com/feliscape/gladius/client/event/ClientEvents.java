@@ -80,6 +80,7 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.ICE_CHARGE.get(), NoopRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.FLASH_POWDER_CLOUD.get(), NoopRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.MIST_CLOUD.get(), NoopRenderer::new);
     }
     @SubscribeEvent
     public static void registerGuiLayers(RegisterGuiLayersEvent event)
