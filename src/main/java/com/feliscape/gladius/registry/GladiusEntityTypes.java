@@ -124,12 +124,12 @@ public class GladiusEntityTypes {
                     .clientTrackingRange(8)
                     .updateInterval(2)
     );
-    /*public static final Supplier<EntityType<BlackstoneGolem>> BLACKSTONE_GOLEM = ENTITY_TYPES.registerEntityType("blackstone_golem",
+    public static final Supplier<EntityType<BlackstoneGolem>> BLACKSTONE_GOLEM = ENTITY_TYPES.registerEntityType("blackstone_golem",
             BlackstoneGolem::new, MobCategory.MONSTER, b -> b
                     .sized(1.4F, 3.75F)
                     .fireImmune()
                     .clientTrackingRange(10)
-    );*/
+    );
     public static final Supplier<EntityType<CrystalButterfly>> CRYSTAL_BUTTERFLY = ENTITY_TYPES.registerEntityType("crystal_butterfly",
             CrystalButterfly::new, MobCategory.MISC, b -> b
                     .sized(0.35F, 0.35F)

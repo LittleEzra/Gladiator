@@ -29,6 +29,7 @@ public class RetrieveArrowGoal extends Goal {
 
         if (!mob.isAlive() || mob.getOwner() == null || !mob.getOwner().isAlive()) return false;
         if (mob.hasData(GladiusDataAttachments.PICKED_UP_ARROW)) return false;
+        if (targetedArrow != null) return false;
 
         AbstractArrow arrow = findArrow();
         if (arrow == null){
@@ -88,6 +89,7 @@ public class RetrieveArrowGoal extends Goal {
                 mob.take(targetedArrow, 1);
                 targetedArrow.discard();
 
+                mob.syncData(GladiusDataAttachments.PICKED_UP_ARROW);
                 stop();
             }
         }

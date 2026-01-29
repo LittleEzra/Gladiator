@@ -8,14 +8,19 @@ import com.feliscape.gladius.client.hud.FlamewalkersHeatLayer;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
-import com.feliscape.gladius.content.item.FlamewalkersItem;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
-import com.feliscape.gladius.registry.*;
+import com.feliscape.gladius.registry.GladiusDataAttachments;
+import com.feliscape.gladius.registry.GladiusEntityTypes;
+import com.feliscape.gladius.registry.GladiusItems;
+import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.entity.*;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.NoopRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -29,6 +34,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+
+import java.util.function.Function;
 
 @EventBusSubscriber(modid = Gladius.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents {
@@ -46,9 +53,16 @@ public class ClientEvents {
         );*/
     }
 
+    @SubscribeEvent
+    public static void addLayers(EntityRenderersEvent.AddLayers event){
+        //ClientEvents.<Wolf, WolfModel<Wolf>>addLayer(EntityType.WOLF, event, r -> new WolfPickedUpArrowLayer(r, event.getContext().getItemRenderer()));
+    }
+
     public static <E extends LivingEntity, M extends EntityModel<E>>
-    void addLayer(EntityType<E> entityType, LivingEntityRenderer<E, M> renderer, RenderLayer<E, M> layer){
-        renderer.addLayer(layer);
+    void addLayer(EntityType<E> entityType, EntityRenderersEvent.AddLayers event, Function<RenderLayerParent<E, M>, RenderLayer<E, M>> layer){
+        var renderer = ((LivingEntityRenderer<E, M>) event.getRenderer(entityType));
+        if (renderer == null) return;
+        renderer.addLayer(layer.apply(renderer));
     }
 
     @SubscribeEvent
@@ -61,6 +75,7 @@ public class ClientEvents {
     {
         event.registerEntityRenderer(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterflyRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FROSTMANCER.get(), FrostmancerRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolemRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PRISMARINE_ARROW.get(), PrismarineArrowRenderer::new);

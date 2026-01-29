@@ -74,6 +74,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.ICE_SPIKE, "Eisstachel");
         this.addEntityType(GladiusEntityTypes.ICE_BLOCK, "Eisblock");
         this.addEntityType(GladiusEntityTypes.FROSTMANCER, "Frostmagier");
+        this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Schwarzsteingolem");
 
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Blitzpulverwolke");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Kristallschmetterling");
@@ -91,6 +92,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore pariert");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Vergoldeter Dolch sticht");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Feuerstock entzündet Feuer");
+        this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Feuerwake bricht aus");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Blitzpulver knistert");
         this.addSubtitle(GladiusSoundEvents.HEARTH_STONE_USE, "Herdstein entzündet");
 

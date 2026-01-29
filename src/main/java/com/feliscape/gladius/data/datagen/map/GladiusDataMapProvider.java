@@ -30,6 +30,10 @@ public class GladiusDataMapProvider extends DataMapProvider {
                         .put(GladiusAspects.FIRE, 1.5F)
                         .put(GladiusAspects.ICE, 0.5F)
                         .build(), false)
+                .add(GladiusEntityTypes.BLACKSTONE_GOLEM.get().builtInRegistryHolder(), AspectMap.builder(provider)
+                        .put(GladiusAspects.FIRE, 0.0F)
+                        .put(GladiusAspects.POISON, 0.8F)
+                        .build(), false)
         ;
     }
 }

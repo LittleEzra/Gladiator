@@ -32,6 +32,7 @@ public class GeneralEvents {
     public static void createEntityAttributes(EntityAttributeCreationEvent event){
         event.put(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterfly.createAttributes().build());
         event.put(GladiusEntityTypes.FROSTMANCER.get(), Frostmancer.createAttributes().build());
+        event.put(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolem.createAttributes().build());
     }
 
 

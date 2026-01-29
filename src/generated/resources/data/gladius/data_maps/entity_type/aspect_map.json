@@ -1,5 +1,11 @@
 {
   "values": {
+    "gladius:blackstone_golem": {
+      "values": {
+        "gladius:fire": 0.0,
+        "gladius:poison": 0.8
+      }
+    },
     "gladius:frostmancer": {
       "values": {
         "gladius:fire": 1.5,

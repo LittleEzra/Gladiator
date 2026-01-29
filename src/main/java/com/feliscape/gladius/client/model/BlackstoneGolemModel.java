@@ -9,6 +9,8 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
 
+import java.util.List;
+
 public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
     private final ModelPart root;
     private final ModelPart rightLeg;
@@ -21,8 +23,13 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
     private final ModelPart core;
     private final ModelPart head;
 
+    private final List<ModelPart> allParts;
+
     public BlackstoneGolemModel(ModelPart root) {
         this.root = root.getChild("root");
+
+        this.allParts = root.getAllParts().toList();
+
         this.rightLeg = this.root.getChild("right_leg");
         this.leftLeg = this.root.getChild("left_leg");
 
@@ -78,25 +85,36 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
         return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
+    private void resetPose(){
+        for(ModelPart modelpart : this.allParts) {
+            modelpart.resetPose();
+        }
+    }
+
     @Override
     public void setupAnim(BlackstoneGolem blackstoneGolem, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.resetPose();
         this.head.yRot = netHeadYaw * (float) (Math.PI / 180.0);
         this.head.xRot = headPitch * (float) (Math.PI / 180.0);
-        body.resetPose();
-        rightLeg.resetPose();
-        leftLeg.resetPose();
-        if (!blackstoneGolem.isIdle()) {
-            this.rightLeg.z = Mth.sin((limbSwing - Mth.HALF_PI) * 0.5F) * 8.0F;
-            this.rightLeg.y -= Math.max(-Mth.sin(limbSwing * 0.5F), 0.0F) * 10.0F;
-            this.leftLeg.z = -Mth.sin((limbSwing - Mth.HALF_PI) * 0.5F) * 8.0F;
-            this.leftLeg.y -= Math.max(Mth.sin(limbSwing * 0.5F), 0.0F) * 10.0F;
-        }
-        this.rightLeg.yRot = 0.0F;
-        this.leftLeg.yRot = 0.0F;
+
+        float theta = limbSwing * 0.6F;
+        float speed = Math.min(limbSwingAmount, 1.2F);
+
+        animateLeg(this.rightLeg, theta, speed);
+        animateLeg(this.rightArm, theta + Mth.PI, speed);
+        animateLeg(this.leftLeg, theta + Mth.PI, speed);
+        animateLeg(this.leftArm, theta, speed);
+
         this.body.y += Math.min(leftLeg.z, rightLeg.z) * 0.5F;
 
-        this.core.resetPose();
         this.core.y += Mth.sin(ageInTicks * 0.1F) * 0.5F;
+    }
+
+    public void animateLeg(ModelPart leg, float theta, float animationSpeed){
+        leg.z += (Mth.cos(theta)) * animationSpeed * 12.0F;
+        float baseY = leg.y;
+        leg.y = Math.min(baseY - Mth.sin(theta) * animationSpeed * 18.0F, baseY);
+        leg.xRot = -Mth.sin(theta - Mth.PI * 0.5F) * animationSpeed;
     }
 
     @Override
