@@ -48,6 +48,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.CLAYMORE, "Claymore");
         this.addItem(GladiusItems.FLAMBERGE, "Flammenschwert");
         this.addItem(GladiusItems.GOLDEN_WAND, "Goldener Zauberstab");
+        this.addItem(GladiusItems.FROZEN_WAND, "Gefrorener Zauberstab");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flammenläufer");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Macht-Handschuhe");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Lederhandschuhe");

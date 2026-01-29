@@ -2,10 +2,8 @@ package com.feliscape.gladius.content.entity.projectile;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.networking.payload.SyncIceBlockTargetPayload;
-import com.feliscape.gladius.registry.GladiusEntityTypes;
-import com.feliscape.gladius.registry.GladiusMobEffects;
-import com.feliscape.gladius.registry.GladiusParticles;
-import com.feliscape.gladius.registry.GladiusSoundEvents;
+import com.feliscape.gladius.registry.*;
+import com.feliscape.gladius.util.EntityUtil;
 import com.feliscape.gladius.util.RandomUtil;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -19,13 +17,17 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
@@ -39,6 +41,7 @@ import java.util.UUID;
 public class IceBlockProjectile extends Projectile {
     private static final EntityDataAccessor<Integer> DATA_DROP_DELAY = SynchedEntityData.defineId(IceBlockProjectile.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_TARGET_ENTITY = SynchedEntityData.defineId(IceBlockProjectile.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> DATA_PLAYER_SPAWNED = SynchedEntityData.defineId(IceBlockProjectile.class, EntityDataSerializers.BOOLEAN);
     private static final Logger log = LoggerFactory.getLogger(IceBlockProjectile.class);
     @Nullable
     Entity followTarget;
@@ -59,6 +62,18 @@ public class IceBlockProjectile extends Projectile {
         this.setPos(target.getX(), target.getY() + target.getBbHeight() + 1.5D, target.getZ());
         this.setOwner(owner);
         this.setFollowTarget(target);
+    }
+    public IceBlockProjectile playerSpawned(boolean playerSpawned){
+        setPlayerSpawned(playerSpawned);
+        return this;
+    }
+
+    public boolean isPlayerSpawned(){
+        return this.entityData.get(DATA_PLAYER_SPAWNED);
+    }
+
+    public void setPlayerSpawned(boolean playerSpawned){
+        this.entityData.set(DATA_PLAYER_SPAWNED, playerSpawned);
     }
 
     public void setFollowTarget(@Nullable Entity owner) {
@@ -100,9 +115,10 @@ public class IceBlockProjectile extends Projectile {
         return 0.06D;
     }
 
-    @Override
-    public boolean isEffectiveAi() {
-        return super.isEffectiveAi();
+    public static boolean isTracked(Entity entity){
+        List<IceBlockProjectile> allProjectiles = entity.level().getEntitiesOfClass(IceBlockProjectile.class, entity.getBoundingBox()
+                .inflate(0.0D, 2.0D, 0.0D));
+        return !allProjectiles.isEmpty();
     }
 
     @Override
@@ -115,9 +131,10 @@ public class IceBlockProjectile extends Projectile {
                         0.0D, 0.0D ,0.0D);
             }
             var target = getFollowTarget();
-            if (target != null) {
+            if (target instanceof Player) {
                 for (int i = 0; i < 2; i++) {
-                    level().addParticle(GladiusParticles.FALLING_SNOWFLAKE.get(), target.getRandomX(0.7D), target.getRandomY() + 0.2D, getRandomZ(0.7D),
+                    level().addParticle(GladiusParticles.FALLING_SNOWFLAKE.get(),
+                            target.getRandomX(0.7D), target.getRandomY() + 0.2D, getRandomZ(0.7D),
                             0.0D, 0.0D, 0.0D);
                 }
             }
@@ -203,6 +220,7 @@ public class IceBlockProjectile extends Projectile {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(DATA_DROP_DELAY, 0);
         builder.define(DATA_TARGET_ENTITY, 0);
+        builder.define(DATA_PLAYER_SPAWNED, false);
     }
     @Override
     public void onSyncedDataUpdated(EntityDataAccessor<?> key) {

@@ -35,6 +35,13 @@ public class GladiusEntityTypes {
                     .clientTrackingRange(4)
                     .updateInterval(20)
     );
+    public static final Supplier<EntityType<IceCharge>> ICE_CHARGE = ENTITY_TYPES.registerEntityType("ice_charge",
+            IceCharge::new, MobCategory.MISC, b -> b
+                    .sized(0.25F, 0.25F)
+                    .eyeHeight(0.125F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+    );
 
     public static final Supplier<EntityType<ExplosiveArrow>> EXPLOSIVE_ARROW = ENTITY_TYPES.registerEntityType("explosive_arrow",
             ExplosiveArrow::new, MobCategory.MISC, b -> b

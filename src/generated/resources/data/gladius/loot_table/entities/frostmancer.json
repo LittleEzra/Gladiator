@@ -11,13 +11,23 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 1.6,
-                "min": 1.0
+                "max": 4.7,
+                "min": 2.0
               },
               "function": "minecraft:set_count"
             }
           ],
           "name": "gladius:frigid_seed"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "gladius:frozen_wand"
         }
       ],
       "rolls": 1.0

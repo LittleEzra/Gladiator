@@ -38,6 +38,7 @@ public class GladiusCreativeModeTabs {
             before(woodenAxe, GladiusItems.CLAYMORE, event);
             before(woodenAxe, GladiusItems.FLAMBERGE, event);
             before(woodenAxe, GladiusItems.GOLDEN_WAND, event);
+            before(woodenAxe, GladiusItems.FROZEN_WAND, event);
 
             after(turtleHelmet, GladiusItems.FLAMEWALKERS, event);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS){

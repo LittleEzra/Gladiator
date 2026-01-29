@@ -48,8 +48,10 @@ public class GladiusEntityLootProvider extends EntityLootSubProvider {
         this.add(GladiusEntityTypes.FROSTMANCER.get(), lootTable()
                 .withPool(lootPool()
                         .add(lootTableItem(GladiusItems.FRIGID_SEED)
-                                .apply(setCount(between(1.0F,1.6F)))
+                                .apply(setCount(between(2.0F,4.7F)))
                         )
+                ).withPool(lootPool()
+                        .add(lootTableItem(GladiusItems.FROZEN_WAND))
                 )
         );
     }

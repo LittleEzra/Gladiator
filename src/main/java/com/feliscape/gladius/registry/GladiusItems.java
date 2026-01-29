@@ -75,6 +75,10 @@ public class GladiusItems {
                     .component(GladiusComponents.MAGIC_CHARGES, 10)
                     .component(GladiusComponents.MAX_MAGIC_CHARGES, 10)
             ));
+    public static final DeferredItem<FrozenWandItem> FROZEN_WAND = ITEMS.registerItem("frozen_wand",
+            p -> new FrozenWandItem(p.stacksTo(1)
+                    .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.MAGIC, false))
+            ));
     public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
             p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p
                     .component(GladiusComponents.HEAT, FlamewalkersHeat.create(20))));

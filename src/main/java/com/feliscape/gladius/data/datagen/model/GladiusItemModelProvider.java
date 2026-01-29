@@ -45,6 +45,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
 
         gildedDaggerItem(GladiusItems.GILDED_DAGGER.get());
         handheldItem(GladiusItems.GOLDEN_WAND.get());
+        handheldItem(GladiusItems.FROZEN_WAND.get());
         basicItem(GladiusItems.FLAMEWALKERS.get());
 
         gauntlets(GladiusItems.POWER_GAUNTLETS.get());

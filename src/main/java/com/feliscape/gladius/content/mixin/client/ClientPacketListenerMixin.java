@@ -24,7 +24,7 @@ public abstract class ClientPacketListenerMixin {
     @Inject(method = "handleMoveEntity", at = @At("HEAD"), cancellable = true)
     public void preserveIceBlockPosition(ClientboundMoveEntityPacket packet, CallbackInfo ci) {
         Entity entity = packet.getEntity(this.level);
-        if (entity instanceof IceBlockProjectile){
+        if (entity instanceof IceBlockProjectile iceBlock && !iceBlock.isPlayerSpawned()){
             ci.cancel();
         }
     }
