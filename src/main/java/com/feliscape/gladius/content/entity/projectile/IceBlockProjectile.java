@@ -42,9 +42,10 @@ public class IceBlockProjectile extends Projectile {
     private static final EntityDataAccessor<Integer> DATA_DROP_DELAY = SynchedEntityData.defineId(IceBlockProjectile.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_TARGET_ENTITY = SynchedEntityData.defineId(IceBlockProjectile.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> DATA_PLAYER_SPAWNED = SynchedEntityData.defineId(IceBlockProjectile.class, EntityDataSerializers.BOOLEAN);
-    private static final Logger log = LoggerFactory.getLogger(IceBlockProjectile.class);
     @Nullable
     Entity followTarget;
+    boolean hadFollowTarget;
+    boolean hadOwner;
     @Nullable
     UUID followUUID;
 
@@ -123,6 +124,11 @@ public class IceBlockProjectile extends Projectile {
 
     @Override
     public void tick() {
+        if (this.tickCount <= 1){
+            hadFollowTarget = getFollowTarget() != null;
+            hadOwner = getOwner() != null;
+        }
+
         super.tick();
 
         if (level().isClientSide){
@@ -139,10 +145,15 @@ public class IceBlockProjectile extends Projectile {
                 }
             }
         } else{
-            if (this.getOwner() != null && (this.getOwner().isRemoved() || !this.getOwner().isAlive())){
+            if (hadFollowTarget && (this.getFollowTarget() == null || !exists(this.getFollowTarget())) ||
+                    hadOwner && (this.getOwner() == null || !exists(this.getOwner()))){
                 this.level().broadcastEntityEvent(this, (byte)3);
                 this.discard();
+                return;
             }
+
+            hadFollowTarget = getFollowTarget() != null;
+            hadOwner = getOwner() != null;
         }
 
         if (tickCount < getDropDelay()){
@@ -164,11 +175,15 @@ public class IceBlockProjectile extends Projectile {
             if (this.isInWaterOrBubble()) {
                 this.discard();
             } else {
-                this.setDeltaMovement(vec3.scale((double)0.99F));
+                this.setDeltaMovement(vec3.scale(0.99F));
                 this.applyGravity();
                 this.setPos(nextX, nextY, nextZ);
             }
         }
+    }
+
+    private static boolean exists(Entity entity){
+        return !entity.isRemoved() && entity.isAlive();
     }
 
     @Override
