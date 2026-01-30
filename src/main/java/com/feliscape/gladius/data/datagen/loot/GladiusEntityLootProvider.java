@@ -38,13 +38,13 @@ public class GladiusEntityLootProvider extends EntityLootSubProvider {
 
     @Override
     public void generate() {
-        /*this.add(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), lootTable()
+        this.add(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), lootTable()
                 .withPool(lootPool()
                         .add(lootTableItem(GladiusItems.BLAZING_HEART)
                                 .apply(setCount(ConstantValue.exactly(1.0F)))
                         )
                 )
-        );*/
+        );
         this.add(GladiusEntityTypes.FROSTMANCER.get(), lootTable()
                 .withPool(lootPool()
                         .add(lootTableItem(GladiusItems.FRIGID_SEED)

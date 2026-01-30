@@ -97,8 +97,6 @@ public class IceSpikeSpawner extends Entity implements TraceableEntity {
         }
     }
 
-
-
     private Double findYOffset(Vec3 location){
         BlockHitResult result = level().clip(new ClipContext(location.add(0.0D, 1.5D, 0.0D), location.subtract(0.0D, 2.5D, 0.0),
                         ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));

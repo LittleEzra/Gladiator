@@ -75,7 +75,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.ICE_SPIKE, "Ice Spike");
         this.addEntityType(GladiusEntityTypes.ICE_BLOCK, "Ice Block");
         this.addEntityType(GladiusEntityTypes.FROSTMANCER, "Frostmancer");
-        //this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Blackstone Golem");
+        this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Blackstone Golem");
 
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Flash Powder Cloud");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Crystal Butterfly");
@@ -93,6 +93,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore blocks");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Gilded Dagger stabs");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Firebrand lights fire");
+        this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Fire Wake erupts");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Flash Powder crackles");
         this.addSubtitle(GladiusSoundEvents.HEARTH_STONE_USE, "Hearth Stone ignites");
 

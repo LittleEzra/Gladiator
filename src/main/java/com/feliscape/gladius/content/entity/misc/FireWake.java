@@ -60,7 +60,7 @@ public class FireWake extends Entity implements TraceableEntity {
     @Override
     public void tick() {
         if (this.tickCount == 1){
-            this.playSound(GladiusSoundEvents.FIREBRAND_LIGHT.get(),
+            this.playSound(GladiusSoundEvents.FIRE_WAKE_ERUPT.get(),
                     0.4F + random.nextFloat() * 0.4F,
                     0.8F + random.nextFloat() * 0.4F);
         }

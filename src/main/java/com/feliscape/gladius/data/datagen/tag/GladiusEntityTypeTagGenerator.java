@@ -34,6 +34,9 @@ public class GladiusEntityTypeTagGenerator extends EntityTypeTagsProvider {
                 .add(EntityType.SNOW_GOLEM)
                 .add(EntityType.ARMOR_STAND)
         ;
+        this.tag(Tags.EntityTypes.BOSSES)
+                .add(GladiusEntityTypes.BLACKSTONE_GOLEM.get())
+        ;
 
         this.tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)
                 .add(GladiusEntityTypes.FROSTMANCER.get())

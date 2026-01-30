@@ -64,6 +64,7 @@ public class ReturnArrowGoal extends Goal {
             }
             mob.level().playSound(null, owner.getX(), owner.getY(), owner.getZ(), SoundEvents.ITEM_PICKUP, owner.getSoundSource(), 0.5F, 1.0F);
             mob.removeData(GladiusDataAttachments.PICKED_UP_ARROW);
+            mob.syncData(GladiusDataAttachments.PICKED_UP_ARROW);
             stop();
         }
     }

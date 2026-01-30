@@ -18,6 +18,12 @@
     ],
     "subtitle": "subtitle.gladius.entity.firebrand.light"
   },
+  "entity.fire_wake.erupt": {
+    "sounds": [
+      "mob/ghast/fireball4"
+    ],
+    "subtitle": "subtitle.gladius.entity.fire_wake.erupt"
+  },
   "item.flash_powder.crackle": {
   "sounds": [
     { "name": "gladius:item/flash_powder_crackle_0" },
