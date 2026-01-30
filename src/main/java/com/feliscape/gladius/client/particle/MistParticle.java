@@ -14,9 +14,8 @@ public class MistParticle extends TextureSheetParticle {
 
     protected MistParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z);
-
-        this.scale(3.0F);
-        this.setSize(0.25F, 0.25F);
+        this.scale(4.0F);
+        this.setSize(0.3F, 0.3F);
 
         this.setParticleSpeed(xSpeed, ySpeed, zSpeed);
         this.lifetime = this.random.nextInt(50) + 80;

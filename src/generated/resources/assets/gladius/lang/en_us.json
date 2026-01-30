@@ -10,6 +10,7 @@
   "aspect.gladius.magic": "🧪 Magic",
   "aspect.gladius.poison": "☠ Poison",
   "block.gladius.frigid_ice": "Frigid Ice",
+  "block.gladius.mist_trap": "Mist Trap",
   "death.attack.gladius:bleeding": "%1$s bled out",
   "death.attack.gladius:indirect_skewering": "%1$s was skewered by %2$s",
   "death.attack.gladius:indirect_skewering.item": "%1$s was skewered by %2$s using %3$s",

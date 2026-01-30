@@ -1,5 +1,6 @@
-// 1.21.1	2026-01-29T11:19:05.0961011	Loot Tables
+// 1.21.1	2026-01-30T10:58:40.7186196	Loot Tables
 3f77b92e80546abc208dbf087a7bbdde42a3b08d data/gladius/loot_table/blocks/frigid_ice.json
+053796003a28a197ea2698cd62a744ee7fe475d1 data/gladius/loot_table/blocks/mist_trap.json
 ff66a4bf144a9ef4cdae9837943453f6a2d84b19 data/gladius/loot_table/chests/frostmancer_tower.json
 9b4c8bff7974f81291bcd02638af2aed0aa2cf94 data/gladius/loot_table/entities/frostmancer.json
 8b2de0079c44a410198a2e7b246060e6afc940b5 data/gladius/loot_table/glm/chests/pillager_outpost.json

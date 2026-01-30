@@ -23,6 +23,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.add("item.gladius.wip", "WIP - Im Überlebensmodus nicht erhältlich");
 
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frostiges Eis");
+        this.addBlock(GladiusBlocks.MIST_TRAP, "Nebelfalle");
 
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmagier-Spawn-Ei");
 

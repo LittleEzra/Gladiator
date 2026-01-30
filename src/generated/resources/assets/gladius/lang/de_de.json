@@ -10,6 +10,7 @@
   "aspect.gladius.magic": "🧪 Magie",
   "aspect.gladius.poison": "☠ Gift",
   "block.gladius.frigid_ice": "Frostiges Eis",
+  "block.gladius.mist_trap": "Nebelfalle",
   "death.attack.gladius:bleeding": "%1$s verblutete",
   "death.attack.gladius:indirect_skewering": "%1$s wurde von %2$s aufgespießt",
   "death.attack.gladius:indirect_skewering.item": "%1$s wurde von %2$s mit %3$s aufgespießt",

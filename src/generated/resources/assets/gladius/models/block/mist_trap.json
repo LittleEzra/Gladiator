@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "gladius:block/mist_trap_bottom",
+    "east": "gladius:block/mist_trap_east",
+    "north": "gladius:block/mist_trap_north",
+    "particle": "gladius:block/frigid_ice",
+    "south": "gladius:block/mist_trap_south",
+    "up": "gladius:block/mist_trap_top",
+    "west": "gladius:block/mist_trap_west"
+  }
+}

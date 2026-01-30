@@ -1,4 +1,8 @@
-// 1.21.1	2025-12-01T20:36:04.2956607	Block States: gladius
+// 1.21.1	2026-01-30T11:07:06.1783698	Block States: gladius
 0e701ac89b2d714144eb780f6e18b8b48ed2ace3 assets/gladius/blockstates/frigid_ice.json
+afd01e0b586306a4c97d378e5fe961f3fcf714f9 assets/gladius/blockstates/mist_trap.json
 661bd8c9891b2666e3f2a12ce097a7c9d8a86eb1 assets/gladius/models/block/frigid_ice.json
+fe3c8de96aa4496a0ac8363fbc151eb640e44534 assets/gladius/models/block/mist_trap.json
+00837d02c2fef066a2e70220ba65ca116a98a298 assets/gladius/models/block/mist_trap_on.json
 3ff4880736ea3e3a916316a1e6f956eb34cc3c45 assets/gladius/models/item/frigid_ice.json
+286e238de8f79213e9eea0c77d6ce6a8df02601e assets/gladius/models/item/mist_trap.json

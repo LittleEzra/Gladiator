@@ -2,6 +2,7 @@ package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.block.FrigidIceBlock;
+import com.feliscape.gladius.content.block.MistTrapBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -32,6 +33,14 @@ public class GladiusBlocks {
                     .strength(2.8F)
                     .friction(0.98F)
                     .sound(SoundType.GLASS)
+            ));
+    public static final DeferredBlock<MistTrapBlock> MIST_TRAP = registerBlockWithItem("mist_trap",
+            p -> new MistTrapBlock(p
+                    .mapColor(MapColor.STONE)
+                    .strength(3.5F, 6.0F)
+                    .requiresCorrectToolForDrops()
+                    .friction(0.98F)
+                    .sound(SoundType.STONE)
             ));
 
     private static <T extends Block> DeferredBlock<T> registerBlockWithItem(String name, Function<BlockBehaviour.Properties, ? extends T> block)

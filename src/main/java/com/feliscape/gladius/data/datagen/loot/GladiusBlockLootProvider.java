@@ -36,6 +36,7 @@ public class GladiusBlockLootProvider extends BlockLootSubProvider {
     @Override
     public void generate() {
         this.add(GladiusBlocks.FRIGID_ICE.get(), this::createFrigidIceTable);
+        this.dropSelf(GladiusBlocks.MIST_TRAP.get());
     }
 
     @Override

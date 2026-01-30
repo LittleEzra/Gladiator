@@ -57,6 +57,9 @@ public class GladiusCreativeModeTabs {
             after(blueIce, GladiusBlocks.FRIGID_ICE, event);
         } else if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS){
             event.accept(GladiusItems.FROSTMANCER_SPAWN_EGG);
+        } else if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
+            ItemStack dispenser = Items.DISPENSER.getDefaultInstance();
+            after(dispenser, GladiusBlocks.MIST_TRAP, event);
         }
     }
 

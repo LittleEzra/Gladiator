@@ -23,6 +23,7 @@ public class GladiusBlockTagGenerator extends BlockTagsProvider {
                 .add(Blocks.BLUE_ICE);
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(GladiusBlocks.MIST_TRAP.get())
                 .add(GladiusBlocks.FRIGID_ICE.get())
         ;
         this.tag(BlockTags.GEODE_INVALID_BLOCKS)

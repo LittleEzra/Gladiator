@@ -22,6 +22,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.add("item.gladius.wip", "WIP - Unobtainable in Survival");
 
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frigid Ice");
+        this.addBlock(GladiusBlocks.MIST_TRAP, "Mist Trap");
 
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmancer Spawn Egg");
         //this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Blackstone Golem Spawn Egg");
