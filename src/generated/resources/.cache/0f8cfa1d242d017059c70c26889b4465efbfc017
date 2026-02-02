@@ -1,8 +1,13 @@
-// 1.21.1	2026-01-30T11:07:06.1783698	Block States: gladius
+// 1.21.1	2026-02-01T23:05:15.1567999	Block States: gladius
+6c067b9fdd5a4e790a1360a5c0df5fdcff06464c assets/gladius/blockstates/flame_trap.json
 0e701ac89b2d714144eb780f6e18b8b48ed2ace3 assets/gladius/blockstates/frigid_ice.json
-afd01e0b586306a4c97d378e5fe961f3fcf714f9 assets/gladius/blockstates/mist_trap.json
+c833c2bdd33b0b34d8ec37a86b9acdd96ad1a3ca assets/gladius/blockstates/mist_trap.json
+281e079aa3f52aa3cf15d441c80a4b49afb05abc assets/gladius/models/block/flame_trap.json
+e5e30a12172c0122941edddd8519a857eb42c2a3 assets/gladius/models/block/flame_trap_on.json
 661bd8c9891b2666e3f2a12ce097a7c9d8a86eb1 assets/gladius/models/block/frigid_ice.json
 fe3c8de96aa4496a0ac8363fbc151eb640e44534 assets/gladius/models/block/mist_trap.json
+2fb13373b71716556c6882b098d77ffce8083ad6 assets/gladius/models/block/mist_trap_awake.json
 00837d02c2fef066a2e70220ba65ca116a98a298 assets/gladius/models/block/mist_trap_on.json
+09d21612370ee53c4a0f0565f61e85e783a8a56f assets/gladius/models/item/flame_trap.json
 3ff4880736ea3e3a916316a1e6f956eb34cc3c45 assets/gladius/models/item/frigid_ice.json
 286e238de8f79213e9eea0c77d6ce6a8df02601e assets/gladius/models/item/mist_trap.json

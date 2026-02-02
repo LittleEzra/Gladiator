@@ -30,6 +30,11 @@ public class GladiusSoundEvents {
 
     public static final Supplier<SoundEvent> FRIGID_ICE_FREEZE = registerVariable("block.frigid_ice.freeze");
 
+    public static final Supplier<SoundEvent> FLAME_TRAP_IGNITE = registerVariable("block.flame_trap.ignite");
+    public static final Supplier<SoundEvent> FLAME_TRAP_BURN = registerVariable("block.flame_trap.burn");
+    public static final Supplier<SoundEvent> FLAME_TRAP_STOP = registerVariable("block.flame_trap.stop");
+    public static final Supplier<SoundEvent> MIST_TRAP_BREATH = registerVariable("block.mist_trap.breath");
+
     public static void register(IEventBus eventBus)
     {
         SOUND_EVENTS.register(eventBus);

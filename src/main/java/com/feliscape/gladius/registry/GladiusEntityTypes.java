@@ -26,7 +26,7 @@ public class GladiusEntityTypes {
     );
     public static final Supplier<EntityType<MistCloud>> MIST_CLOUD = ENTITY_TYPES.registerEntityType("mist_cloud",
             MistCloud::new, MobCategory.MISC, b -> b
-                    .sized(4.5F, 2.5F)
+                    .sized(3.0F, 1.5F)
                     .clientTrackingRange(10)
                     .updateInterval(Integer.MAX_VALUE)
     );

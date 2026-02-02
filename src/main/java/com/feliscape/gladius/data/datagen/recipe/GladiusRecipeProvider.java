@@ -2,6 +2,7 @@ package com.feliscape.gladius.data.datagen.recipe;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.projectile.arrow.ExplosiveArrowItem;
+import com.feliscape.gladius.registry.GladiusBlocks;
 import com.feliscape.gladius.registry.GladiusItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -128,6 +129,17 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .requires(Items.IRON_NUGGET)
                 .requires(Items.GOLD_NUGGET)
                 .unlockedBy(getHasName(Items.FLINT), has(Items.FLINT))
+                .save(recipeOutput);
+
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, GladiusBlocks.MIST_TRAP.get())
+                .pattern("###")
+                .pattern("SRS")
+                .pattern("###")
+                .define('S', GladiusItems.FRIGID_SHARD)
+                .define('#', ItemTags.STONE_TOOL_MATERIALS)
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .unlockedBy(getHasName(GladiusItems.FRIGID_SHARD), has(GladiusItems.FRIGID_SHARD))
                 .save(recipeOutput);
     }
 }

@@ -1,11 +1,8 @@
 package com.feliscape.gladius.content.block;
 
-import com.feliscape.gladius.content.block.entity.MistTrapBlockEntity;
-import com.feliscape.gladius.content.entity.misc.MistCloud;
+import com.feliscape.gladius.content.block.entity.FlameTrapBlockEntity;
 import com.feliscape.gladius.registry.GladiusBlockEntityTypes;
-import com.feliscape.gladius.registry.GladiusParticles;
 import com.feliscape.gladius.registry.GladiusSoundEvents;
-import com.feliscape.gladius.util.RandomUtil;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,6 +10,7 @@ import net.minecraft.core.FrontAndTop;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -24,55 +22,63 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 
-public class MistTrapBlock extends BaseEntityBlock {
-    private static final MapCodec<MistTrapBlock> CODEC = simpleCodec(MistTrapBlock::new);
+import java.util.List;
+
+public class FlameTrapBlock extends BaseEntityBlock {
+    private static final MapCodec<FlameTrapBlock> CODEC = simpleCodec(FlameTrapBlock::new);
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    public static final BooleanProperty BREATHING = BooleanProperty.create("breathing");
     public static final EnumProperty<FrontAndTop> ORIENTATION = BlockStateProperties.ORIENTATION;
 
-    public MistTrapBlock(Properties properties) {
+    public FlameTrapBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(
                 this.stateDefinition
                         .any()
                         .setValue(ORIENTATION, FrontAndTop.NORTH_UP)
                         .setValue(POWERED, false)
-                        .setValue(BREATHING, false)
         );
     }
 
     @Override
-    protected MapCodec<? extends MistTrapBlock> codec() {
+    protected MapCodec<? extends FlameTrapBlock> codec() {
         return CODEC;
     }
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (state.getValue(BREATHING)) {
-            level.setBlock(pos, state.setValue(BREATHING, false), Block.UPDATE_ALL);
-        } else{
+        if (state.getValue(POWERED)) {
             var direction = state.getValue(ORIENTATION).front();
             var normal = direction.getNormal();
 
-            BlockPos p = pos.relative(direction);
-            if (level.getBlockState(p).isCollisionShapeFullBlock(level, p)){
-                p = p.relative(direction);
+            BlockPos targetPos = pos.relative(direction);
+            if (level.getBlockState(targetPos).isCollisionShapeFullBlock(level, targetPos)){
+                targetPos = targetPos.relative(direction);
             }
 
-            var mistPosition = p.getCenter().add(normal.getX(), normal.getY() - 1, normal.getZ());
-            MistCloud mist = new MistCloud(level, mistPosition.x, mistPosition.y, mistPosition.z);
-            mist.setWaitTime(20);
-            level.addFreshEntity(mist);
+            List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, new AABB(targetPos)
+                    .expandTowards(normal.getX() * 2.5, normal.getY() * 2.5, normal.getZ() * 2.5));
+            for (LivingEntity living : entities){
+                living.hurt(level.damageSources().onFire(), 2.0F);
+                living.igniteForSeconds(4.0F);
+            }
 
-            level.playSound(null, pos, GladiusSoundEvents.MIST_TRAP_BREATH.get(), SoundSource.BLOCKS,
+            level.playSound(null, pos, GladiusSoundEvents.FLAME_TRAP_BURN.get(), SoundSource.BLOCKS,
+                    0.6F, 0.8F + random.nextFloat() * 0.3F);
+            level.scheduleTick(pos, this, 5);
+        }
+    }
+
+
+    @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        super.onRemove(state, level, pos, newState, movedByPiston);
+        if (state.getValue(POWERED)) {
+            level.playSound(null, pos, GladiusSoundEvents.FLAME_TRAP_STOP.get(), SoundSource.BLOCKS,
                     1.2F, 0.9F + level.random.nextFloat() * 0.2F);
-
-            level.setBlock(pos, state.setValue(BREATHING, true), Block.UPDATE_ALL);
-            level.scheduleTick(pos, this, 40);
         }
     }
 
@@ -81,10 +87,15 @@ public class MistTrapBlock extends BaseEntityBlock {
         boolean hasNeighborSignal = level.hasNeighborSignal(pos);
         boolean powered = state.getValue(POWERED);
         if (hasNeighborSignal && !powered) {
-            level.scheduleTick(pos, this, 2);
+            level.scheduleTick(pos, this, 1);
             level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), Block.UPDATE_CLIENTS);
+
+            level.playSound(null, pos, GladiusSoundEvents.FLAME_TRAP_IGNITE.get(), SoundSource.BLOCKS,
+                    1.2F, 0.9F + level.random.nextFloat() * 0.2F);
         } else if (!hasNeighborSignal && powered) {
             level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), Block.UPDATE_CLIENTS);
+            level.playSound(null, pos, GladiusSoundEvents.FLAME_TRAP_STOP.get(), SoundSource.BLOCKS,
+                    1.2F, 0.9F + level.random.nextFloat() * 0.2F);
         }
     }
 
@@ -114,7 +125,7 @@ public class MistTrapBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(ORIENTATION, POWERED, BREATHING);
+        builder.add(ORIENTATION, POWERED);
     }
 
     @Override
@@ -124,13 +135,13 @@ public class MistTrapBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new MistTrapBlockEntity(blockPos, blockState);
+        return new FlameTrapBlockEntity(blockPos, blockState);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        if (level.isClientSide()) return createTickerHelper(blockEntityType, GladiusBlockEntityTypes.MIST_TRAP.get(), MistTrapBlockEntity::clientTick);
+        if (level.isClientSide()) return createTickerHelper(blockEntityType, GladiusBlockEntityTypes.FLAME_TRAP.get(), FlameTrapBlockEntity::clientTick);
         return null;
     }
 }

@@ -83,5 +83,29 @@
       "gladius:block/frigid_ice/freeze_3"
     ],
     "subtitle": "subtitle.gladius.block.frigid_ice.freeze"
+  },
+  "block.flame_trap.ignite": {
+    "sounds": [
+      "gladius:block/flame_trap/ignite"
+    ],
+    "subtitle": "subtitle.gladius.block.flame_trap.ignite"
+  },
+  "block.flame_trap.burn": {
+    "sounds": [
+      "gladius:block/flame_trap/burn"
+    ],
+    "subtitle": "subtitle.gladius.block.flame_trap.burn"
+  },
+  "block.flame_trap.stop": {
+    "sounds": [
+      "gladius:block/flame_trap/stop"
+    ],
+    "subtitle": "subtitle.gladius.block.flame_trap.stop"
+  },
+  "block.mist_trap.breath": {
+    "sounds": [
+      "gladius:block/mist_trap/breath"
+    ],
+    "subtitle": "subtitle.gladius.block.mist_trap.breath"
   }
 }

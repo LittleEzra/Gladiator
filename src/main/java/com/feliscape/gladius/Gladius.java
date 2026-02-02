@@ -26,6 +26,7 @@ public class Gladius {
         modEventBus.addListener(this::commonSetup);
 
         GladiusBlocks.register(modEventBus);
+        GladiusBlockEntityTypes.register(modEventBus);
         GladiusItems.register(modEventBus);
         GladiusComponents.register(modEventBus);
         GladiusArmorMaterials.register(modEventBus);

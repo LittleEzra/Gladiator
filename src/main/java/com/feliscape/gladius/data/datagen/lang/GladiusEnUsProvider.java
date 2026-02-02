@@ -23,6 +23,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frigid Ice");
         this.addBlock(GladiusBlocks.MIST_TRAP, "Mist Trap");
+        this.addBlock(GladiusBlocks.FLAME_TRAP, "Flame Trap");
 
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmancer Spawn Egg");
         //this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Blackstone Golem Spawn Egg");
@@ -107,6 +108,10 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.FROSTMANCER_SHIELD_BREAK, "Frostmancer's shield breaks");
 
         this.addSubtitle(GladiusSoundEvents.FRIGID_ICE_FREEZE, "Frigid Ice spreads");
+        this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_IGNITE, "Flame Trap ignites");
+        this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_BURN, "Flame Trap burns");
+        this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_STOP, "Flame Trap stops burning");
+        this.addSubtitle(GladiusSoundEvents.MIST_TRAP_BREATH, "Mist Trap breathes");
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s bled out");
 

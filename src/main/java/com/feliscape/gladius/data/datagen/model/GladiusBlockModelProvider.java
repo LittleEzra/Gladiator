@@ -10,6 +10,7 @@ import net.minecraft.data.models.blockstates.Variant;
 import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -26,19 +27,49 @@ public class GladiusBlockModelProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(GladiusBlocks.FRIGID_ICE);
         mistTrap(GladiusBlocks.MIST_TRAP.get());
+        flameTrap(GladiusBlocks.FLAME_TRAP.get());
     }
 
-    private void mistTrap(Block block){
-        var frigidIce = blockTexture(GladiusBlocks.FRIGID_ICE.get());
-        var unpoweredModel = cubeSeparateFaces(block, "", frigidIce);
-        var poweredModel = cubeSeparateFaces(block, "_on", frigidIce);
+    private void flameTrap(Block block){
+        var magmaBlock = ResourceLocation.withDefaultNamespace("block/magma");
+        var unpoweredModel = cubeSeparateFaces(block, "", magmaBlock);
+        var breathingModel = cubeSeparateFaces(block, "_on", magmaBlock);
 
         getVariantBuilder(block)
                 .forAllStates(state -> {
                     var powered = state.getValue(MistTrapBlock.POWERED);
                     var orientation = state.getValue(MistTrapBlock.ORIENTATION);
 
-                    return applyRotation(orientation, ConfiguredModel.builder().modelFile(powered ? poweredModel : unpoweredModel)).build();
+                    var model = unpoweredModel;
+                    if (powered){
+                        model = breathingModel;
+                    }
+
+                    return applyRotation(orientation, ConfiguredModel.builder().modelFile(model)).build();
+                })
+        ;
+        simpleBlockItem(block, unpoweredModel);
+    }
+    private void mistTrap(Block block){
+        var frigidIce = blockTexture(GladiusBlocks.FRIGID_ICE.get());
+        var unpoweredModel = cubeSeparateFaces(block, "", frigidIce);
+        var poweredModel = cubeSeparateFaces(block, "_awake", "_on", frigidIce);
+        var breathingModel = cubeSeparateFaces(block, "_on", frigidIce);
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    var powered = state.getValue(MistTrapBlock.POWERED);
+                    var breathing = state.getValue(MistTrapBlock.BREATHING);
+                    var orientation = state.getValue(MistTrapBlock.ORIENTATION);
+
+                    var model = unpoweredModel;
+                    if (breathing){
+                        model = breathingModel;
+                    } else if (powered){
+                        model = poweredModel;
+                    }
+
+                    return applyRotation(orientation, ConfiguredModel.builder().modelFile(model)).build();
                 })
         ;
         simpleBlockItem(block, unpoweredModel);
@@ -72,6 +103,17 @@ public class GladiusBlockModelProvider extends BlockStateProvider {
                 this.blockTexture(block).withSuffix("_south" + suffix),
                 this.blockTexture(block).withSuffix("_east" + suffix),
                 this.blockTexture(block).withSuffix("_west" + suffix)
+        ).texture("particle", particle);
+    }
+    private BlockModelBuilder cubeSeparateFaces(Block block, String suffix, String sideSuffix, ResourceLocation particle){
+        return models().cube(
+                this.name(block) + suffix,
+                this.blockTexture(block).withSuffix("_bottom" + sideSuffix),
+                this.blockTexture(block).withSuffix("_top" + sideSuffix),
+                this.blockTexture(block).withSuffix("_north" + suffix),
+                this.blockTexture(block).withSuffix("_south" + sideSuffix),
+                this.blockTexture(block).withSuffix("_east" + sideSuffix),
+                this.blockTexture(block).withSuffix("_west" + sideSuffix)
         ).texture("particle", particle);
     }
     private BlockModelBuilder cubeSeparateFaces(Block block, String suffix){

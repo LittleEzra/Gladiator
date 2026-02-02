@@ -44,19 +44,19 @@ public class MistCloud extends Entity {
             int particleCount;
             float radius = 3.0F;
             if (waiting) {
-                particleCount = 2;
-                radius = 1.0F;
-            } else {
                 particleCount = 1;
+                radius = 1.5F;
+            } else {
+                particleCount = 3;
             }
 
             for (int i = 0; i < particleCount; i++){
-                double distance = level().random.nextDouble() * radius;
+                double distance = level().random.nextDouble() * radius * 1.2D;
                 Vec3 pos = RandomUtil.randomPositionOnSphereGaussian(level().random, distance);
                 level().addParticle(GladiusParticles.MIST.get(), pos.x + this.getX(), pos.y * 0.5D + this.getY(0.5D), pos.z + this.getZ(),
-                        RandomUtil.centeredDouble(random) * 0.1F,
-                        RandomUtil.centeredDouble(random) * 0.1F,
-                        RandomUtil.centeredDouble(random) * 0.1F);
+                        RandomUtil.centeredDouble(random) * 0.05F,
+                        RandomUtil.centeredDouble(random) * 0.05F,
+                        RandomUtil.centeredDouble(random) * 0.05F);
             }
 
         } else{

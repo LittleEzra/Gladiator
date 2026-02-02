@@ -1,6 +1,7 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.content.block.FlameTrapBlock;
 import com.feliscape.gladius.content.block.FrigidIceBlock;
 import com.feliscape.gladius.content.block.MistTrapBlock;
 import net.minecraft.core.BlockPos;
@@ -40,6 +41,13 @@ public class GladiusBlocks {
                     .strength(3.5F, 6.0F)
                     .requiresCorrectToolForDrops()
                     .friction(0.98F)
+                    .sound(SoundType.STONE)
+            ));
+    public static final DeferredBlock<FlameTrapBlock> FLAME_TRAP = registerBlockWithItem("flame_trap",
+            p -> new FlameTrapBlock(p
+                    .mapColor(MapColor.STONE)
+                    .strength(3.5F, 6.0F)
+                    .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)
             ));
 

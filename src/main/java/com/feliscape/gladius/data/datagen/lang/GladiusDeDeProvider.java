@@ -24,6 +24,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
 
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frostiges Eis");
         this.addBlock(GladiusBlocks.MIST_TRAP, "Nebelfalle");
+        this.addBlock(GladiusBlocks.FLAME_TRAP, "Flammenfalle");
 
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmagier-Spawn-Ei");
 
@@ -107,6 +108,10 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.FROSTMANCER_SHIELD_BREAK, "Frostmagiers Schild zerbricht");
 
         this.addSubtitle(GladiusSoundEvents.FRIGID_ICE_FREEZE, "Frostiges Eis breitet sich aus");
+        this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_IGNITE, "Flammenfalle entzündet");
+        this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_BURN, "Flammenfalle brennt");
+        this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_STOP, "Flammenfalle brennt aus");
+        this.addSubtitle(GladiusSoundEvents.MIST_TRAP_BREATH, "Nebelfalle atmet");
 
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s verblutete");

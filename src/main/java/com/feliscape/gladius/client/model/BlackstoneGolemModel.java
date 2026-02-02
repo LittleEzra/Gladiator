@@ -98,12 +98,17 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
         this.head.xRot = headPitch * (float) (Math.PI / 180.0);
 
         float theta = limbSwing * 0.6F;
-        float speed = Math.min(limbSwingAmount, 1.2F);
+        float speed = Math.min(limbSwingAmount, 0.6F);
+
+        float oldRightArmRot = this.rightArm.xRot;
+        float oldLeftArmRot = this.leftArm.xRot;
 
         animateLeg(this.rightLeg, theta, speed);
-        animateLeg(this.rightArm, theta + Mth.PI, speed);
+        animateLeg(this.rightArm, theta + Mth.PI, speed  * 0.8F);
         animateLeg(this.leftLeg, theta + Mth.PI, speed);
-        animateLeg(this.leftArm, theta, speed);
+        animateLeg(this.leftArm, theta, speed  * 0.8F);
+        this.rightArm.xRot += oldRightArmRot;
+        this.leftArm.xRot += oldLeftArmRot;
 
         this.body.y += Math.min(leftLeg.z, rightLeg.z) * 0.5F;
 

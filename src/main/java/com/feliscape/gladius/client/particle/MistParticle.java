@@ -11,15 +11,19 @@ import net.neoforged.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 public class MistParticle extends TextureSheetParticle {
+    private final SpriteSet spriteSet;
 
-    protected MistParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    protected MistParticle(ClientLevel level, SpriteSet spriteSet, int lifetime, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z);
+        this.spriteSet = spriteSet;
+        this.setSpriteFromAge(spriteSet);
+
         this.scale(4.0F);
         this.setSize(0.3F, 0.3F);
 
         this.setParticleSpeed(xSpeed, ySpeed, zSpeed);
-        this.lifetime = this.random.nextInt(50) + 80;
-        this.friction = 0.95F;
+        this.lifetime = lifetime;
+        this.friction = 0.85F;
     }
 
     @Override
@@ -30,15 +34,30 @@ public class MistParticle extends TextureSheetParticle {
         if (this.age++ >= this.lifetime) {
             this.remove();
         } else {
+            this.setSpriteFromAge(spriteSet);
+
             this.move(this.xd, this.yd, this.zd);
+
+            if (this.x == this.xo){
+                this.yd *= 1.2D;
+                this.zd *= 1.2D;
+            }
+            if (this.y == this.yo){
+                this.xd *= 1.2D;
+                this.zd *= 1.2D;
+            }
+            if (this.z == this.zo){
+                this.xd *= 1.2D;
+                this.yd *= 1.2D;
+            }
 
             this.xd = this.xd * ((double)this.friction);
             this.yd = this.yd * ((double)this.friction);
             this.zd = this.zd * ((double)this.friction);
 
-            if (this.age >= this.lifetime - 60 && this.alpha > 0.01F) {
+            /*if (this.age >= this.lifetime - 60 && this.alpha > 0.01F) {
                 this.alpha -= 0.015F;
-            }
+            }*/
         }
     }
 
@@ -66,8 +85,23 @@ public class MistParticle extends TextureSheetParticle {
 
         @Nullable
         public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            var particle = new MistParticle(level, x, y, z, xSpeed, ySpeed, zSpeed);
-            particle.pickSprite(sprites);
+            var particle = new MistParticle(level, sprites, level.random.nextInt(35) + 20, x, y, z, xSpeed, ySpeed, zSpeed);
+            particle.friction = 0.85F;
+            return particle;
+        }
+    }
+    @OnlyIn(Dist.CLIENT)
+    public static class FireProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
+
+        public FireProvider(SpriteSet sprites) {
+            this.sprites = sprites;
+        }
+
+        @Nullable
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            var particle = new MistParticle(level, sprites, level.random.nextInt(5) + 20, x, y, z, xSpeed, ySpeed, zSpeed);
+            particle.friction = 0.95F;
             return particle;
         }
     }

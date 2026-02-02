@@ -1,108 +1,214 @@
 {
   "variants": {
-    "orientation=down_east,powered=false": {
+    "breathing=false,orientation=down_east,powered=false": {
       "model": "gladius:block/mist_trap",
       "x": 90,
       "y": 90
     },
-    "orientation=down_east,powered=true": {
-      "model": "gladius:block/mist_trap_on",
+    "breathing=false,orientation=down_east,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
       "x": 90,
       "y": 90
     },
-    "orientation=down_north,powered=false": {
+    "breathing=false,orientation=down_north,powered=false": {
       "model": "gladius:block/mist_trap",
       "x": 90
     },
-    "orientation=down_north,powered=true": {
-      "model": "gladius:block/mist_trap_on",
+    "breathing=false,orientation=down_north,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
       "x": 90
     },
-    "orientation=down_south,powered=false": {
+    "breathing=false,orientation=down_south,powered=false": {
       "model": "gladius:block/mist_trap",
       "x": 90,
       "y": 180
     },
-    "orientation=down_south,powered=true": {
-      "model": "gladius:block/mist_trap_on",
+    "breathing=false,orientation=down_south,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
       "x": 90,
       "y": 180
     },
-    "orientation=down_west,powered=false": {
+    "breathing=false,orientation=down_west,powered=false": {
       "model": "gladius:block/mist_trap",
       "x": 90,
       "y": 270
     },
-    "orientation=down_west,powered=true": {
-      "model": "gladius:block/mist_trap_on",
+    "breathing=false,orientation=down_west,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
       "x": 90,
       "y": 270
     },
-    "orientation=east_up,powered=false": {
+    "breathing=false,orientation=east_up,powered=false": {
       "model": "gladius:block/mist_trap",
       "y": 90
     },
-    "orientation=east_up,powered=true": {
-      "model": "gladius:block/mist_trap_on",
+    "breathing=false,orientation=east_up,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
       "y": 90
     },
-    "orientation=north_up,powered=false": {
+    "breathing=false,orientation=north_up,powered=false": {
       "model": "gladius:block/mist_trap"
     },
-    "orientation=north_up,powered=true": {
+    "breathing=false,orientation=north_up,powered=true": {
+      "model": "gladius:block/mist_trap_awake"
+    },
+    "breathing=false,orientation=south_up,powered=false": {
+      "model": "gladius:block/mist_trap",
+      "y": 180
+    },
+    "breathing=false,orientation=south_up,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
+      "y": 180
+    },
+    "breathing=false,orientation=up_east,powered=false": {
+      "model": "gladius:block/mist_trap",
+      "x": 270,
+      "y": 270
+    },
+    "breathing=false,orientation=up_east,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
+      "x": 270,
+      "y": 270
+    },
+    "breathing=false,orientation=up_north,powered=false": {
+      "model": "gladius:block/mist_trap",
+      "x": 270,
+      "y": 180
+    },
+    "breathing=false,orientation=up_north,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
+      "x": 270,
+      "y": 180
+    },
+    "breathing=false,orientation=up_south,powered=false": {
+      "model": "gladius:block/mist_trap",
+      "x": 270
+    },
+    "breathing=false,orientation=up_south,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
+      "x": 270
+    },
+    "breathing=false,orientation=up_west,powered=false": {
+      "model": "gladius:block/mist_trap",
+      "x": 270,
+      "y": 90
+    },
+    "breathing=false,orientation=up_west,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
+      "x": 270,
+      "y": 90
+    },
+    "breathing=false,orientation=west_up,powered=false": {
+      "model": "gladius:block/mist_trap",
+      "y": 270
+    },
+    "breathing=false,orientation=west_up,powered=true": {
+      "model": "gladius:block/mist_trap_awake",
+      "y": 270
+    },
+    "breathing=true,orientation=down_east,powered=false": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90,
+      "y": 90
+    },
+    "breathing=true,orientation=down_east,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90,
+      "y": 90
+    },
+    "breathing=true,orientation=down_north,powered=false": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90
+    },
+    "breathing=true,orientation=down_north,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90
+    },
+    "breathing=true,orientation=down_south,powered=false": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90,
+      "y": 180
+    },
+    "breathing=true,orientation=down_south,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90,
+      "y": 180
+    },
+    "breathing=true,orientation=down_west,powered=false": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90,
+      "y": 270
+    },
+    "breathing=true,orientation=down_west,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 90,
+      "y": 270
+    },
+    "breathing=true,orientation=east_up,powered=false": {
+      "model": "gladius:block/mist_trap_on",
+      "y": 90
+    },
+    "breathing=true,orientation=east_up,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "y": 90
+    },
+    "breathing=true,orientation=north_up,powered=false": {
       "model": "gladius:block/mist_trap_on"
     },
-    "orientation=south_up,powered=false": {
-      "model": "gladius:block/mist_trap",
-      "y": 180
+    "breathing=true,orientation=north_up,powered=true": {
+      "model": "gladius:block/mist_trap_on"
     },
-    "orientation=south_up,powered=true": {
+    "breathing=true,orientation=south_up,powered=false": {
       "model": "gladius:block/mist_trap_on",
       "y": 180
     },
-    "orientation=up_east,powered=false": {
-      "model": "gladius:block/mist_trap",
-      "x": 270,
-      "y": 270
+    "breathing=true,orientation=south_up,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "y": 180
     },
-    "orientation=up_east,powered=true": {
+    "breathing=true,orientation=up_east,powered=false": {
       "model": "gladius:block/mist_trap_on",
       "x": 270,
       "y": 270
     },
-    "orientation=up_north,powered=false": {
-      "model": "gladius:block/mist_trap",
+    "breathing=true,orientation=up_east,powered=true": {
+      "model": "gladius:block/mist_trap_on",
       "x": 270,
-      "y": 180
+      "y": 270
     },
-    "orientation=up_north,powered=true": {
+    "breathing=true,orientation=up_north,powered=false": {
       "model": "gladius:block/mist_trap_on",
       "x": 270,
       "y": 180
     },
-    "orientation=up_south,powered=false": {
-      "model": "gladius:block/mist_trap",
-      "x": 270
+    "breathing=true,orientation=up_north,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 270,
+      "y": 180
     },
-    "orientation=up_south,powered=true": {
+    "breathing=true,orientation=up_south,powered=false": {
       "model": "gladius:block/mist_trap_on",
       "x": 270
     },
-    "orientation=up_west,powered=false": {
-      "model": "gladius:block/mist_trap",
+    "breathing=true,orientation=up_south,powered=true": {
+      "model": "gladius:block/mist_trap_on",
+      "x": 270
+    },
+    "breathing=true,orientation=up_west,powered=false": {
+      "model": "gladius:block/mist_trap_on",
       "x": 270,
       "y": 90
     },
-    "orientation=up_west,powered=true": {
+    "breathing=true,orientation=up_west,powered=true": {
       "model": "gladius:block/mist_trap_on",
       "x": 270,
       "y": 90
     },
-    "orientation=west_up,powered=false": {
-      "model": "gladius:block/mist_trap",
+    "breathing=true,orientation=west_up,powered=false": {
+      "model": "gladius:block/mist_trap_on",
       "y": 270
     },
-    "orientation=west_up,powered=true": {
+    "breathing=true,orientation=west_up,powered=true": {
       "model": "gladius:block/mist_trap_on",
       "y": 270
     }

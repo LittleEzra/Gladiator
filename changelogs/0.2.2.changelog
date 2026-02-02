@@ -1,4 +1,6 @@
 ## Added:
 - Blackstone Golem (WIP!)
+## Changes:
+- Ice Block Projectiles now disappear when their target dies
 ## Fixes:
 - Flamewalkers no longer stack
