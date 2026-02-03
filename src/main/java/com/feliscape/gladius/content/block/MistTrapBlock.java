@@ -51,6 +51,16 @@ public class MistTrapBlock extends BaseEntityBlock {
     }
 
     @Override
+    protected boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return state.getValue(POWERED) || state.getValue(BREATHING) ? 15 : 0;
+    }
+
+    @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (state.getValue(BREATHING)) {
             level.setBlock(pos, state.setValue(BREATHING, false), Block.UPDATE_ALL);
@@ -66,6 +76,7 @@ public class MistTrapBlock extends BaseEntityBlock {
             var mistPosition = p.getCenter().add(normal.getX(), normal.getY() - 1, normal.getZ());
             MistCloud mist = new MistCloud(level, mistPosition.x, mistPosition.y, mistPosition.z);
             mist.setWaitTime(20);
+            mist.setLifetime(200);
             level.addFreshEntity(mist);
 
             level.playSound(null, pos, GladiusSoundEvents.MIST_TRAP_BREATH.get(), SoundSource.BLOCKS,
@@ -73,6 +84,13 @@ public class MistTrapBlock extends BaseEntityBlock {
 
             level.setBlock(pos, state.setValue(BREATHING, true), Block.UPDATE_ALL);
             level.scheduleTick(pos, this, 40);
+        }
+    }
+
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        if (!oldState.is(this) && state.getValue(POWERED)){
+            level.scheduleTick(pos, this, 1);
         }
     }
 

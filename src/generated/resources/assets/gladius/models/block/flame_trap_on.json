@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "gladius:block/flame_trap_bottom_on",
+    "east": "gladius:block/flame_trap_east_on",
+    "north": "gladius:block/flame_trap_north_on",
+    "particle": "minecraft:block/magma",
+    "south": "gladius:block/flame_trap_south_on",
+    "up": "gladius:block/flame_trap_top_on",
+    "west": "gladius:block/flame_trap_west_on"
+  }
+}

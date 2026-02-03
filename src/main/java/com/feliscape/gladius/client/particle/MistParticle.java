@@ -12,6 +12,8 @@ import javax.annotation.Nullable;
 
 public class MistParticle extends TextureSheetParticle {
     private final SpriteSet spriteSet;
+    protected boolean alwaysLit = false;
+    protected boolean speedUpWhenBlocked = false;
 
     protected MistParticle(ClientLevel level, SpriteSet spriteSet, int lifetime, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(level, x, y, z);
@@ -24,6 +26,7 @@ public class MistParticle extends TextureSheetParticle {
         this.setParticleSpeed(xSpeed, ySpeed, zSpeed);
         this.lifetime = lifetime;
         this.friction = 0.85F;
+        this.gravity = 0.0F;
     }
 
     @Override
@@ -36,43 +39,46 @@ public class MistParticle extends TextureSheetParticle {
         } else {
             this.setSpriteFromAge(spriteSet);
 
+            this.yd -= gravity;
             this.move(this.xd, this.yd, this.zd);
 
-            if (this.x == this.xo){
-                this.yd *= 1.2D;
-                this.zd *= 1.2D;
-            }
-            if (this.y == this.yo){
-                this.xd *= 1.2D;
-                this.zd *= 1.2D;
-            }
-            if (this.z == this.zo){
-                this.xd *= 1.2D;
-                this.yd *= 1.2D;
+            if (speedUpWhenBlocked) {
+                if (Math.abs(this.yd) > 0.01D && this.x == this.xo) {
+                    this.yd *= 1.2D;
+                    this.zd *= 1.2D;
+                }
+                if (Math.abs(this.yd) > 0.01D && this.y == this.yo) {
+                    this.xd *= 1.2D;
+                    this.zd *= 1.2D;
+                }
+                if (Math.abs(this.yd) > 0.01D && this.z == this.zo) {
+                    this.xd *= 1.2D;
+                    this.yd *= 1.2D;
+                }
             }
 
             this.xd = this.xd * ((double)this.friction);
             this.yd = this.yd * ((double)this.friction);
             this.zd = this.zd * ((double)this.friction);
-
-            /*if (this.age >= this.lifetime - 60 && this.alpha > 0.01F) {
-                this.alpha -= 0.015F;
-            }*/
         }
     }
 
     @Override
     public int getLightColor(float partialTick) {
-        int i = super.getLightColor(partialTick);
-        int j = 240;
-        int k = i >> 16 & 0xFF;
+        if (alwaysLit){
+            int i = super.getLightColor(partialTick);
+            int j = 240;
+            int k = i >> 16 & 0xFF;
 
-        return j | k << 16;
+            return j | k << 16;
+        } else{
+            return super.getLightColor(partialTick);
+        }
     }
 
     @Override
     public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -102,6 +108,8 @@ public class MistParticle extends TextureSheetParticle {
         public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             var particle = new MistParticle(level, sprites, level.random.nextInt(5) + 20, x, y, z, xSpeed, ySpeed, zSpeed);
             particle.friction = 0.95F;
+            particle.alwaysLit = true;
+            particle.speedUpWhenBlocked = true;
             return particle;
         }
     }

@@ -80,7 +80,7 @@ public class GladiusItems {
                     .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.MAGIC, false))
             ));
     public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
-            p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p
+            p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p.stacksTo(1)
                     .component(GladiusComponents.HEAT, FlamewalkersHeat.create(20))));
 
     public static final DeferredItem<PowerGauntletsItem> POWER_GAUNTLETS = ITEMS.registerItem("power_gauntlets",

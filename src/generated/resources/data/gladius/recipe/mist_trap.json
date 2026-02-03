@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "tag": "minecraft:stone_tool_materials"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "item": "gladius:frigid_shard"
+    }
+  },
+  "pattern": [
+    "###",
+    "SRS",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gladius:mist_trap"
+  }
+}

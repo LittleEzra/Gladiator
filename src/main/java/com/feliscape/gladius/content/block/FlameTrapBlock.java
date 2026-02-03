@@ -83,17 +83,36 @@ public class FlameTrapBlock extends BaseEntityBlock {
     }
 
     @Override
+    protected boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return state.getValue(POWERED) ? 15 : 0;
+    }
+
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        if (!oldState.is(this) && state.getValue(POWERED)){
+            level.scheduleTick(pos, this, 1);
+            level.playSound(null, pos, GladiusSoundEvents.FLAME_TRAP_IGNITE.get(), SoundSource.BLOCKS,
+                    1.2F, 0.9F + level.random.nextFloat() * 0.2F);
+        }
+    }
+
+    @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
         boolean hasNeighborSignal = level.hasNeighborSignal(pos);
         boolean powered = state.getValue(POWERED);
         if (hasNeighborSignal && !powered) {
             level.scheduleTick(pos, this, 1);
-            level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), Block.UPDATE_CLIENTS);
+            level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), Block.UPDATE_ALL);
 
             level.playSound(null, pos, GladiusSoundEvents.FLAME_TRAP_IGNITE.get(), SoundSource.BLOCKS,
                     1.2F, 0.9F + level.random.nextFloat() * 0.2F);
         } else if (!hasNeighborSignal && powered) {
-            level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), Block.UPDATE_CLIENTS);
+            level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), Block.UPDATE_ALL);
             level.playSound(null, pos, GladiusSoundEvents.FLAME_TRAP_STOP.get(), SoundSource.BLOCKS,
                     1.2F, 0.9F + level.random.nextFloat() * 0.2F);
         }
