@@ -1,5 +1,6 @@
 package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
+import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.registry.GladiusParticles;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.feliscape.gladius.util.RandomUtil;
@@ -38,6 +39,7 @@ public class BlackstoneGolem extends PathfinderMob {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
+                .add(Attributes.STEP_HEIGHT, 1.2D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
                 .add(Attributes.FOLLOW_RANGE, 24.0)
                 .add(Attributes.MAX_HEALTH, 125.0);
@@ -82,6 +84,8 @@ public class BlackstoneGolem extends PathfinderMob {
 
     @Override
     public boolean doHurtTarget(Entity entity) {
+        Gladius.LOGGER.debug("Attacking entity!!!!!!!!");
+
         this.attackAnimationTick = 10;
         this.level().broadcastEntityEvent(this, (byte)4);
         attackPatternPosition++;
@@ -103,11 +107,13 @@ public class BlackstoneGolem extends PathfinderMob {
         if (this.isAggressive()){
             coreCharge++;
             if(level().isClientSide() && coreCharge > 60){
-                for (int i = 0; i < 2; i++){
-                    double velocity = random.nextDouble() * 0.2D + 0.2D;
-                    Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, velocity);
-                    level().addParticle(GladiusParticles.BURNING_SMOKE.get(), getX(), getY(0.7), getZ(),
-                            randomVector.x, randomVector.y, randomVector.z);
+                if (random.nextBoolean()){
+                    Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, 1.0D);
+                    level().addParticle(GladiusParticles.BURNING_SMOKE.get(),
+                            getX() + randomVector.x,
+                            getY(0.7) + randomVector.y,
+                            getZ() + randomVector.z,
+                            -randomVector.x * 0.1D, -randomVector.y * 0.1D, -randomVector.z * 0.1D);
                 }
             }
             if (coreCharge >= 120){

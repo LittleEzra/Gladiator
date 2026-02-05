@@ -16,6 +16,7 @@ public class GladiusMemoryModuleTypes {
     );
 
     public static final Supplier<MemoryModuleType<Integer>> ATTACK_CYCLE = register("attack_cycle", Codec.INT);
+    public static final Supplier<MemoryModuleType<Boolean>> CHARGING = register("charging", Codec.BOOL);
 
     public static void register(IEventBus eventBus){
         MEMORY_MODULES.register(eventBus);

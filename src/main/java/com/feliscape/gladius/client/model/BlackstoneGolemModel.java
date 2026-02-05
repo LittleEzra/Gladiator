@@ -100,15 +100,16 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
         float theta = limbSwing * 0.6F;
         float speed = Math.min(limbSwingAmount, 0.6F);
 
-        float oldRightArmRot = this.rightArm.xRot;
-        float oldLeftArmRot = this.leftArm.xRot;
-
         animateLeg(this.rightLeg, theta, speed);
         animateLeg(this.rightArm, theta + Mth.PI, speed  * 0.8F);
         animateLeg(this.leftLeg, theta + Mth.PI, speed);
         animateLeg(this.leftArm, theta, speed  * 0.8F);
-        this.rightArm.xRot += oldRightArmRot;
-        this.leftArm.xRot += oldLeftArmRot;
+
+        if (blackstoneGolem.getAttackAnimationTick() > 0) {
+            float t = Math.max(blackstoneGolem.getAttackAnimationTick() - 2 - (ageInTicks % 1.0F), 0.0F);
+            this.rightArm.xRot = 0.1F - (t) * 0.6F;
+            this.leftArm.xRot = 0.1F - (t) * 0.6F;
+        }
 
         this.body.y += Math.min(leftLeg.z, rightLeg.z) * 0.5F;
 
@@ -124,15 +125,7 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
 
     @Override
     public void prepareMobModel(BlackstoneGolem entity, float limbSwing, float limbSwingAmount, float partialTick) {
-        int i = entity.getAttackAnimationTick();
-        if (i > 0) {
-            float t = Math.max(i - 2 - partialTick, 0.0F);
-            this.rightArm.xRot = 0.5F - (t) * 0.6F;
-            this.leftArm.xRot = 0.5F - (t) * 0.6F;
-        } else {
-            this.rightArm.xRot = (-0.2F + 1.5F * Mth.triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
-            this.leftArm.xRot = (-0.2F - 1.5F * Mth.triangleWave(limbSwing, 13.0F)) * limbSwingAmount;
-        }
+
     }
 
     @Override
