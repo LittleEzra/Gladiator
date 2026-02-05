@@ -1,7 +1,7 @@
 package com.feliscape.gladius.content.event;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.content.entity.BlackstoneGolem;
+import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.Frostmancer;
 import com.feliscape.gladius.content.entity.ai.RetrieveArrowGoal;
@@ -22,7 +22,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 

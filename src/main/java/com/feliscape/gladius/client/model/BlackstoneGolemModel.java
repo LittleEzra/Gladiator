@@ -1,6 +1,6 @@
 package com.feliscape.gladius.client.model;
 
-import com.feliscape.gladius.content.entity.BlackstoneGolem;
+import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
@@ -112,7 +112,7 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
 
         this.body.y += Math.min(leftLeg.z, rightLeg.z) * 0.5F;
 
-        this.core.y += Mth.sin(ageInTicks * 0.1F) * 0.5F;
+        this.core.y += Mth.sin(ageInTicks * 0.1F) * 0.5F + blackstoneGolem.getCoreChargeRatio();
     }
 
     public void animateLeg(ModelPart leg, float theta, float animationSpeed){

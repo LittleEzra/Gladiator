@@ -1,7 +1,7 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.content.entity.BlackstoneGolem;
+import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
 import com.feliscape.gladius.content.entity.Frostmancer;
