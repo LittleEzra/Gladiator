@@ -40,9 +40,10 @@ public class BlackstoneGolemAi {
             MemoryModuleType.WALK_TARGET,
             MemoryModuleType.HURT_BY,
             MemoryModuleType.HURT_BY_ENTITY,
-            GladiusMemoryModuleTypes.ATTACK_CYCLE.get(),
             GladiusMemoryModuleTypes.CHARGING.get(),
             GladiusMemoryModuleTypes.CHARGE_TARGET.get(),
+            GladiusMemoryModuleTypes.CHARGE_DELAY.get(),
+            GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get(),
             MemoryModuleType.PATH
     );
 
@@ -63,7 +64,8 @@ public class BlackstoneGolemAi {
                 0,
                 ImmutableList.of(
                         new LookAtTargetSink(45, 90),
-                        new MoveToTargetSink()
+                        new MoveToTargetSink(),
+                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.CHARGE_DELAY.get())
                 )
         );
     }
@@ -122,13 +124,9 @@ public class BlackstoneGolemAi {
         public ChargeAtTarget() {
             super(Map.of(
                     MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT,
-                    GladiusMemoryModuleTypes.ATTACK_CYCLE.get(), MemoryStatus.VALUE_PRESENT
+                    GladiusMemoryModuleTypes.CHARGING.get(), MemoryStatus.VALUE_ABSENT,
+                    GladiusMemoryModuleTypes.CHARGE_DELAY.get(), MemoryStatus.VALUE_ABSENT
             ));
-        }
-
-        @Override
-        protected boolean checkExtraStartConditions(ServerLevel level, BlackstoneGolem owner) {
-            return owner.getBrain().getMemory(GladiusMemoryModuleTypes.ATTACK_CYCLE.get()).orElse(0) == 3;
         }
 
         @Override
@@ -137,9 +135,12 @@ public class BlackstoneGolemAi {
             if (target != null) {
                 Vec3 pos = BreezeUtil.randomPointBehindTarget(target, entity.getRandom());
 
-                entity.getBrain().setMemory(GladiusMemoryModuleTypes.CHARGE_TARGET.get(), BlockPos.containing(pos));
-                entity.getBrain().setMemoryWithExpiry(GladiusMemoryModuleTypes.CHARGING.get(), true, 15);
-                entity.getBrain().eraseMemory(GladiusMemoryModuleTypes.ATTACK_CYCLE.get());
+                BlockPos targetBlockPos = BlockPos.containing(pos);
+
+                entity.getBrain().setMemory(GladiusMemoryModuleTypes.CHARGE_TARGET.get(), targetBlockPos);
+                entity.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(targetBlockPos));
+                entity.getBrain().setMemoryWithExpiry(GladiusMemoryModuleTypes.CHARGING.get(), true, 15 + 40);
+                entity.getBrain().setMemory(GladiusMemoryModuleTypes.CHARGE_DELAY.get(), 200);
                 entity.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
             }
         }

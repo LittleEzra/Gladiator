@@ -2,6 +2,7 @@ package com.feliscape.gladius;
 
 import com.feliscape.gladius.registry.*;
 import com.feliscape.gladius.registry.entity.GladiusActivities;
+import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
@@ -37,6 +38,7 @@ public class Gladius {
 
         GladiusActivities.register(modEventBus);
         GladiusMemoryModuleTypes.register(modEventBus);
+        GladiusEntityDataSerializers.register(modEventBus);
 
         GladiusEntityTypes.register(modEventBus);
         GladiusAttributes.register(modEventBus);

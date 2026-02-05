@@ -2,13 +2,14 @@ package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Unit;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.entity.ai.behavior.BlockPosTracker;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Map;
 
@@ -19,10 +20,20 @@ public class Charge extends Behavior<BlackstoneGolem> {
                 GladiusMemoryModuleTypes.CHARGE_TARGET.get(), MemoryStatus.VALUE_PRESENT
         ));
     }
+    private static final int TELEGRAPH_DURATION_TICKS = 40;
 
     @Override
     protected void start(ServerLevel level, BlackstoneGolem entity, long gameTime) {
+        if (entity.getBrain().checkMemory(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get(), MemoryStatus.VALUE_ABSENT)) {
+            entity.getBrain().setMemoryWithExpiry(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get(), Unit.INSTANCE, TELEGRAPH_DURATION_TICKS);
+        }
+        entity.setGolemPose(BlackstoneGolemPose.CHARGING_TELEGRAPH);
+
         entity.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
+    }
+
+    private static boolean isFinishedTelegraphing(BlackstoneGolem golem) {
+        return golem.getBrain().getMemory(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get()).isEmpty();
     }
 
     @Override
@@ -34,9 +45,18 @@ public class Charge extends Behavior<BlackstoneGolem> {
     protected void tick(ServerLevel level, BlackstoneGolem owner, long gameTime) {
         BlockPos chargeTarget = owner.getBrain().getMemory(GladiusMemoryModuleTypes.CHARGE_TARGET.get()).orElse(null);
         if (chargeTarget != null){
-            Vec3 target = new Vec3(chargeTarget.getX() + 0.5D, chargeTarget.getY() + 1.0D, chargeTarget.getZ() + 0.5D)
-                    .subtract(owner.position()).normalize();
-            owner.setDeltaMovement(target.x, target.y, target.z);
+            if (isFinishedTelegraphing(owner)) {
+                Vec3 target = new Vec3(chargeTarget.getX() + 0.5D, chargeTarget.getY() + 0.2D, chargeTarget.getZ() + 0.5D)
+                        .subtract(owner.position()).normalize();
+                owner.setDeltaMovement(target.x, target.y, target.z);
+                owner.setGolemPose(BlackstoneGolemPose.CHARGING);
+            }
+            owner.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(chargeTarget));
         }
+    }
+
+    @Override
+    protected void stop(ServerLevel level, BlackstoneGolem entity, long gameTime) {
+        entity.setGolemPose(BlackstoneGolemPose.VANILLA);
     }
 }

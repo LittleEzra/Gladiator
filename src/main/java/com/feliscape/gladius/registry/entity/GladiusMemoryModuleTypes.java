@@ -4,6 +4,7 @@ import com.feliscape.gladius.Gladius;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.util.Unit;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -17,6 +18,8 @@ public class GladiusMemoryModuleTypes {
     );
 
     public static final Supplier<MemoryModuleType<Integer>> ATTACK_CYCLE = register("attack_cycle", Codec.INT);
+    public static final Supplier<MemoryModuleType<Integer>> CHARGE_DELAY = register("charge_delay", Codec.INT);
+    public static final Supplier<MemoryModuleType<Unit>> CHARGE_TELEGRAPH = register("charge_telegraph", Unit.CODEC);
     public static final Supplier<MemoryModuleType<Boolean>> CHARGING = register("charging", Codec.BOOL);
     public static final Supplier<MemoryModuleType<BlockPos>> CHARGE_TARGET = register("charge_target", BlockPos.CODEC);
 

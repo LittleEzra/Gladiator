@@ -2,6 +2,7 @@ package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.registry.GladiusParticles;
+import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.feliscape.gladius.util.RandomUtil;
 import com.mojang.serialization.Dynamic;
@@ -28,6 +29,7 @@ import java.util.Optional;
 
 public class BlackstoneGolem extends PathfinderMob {
     public static final EntityDataAccessor<Boolean> DATA_IDLE = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<BlackstoneGolemPose> DATA_POSE = SynchedEntityData.defineId(BlackstoneGolem.class, GladiusEntityDataSerializers.BLACKSTONE_GOLEM_POSE.get());
 
     private int attackAnimationTick;
     int attackPatternPosition = 0;
@@ -35,6 +37,13 @@ public class BlackstoneGolem extends PathfinderMob {
 
     public BlackstoneGolem(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
+    }
+
+    public BlackstoneGolemPose getGolemPose(){
+        return this.entityData.get(DATA_POSE);
+    }
+    public void setGolemPose(BlackstoneGolemPose pose){
+        this.entityData.set(DATA_POSE, pose);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -119,7 +128,6 @@ public class BlackstoneGolem extends PathfinderMob {
             if (coreCharge >= 120){
                 coreCharge = 0;
                 explodeCore();
-                setAttackPatternPosition(getAttackPatternPosition() + 1);
             }
         } else{
             coreCharge = 0;
@@ -150,7 +158,7 @@ public class BlackstoneGolem extends PathfinderMob {
                         randomVector.x, randomVector.y, randomVector.z);
             }
         } else{
-            List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(1.5D, 1.0D, 1.5D));
+            List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(2.5D, 1.0D, 2.5D));
             for (LivingEntity living : entities){
                 living.hurt(level().damageSources().onFire(), 4.0F);
             }
@@ -171,6 +179,7 @@ public class BlackstoneGolem extends PathfinderMob {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_IDLE, true);
+        builder.define(DATA_POSE, BlackstoneGolemPose.VANILLA);
     }
 
     public boolean isIdle(){
