@@ -119,7 +119,7 @@ public class BlackstoneGolem extends PathfinderMob {
             if (coreCharge >= 120){
                 coreCharge = 0;
                 explodeCore();
-                //setAttackPatternPosition(getAttackPatternPosition() + 1);
+                setAttackPatternPosition(getAttackPatternPosition() + 1);
             }
         } else{
             coreCharge = 0;

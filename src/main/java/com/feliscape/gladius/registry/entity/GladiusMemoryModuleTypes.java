@@ -2,6 +2,7 @@ package com.feliscape.gladius.registry.entity;
 
 import com.feliscape.gladius.Gladius;
 import com.mojang.serialization.Codec;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.neoforged.bus.api.IEventBus;
@@ -17,6 +18,7 @@ public class GladiusMemoryModuleTypes {
 
     public static final Supplier<MemoryModuleType<Integer>> ATTACK_CYCLE = register("attack_cycle", Codec.INT);
     public static final Supplier<MemoryModuleType<Boolean>> CHARGING = register("charging", Codec.BOOL);
+    public static final Supplier<MemoryModuleType<BlockPos>> CHARGE_TARGET = register("charge_target", BlockPos.CODEC);
 
     public static void register(IEventBus eventBus){
         MEMORY_MODULES.register(eventBus);

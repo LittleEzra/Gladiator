@@ -1,5 +1,6 @@
 package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
+import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.registry.entity.GladiusActivities;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.google.common.collect.ImmutableList;
@@ -41,6 +42,7 @@ public class BlackstoneGolemAi {
             MemoryModuleType.HURT_BY_ENTITY,
             GladiusMemoryModuleTypes.ATTACK_CYCLE.get(),
             GladiusMemoryModuleTypes.CHARGING.get(),
+            GladiusMemoryModuleTypes.CHARGE_TARGET.get(),
             MemoryModuleType.PATH
     );
 
@@ -100,7 +102,7 @@ public class BlackstoneGolemAi {
         brain.addActivityWithConditions(
                 GladiusActivities.CHARGING.get(),
                 ImmutableList.of(
-
+                    Pair.of(0, new Charge())
                 ),
                 ImmutableSet.of(
                         Pair.of(GladiusMemoryModuleTypes.CHARGING.get(), MemoryStatus.VALUE_PRESENT)
@@ -112,7 +114,6 @@ public class BlackstoneGolemAi {
         blackstoneGolem.getBrain().setActiveActivityToFirstValid(ImmutableList.of(
                 GladiusActivities.CHARGING.get(), Activity.FIGHT, Activity.IDLE
         ));
-
         blackstoneGolem.setAggressive(blackstoneGolem.getBrain().hasMemoryValue(MemoryModuleType.ATTACK_TARGET));
     }
 
@@ -127,7 +128,7 @@ public class BlackstoneGolemAi {
 
         @Override
         protected boolean checkExtraStartConditions(ServerLevel level, BlackstoneGolem owner) {
-            return owner.getBrain().getMemory(GladiusMemoryModuleTypes.ATTACK_CYCLE.get()).orElse(0) == 0;
+            return owner.getBrain().getMemory(GladiusMemoryModuleTypes.ATTACK_CYCLE.get()).orElse(0) == 3;
         }
 
         @Override
@@ -136,9 +137,10 @@ public class BlackstoneGolemAi {
             if (target != null) {
                 Vec3 pos = BreezeUtil.randomPointBehindTarget(target, entity.getRandom());
 
-                entity.getBrain().setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(BlockPos.containing(pos), 3.0F, 1));
+                entity.getBrain().setMemory(GladiusMemoryModuleTypes.CHARGE_TARGET.get(), BlockPos.containing(pos));
                 entity.getBrain().setMemoryWithExpiry(GladiusMemoryModuleTypes.CHARGING.get(), true, 15);
                 entity.getBrain().eraseMemory(GladiusMemoryModuleTypes.ATTACK_CYCLE.get());
+                entity.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
             }
         }
     }
