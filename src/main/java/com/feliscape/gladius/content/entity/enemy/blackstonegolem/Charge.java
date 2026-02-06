@@ -25,7 +25,7 @@ public class Charge extends Behavior<BlackstoneGolem> {
     @Override
     protected void start(ServerLevel level, BlackstoneGolem entity, long gameTime) {
         if (entity.getBrain().checkMemory(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get(), MemoryStatus.VALUE_ABSENT)) {
-            entity.getBrain().setMemoryWithExpiry(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get(), Unit.INSTANCE, TELEGRAPH_DURATION_TICKS);
+            entity.getBrain().setMemory(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get(), TELEGRAPH_DURATION_TICKS);
         }
         entity.setGolemPose(BlackstoneGolemPose.CHARGING_TELEGRAPH);
 

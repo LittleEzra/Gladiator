@@ -65,7 +65,8 @@ public class BlackstoneGolemAi {
                 ImmutableList.of(
                         new LookAtTargetSink(45, 90),
                         new MoveToTargetSink(),
-                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.CHARGE_DELAY.get())
+                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.CHARGE_DELAY.get()),
+                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get())
                 )
         );
     }

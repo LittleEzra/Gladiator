@@ -32,6 +32,7 @@ import java.util.Optional;
 public class BlackstoneGolem extends PathfinderMob {
     public static final EntityDataAccessor<Boolean> DATA_IDLE = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<BlackstoneGolemPose> DATA_POSE = SynchedEntityData.defineId(BlackstoneGolem.class, GladiusEntityDataSerializers.BLACKSTONE_GOLEM_POSE.get());
+    public static final EntityDataAccessor<Integer> DATA_CHARGE_TIME = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.INT);
 
     private int attackAnimationTick;
     int attackPatternPosition = 0;
@@ -89,6 +90,7 @@ public class BlackstoneGolem extends PathfinderMob {
         this.getBrain().tick((ServerLevel)this.level(), this);
         this.level().getProfiler().popPush("blackstoneGolemActivityUpdate");
         BlackstoneGolemAi.updateActivity(this);
+        this.setChargeTime(this.getBrain().getMemory(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get()).orElse(0));
         this.level().getProfiler().pop();
         super.customServerAiStep();
     }
@@ -211,6 +213,7 @@ public class BlackstoneGolem extends PathfinderMob {
         super.defineSynchedData(builder);
         builder.define(DATA_IDLE, true);
         builder.define(DATA_POSE, BlackstoneGolemPose.VANILLA);
+        builder.define(DATA_CHARGE_TIME, 0);
     }
 
     public boolean isIdle(){
@@ -218,6 +221,12 @@ public class BlackstoneGolem extends PathfinderMob {
     }
     public void setIdle(boolean idle){
         this.entityData.set(DATA_IDLE, idle);
+    }
+    public int getChargeTime(){
+        return this.entityData.get(DATA_CHARGE_TIME);
+    }
+    public void setChargeTime(int chargeTime){
+        this.entityData.set(DATA_CHARGE_TIME, chargeTime);
     }
 
     public int getStepDelay(){
