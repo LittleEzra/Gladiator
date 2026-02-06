@@ -6,10 +6,12 @@ import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.feliscape.gladius.util.RandomUtil;
 import com.mojang.serialization.Dynamic;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -103,6 +105,35 @@ public class BlackstoneGolem extends PathfinderMob {
 
     public int getAttackAnimationTick() {
         return this.attackAnimationTick;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (level().isClientSide()){
+            if (getGolemPose() == BlackstoneGolemPose.CHARGING_TELEGRAPH){
+                double velocity = random.nextDouble() * 0.2D + 0.1D;
+                Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, velocity);
+                level().addParticle(GladiusParticles.BURNING_SMOKE.get(), getX(), getY(0.7), getZ(),
+                        randomVector.x, randomVector.y, randomVector.z);
+            } else if (getGolemPose() == BlackstoneGolemPose.CHARGING){
+                double velocity = random.nextDouble() * 0.2D + 0.3D;
+                Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, velocity);
+                level().addParticle(GladiusParticles.BURNING_SMOKE.get(), getX(), getY(0.7), getZ(),
+                        randomVector.x, randomVector.y, randomVector.z);
+            }
+        } else{
+            if (this.getGolemPose() == BlackstoneGolemPose.CHARGING){
+                List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(0.5D), e -> e != this);
+                for (LivingEntity living : entities){
+                    living.hurt(level().damageSources().onFire(), 6.0F);
+                    living.push(this.getDeltaMovement());
+                    if (living instanceof ServerPlayer serverPlayer){
+                        serverPlayer.connection.send(new ClientboundSetEntityMotionPacket(serverPlayer));
+                    }
+                }
+            }
+        }
     }
 
     @Override
