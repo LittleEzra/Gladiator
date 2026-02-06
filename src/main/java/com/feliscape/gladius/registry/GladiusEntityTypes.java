@@ -45,6 +45,12 @@ public class GladiusEntityTypes {
                     .clientTrackingRange(4)
                     .updateInterval(20)
     );
+    public static final Supplier<EntityType<TorridWisp>> TORRID_WISP = ENTITY_TYPES.registerEntityType("torrid_wisp",
+            TorridWisp::new, MobCategory.MISC, b -> b
+                    .sized(0.25F, 0.25F)
+                    .eyeHeight(0.125F)
+                    .clientTrackingRange(4)
+    );
 
     public static final Supplier<EntityType<ExplosiveArrow>> EXPLOSIVE_ARROW = ENTITY_TYPES.registerEntityType("explosive_arrow",
             ExplosiveArrow::new, MobCategory.MISC, b -> b

@@ -6,6 +6,7 @@ import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.feliscape.gladius.util.RandomUtil;
 import com.mojang.serialization.Dynamic;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.breeze.Breeze;
 import net.minecraft.world.entity.monster.breeze.BreezeAi;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
@@ -65,6 +67,7 @@ public class BlackstoneGolem extends PathfinderMob {
     protected void registerGoals() {
 
     }
+
 
     @Override
     protected Brain<?> makeBrain(Dynamic<?> dynamic) {
@@ -119,10 +122,12 @@ public class BlackstoneGolem extends PathfinderMob {
                 level().addParticle(GladiusParticles.BURNING_SMOKE.get(), getX(), getY(0.7), getZ(),
                         randomVector.x, randomVector.y, randomVector.z);
             } else if (getGolemPose() == BlackstoneGolemPose.CHARGING){
-                double velocity = random.nextDouble() * 0.2D + 0.3D;
-                Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, velocity);
-                level().addParticle(GladiusParticles.BURNING_SMOKE.get(), getX(), getY(0.7), getZ(),
-                        randomVector.x, randomVector.y, randomVector.z);
+                for (int i = 0; i < 2; i++) {
+                    double velocity = random.nextDouble() * 0.2D + 0.3D;
+                    Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, velocity);
+                    level().addParticle(GladiusParticles.BURNING_SMOKE.get(), getX(), getY(0.7), getZ(),
+                            randomVector.x, randomVector.y, randomVector.z);
+                }
             }
         } else{
             if (this.getGolemPose() == BlackstoneGolemPose.CHARGING){
@@ -151,7 +156,7 @@ public class BlackstoneGolem extends PathfinderMob {
             if(level().isClientSide() && coreCharge > 60){
                 if (random.nextBoolean()){
                     Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, 1.0D);
-                    level().addParticle(GladiusParticles.BURNING_SMOKE.get(),
+                    level().addParticle(ParticleTypes.FLAME,
                             getX() + randomVector.x,
                             getY(0.7) + randomVector.y,
                             getZ() + randomVector.z,

@@ -21,6 +21,8 @@ public class GladiusMemoryModuleTypes {
     public static final Supplier<MemoryModuleType<Integer>> CHARGE_DELAY = register("charge_delay", Codec.INT);
     public static final Supplier<MemoryModuleType<Integer>> CHARGE_TELEGRAPH = register("charge_telegraph", Codec.INT);
     public static final Supplier<MemoryModuleType<Boolean>> CHARGING = register("charging", Codec.BOOL);
+    public static final Supplier<MemoryModuleType<Boolean>> WISP_DELAY = register("wisp_delay");
+    public static final Supplier<MemoryModuleType<Integer>> WISP_SPAWN_TIME = register("wisp_spawn_time");
     public static final Supplier<MemoryModuleType<BlockPos>> CHARGE_TARGET = register("charge_target", BlockPos.CODEC);
 
     public static void register(IEventBus eventBus){

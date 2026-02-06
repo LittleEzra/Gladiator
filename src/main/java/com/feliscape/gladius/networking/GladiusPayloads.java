@@ -14,6 +14,11 @@ public class GladiusPayloads {
         final PayloadRegistrar registrar = event.registrar("1");
 
         registrar.playToClient(
+                ShakeScreenPayload.TYPE,
+                ShakeScreenPayload.STREAM_CODEC,
+                ShakeScreenPayload::handle
+        );
+        registrar.playToClient(
                 AshifyEntityPayload.TYPE,
                 AshifyEntityPayload.STREAM_CODEC,
                 AshifyEntityPayload::handle

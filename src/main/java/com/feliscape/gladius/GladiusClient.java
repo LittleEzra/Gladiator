@@ -1,6 +1,7 @@
 package com.feliscape.gladius;
 
 import com.feliscape.gladius.client.GladiusModelManager;
+import com.feliscape.gladius.client.render.ScreenShakeRenderer;
 import com.feliscape.gladius.foundation.MobEffectRenderDispatcher;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -16,8 +17,12 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 @Mod(value = Gladius.MOD_ID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = Gladius.MOD_ID, value = Dist.CLIENT)
 public class GladiusClient {
+    public static ScreenShakeRenderer screenShake;
+
     public GladiusClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+
+        screenShake = new ScreenShakeRenderer();
     }
 
     @SubscribeEvent

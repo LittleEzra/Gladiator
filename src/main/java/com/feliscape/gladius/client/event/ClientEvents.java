@@ -93,6 +93,7 @@ public class ClientEvents {
 
         event.registerEntityRenderer(GladiusEntityTypes.MAGIC_ORB.get(), MagicOrbRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_CHARGE.get(), NoopRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.TORRID_WISP.get(), NoopRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.FLASH_POWDER_CLOUD.get(), NoopRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.MIST_CLOUD.get(), NoopRenderer::new);

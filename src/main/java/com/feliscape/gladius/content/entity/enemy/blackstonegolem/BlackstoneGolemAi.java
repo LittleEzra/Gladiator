@@ -44,6 +44,9 @@ public class BlackstoneGolemAi {
             GladiusMemoryModuleTypes.CHARGE_TARGET.get(),
             GladiusMemoryModuleTypes.CHARGE_DELAY.get(),
             GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get(),
+
+            GladiusMemoryModuleTypes.WISP_DELAY.get(),
+            GladiusMemoryModuleTypes.WISP_SPAWN_TIME.get(),
             MemoryModuleType.PATH
     );
 
@@ -66,7 +69,8 @@ public class BlackstoneGolemAi {
                         new LookAtTargetSink(45, 90),
                         new MoveToTargetSink(),
                         new CountDownCooldownTicks(GladiusMemoryModuleTypes.CHARGE_DELAY.get()),
-                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get())
+                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get()),
+                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.WISP_SPAWN_TIME.get())
                 )
         );
     }
@@ -93,8 +97,9 @@ public class BlackstoneGolemAi {
                 ImmutableList.of(
                         Pair.of(0, StopAttackingIfTargetInvalid.create(entity -> !Sensor.isEntityAttackable(blackstoneGolem, entity))),
                         Pair.of(1, new ChargeAtTarget()),
-                        Pair.of(2, MeleeAttack.create(20)),
-                        Pair.of(3, SetWalkTargetFromAttackTargetIfTargetOutOfReach.create(1.0F))
+                        Pair.of(2, new ReleaseWisps()),
+                        Pair.of(3, MeleeAttack.create(20)),
+                        Pair.of(4, SetWalkTargetFromAttackTargetIfTargetOutOfReach.create(1.0F))
                 ),
                 ImmutableSet.of(
                         Pair.of(MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT)
@@ -126,6 +131,7 @@ public class BlackstoneGolemAi {
             super(Map.of(
                     MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT,
                     GladiusMemoryModuleTypes.CHARGING.get(), MemoryStatus.VALUE_ABSENT,
+                    GladiusMemoryModuleTypes.WISP_SPAWN_TIME.get(), MemoryStatus.VALUE_ABSENT,
                     GladiusMemoryModuleTypes.CHARGE_DELAY.get(), MemoryStatus.VALUE_ABSENT
             ));
         }

@@ -17,6 +17,7 @@ public class GladiusClientConfig {
     public final ModConfigSpec.EnumValue<OilSplatParticle.DisappearStyle> oilSplatDisappearStyle;
     public final FlashPowder flashPowder;
     public final Aspects aspects;
+    public final ModConfigSpec.DoubleValue screenShake;
 
 
     public GladiusClientConfig(ModConfigSpec.Builder builder){
@@ -43,6 +44,11 @@ public class GladiusClientConfig {
                 .comment("FADE: Oil splats will lower in opacity. Can cause artifacts due to translucent rendering.")
                 .comment("SCALE: Oil splats will become smaller when disappearing.")
                 .defineEnum("oil_splat_disappear_style", OilSplatParticle.DisappearStyle.FADE)
+        ;
+        screenShake = builder
+                .translation("gladius.configuration.client.effects.screen_shake")
+                .comment("The intensity of screen shake effects. Set to 0 to disable.")
+                .defineInRange("screen_shake", 1.0D, 0.0D, 1.0D)
         ;
 
         flashPowder = new FlashPowder(builder);

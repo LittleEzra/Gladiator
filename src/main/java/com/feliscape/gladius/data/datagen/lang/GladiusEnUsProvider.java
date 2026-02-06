@@ -143,6 +143,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addConfigValue("client", GladiusClientConfig.CONFIG.showBlood, "Show Blood");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.extraOil, "Extra Oil");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.oilSplatDisappearStyle, "Oil Splat Disappear Effect");
+        this.addConfigValue("client", GladiusClientConfig.CONFIG.screenShake, "Screen Shake Intensity");
         this.addConfigSection("flash_powder", "Flash Powder");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderFlashing, "Flash Powder Flashing");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.flashPowder.flashPowderLightChance, "Flash Powder Light Chance");

@@ -2,6 +2,7 @@ package com.feliscape.gladius.client.model;
 
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolemPose;
+import com.feliscape.gladius.util.FloatEasings;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
@@ -94,9 +95,22 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
 
     @Override
     public void setupAnim(BlackstoneGolem blackstoneGolem, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.head.yRot += netHeadYaw * (float) (Math.PI / 180.0);
+        this.head.xRot += headPitch * (float) (Math.PI / 180.0);
+
+        this.core.y += Mth.sin(ageInTicks * 0.1F) * 0.5F;
+    }
+
+    public void animateLeg(ModelPart leg, float theta, float animationSpeed){
+        leg.z += (Mth.cos(theta)) * animationSpeed * 12.0F;
+        float baseY = leg.y;
+        leg.y = Math.min(baseY - Mth.sin(theta) * animationSpeed * 18.0F, baseY);
+        leg.xRot = -Mth.sin(theta - Mth.PI * 0.5F) * animationSpeed;
+    }
+
+    @Override
+    public void prepareMobModel(BlackstoneGolem blackstoneGolem, float limbSwing, float limbSwingAmount, float partialTick) {
         this.resetPose();
-        this.head.yRot = netHeadYaw * (float) (Math.PI / 180.0);
-        this.head.xRot = headPitch * (float) (Math.PI / 180.0);
 
         var pose = blackstoneGolem.getGolemPose();
         switch (pose){
@@ -110,13 +124,16 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
                 animateLeg(this.leftArm, theta, speed  * 0.8F);
             }
             case CHARGING_TELEGRAPH -> {
-                this.body.y += 1.0F;
-                this.body.xRot = 0.7F;
-                this.rightLeg.xRot += 0.5F;
-                this.rightArm.xRot = -0.4F;
-                this.leftLeg.xRot += 0.2F;
-                this.leftLeg.z -= 12.0F;
-                this.leftArm.xRot = -1.0F;
+                float time = 1.0F - Math.max(blackstoneGolem.getChargeTime() - partialTick, 0.0F) / 40.0F;
+                time = FloatEasings.easeOutPow(time, 4.0F);
+
+                this.body.y += time;
+                this.body.xRot = 0.7F * time;
+                this.rightLeg.xRot += 0.5F * time;
+                this.rightArm.xRot = -0.4F * time;
+                this.leftLeg.xRot += 0.2F * time;
+                this.leftLeg.z -= 12.0F * time;
+                this.leftArm.xRot = -1.0F * time;
                 this.head.xRot -= this.body.xRot;
             }
             case CHARGING -> {
@@ -134,23 +151,10 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
         }
 
         if (blackstoneGolem.getAttackAnimationTick() > 0) {
-            float t = Math.max(blackstoneGolem.getAttackAnimationTick() - 2 - (ageInTicks % 1.0F), 0.0F);
+            float t = Math.max(blackstoneGolem.getAttackAnimationTick() - 2 - (partialTick), 0.0F);
             this.rightArm.xRot = 0.1F - (t) * 0.6F;
             this.leftArm.xRot = 0.1F - (t) * 0.6F;
         }
-        this.core.y += Mth.sin(ageInTicks * 0.1F) * 0.5F - blackstoneGolem.getCoreChargeRatio() * 4.0F;
-    }
-
-    public void animateLeg(ModelPart leg, float theta, float animationSpeed){
-        leg.z += (Mth.cos(theta)) * animationSpeed * 12.0F;
-        float baseY = leg.y;
-        leg.y = Math.min(baseY - Mth.sin(theta) * animationSpeed * 18.0F, baseY);
-        leg.xRot = -Mth.sin(theta - Mth.PI * 0.5F) * animationSpeed;
-    }
-
-    @Override
-    public void prepareMobModel(BlackstoneGolem entity, float limbSwing, float limbSwingAmount, float partialTick) {
-
     }
 
     @Override
