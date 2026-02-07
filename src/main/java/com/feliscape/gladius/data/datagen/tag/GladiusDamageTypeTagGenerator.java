@@ -27,7 +27,7 @@ public class GladiusDamageTypeTagGenerator extends DamageTypeTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(GladiusTags.DamageTypes.IS_MAGIC)
                 .addTag(Tags.DamageTypes.IS_MAGIC)
-                .remove(Tags.DamageTypes.IS_POISON); // Exclude Poison from magic damage
+                .remove(Tags.DamageTypes.IS_POISON); // Exclude Poison (which is magic by default) from magic damage
 
         this.tag(GladiusTags.DamageTypes.IS_ATTACK)
                 .add(DamageTypes.MOB_ATTACK)
@@ -35,10 +35,17 @@ public class GladiusDamageTypeTagGenerator extends DamageTypeTagsProvider {
                 .add(DamageTypes.PLAYER_ATTACK)
         ;
 
+        this.tag(DamageTypeTags.IS_FIRE)
+                .add(GladiusDamageTypes.TORRID_WISP)
+                .add(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING)
+        ;
+
         this.tag(DamageTypeTags.NO_IMPACT)
                 .add(GladiusDamageTypes.BLEEDING);
         this.tag(DamageTypeTags.NO_KNOCKBACK)
-                .add(GladiusDamageTypes.BLEEDING);
+                .add(GladiusDamageTypes.BLEEDING)
+                .add(GladiusDamageTypes.TORRID_WISP)
+        ;
         this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS)
                 .add(GladiusDamageTypes.BLEEDING);
     }

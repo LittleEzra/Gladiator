@@ -1,0 +1,6 @@
+{
+  "effects": "burning",
+  "exhaustion": 0.1,
+  "message_id": "gladius:blackstone_golem_charging",
+  "scaling": "when_caused_by_living_non_player"
+}

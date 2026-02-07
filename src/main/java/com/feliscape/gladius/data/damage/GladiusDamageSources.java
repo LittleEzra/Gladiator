@@ -49,6 +49,27 @@ public class GladiusDamageSources {
         );
     }
 
+    public static DamageSource torridWisp(Level level){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.TORRID_WISP)
+        );
+    }
+    public static DamageSource torridWisp(Level level, Entity entity, @Nullable Entity owner){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.TORRID_WISP), entity, owner
+        );
+    }
+    public static DamageSource blackstoneGolemCharging(Level level){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING)
+        );
+    }
+    public static DamageSource blackstoneGolemCharging(Level level, Entity entity){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING), entity
+        );
+    }
+
     private static Holder<DamageType> getDamageType(Level level, ResourceKey<DamageType> key){
         return level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(GladiusDamageTypes.SKEWERING);
     }

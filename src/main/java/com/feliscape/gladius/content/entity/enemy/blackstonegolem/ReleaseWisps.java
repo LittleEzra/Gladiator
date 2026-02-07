@@ -46,7 +46,7 @@ public class ReleaseWisps extends Behavior<BlackstoneGolem> {
         wisp.setOwner(owner);
         wisp.setAttackDelay(20);
 
-        Vec3 randomVelocity = RandomUtil.randomPositionOnSphereGaussian(owner.getRandom(), 0.1D);
+        Vec3 randomVelocity = RandomUtil.randomPositionOnSphereGaussian(owner.getRandom(), 0.25D).add(0.0D, 0.2D, 0.0D);
         wisp.setDeltaMovement(randomVelocity);
 
         level.addFreshEntity(wisp);

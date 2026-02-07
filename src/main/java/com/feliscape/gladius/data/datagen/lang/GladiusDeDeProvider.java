@@ -124,6 +124,11 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addDeathMessage(GladiusDamageTypes.SKEWERING, "%1$s wurde aufgespießt");
         this.addDeathMessagePlayer(GladiusDamageTypes.SKEWERING, "%1$s wurde beim Versuch, %2$s zu entkommen, aufgespießt");
 
+        this.addDeathMessagePlayer(GladiusDamageTypes.TORRID_WISP, "%1$s wurde von %2$s verbrannt");
+        this.addDeathMessage(GladiusDamageTypes.TORRID_WISP, "%1$s wurde verbrannt");
+        this.addDeathMessagePlayer(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING, "%1$s wurde von %2$s zerquetscht");
+        this.addDeathMessage(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING, "%1$s wurde zerquetscht");
+
         this.addPotion(GladiusPotions.FROST_RESISTANCE, "Trank der Frostresistenz");
         this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Wurftrank der Frostresistenz");
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Verweiltrank der Frostresistenz");

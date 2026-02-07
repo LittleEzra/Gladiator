@@ -13,6 +13,9 @@ public class GladiusDamageTypes {
     public static final ResourceKey<DamageType> SKEWERING = key("skewering");
     public static final ResourceKey<DamageType> INDIRECT_SKEWERING = key("indirect_skewering");
 
+    public static final ResourceKey<DamageType> TORRID_WISP = key("torrid_wisp");
+    public static final ResourceKey<DamageType> BLACKSTONE_GOLEM_CHARGING = key("blackstone_golem_charging");
+
     public static void bootstrap(BootstrapContext<DamageType> context){
         context.register(BLEEDING, new DamageType(BLEEDING.location().toString(),
                 0.2F, DamageEffects.HURT)
@@ -20,6 +23,8 @@ public class GladiusDamageTypes {
         context.register(MAGIC_PROJECTILE, new DamageType(MAGIC_PROJECTILE.location().toString(),
                 0.1F, DamageEffects.HURT)
         );
+        register(context, TORRID_WISP, 0.1F, DamageEffects.BURNING);
+        register(context, BLACKSTONE_GOLEM_CHARGING, 0.1F, DamageEffects.BURNING);
         register(context, SKEWERING);
         register(context, INDIRECT_SKEWERING);
     }

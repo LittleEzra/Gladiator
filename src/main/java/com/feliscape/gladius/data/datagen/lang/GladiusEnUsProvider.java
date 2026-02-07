@@ -123,6 +123,11 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addDeathMessage(GladiusDamageTypes.SKEWERING, "%1$s was skewered");
         this.addDeathMessagePlayer(GladiusDamageTypes.SKEWERING, "%1$s was skewered whilst trying to escape %2$s");
 
+        this.addDeathMessagePlayer(GladiusDamageTypes.TORRID_WISP, "%1$s was seared by %2$s");
+        this.addDeathMessage(GladiusDamageTypes.TORRID_WISP, "%1$s was seared");
+        this.addDeathMessagePlayer(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING, "%1$s was crushed in flames by %2$s");
+        this.addDeathMessage(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING, "%1$s was crushed in flames");
+
         this.addPotion(GladiusPotions.FROST_RESISTANCE, "Potion of Frost Resistance");
         this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Splash Potion of Frost Resistance");
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Lingering Potion of Frost Resistance");

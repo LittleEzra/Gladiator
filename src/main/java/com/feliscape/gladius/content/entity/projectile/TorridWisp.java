@@ -1,8 +1,12 @@
 package com.feliscape.gladius.content.entity.projectile;
 
+import com.feliscape.gladius.data.damage.GladiusDamageSources;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
+import com.feliscape.gladius.registry.GladiusParticles;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -21,6 +25,8 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class TorridWisp extends Entity implements TraceableEntity {
+    private static EntityDataAccessor<Integer> DATA_ATTACK_DELAY = SynchedEntityData.defineId(TorridWisp.class, EntityDataSerializers.INT);
+
     @Nullable
     Entity cachedTarget;
     @Nullable
@@ -30,7 +36,6 @@ public class TorridWisp extends Entity implements TraceableEntity {
     private UUID ownerUUID;
     @Nullable
     private Entity cachedOwner;
-    int attackDelay;
 
     public TorridWisp(EntityType<?> entityType, Level level) {
         super(entityType, level);
@@ -41,11 +46,11 @@ public class TorridWisp extends Entity implements TraceableEntity {
     }
 
     public int getAttackDelay() {
-        return attackDelay;
+        return this.entityData.get(DATA_ATTACK_DELAY);
     }
 
     public void setAttackDelay(int attackDelay) {
-        this.attackDelay = attackDelay;
+        this.entityData.set(DATA_ATTACK_DELAY, attackDelay);
     }
 
     public void setTarget(@Nullable Entity owner) {
@@ -99,15 +104,29 @@ public class TorridWisp extends Entity implements TraceableEntity {
     public void tick() {
         super.tick();
 
+        if (!level().isClientSide() && tickCount >= 140 + getAttackDelay()){
+            this.level().broadcastEntityEvent(this, (byte) 3);
+            this.discard();
+            return;
+        }
+
         if (level().isClientSide){
-            for (int i = 0; i < 2; i++){
+            if (tickCount > getAttackDelay()){
+                for (int i = 0; i < 2; i++) {
+                    level().addParticle(ParticleTypes.FLAME,
+                            this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D),
+                            Math.sin(random.nextDouble() * Math.TAU) * 0.02D,
+                            Math.sin(random.nextDouble() * Math.TAU) * 0.02D,
+                            Math.sin(random.nextDouble() * Math.TAU) * 0.02D);
+                }
+            } else{
                 level().addParticle(ParticleTypes.FLAME,
                         this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D),
                         0.0D, 0.0D, 0.0D);
             }
         }
 
-        if (tickCount >= attackDelay){
+        if (tickCount >= getAttackDelay()){
             Entity target = getTarget();
             if (target != null) {
                 Vec3 targetVelocity = target.getEyePosition().subtract(this.position());
@@ -137,29 +156,47 @@ public class TorridWisp extends Entity implements TraceableEntity {
         this.setPos(nextPos);
     }
 
+    @Override
+    public void handleEntityEvent(byte id) {
+        if (id == 3){
+            for (int i = 0; i < 12; i++) {
+                double rotation = ((double) this.getYRot() + 90.0D + (random.nextDouble() * 2.0D - 1.0D) * 45.0D) * (Math.PI / 180.0);
+                double xd = Math.cos(rotation) * level().random.nextDouble() * 0.5D;
+                double yd = (random.nextDouble() * 2.0D - 1.0D) * 0.34D;
+                double zd = Math.sin(rotation) * level().random.nextDouble() * 0.5D;
+                level().addParticle(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(),
+                        xd, yd, zd);
+            }
+        } else{
+            super.handleEntityEvent(id);
+        }
+    }
+
     private boolean canHitEntity(Entity entity){
         return entity.canBeHitByProjectile() && entity != getOwner();
     }
 
     private void hitEntity(EntityHitResult result){
         if (result.getEntity() instanceof LivingEntity entity){
-            entity.hurt(level().damageSources().onFire(), 2.0F);
+            entity.hurt(GladiusDamageSources.torridWisp(level(), this, this.getOwner()), 2.0F);
         }
 
         if (!level().isClientSide){
+            this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
         }
     }
 
     private void hitBlock(BlockHitResult result){
         if (!level().isClientSide){
+            this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
         }
     }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-
+        builder.define(DATA_ATTACK_DELAY, 20);
     }
 
     @Override

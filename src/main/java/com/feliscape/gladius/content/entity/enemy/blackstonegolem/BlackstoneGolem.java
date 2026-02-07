@@ -1,6 +1,7 @@
 package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.data.damage.GladiusDamageSources;
 import com.feliscape.gladius.registry.GladiusParticles;
 import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
@@ -133,7 +134,7 @@ public class BlackstoneGolem extends PathfinderMob {
             if (this.getGolemPose() == BlackstoneGolemPose.CHARGING){
                 List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(0.5D), e -> e != this);
                 for (LivingEntity living : entities){
-                    living.hurt(level().damageSources().onFire(), 6.0F);
+                    living.hurt(GladiusDamageSources.blackstoneGolemCharging(level(), this), 6.0F);
                     living.push(this.getDeltaMovement());
                     if (living instanceof ServerPlayer serverPlayer){
                         serverPlayer.connection.send(new ClientboundSetEntityMotionPacket(serverPlayer));

@@ -1,8 +1,10 @@
-// 1.21.1	2025-12-06T22:54:02.1317117	Registries
+// 1.21.1	2026-02-07T10:13:28.7301133	Registries
+ada27dca5b91f09254dd880193507bbe50b8f236 data/gladius/damage_type/blackstone_golem_charging.json
 acac2ca9be3f1e5d9b3e0dff1db765ad79e56ca5 data/gladius/damage_type/bleeding.json
 da6b9cf45e45bd6aef6aab3e0f74dda487efe4b8 data/gladius/damage_type/indirect_skewering.json
 2034ae494412625868fd9746250e12969e42cfba data/gladius/damage_type/magic_projectile.json
 29544289b9c39f929b3fb005cf1982f1ee7838d4 data/gladius/damage_type/skewering.json
+805a1e1cd5918207697d71739ef914129343c0be data/gladius/damage_type/torrid_wisp.json
 8d641f0fbafc37b7d630426d5f028b363b140b54 data/gladius/enchantment/stunning.json
 45e8ba243d141accc0353433eaa46c89f2067429 data/gladius/gladius/aspect/fire.json
 6b37bf304e0cf671fc4f79f834e239acc6da74e5 data/gladius/gladius/aspect/ice.json
