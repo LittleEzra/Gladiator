@@ -42,6 +42,8 @@ public class GladiusTags {
         public static final TagKey<Item> NO_OIL_PROTECTION = create("no_oil_protection");
         public static final TagKey<Item> GAUNTLETS = create("gauntlets");
 
+        public static final TagKey<Item> TORRID_STANDARD_AMMO = create("torrid_standard_ammo");
+
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Gladius.location(name));
         }

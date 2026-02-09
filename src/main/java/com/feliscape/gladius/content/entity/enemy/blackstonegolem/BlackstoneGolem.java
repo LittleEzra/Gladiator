@@ -8,13 +8,18 @@ import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.feliscape.gladius.util.RandomUtil;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
@@ -29,6 +34,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,10 +42,15 @@ public class BlackstoneGolem extends PathfinderMob {
     public static final EntityDataAccessor<Boolean> DATA_IDLE = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<BlackstoneGolemPose> DATA_POSE = SynchedEntityData.defineId(BlackstoneGolem.class, GladiusEntityDataSerializers.BLACKSTONE_GOLEM_POSE.get());
     public static final EntityDataAccessor<Integer> DATA_CHARGE_TIME = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_CORE_CHARGE = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_STUNNED = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.INT);
+
+    private final ServerBossEvent bossEvent = new ServerBossEvent(
+            this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10
+    );
 
     private int attackAnimationTick;
     int attackPatternPosition = 0;
-    int coreCharge = 0;
 
     public BlackstoneGolem(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -97,6 +108,20 @@ public class BlackstoneGolem extends PathfinderMob {
         this.setChargeTime(this.getBrain().getMemory(GladiusMemoryModuleTypes.CHARGE_TELEGRAPH.get()).orElse(0));
         this.level().getProfiler().pop();
         super.customServerAiStep();
+
+        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public void startSeenByPlayer(ServerPlayer player) {
+        super.startSeenByPlayer(player);
+        this.bossEvent.addPlayer(player);
+    }
+
+    @Override
+    public void stopSeenByPlayer(ServerPlayer player) {
+        super.stopSeenByPlayer(player);
+        this.bossEvent.removePlayer(player);
     }
 
     @Override
@@ -145,6 +170,13 @@ public class BlackstoneGolem extends PathfinderMob {
     }
 
     @Override
+    public void push(Entity entity) {
+        if (this.getGolemPose() == BlackstoneGolemPose.CHARGING) return;
+
+        super.push(entity);
+    }
+
+    @Override
     public void aiStep() {
         super.aiStep();
 
@@ -152,25 +184,38 @@ public class BlackstoneGolem extends PathfinderMob {
             this.attackAnimationTick--;
         }
 
-        if (this.isAggressive()){
-            coreCharge++;
-            if(level().isClientSide() && coreCharge > 60){
-                if (random.nextBoolean()){
-                    Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, 1.0D);
-                    level().addParticle(ParticleTypes.FLAME,
-                            getX() + randomVector.x,
-                            getY(0.7) + randomVector.y,
-                            getZ() + randomVector.z,
-                            -randomVector.x * 0.1D, -randomVector.y * 0.1D, -randomVector.z * 0.1D);
+        if (this.isAggressive() && this.getGolemPose() == BlackstoneGolemPose.VANILLA){
+            int coreCharge = this.getCoreCharge();
+            if(level().isClientSide()){
+                if (coreCharge > 60) {
+                    if (random.nextBoolean()) {
+                        Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, 1.0D);
+                        level().addParticle(ParticleTypes.FLAME,
+                                getX() + randomVector.x,
+                                getY(0.7) + randomVector.y,
+                                getZ() + randomVector.z,
+                                -randomVector.x * 0.1D, -randomVector.y * 0.1D, -randomVector.z * 0.1D);
+                    }
+                }
+            } else{
+                this.setCoreCharge(coreCharge + 1);
+
+                if (coreCharge >= 120){
+                    this.setCoreCharge(0);
+                    explodeCore();
                 }
             }
-            if (coreCharge >= 120){
-                coreCharge = 0;
-                explodeCore();
-            }
         } else{
-            coreCharge = 0;
+            this.setCoreCharge(0);
         }
+    }
+
+    public int getCoreCharge() {
+        return this.entityData.get(DATA_CORE_CHARGE);
+    }
+
+    public void setCoreCharge(int coreCharge) {
+        this.entityData.set(DATA_CORE_CHARGE, coreCharge);
     }
 
     public int getAttackPatternPosition(){
@@ -181,7 +226,7 @@ public class BlackstoneGolem extends PathfinderMob {
     }
 
     public float getCoreChargeRatio(){
-        int i = coreCharge - 60;
+        int i = getCoreCharge() - 60;
         if (i > 0){
             return i / 60.0F;
         }
@@ -189,23 +234,26 @@ public class BlackstoneGolem extends PathfinderMob {
     }
 
     private void explodeCore(){
-        if (level().isClientSide()){
+        if (level().isClientSide()) return;
+
+        level().broadcastEntityEvent(this, (byte) 70);
+        List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(2.5D, 1.0D, 2.5D));
+        for (LivingEntity living : entities){
+            living.hurt(level().damageSources().onFire(), 4.0F);
+        }
+        this.playSound(SoundEvents.GENERIC_EXPLODE.value());
+    }
+
+    @Override
+    public void handleEntityEvent(byte id) {
+        if (id == 70){
             for (int i = 0; i < 25; i++){
                 double velocity = random.nextDouble() * 0.2D + 0.2D;
                 Vec3 randomVector = RandomUtil.randomPositionOnSphereGaussian(random, velocity);
                 level().addParticle(GladiusParticles.BURNING_SMOKE.get(), getX(), getY(0.7), getZ(),
                         randomVector.x, randomVector.y, randomVector.z);
             }
-        } else{
-            List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(2.5D, 1.0D, 2.5D));
-            for (LivingEntity living : entities){
-                living.hurt(level().damageSources().onFire(), 4.0F);
-            }
         }
-    }
-
-    @Override
-    public void handleEntityEvent(byte id) {
         if (id == 4) {
             this.attackAnimationTick = 10;
             this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
@@ -215,11 +263,27 @@ public class BlackstoneGolem extends PathfinderMob {
     }
 
     @Override
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        if (this.hasCustomName()) {
+            this.bossEvent.setName(this.getDisplayName());
+        }
+    }
+
+    @Override
+    public void setCustomName(@Nullable Component name) {
+        super.setCustomName(name);
+        this.bossEvent.setName(this.getDisplayName());
+    }
+
+    @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(DATA_IDLE, true);
         builder.define(DATA_POSE, BlackstoneGolemPose.VANILLA);
         builder.define(DATA_CHARGE_TIME, 0);
+        builder.define(DATA_CORE_CHARGE, 0);
+        builder.define(DATA_STUNNED, 0);
     }
 
     public boolean isIdle(){

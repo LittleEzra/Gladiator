@@ -1,5 +1,5 @@
-// 1.21.1	2026-02-01T23:05:15.1587952	Tags for minecraft:block mod id gladius
+// 1.21.1	2026-02-09T14:44:56.6434386	Tags for minecraft:block mod id gladius
 f12710e9c28fd237cbfc94b57f80a2fd67940d54 data/gladius/tags/block/frigid_ice_spreadable.json
 69376300ca87a29e2b1f0d5ea2837800707daeed data/minecraft/tags/block/geode_invalid_blocks.json
 69376300ca87a29e2b1f0d5ea2837800707daeed data/minecraft/tags/block/ice.json
-65302dfef71bff0b6afbfaf39ce7204fda441061 data/minecraft/tags/block/mineable/pickaxe.json
+95a21be4faa1da74dd04263bbd251eb1267c9db4 data/minecraft/tags/block/mineable/pickaxe.json

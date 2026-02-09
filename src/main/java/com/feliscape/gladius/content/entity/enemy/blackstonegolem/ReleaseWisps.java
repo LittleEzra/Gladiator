@@ -1,9 +1,12 @@
 package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
 import com.feliscape.gladius.content.entity.projectile.TorridWisp;
+import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.feliscape.gladius.util.RandomUtil;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
@@ -48,6 +51,9 @@ public class ReleaseWisps extends Behavior<BlackstoneGolem> {
 
         Vec3 randomVelocity = RandomUtil.randomPositionOnSphereGaussian(owner.getRandom(), 0.25D).add(0.0D, 0.2D, 0.0D);
         wisp.setDeltaMovement(randomVelocity);
+
+        level.playSound(null, BlockPos.containing(owner.getEyePosition()), GladiusSoundEvents.TORRID_WISP_SPAWN.get(),
+                owner.getSoundSource(), 1.0F, 0.8F + owner.getRandom().nextFloat() * 0.3F);
 
         level.addFreshEntity(wisp);
     }

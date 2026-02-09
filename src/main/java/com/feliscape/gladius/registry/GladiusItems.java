@@ -24,8 +24,10 @@ public class GladiusItems {
 
     public static final DeferredItem<Item> FROSTMANCER_SPAWN_EGG = ITEMS.registerItem("frostmancer_spawn_egg",
             p -> new DeferredSpawnEggItem(GladiusEntityTypes.FROSTMANCER, 0x959b9b, 0x273355, p));
-    //public static final DeferredItem<Item> BLACKSTONE_GOLEM_SPAWN_EGG = ITEMS.registerItem("blackstone_golem_spawn_egg",
-    //        p -> new DeferredSpawnEggItem(GladiusEntityTypes.BLACKSTONE_GOLEM, 0x312c36, 0xeb8924, p));
+    public static final DeferredItem<Item> BLACKSTONE_GOLEM_SPAWN_EGG = ITEMS.registerItem("blackstone_golem_spawn_egg",
+            p -> new DeferredSpawnEggItem(GladiusEntityTypes.BLACKSTONE_GOLEM, 0x312c36, 0xeb8924, p));
+    public static final DeferredItem<Item> PIGLIN_SHAMAN_SPAWN_EGG = ITEMS.registerItem("piglin_shaman_spawn_egg",
+            p -> new DeferredSpawnEggItem(GladiusEntityTypes.PIGLIN_SHAMAN, 0x89203d, 0xf9f3a4, p));
 
     public static final DeferredItem<Item> BLAZING_HEART = ITEMS.registerSimpleItem("blazing_heart");
     public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed",
@@ -77,7 +79,11 @@ public class GladiusItems {
             ));
     public static final DeferredItem<FrozenWandItem> FROZEN_WAND = ITEMS.registerItem("frozen_wand",
             p -> new FrozenWandItem(p.stacksTo(1)
-                    .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.MAGIC, false))
+                    .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.ICE, false))
+            ));
+    public static final DeferredItem<TorridStandardItem> TORRID_STANDARD = ITEMS.registerItem("torrid_standard",
+            p -> new TorridStandardItem(p.stacksTo(1)
+                    .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.FIRE, false))
             ));
     public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
             p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p.stacksTo(1)

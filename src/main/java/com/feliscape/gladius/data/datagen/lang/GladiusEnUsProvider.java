@@ -25,8 +25,11 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addBlock(GladiusBlocks.MIST_TRAP, "Mist Trap");
         this.addBlock(GladiusBlocks.FLAME_TRAP, "Flame Trap");
 
+        this.addBlock(GladiusBlocks.BLACKSTONE_GOLEM_HEART, "Blackstone Golem Heart");
+
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmancer Spawn Egg");
-        //this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Blackstone Golem Spawn Egg");
+        this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Blackstone Golem Spawn Egg");
+        this.addItem(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG, "Piglin Shaman Spawn Egg");
 
         this.addItem(GladiusItems.BLAZING_HEART, "Blazing Heart");
         this.addItem(GladiusItems.FRIGID_SEED, "Frigid Seed");
@@ -51,6 +54,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FLAMBERGE, "Flamberge");
         this.addItem(GladiusItems.GOLDEN_WAND, "Golden Wand");
         this.addItem(GladiusItems.FROZEN_WAND, "Frozen Wand");
+        this.addItem(GladiusItems.TORRID_STANDARD, "Torrid Standard");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flamewalkers");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Power Gauntlets");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Leather Gauntlets");
@@ -77,6 +81,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.ICE_BLOCK, "Ice Block");
         this.addEntityType(GladiusEntityTypes.FROSTMANCER, "Frostmancer");
         this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Blackstone Golem");
+        this.addEntityType(GladiusEntityTypes.PIGLIN_SHAMAN, "Piglin Shaman");
 
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Flash Powder Cloud");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Crystal Butterfly");
@@ -106,6 +111,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.ICE_BLOCK_SHATTER, "Ice Block shatters");
 
         this.addSubtitle(GladiusSoundEvents.FROSTMANCER_SHIELD_BREAK, "Frostmancer's shield breaks");
+        this.addSubtitle(GladiusSoundEvents.TORRID_WISP_SPAWN, "Torrid Wisp flares");
 
         this.addSubtitle(GladiusSoundEvents.FRIGID_ICE_FREEZE, "Frigid Ice spreads");
         this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_IGNITE, "Flame Trap ignites");

@@ -6,6 +6,7 @@ import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.Frostmancer;
 import com.feliscape.gladius.content.entity.ai.RetrieveArrowGoal;
 import com.feliscape.gladius.content.entity.ai.ReturnArrowGoal;
+import com.feliscape.gladius.content.entity.enemy.piglin.PiglinShaman;
 import com.feliscape.gladius.content.entity.misc.FireWake;
 import com.feliscape.gladius.content.item.WandItem;
 import com.feliscape.gladius.registry.*;
@@ -32,6 +33,7 @@ public class GeneralEvents {
         event.put(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterfly.createAttributes().build());
         event.put(GladiusEntityTypes.FROSTMANCER.get(), Frostmancer.createAttributes().build());
         event.put(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolem.createAttributes().build());
+        event.put(GladiusEntityTypes.PIGLIN_SHAMAN.get(), PiglinShaman.createAttributes().build());
     }
 
 

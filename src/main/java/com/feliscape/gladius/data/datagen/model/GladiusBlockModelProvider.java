@@ -28,6 +28,8 @@ public class GladiusBlockModelProvider extends BlockStateProvider {
         blockWithItem(GladiusBlocks.FRIGID_ICE);
         mistTrap(GladiusBlocks.MIST_TRAP.get());
         flameTrap(GladiusBlocks.FLAME_TRAP.get());
+
+        blockWithItem(GladiusBlocks.BLACKSTONE_GOLEM_HEART);
     }
 
     private void flameTrap(Block block){

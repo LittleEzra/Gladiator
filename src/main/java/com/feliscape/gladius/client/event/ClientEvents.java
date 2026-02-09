@@ -2,7 +2,11 @@ package com.feliscape.gladius.client.event;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusClient;
+import com.feliscape.gladius.client.GladiusModelLayers;
+import com.feliscape.gladius.client.extension.BattleStandardAnimator;
 import com.feliscape.gladius.client.extension.ClaymoreClientExtensions;
+import com.feliscape.gladius.client.extension.animation.CustomItemAnimator;
+import com.feliscape.gladius.client.extension.animation.ItemAnimatorManager;
 import com.feliscape.gladius.client.hud.BloodLayer;
 import com.feliscape.gladius.client.hud.FlamewalkersHeatLayer;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
@@ -16,17 +20,16 @@ import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.entity.LivingEntityRenderer;
-import net.minecraft.client.renderer.entity.NoopRenderer;
-import net.minecraft.client.renderer.entity.RenderLayerParent;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -44,6 +47,8 @@ public class ClientEvents {
     public static void registerClientExtensions(RegisterClientExtensionsEvent event)
     {
         event.registerItem(new ClaymoreClientExtensions(), GladiusItems.CLAYMORE);
+
+        ItemAnimatorManager.register(new BattleStandardAnimator(), GladiusItems.TORRID_STANDARD);
 
         /*event.registerItem(new SmallArmorClientExtension(),
                 GladiusItems.ARCHER_CAP,
@@ -66,6 +71,18 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
+    public static void hideArmsWithTwoHandedWeapons(RenderArmEvent event){
+        var hand = CustomItemAnimator.getHand(event.getPlayer(), event.getArm().getOpposite());
+        ItemStack itemInHand = event.getPlayer().getItemInHand(hand);
+        if (!itemInHand.isEmpty()){
+            CustomItemAnimator animator = CustomItemAnimator.of(itemInHand);
+            if (animator != null && animator.hideOtherHand(event.getPlayer(), hand)){
+                event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void registerClientReloadListeners(RegisterClientReloadListenersEvent event)
     {
         new GladiusClient.ReloadListener(event);
@@ -76,6 +93,7 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterflyRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FROSTMANCER.get(), FrostmancerRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolemRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_SHAMAN.get(), PiglinShamanRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PRISMARINE_ARROW.get(), PrismarineArrowRenderer::new);

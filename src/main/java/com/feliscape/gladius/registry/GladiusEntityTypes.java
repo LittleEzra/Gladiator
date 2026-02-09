@@ -5,6 +5,7 @@ import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGole
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
 import com.feliscape.gladius.content.entity.Frostmancer;
+import com.feliscape.gladius.content.entity.enemy.piglin.PiglinShaman;
 import com.feliscape.gladius.content.entity.misc.*;
 import com.feliscape.gladius.content.entity.projectile.*;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
@@ -135,6 +136,14 @@ public class GladiusEntityTypes {
                     .sized(1.4F, 3.75F)
                     .fireImmune()
                     .clientTrackingRange(10)
+    );
+    public static final Supplier<EntityType<PiglinShaman>> PIGLIN_SHAMAN = ENTITY_TYPES.registerEntityType("piglin_shaman",
+            PiglinShaman::new, MobCategory.MONSTER, b -> b
+                    .sized(0.6F, 1.95F)
+                    .eyeHeight(1.79F)
+                    .passengerAttachments(2.0125F)
+                    .ridingOffset(-0.7F)
+                    .clientTrackingRange(8)
     );
     public static final Supplier<EntityType<CrystalButterfly>> CRYSTAL_BUTTERFLY = ENTITY_TYPES.registerEntityType("crystal_butterfly",
             CrystalButterfly::new, MobCategory.MISC, b -> b

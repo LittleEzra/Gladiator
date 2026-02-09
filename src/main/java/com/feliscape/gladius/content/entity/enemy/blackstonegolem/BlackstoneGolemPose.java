@@ -12,6 +12,7 @@ public enum BlackstoneGolemPose {
     VANILLA(0),
     CHARGING_TELEGRAPH(1),
     CHARGING(2),
+    STUNNED(3),
     ;
 
     public static final IntFunction<BlackstoneGolemPose> BY_ID = ByIdMap.continuous(BlackstoneGolemPose::id, values(), ByIdMap.OutOfBoundsStrategy.ZERO);

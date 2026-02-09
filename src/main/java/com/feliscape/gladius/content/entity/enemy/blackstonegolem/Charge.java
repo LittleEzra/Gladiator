@@ -1,5 +1,6 @@
 package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
+import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.networking.payload.ShakeScreenPayload;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import net.minecraft.core.BlockPos;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.BlockPosTracker;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
+import net.minecraft.world.entity.ai.memory.WalkTarget;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -60,6 +62,7 @@ public class Charge extends Behavior<BlackstoneGolem> {
 
                     PacketDistributor.sendToAllPlayers(new ShakeScreenPayload(1.0F, 40));
                 }
+
             }
             owner.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(chargeTarget));
         }

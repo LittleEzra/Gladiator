@@ -1,6 +1,7 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.content.block.BlackstoneGolemHeartBlock;
 import com.feliscape.gladius.content.block.FlameTrapBlock;
 import com.feliscape.gladius.content.block.FrigidIceBlock;
 import com.feliscape.gladius.content.block.MistTrapBlock;
@@ -45,7 +46,14 @@ public class GladiusBlocks {
             ));
     public static final DeferredBlock<FlameTrapBlock> FLAME_TRAP = registerBlockWithItem("flame_trap",
             p -> new FlameTrapBlock(p
-                    .mapColor(MapColor.STONE)
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .strength(3.5F, 6.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)
+            ));
+    public static final DeferredBlock<BlackstoneGolemHeartBlock> BLACKSTONE_GOLEM_HEART = registerBlockWithItem("blackstone_golem_heart",
+            p -> new BlackstoneGolemHeartBlock(p
+                    .mapColor(MapColor.COLOR_BLACK)
                     .strength(3.5F, 6.0F)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)

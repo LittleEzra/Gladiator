@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "gladius:blackstone_golem_heart"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gladius:blocks/blackstone_golem_heart"
+}

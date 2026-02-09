@@ -26,6 +26,7 @@ public class GladiusBlockTagGenerator extends BlockTagsProvider {
                 .add(GladiusBlocks.MIST_TRAP.get())
                 .add(GladiusBlocks.FLAME_TRAP.get())
                 .add(GladiusBlocks.FRIGID_ICE.get())
+                .add(GladiusBlocks.BLACKSTONE_GOLEM_HEART.get())
         ;
         this.tag(BlockTags.GEODE_INVALID_BLOCKS)
                 .add(GladiusBlocks.FRIGID_ICE.get())

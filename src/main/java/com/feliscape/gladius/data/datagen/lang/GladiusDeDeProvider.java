@@ -26,7 +26,11 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addBlock(GladiusBlocks.MIST_TRAP, "Nebelfalle");
         this.addBlock(GladiusBlocks.FLAME_TRAP, "Flammenfalle");
 
+        this.addBlock(GladiusBlocks.BLACKSTONE_GOLEM_HEART, "Schwarzsteingolemherz");
+
         this.addItem(GladiusItems.FROSTMANCER_SPAWN_EGG, "Frostmagier-Spawn-Ei");
+        this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Schwarzsteingolem-Spawn-Ei");
+        this.addItem(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG, "Piglin-Schamanen-Spawn-Ei");
 
         this.addItem(GladiusItems.BLAZING_HEART, "Loderndes Herz");
         this.addItem(GladiusItems.FRIGID_SEED, "Frostiger Samen");
@@ -51,6 +55,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FLAMBERGE, "Flammenschwert");
         this.addItem(GladiusItems.GOLDEN_WAND, "Goldener Zauberstab");
         this.addItem(GladiusItems.FROZEN_WAND, "Gefrorener Zauberstab");
+        this.addItem(GladiusItems.TORRID_STANDARD, "Flammende Standarte");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flammenläufer");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Macht-Handschuhe");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Lederhandschuhe");
@@ -70,6 +75,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
 
         this.addEntityType(GladiusEntityTypes.MAGMA_POOL, "Lavasee");
         this.addEntityType(GladiusEntityTypes.FIRE_WAKE, "Feuerwake");
+        this.addEntityType(GladiusEntityTypes.TORRID_WISP, "Brennendes Licht");
 
         this.addEntityType(GladiusEntityTypes.ICE_BOMB, "Eisbombe");
         this.addEntityType(GladiusEntityTypes.ICE_SPIKE_SPAWNER, "Eisstachel-Spawner");
@@ -77,6 +83,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.ICE_BLOCK, "Eisblock");
         this.addEntityType(GladiusEntityTypes.FROSTMANCER, "Frostmagier");
         this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Schwarzsteingolem");
+        this.addEntityType(GladiusEntityTypes.PIGLIN_SHAMAN, "Piglin-Schamane");
 
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Blitzpulverwolke");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Kristallschmetterling");
@@ -106,6 +113,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.SPELL, "Zauber ist benutzt worden");
 
         this.addSubtitle(GladiusSoundEvents.FROSTMANCER_SHIELD_BREAK, "Frostmagiers Schild zerbricht");
+        this.addSubtitle(GladiusSoundEvents.TORRID_WISP_SPAWN, "Brennendes Licht flammt auf");
 
         this.addSubtitle(GladiusSoundEvents.FRIGID_ICE_FREEZE, "Frostiges Eis breitet sich aus");
         this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_IGNITE, "Flammenfalle entzündet");

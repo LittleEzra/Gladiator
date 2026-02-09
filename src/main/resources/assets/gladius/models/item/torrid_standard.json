@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "loader": "neoforge:separate_transforms",
+  "base": {
+    "parent": "gladius:item/torrid_standard_in_hand"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "gladius:item/torrid_standard_flat"
+    },
+    "ground": {
+      "parent": "gladius:item/torrid_standard_flat"
+    },
+    "fixed": {
+      "parent": "gladius:item/torrid_standard_flat"
+    }
+  }
+}

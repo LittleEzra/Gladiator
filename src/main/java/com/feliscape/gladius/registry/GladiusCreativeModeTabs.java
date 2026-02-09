@@ -39,6 +39,7 @@ public class GladiusCreativeModeTabs {
             before(woodenAxe, GladiusItems.FLAMBERGE, event);
             before(woodenAxe, GladiusItems.GOLDEN_WAND, event);
             before(woodenAxe, GladiusItems.FROZEN_WAND, event);
+            before(woodenAxe, GladiusItems.TORRID_STANDARD, event);
 
             after(turtleHelmet, GladiusItems.FLAMEWALKERS, event);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS){
@@ -57,10 +58,15 @@ public class GladiusCreativeModeTabs {
             after(blueIce, GladiusBlocks.FRIGID_ICE, event);
         } else if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS){
             event.accept(GladiusItems.FROSTMANCER_SPAWN_EGG);
+            event.accept(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG);
+            event.accept(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
             ItemStack crafter = Items.CRAFTER.getDefaultInstance();
             after(crafter, GladiusBlocks.MIST_TRAP, event);
             after(crafter, GladiusBlocks.FLAME_TRAP, event);
+        } else if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
+            ItemStack lodestone = Items.LODESTONE.getDefaultInstance();
+            after(lodestone, GladiusBlocks.BLACKSTONE_GOLEM_HEART, event);
         }
     }
 

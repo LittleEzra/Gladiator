@@ -8,7 +8,8 @@
     "ItemStackMixin",
     "LivingEntityMixin",
     "MobMixin",
-    "client.ClientPacketListenerMixin"
+    "client.ClientPacketListenerMixin",
+    "client.ItemInHandLayerMixin"
   ],
   "client": [
     "client.EntityRenderDispatcherMixin",

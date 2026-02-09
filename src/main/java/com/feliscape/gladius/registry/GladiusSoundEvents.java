@@ -28,6 +28,8 @@ public class GladiusSoundEvents {
 
     public static final Supplier<SoundEvent> FROSTMANCER_SHIELD_BREAK = registerVariable("entity.frostmancer.shield_break");
 
+    public static final Supplier<SoundEvent> TORRID_WISP_SPAWN = registerVariable("entity.torrid_wisp.spawn");
+
     public static final Supplier<SoundEvent> FRIGID_ICE_FREEZE = registerVariable("block.frigid_ice.freeze");
 
     public static final Supplier<SoundEvent> FLAME_TRAP_IGNITE = registerVariable("block.flame_trap.ignite");

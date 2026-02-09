@@ -23,6 +23,10 @@ public class GladiusModelLayers {
     public static final ModelLayerLocation FROSTMANCER = register("frostmancer");
     public static final ModelLayerLocation BLACKSTONE_GOLEM = register("blackstone_golem");
 
+    public static final ModelLayerLocation PIGLIN_SHAMAN = register("piglin_shaman");
+    public static final ModelLayerLocation PIGLIN_SHAMAN_INNER_ARMOR = registerInnerArmor("piglin_shaman");
+    public static final ModelLayerLocation PIGLIN_SHAMAN_OUTER_ARMOR = registerOuterArmor("piglin_shaman");
+
     public static final ModelLayerLocation MAGIC_ORB = register("magic_orb");
     public static final ModelLayerLocation ICE_BLOCK = register("ice_block");
     public static final ModelLayerLocation FROST_SHIELDS = register("frost_shields");
@@ -60,15 +64,24 @@ public class GladiusModelLayers {
         return ALL_MODELS.stream();
     }
 
+    public static final CubeDeformation OUTER_ARMOR_DEFORMATION = new CubeDeformation(1.0F);
+    public static final CubeDeformation INNER_ARMOR_DEFORMATION = new CubeDeformation(0.5F);
     public static final CubeDeformation INNER_SMALL_ARMOR_DEFORMATION = new CubeDeformation(0.3F);
     public static final CubeDeformation OUTER_SMALL_ARMOR_DEFORMATION = new CubeDeformation(0.6F);
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event)
     {
+        LayerDefinition outerArmorLayer = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(new CubeDeformation(1.02F)), 64, 32);
+        LayerDefinition innerArmorLayer = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32);
+
         event.registerLayerDefinition(GladiusModelLayers.CRYSTAL_BUTTERFLY, CrystalButterflyModel::createBodyLayer);
         event.registerLayerDefinition(GladiusModelLayers.FROSTMANCER, FrostmancerModel::createBodyLayer);
         event.registerLayerDefinition(GladiusModelLayers.BLACKSTONE_GOLEM, BlackstoneGolemModel::createBodyLayer);
+
+        event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN, PiglinShamanModel::createBodyLayer);
+        event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN_OUTER_ARMOR, () -> outerArmorLayer);
+        event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN_INNER_ARMOR, () -> innerArmorLayer);
 
         event.registerLayerDefinition(GladiusModelLayers.MAGIC_ORB, MagicOrbModel::createLayer);
         event.registerLayerDefinition(GladiusModelLayers.ICE_BLOCK, IceBlockModel::createLayer);

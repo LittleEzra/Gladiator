@@ -44,6 +44,9 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
                 .add(GladiusItems.LEATHER_GAUNTLETS.get())
         ;
 
+        this.tag(GladiusTags.Items.TORRID_STANDARD_AMMO)
+                .add(Items.BLAZE_POWDER)
+        ;
         this.tag(GladiusTags.Items.NO_OIL_PROTECTION)
                 .add(Items.ELYTRA)
                 .add(Items.LEATHER_HELMET)

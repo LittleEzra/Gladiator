@@ -104,7 +104,7 @@ public class TorridWisp extends Entity implements TraceableEntity {
     public void tick() {
         super.tick();
 
-        if (!level().isClientSide() && tickCount >= 140 + getAttackDelay()){
+        if (!level().isClientSide() && (tickCount >= 140 + getAttackDelay() || getTarget() == null)){
             this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
             return;
@@ -129,14 +129,14 @@ public class TorridWisp extends Entity implements TraceableEntity {
         if (tickCount >= getAttackDelay()){
             Entity target = getTarget();
             if (target != null) {
-                Vec3 targetVelocity = target.getEyePosition().subtract(this.position());
-                double targetXd = targetVelocity.x;
-                double targetYd = targetVelocity.y;
-                double targetZd = targetVelocity.z;
+                Vec3 targetVelocity = target.getEyePosition().subtract(this.position()).normalize();
+                double targetXd = targetVelocity.x * 0.2D;
+                double targetYd = targetVelocity.y * 0.2D;
+                double targetZd = targetVelocity.z * 0.2D;
                 this.setDeltaMovement(
-                        Mth.lerp(0.2D, this.getDeltaMovement().x, targetXd * 0.1D) + Mth.sin(random.nextFloat() * Mth.TWO_PI) * 0.03F,
-                        Mth.lerp(0.4D, this.getDeltaMovement().y, targetYd * 0.1D) - Mth.cos(tickCount * 0.1F) * 0.05D,
-                        Mth.lerp(0.2D, this.getDeltaMovement().z, targetZd * 0.1D) + Mth.cos(random.nextFloat() * Mth.TWO_PI) * 0.03F
+                        targetXd,
+                        targetYd,
+                        targetZd
                 );
             }
         }
@@ -179,6 +179,7 @@ public class TorridWisp extends Entity implements TraceableEntity {
     private void hitEntity(EntityHitResult result){
         if (result.getEntity() instanceof LivingEntity entity){
             entity.hurt(GladiusDamageSources.torridWisp(level(), this, this.getOwner()), 2.0F);
+            entity.igniteForSeconds(4.0F);
         }
 
         if (!level().isClientSide){

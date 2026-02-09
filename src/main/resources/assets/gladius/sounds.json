@@ -69,6 +69,12 @@
     ],
     "subtitle": "subtitle.gladius.entity.frostmancer.shield_break"
   },
+  "entity.torrid_wisp.spawn": {
+    "sounds": [
+      "gladius:entity/blackstone_golem/wisp_spawn"
+    ],
+    "subtitle": "subtitle.gladius.entity.torrid_wisp.spawn"
+  },
   "item.hearth_stone.use": {
     "sounds": [
       "mob/ghast/fireball4"

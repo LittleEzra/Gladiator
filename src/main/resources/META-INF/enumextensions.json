@@ -8,6 +8,15 @@
         "class": "com/feliscape/gladius/client/extension/TwoHandedSwordClientExtensions$EnumParams",
         "field": "TWO_HANDED_SWORD"
       }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "GLADIUS_BATTLE_STANDARD",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/feliscape/gladius/client/extension/BattleStandardClientExtensions$EnumParams",
+        "field": "BATTLE_STANDARD"
+      }
     }
   ]
 }
