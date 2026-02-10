@@ -13,10 +13,7 @@ import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
-import com.feliscape.gladius.registry.GladiusDataAttachments;
-import com.feliscape.gladius.registry.GladiusEntityTypes;
-import com.feliscape.gladius.registry.GladiusItems;
-import com.feliscape.gladius.registry.GladiusMobEffects;
+import com.feliscape.gladius.registry.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
@@ -25,11 +22,15 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -156,6 +157,20 @@ public class ClientEvents {
             if (renderer.shouldRender(entity, instance)){
                 renderer.render(entity, instance.getAmplifier(), event.getPoseStack(), event.getMultiBufferSource(), event.getPartialTick(), event.getPackedLight());
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void inputUpdate(MovementInputUpdateEvent event){
+        Player player = event.getEntity();
+        if (!player.getAttributes().hasAttribute(GladiusAttributes.USING_SPEED_MODIFIER)) return;
+
+        var input = event.getInput();
+        float usingSpeedModifier = (float) player.getAttributeValue(GladiusAttributes.USING_SPEED_MODIFIER);
+
+        if (usingSpeedModifier != 1.0F && !player.isPassenger() && player.isUsingItem()){
+            input.forwardImpulse *= usingSpeedModifier;
+            input.leftImpulse *= usingSpeedModifier;
         }
     }
 

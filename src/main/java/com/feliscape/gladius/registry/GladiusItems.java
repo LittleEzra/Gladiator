@@ -84,6 +84,7 @@ public class GladiusItems {
     public static final DeferredItem<TorridStandardItem> TORRID_STANDARD = ITEMS.registerItem("torrid_standard",
             p -> new TorridStandardItem(p.stacksTo(1)
                     .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.FIRE, false))
+                    .attributes(TorridStandardItem.createAttributes())
             ));
     public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
             p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p.stacksTo(1)

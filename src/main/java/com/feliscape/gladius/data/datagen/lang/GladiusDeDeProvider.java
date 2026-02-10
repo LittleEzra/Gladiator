@@ -142,6 +142,8 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Verweiltrank der Frostresistenz");
         this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Pfeil der Frostresistenz");
 
+        this.addAttribute(GladiusAttributes.USING_SPEED_MODIFIER, "Geschwindigkeit bei Verwendung");
+
         this.addAdvancement(GladiusAdvancements.FIREBRAND,
                 "Pyromane",
                 "Werfe einen Feuerstock ohne jeglicher Rücksicht auf deine Umgebung");

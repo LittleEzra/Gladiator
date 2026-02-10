@@ -23,7 +23,7 @@ public class GladiusCreativeModeTabs {
         if (event.getTabKey() == CreativeModeTabs.COMBAT){
             ItemStack arrow = Items.ARROW.getDefaultInstance();
             ItemStack bow = Items.BOW.getDefaultInstance();
-            ItemStack woodenAxe = Items.WOODEN_AXE.getDefaultInstance();
+            ItemStack shield = Items.SHIELD.getDefaultInstance();
             ItemStack turtleHelmet = Items.TURTLE_HELMET.getDefaultInstance();
 
             before(arrow, GladiusItems.EXPLOSIVE_ARROW, event);
@@ -34,12 +34,12 @@ public class GladiusCreativeModeTabs {
             before(bow, GladiusItems.ICE_BOMB, event);
             before(bow, GladiusItems.FLASH_POWDER, event);
             before(bow, GladiusItems.CRYSTAL_BUTTERFLY, event);
-            before(woodenAxe, GladiusItems.GILDED_DAGGER, event);
-            before(woodenAxe, GladiusItems.CLAYMORE, event);
-            before(woodenAxe, GladiusItems.FLAMBERGE, event);
-            before(woodenAxe, GladiusItems.GOLDEN_WAND, event);
-            before(woodenAxe, GladiusItems.FROZEN_WAND, event);
-            before(woodenAxe, GladiusItems.TORRID_STANDARD, event);
+            before(shield, GladiusItems.GILDED_DAGGER, event);
+            before(shield, GladiusItems.CLAYMORE, event);
+            before(shield, GladiusItems.FLAMBERGE, event);
+            before(shield, GladiusItems.GOLDEN_WAND, event);
+            before(shield, GladiusItems.FROZEN_WAND, event);
+            before(shield, GladiusItems.TORRID_STANDARD, event);
 
             after(turtleHelmet, GladiusItems.FLAMEWALKERS, event);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS){

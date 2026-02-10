@@ -139,6 +139,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Lingering Potion of Frost Resistance");
         this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Arrow of Frost Resistance");
 
+        this.addAttribute(GladiusAttributes.USING_SPEED_MODIFIER, "Speed while Using");
+
         this.addAdvancement(GladiusAdvancements.FIREBRAND,
                 "Pyromaniac",
                 "Throw a Firebrand with zero consideration for your surroundings");

@@ -178,8 +178,8 @@ public class TorridWisp extends Entity implements TraceableEntity {
 
     private void hitEntity(EntityHitResult result){
         if (result.getEntity() instanceof LivingEntity entity){
-            entity.hurt(GladiusDamageSources.torridWisp(level(), this, this.getOwner()), 2.0F);
-            entity.igniteForSeconds(4.0F);
+            if (entity.hurt(GladiusDamageSources.torridWisp(level(), this, this.getOwner()), 2.0F))
+                entity.igniteForSeconds(4.0F);
         }
 
         if (!level().isClientSide){

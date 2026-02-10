@@ -3,6 +3,7 @@ package com.feliscape.gladius.content.item;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.entity.projectile.IceCharge;
 import com.feliscape.gladius.content.entity.projectile.TorridWisp;
+import com.feliscape.gladius.registry.GladiusAttributes;
 import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.feliscape.gladius.registry.GladiusTags;
 import com.feliscape.gladius.util.RandomUtil;
@@ -11,8 +12,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Enemy;
@@ -20,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
@@ -52,6 +56,13 @@ public class TorridStandardItem extends ProjectileWeaponItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         return ItemUtils.startUsingInstantly(level, player, hand);
+    }
+
+    public static ItemAttributeModifiers createAttributes() {
+        return ItemAttributeModifiers.builder()
+                .add(GladiusAttributes.USING_SPEED_MODIFIER,new AttributeModifier(Gladius.location("torrid_standard.using_speed_modifier"), 1.0D,
+                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL), EquipmentSlotGroup.HAND)
+                .build();
     }
 
     @Override
