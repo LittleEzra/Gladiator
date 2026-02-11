@@ -2,11 +2,13 @@ package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.networking.payload.ShakeScreenPayload;
+import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Unit;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.BlockPosTracker;
@@ -52,14 +54,17 @@ public class Charge extends Behavior<BlackstoneGolem> {
         BlockPos chargeTarget = owner.getBrain().getMemory(GladiusMemoryModuleTypes.CHARGE_TARGET.get()).orElse(null);
         if (chargeTarget != null){
             if (isFinishedTelegraphing(owner)) {
-                Vec3 target = new Vec3(chargeTarget.getX() + 0.5D, chargeTarget.getY() + 0.2D, chargeTarget.getZ() + 0.5D)
+                Vec3 target = new Vec3(chargeTarget.getX() + 0.5D, chargeTarget.getY() + 0.5D, chargeTarget.getZ() + 0.5D)
                         .subtract(owner.position()).normalize();
-                owner.setDeltaMovement(target.x, target.y * 0.1D, target.z);
+                owner.setDeltaMovement(target.x, 0.0D, target.z);
                 owner.setGolemPose(BlackstoneGolemPose.CHARGING);
                 if (hasHitBlock(level, owner)){
+                    doStop(level, owner, gameTime);
+
                     owner.getBrain().eraseMemory(GladiusMemoryModuleTypes.CHARGING.get());
                     owner.setDeltaMovement(owner.getDeltaMovement().scale(-0.8D).add(0.0D, 0.4D, 0.0D));
 
+                    owner.addEffect(new MobEffectInstance(GladiusMobEffects.STUN, 4 * 20));
                     PacketDistributor.sendToAllPlayers(new ShakeScreenPayload(1.0F, 40));
                 }
 
@@ -70,8 +75,8 @@ public class Charge extends Behavior<BlackstoneGolem> {
 
     private boolean hasHitBlock(ServerLevel level, BlackstoneGolem owner) {
         Vec3 vec3 = owner.getDeltaMovement().multiply(1.0, 0.0, 1.0).normalize();
-        BlockPos blockpos = BlockPos.containing(owner.position().add(vec3));
-        return !level.getBlockState(blockpos).getCollisionShape(level, blockpos).isEmpty();
+        var blocks = BlockPos.betweenClosedStream(owner.getBoundingBox().inflate(0.5D, -0.15D, 0.5D).move(vec3));
+        return blocks.anyMatch(pos -> !level.getBlockState(pos).getCollisionShape(level, pos).isEmpty());
     }
 
     @Override

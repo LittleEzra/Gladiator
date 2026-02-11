@@ -1,4 +1,4 @@
-package com.feliscape.gladius.content.entity.enemy.piglin;
+package com.feliscape.gladius.content.entity.enemy.piglin.shaman;
 
 import com.feliscape.gladius.content.item.TorridStandardItem;
 import com.feliscape.gladius.registry.GladiusItems;
@@ -21,7 +21,6 @@ import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.piglin.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -108,7 +107,7 @@ public class PiglinShaman extends AbstractPiglin {
 
     @Override
     protected void customServerAiStep() {
-        this.level().getProfiler().push("piglinBruteBrain");
+        this.level().getProfiler().push("piglinShamanBrain");
         this.getBrain().tick((ServerLevel)this.level(), this);
         this.level().getProfiler().pop();
         PiglinShamanAi.updateActivity(this);

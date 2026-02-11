@@ -27,6 +27,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         spawnEggItem(GladiusItems.FROSTMANCER_SPAWN_EGG.get());
         spawnEggItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG.get());
         spawnEggItem(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG.get());
+        spawnEggItem(GladiusItems.PIGLIN_BOMBER_SPAWN_EGG.get());
 
         basicItem(GladiusItems.BLAZING_HEART.get());
         basicItem(GladiusItems.FRIGID_SEED.get());
@@ -41,6 +42,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         basicItem(GladiusItems.CRYSTAL_BUTTERFLY.get());
         rodItem(GladiusItems.FIREBRAND.get());
         basicItem(GladiusItems.ICE_BOMB.get());
+        basicItem(GladiusItems.BOMB.get());
 
         basicItem(GladiusItems.FLASH_POWDER.get());
 

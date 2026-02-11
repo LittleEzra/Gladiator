@@ -4,6 +4,7 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.item.*;
 import com.feliscape.gladius.content.item.component.AspectComponent;
 import com.feliscape.gladius.content.item.component.FlamewalkersHeat;
+import com.feliscape.gladius.content.item.projectile.BombItem;
 import com.feliscape.gladius.content.item.projectile.FirebrandItem;
 import com.feliscape.gladius.content.item.projectile.IceBombItem;
 import com.feliscape.gladius.content.item.projectile.OilBottleItem;
@@ -28,6 +29,8 @@ public class GladiusItems {
             p -> new DeferredSpawnEggItem(GladiusEntityTypes.BLACKSTONE_GOLEM, 0x312c36, 0xeb8924, p));
     public static final DeferredItem<Item> PIGLIN_SHAMAN_SPAWN_EGG = ITEMS.registerItem("piglin_shaman_spawn_egg",
             p -> new DeferredSpawnEggItem(GladiusEntityTypes.PIGLIN_SHAMAN, 0x89203d, 0xf9f3a4, p));
+    public static final DeferredItem<Item> PIGLIN_BOMBER_SPAWN_EGG = ITEMS.registerItem("piglin_bomber_spawn_egg",
+            p -> new DeferredSpawnEggItem(GladiusEntityTypes.PIGLIN_BOMBER, 0x5d342c, 0xf9f3a4, p));
 
     public static final DeferredItem<Item> BLAZING_HEART = ITEMS.registerSimpleItem("blazing_heart");
     public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed",
@@ -50,6 +53,8 @@ public class GladiusItems {
             p -> new FirebrandItem(p.stacksTo(16)));
     public static final DeferredItem<IceBombItem> ICE_BOMB = ITEMS.registerItem("ice_bomb",
             p -> new IceBombItem(p.stacksTo(16)));
+    public static final DeferredItem<BombItem> BOMB = ITEMS.registerItem("bomb",
+            p -> new BombItem(p.stacksTo(16)));
 
     public static final DeferredItem<FlashPowderItem> FLASH_POWDER = ITEMS.registerItem("flash_powder",
             p -> new FlashPowderItem(p));
@@ -106,5 +111,6 @@ public class GladiusItems {
         DispenserBlock.registerProjectileBehavior(OIL_BOTTLE);
         DispenserBlock.registerProjectileBehavior(FIREBRAND);
         DispenserBlock.registerProjectileBehavior(ICE_BOMB);
+        DispenserBlock.registerProjectileBehavior(BOMB);
     }
 }

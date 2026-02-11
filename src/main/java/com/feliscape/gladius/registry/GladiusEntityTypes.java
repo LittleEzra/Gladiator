@@ -5,7 +5,8 @@ import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGole
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
 import com.feliscape.gladius.content.entity.Frostmancer;
-import com.feliscape.gladius.content.entity.enemy.piglin.PiglinShaman;
+import com.feliscape.gladius.content.entity.enemy.piglin.bomber.PiglinBomber;
+import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
 import com.feliscape.gladius.content.entity.misc.*;
 import com.feliscape.gladius.content.entity.projectile.*;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
@@ -100,6 +101,12 @@ public class GladiusEntityTypes {
                     .updateInterval(5)
     );
 
+    public static final Supplier<EntityType<ThrownBomb>> THROWN_BOMB = ENTITY_TYPES.registerEntityType("bomb",
+            ThrownBomb::new, MobCategory.MISC, b -> b
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10)
+    );
     public static final Supplier<EntityType<IceBomb>> ICE_BOMB = ENTITY_TYPES.registerEntityType("ice_bomb",
             IceBomb::new, MobCategory.MISC, b -> b
                     .sized(0.25F, 0.25F)
@@ -139,6 +146,14 @@ public class GladiusEntityTypes {
     );
     public static final Supplier<EntityType<PiglinShaman>> PIGLIN_SHAMAN = ENTITY_TYPES.registerEntityType("piglin_shaman",
             PiglinShaman::new, MobCategory.MONSTER, b -> b
+                    .sized(0.6F, 1.95F)
+                    .eyeHeight(1.79F)
+                    .passengerAttachments(2.0125F)
+                    .ridingOffset(-0.7F)
+                    .clientTrackingRange(8)
+    );
+    public static final Supplier<EntityType<PiglinBomber>> PIGLIN_BOMBER = ENTITY_TYPES.registerEntityType("piglin_bomber",
+            PiglinBomber::new, MobCategory.MONSTER, b -> b
                     .sized(0.6F, 1.95F)
                     .eyeHeight(1.79F)
                     .passengerAttachments(2.0125F)

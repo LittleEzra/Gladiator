@@ -43,7 +43,6 @@ public class BlackstoneGolem extends PathfinderMob {
     public static final EntityDataAccessor<BlackstoneGolemPose> DATA_POSE = SynchedEntityData.defineId(BlackstoneGolem.class, GladiusEntityDataSerializers.BLACKSTONE_GOLEM_POSE.get());
     public static final EntityDataAccessor<Integer> DATA_CHARGE_TIME = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_CORE_CHARGE = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.INT);
-    public static final EntityDataAccessor<Integer> DATA_STUNNED = SynchedEntityData.defineId(BlackstoneGolem.class, EntityDataSerializers.INT);
 
     private final ServerBossEvent bossEvent = new ServerBossEvent(
             this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10
@@ -218,13 +217,6 @@ public class BlackstoneGolem extends PathfinderMob {
         this.entityData.set(DATA_CORE_CHARGE, coreCharge);
     }
 
-    public int getAttackPatternPosition(){
-        return getBrain().getMemory(GladiusMemoryModuleTypes.ATTACK_CYCLE.get()).orElse(0);
-    }
-    public void setAttackPatternPosition(int attackPatternPosition){
-        getBrain().setMemory(GladiusMemoryModuleTypes.ATTACK_CYCLE.get(), attackPatternPosition);
-    }
-
     public float getCoreChargeRatio(){
         int i = getCoreCharge() - 60;
         if (i > 0){
@@ -283,7 +275,6 @@ public class BlackstoneGolem extends PathfinderMob {
         builder.define(DATA_POSE, BlackstoneGolemPose.VANILLA);
         builder.define(DATA_CHARGE_TIME, 0);
         builder.define(DATA_CORE_CHARGE, 0);
-        builder.define(DATA_STUNNED, 0);
     }
 
     public boolean isIdle(){

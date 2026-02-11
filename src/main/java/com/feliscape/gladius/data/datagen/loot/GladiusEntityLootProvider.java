@@ -46,6 +46,7 @@ public class GladiusEntityLootProvider extends EntityLootSubProvider {
                 )
         );
         this.add(GladiusEntityTypes.PIGLIN_SHAMAN.get(), lootTable());
+        this.add(GladiusEntityTypes.PIGLIN_BOMBER.get(), lootTable());
         this.add(GladiusEntityTypes.FROSTMANCER.get(), lootTable()
                 .withPool(lootPool()
                         .add(lootTableItem(GladiusItems.FRIGID_SEED)

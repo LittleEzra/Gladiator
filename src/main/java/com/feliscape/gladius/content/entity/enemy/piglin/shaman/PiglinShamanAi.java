@@ -1,4 +1,4 @@
-package com.feliscape.gladius.content.entity.enemy.piglin;
+package com.feliscape.gladius.content.entity.enemy.piglin.shaman;
 
 import com.feliscape.gladius.content.item.TorridStandardItem;
 import com.google.common.collect.ImmutableList;
@@ -15,13 +15,10 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
-import net.minecraft.world.entity.monster.piglin.PiglinBrute;
-import net.minecraft.world.entity.monster.piglin.PiglinBruteAi;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.CrossbowItem;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 public class PiglinShamanAi extends PiglinAi {
     protected static Brain<?> makeBrain(PiglinShaman piglinShaman, Brain<PiglinShaman> brain) {

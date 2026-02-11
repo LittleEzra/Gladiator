@@ -102,6 +102,15 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .define('S', Items.STRING)
                 .unlockedBy(getHasName(GladiusItems.FRIGID_SHARD), has(GladiusItems.FRIGID_SHARD))
                 .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.BOMB.get(), 4)
+                .pattern(" #S")
+                .pattern("#G#")
+                .pattern(" # ")
+                .define('#', Items.IRON_INGOT)
+                .define('G', Items.GUNPOWDER)
+                .define('S', Items.STRING)
+                .unlockedBy(getHasName(Items.GUNPOWDER), has(Items.GUNPOWDER))
+                .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.FLAMEWALKERS.get())
                 .pattern("#B#")
                 .pattern("M M")

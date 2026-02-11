@@ -95,6 +95,7 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.FROSTMANCER.get(), FrostmancerRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_SHAMAN.get(), PiglinShamanRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_BOMBER.get(), PiglinBomberRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PRISMARINE_ARROW.get(), PrismarineArrowRenderer::new);
@@ -104,6 +105,8 @@ public class ClientEvents {
 
         event.registerEntityRenderer(GladiusEntityTypes.MAGMA_POOL.get(), MagmaPoolRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FIRE_WAKE.get(), NoopRenderer::new);
+
+        event.registerEntityRenderer(GladiusEntityTypes.THROWN_BOMB.get(), ThrownItemRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.ICE_BOMB.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_SPIKE_SPAWNER.get(), IceSpikeSpawnerRenderer::new);

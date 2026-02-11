@@ -1,4 +1,5 @@
-// 1.21.1	2026-01-30T15:30:00.5666145	Recipes
+// 1.21.1	2026-02-11T10:47:35.8267675	Recipes
+afba2aba580ec4de987663e7c3ba1fe1976c515f data/gladius/advancement/recipes/combat/bomb.json
 aeec702d6cf959ae9ec6b01f084eb7d38793f775 data/gladius/advancement/recipes/combat/claymore.json
 41a0ced1f4fbe98b1a4b2749ddb8a3bfe848fb5f data/gladius/advancement/recipes/combat/explosive_arrow.json
 63c895f843002c84d14766fc0c851681482d54b3 data/gladius/advancement/recipes/combat/firebrand.json
@@ -15,6 +16,7 @@ ddf9c41e70bec0f1c876e95735e8fc4b5e31daec data/gladius/advancement/recipes/misc/b
 f604a48cca05e1a1b5464585476db8150d59b948 data/gladius/advancement/recipes/redstone/mist_trap.json
 ad17342afa1b886c29403c622b1a8e78780fc66a data/gladius/advancement/recipes/tools/crystal_butterfly.json
 76691c20ce5e89c1d7abebb6bbb68fd44317a4ff data/gladius/recipe/blazing_heart_into_blaze_powder.json
+c9fb5fdaf95a21cdba62dad8db9980aae1c5f6ce data/gladius/recipe/bomb.json
 d331b81e3f276e25dd76d656816d494188303d3e data/gladius/recipe/claymore.json
 20e926ae5ea54d46e698d62bc82865bdbba7b898 data/gladius/recipe/crystal_butterfly.json
 aff7a8ba614b47d42685384d6a203d29de92fba3 data/gladius/recipe/explosive_arrow.json

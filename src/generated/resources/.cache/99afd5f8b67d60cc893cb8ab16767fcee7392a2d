@@ -1,6 +1,7 @@
-// 1.21.1	2026-02-09T16:51:36.8845911	Item Models: gladius
+// 1.21.1	2026-02-11T10:47:35.839791	Item Models: gladius
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gladius/models/item/blackstone_golem_spawn_egg.json
 6de42e37e536ac74fe8005d164682ec50fc4a93a assets/gladius/models/item/blazing_heart.json
+9a858e780377c0febd7e1fbe2b55b52cba7f98e8 assets/gladius/models/item/bomb.json
 a061635c1156f917a5c16639939ab3d76a443d7b assets/gladius/models/item/crystal_butterfly.json
 50a0b3aeb1b113f4fef3a804f9fb7ffb70dde236 assets/gladius/models/item/explosive_arrow.json
 4a51b05e7d829d8e384731396c2964c9cb33c8cc assets/gladius/models/item/firebrand.json
@@ -17,6 +18,7 @@ d8902c57608449ed189d49e0a341c5e965e32845 assets/gladius/models/item/gilded_dagge
 66f43708238b29e95119eb2ead670a9054774dbc assets/gladius/models/item/ice_bomb.json
 b449093db806757206f1cdef747a1a8ad1fe573e assets/gladius/models/item/leather_gauntlets.json
 5df739a457936ae3d0ca9ee2b63189c2a0be74bd assets/gladius/models/item/oil_bottle.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gladius/models/item/piglin_bomber_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gladius/models/item/piglin_shaman_spawn_egg.json
 df4144ae24eaf3ef9d4502b5d5efc454519e0f1a assets/gladius/models/item/power_gauntlets.json
 f17d415b5e31eda279ff2a244ba152d1cffa1b40 assets/gladius/models/item/prismarine_arrow.json

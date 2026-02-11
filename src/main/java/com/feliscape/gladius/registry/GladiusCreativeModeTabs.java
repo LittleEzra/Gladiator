@@ -32,6 +32,7 @@ public class GladiusCreativeModeTabs {
             before(bow, GladiusItems.OIL_BOTTLE, event);
             before(bow, GladiusItems.FIREBRAND, event);
             before(bow, GladiusItems.ICE_BOMB, event);
+            before(bow, GladiusItems.BOMB, event);
             before(bow, GladiusItems.FLASH_POWDER, event);
             before(bow, GladiusItems.CRYSTAL_BUTTERFLY, event);
             before(shield, GladiusItems.GILDED_DAGGER, event);
@@ -60,6 +61,7 @@ public class GladiusCreativeModeTabs {
             event.accept(GladiusItems.FROSTMANCER_SPAWN_EGG);
             event.accept(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG);
             event.accept(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG);
+            event.accept(GladiusItems.PIGLIN_BOMBER_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
             ItemStack crafter = Items.CRAFTER.getDefaultInstance();
             after(crafter, GladiusBlocks.MIST_TRAP, event);
