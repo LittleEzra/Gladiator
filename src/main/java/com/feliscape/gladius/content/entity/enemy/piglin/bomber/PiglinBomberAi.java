@@ -44,7 +44,13 @@ public class PiglinBomberAi extends PiglinAi {
         brain.addActivity(
                 Activity.CORE,
                 0,
-                ImmutableList.of(new LookAtTargetSink(45, 90), new MoveToTargetSink(), InteractWithDoor.create(), StopBeingAngryIfTargetDead.create())
+                ImmutableList.of(
+                        new LookAtTargetSink(45, 90),
+                        new MoveToTargetSink(),
+                        InteractWithDoor.create(),
+                        StopBeingAngryIfTargetDead.create(),
+                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.BOMB_THROW_DELAY.get())
+                )
         );
     }
 

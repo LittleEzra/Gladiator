@@ -5,6 +5,7 @@ import com.feliscape.gladius.content.item.TorridStandardItem;
 import com.feliscape.gladius.content.item.projectile.BombItem;
 import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.GladiusSoundEvents;
+import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -24,6 +25,7 @@ public class ThrowBomb<E extends Mob> extends Behavior<E> {
     public ThrowBomb() {
         super(ImmutableMap.of(
                 MemoryModuleType.LOOK_TARGET, MemoryStatus.REGISTERED,
+                GladiusMemoryModuleTypes.BOMB_THROW_DELAY.get(), MemoryStatus.VALUE_ABSENT,
                 MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT), TIMEOUT);
     }
 
@@ -49,11 +51,16 @@ public class ThrowBomb<E extends Mob> extends Behavior<E> {
 
             ThrownBomb thrownBomb = new ThrownBomb(level, entity);
             thrownBomb.setItem(itemstack);
-            thrownBomb.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), -5.0F, 1.0F, 1.0F);
+            thrownBomb.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), -5.0F, 0.75F, (float)(14 - level.getDifficulty().getId() * 4));
             level.addFreshEntity(thrownBomb);
+            entity.swing(InteractionHand.MAIN_HAND);
 
             itemstack.consume(1, entity);
         }
+
+        entity.getBrain().setMemory(GladiusMemoryModuleTypes.BOMB_THROW_DELAY.get(), 100 - level.getDifficulty().getId() * 20);
+
+        lookAtTarget(entity, getAttackTarget(entity));
     }
 
     private void lookAtTarget(Mob shooter, LivingEntity target) {

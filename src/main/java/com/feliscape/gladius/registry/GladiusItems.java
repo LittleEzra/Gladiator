@@ -30,7 +30,7 @@ public class GladiusItems {
     public static final DeferredItem<Item> PIGLIN_SHAMAN_SPAWN_EGG = ITEMS.registerItem("piglin_shaman_spawn_egg",
             p -> new DeferredSpawnEggItem(GladiusEntityTypes.PIGLIN_SHAMAN, 0x89203d, 0xf9f3a4, p));
     public static final DeferredItem<Item> PIGLIN_BOMBER_SPAWN_EGG = ITEMS.registerItem("piglin_bomber_spawn_egg",
-            p -> new DeferredSpawnEggItem(GladiusEntityTypes.PIGLIN_BOMBER, 0x5d342c, 0xf9f3a4, p));
+            p -> new DeferredSpawnEggItem(GladiusEntityTypes.PIGLIN_BOMBER, 0x411e15, 0xf9f3a4, p));
 
     public static final DeferredItem<Item> BLAZING_HEART = ITEMS.registerSimpleItem("blazing_heart");
     public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed",

@@ -23,7 +23,7 @@ public class GladiusMemoryModuleTypes {
     public static final Supplier<MemoryModuleType<Integer>> WISP_SPAWN_TIME = register("wisp_spawn_time");
     public static final Supplier<MemoryModuleType<BlockPos>> CHARGE_TARGET = register("charge_target", BlockPos.CODEC);
 
-    public static final Supplier<MemoryModuleType<Integer>> BOMBS = register("bombs");
+    public static final Supplier<MemoryModuleType<Integer>> BOMB_THROW_DELAY = register("bomb_throw_delay");
 
     public static void register(IEventBus eventBus){
         MEMORY_MODULES.register(eventBus);

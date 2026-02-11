@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -55,7 +56,9 @@ public class PiglinBomber extends AbstractPiglin {
             MemoryModuleType.PATH,
             MemoryModuleType.ANGRY_AT,
             MemoryModuleType.NEAREST_VISIBLE_NEMESIS,
-            MemoryModuleType.HOME
+            MemoryModuleType.HOME,
+
+            GladiusMemoryModuleTypes.BOMB_THROW_DELAY.get()
     );
 
     public PiglinBomber(EntityType<? extends AbstractPiglin> entityType, Level level) {
@@ -76,6 +79,7 @@ public class PiglinBomber extends AbstractPiglin {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, (double)50.0F)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.35F)
+                .add(Attributes.KNOCKBACK_RESISTANCE, (double)1.0F)
                 .add(Attributes.ATTACK_DAMAGE, (double)1.0F);
     }
 
@@ -136,7 +140,8 @@ public class PiglinBomber extends AbstractPiglin {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        boolean flag = super.hurt(source, amount);
+        float f = source.is(DamageTypeTags.IS_EXPLOSION) ? amount * 0.25F : amount;
+        boolean flag = super.hurt(source, f);
         if (this.level().isClientSide) {
             return false;
         } else {
