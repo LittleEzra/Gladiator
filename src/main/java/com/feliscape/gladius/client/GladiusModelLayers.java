@@ -26,6 +26,9 @@ public class GladiusModelLayers {
     public static final ModelLayerLocation PIGLIN_SHAMAN = register("piglin_shaman");
     public static final ModelLayerLocation PIGLIN_SHAMAN_INNER_ARMOR = registerInnerArmor("piglin_shaman");
     public static final ModelLayerLocation PIGLIN_SHAMAN_OUTER_ARMOR = registerOuterArmor("piglin_shaman");
+    public static final ModelLayerLocation PIGLIN_BOMBER = register("piglin_bomber");
+    public static final ModelLayerLocation PIGLIN_BOMBER_INNER_ARMOR = registerInnerArmor("piglin_bomber");
+    public static final ModelLayerLocation PIGLIN_BOMBER_OUTER_ARMOR = registerOuterArmor("piglin_bomber");
 
     public static final ModelLayerLocation MAGIC_ORB = register("magic_orb");
     public static final ModelLayerLocation ICE_BLOCK = register("ice_block");
@@ -82,6 +85,10 @@ public class GladiusModelLayers {
         event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN, PiglinShamanModel::createBodyLayer);
         event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN_OUTER_ARMOR, () -> outerArmorLayer);
         event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN_INNER_ARMOR, () -> innerArmorLayer);
+
+        event.registerLayerDefinition(GladiusModelLayers.PIGLIN_BOMBER, PiglinBomberModel::createBodyLayer);
+        event.registerLayerDefinition(GladiusModelLayers.PIGLIN_BOMBER_OUTER_ARMOR, () -> outerArmorLayer);
+        event.registerLayerDefinition(GladiusModelLayers.PIGLIN_BOMBER_INNER_ARMOR, () -> innerArmorLayer);
 
         event.registerLayerDefinition(GladiusModelLayers.MAGIC_ORB, MagicOrbModel::createLayer);
         event.registerLayerDefinition(GladiusModelLayers.ICE_BLOCK, IceBlockModel::createLayer);
