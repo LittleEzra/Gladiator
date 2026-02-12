@@ -4,6 +4,7 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusClient;
 import com.feliscape.gladius.client.extension.BattleStandardAnimator;
 import com.feliscape.gladius.client.extension.ClaymoreClientExtensions;
+import com.feliscape.gladius.client.extension.TwoHandedSwordAnimator;
 import com.feliscape.gladius.client.extension.animation.CustomItemAnimator;
 import com.feliscape.gladius.client.extension.animation.ItemAnimatorManager;
 import com.feliscape.gladius.client.hud.BloodLayer;
@@ -45,6 +46,7 @@ public class ClientEvents {
         event.registerItem(new ClaymoreClientExtensions(), GladiusItems.CLAYMORE);
 
         ItemAnimatorManager.register(new BattleStandardAnimator(), GladiusItems.TORRID_STANDARD);
+        ItemAnimatorManager.register(new TwoHandedSwordAnimator(), GladiusItems.CLAYMORE, GladiusItems.FLAMBERGE);
 
         /*event.registerItem(new SmallArmorClientExtension(),
                 GladiusItems.ARCHER_CAP,

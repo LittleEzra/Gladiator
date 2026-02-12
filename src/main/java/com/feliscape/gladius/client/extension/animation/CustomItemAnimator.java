@@ -58,6 +58,10 @@ public abstract class CustomItemAnimator {
         return false;
     }
 
+    public boolean overrideAttackAnimation(){
+        return false;
+    }
+
     public boolean poseArms(LivingEntity entity, HumanoidModel<?> model, HumanoidArm arm){
         return false;
     }
