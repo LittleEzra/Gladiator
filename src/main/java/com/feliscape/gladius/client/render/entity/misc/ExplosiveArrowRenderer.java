@@ -1,4 +1,4 @@
-package com.feliscape.gladius.client.render.entity;
+package com.feliscape.gladius.client.render.entity.misc;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.entity.projectile.ExplosiveArrow;

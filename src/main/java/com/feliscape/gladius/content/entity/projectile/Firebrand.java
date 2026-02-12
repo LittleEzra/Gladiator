@@ -5,6 +5,7 @@ import com.feliscape.gladius.networking.payload.GladiusLevelEventPayload;
 import com.feliscape.gladius.networking.payload.GladiusLevelEvents;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
 import com.feliscape.gladius.registry.GladiusItems;
+import com.feliscape.gladius.util.RandomUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 public class Firebrand extends ThrowableItemProjectile {

@@ -1,10 +1,7 @@
 package com.feliscape.gladius.client.render.layer;
 
-import com.feliscape.gladius.content.entity.Frostmancer;
 import com.feliscape.gladius.registry.GladiusDataAttachments;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.WolfModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;

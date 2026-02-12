@@ -3,7 +3,7 @@ package com.feliscape.gladius.client.render.layer;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.client.GladiusModelLayers;
 import com.feliscape.gladius.client.model.FrostShieldsModel;
-import com.feliscape.gladius.content.entity.Frostmancer;
+import com.feliscape.gladius.content.entity.enemy.frostmancer.Frostmancer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;

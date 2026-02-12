@@ -51,7 +51,7 @@ public class ThrowBomb<E extends Mob> extends Behavior<E> {
 
             ThrownBomb thrownBomb = new ThrownBomb(level, entity);
             thrownBomb.setItem(itemstack);
-            thrownBomb.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), -5.0F, 0.75F, (float)(14 - level.getDifficulty().getId() * 4));
+            thrownBomb.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), -5.0F, 0.75F, 1.0F);
             level.addFreshEntity(thrownBomb);
             entity.swing(InteractionHand.MAIN_HAND);
 

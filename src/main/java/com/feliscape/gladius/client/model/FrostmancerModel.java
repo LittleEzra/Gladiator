@@ -1,14 +1,10 @@
 package com.feliscape.gladius.client.model;
 
-import com.feliscape.gladius.content.entity.Frostmancer;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
+import com.feliscape.gladius.content.entity.enemy.frostmancer.Frostmancer;
 import net.minecraft.client.model.IllagerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.world.entity.Entity;
 
 public class FrostmancerModel extends IllagerModel<Frostmancer> {
     public FrostmancerModel(ModelPart root) {

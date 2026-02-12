@@ -1,7 +1,6 @@
-package com.feliscape.gladius.client.render.entity;
+package com.feliscape.gladius.client.render.entity.misc;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.content.entity.projectile.PrismarineArrow;
 import com.feliscape.gladius.content.entity.projectile.WingedArrow;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

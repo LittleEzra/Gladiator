@@ -2,20 +2,13 @@ package com.feliscape.gladius.client.render.entity;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.client.GladiusModelLayers;
-import com.feliscape.gladius.client.model.CrystalButterflyModel;
 import com.feliscape.gladius.client.model.FrostmancerModel;
 import com.feliscape.gladius.client.render.layer.FrostmancerProtectionLayer;
-import com.feliscape.gladius.content.entity.CrystalButterfly;
-import com.feliscape.gladius.content.entity.Frostmancer;
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.IllagerModel;
-import net.minecraft.client.renderer.MultiBufferSource;
+import com.feliscape.gladius.content.entity.enemy.frostmancer.Frostmancer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.IllagerRenderer;
-import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.monster.Illusioner;
 
 public class FrostmancerRenderer extends IllagerRenderer<Frostmancer>{
     private static final ResourceLocation FROSTMANCER_ILLAGER = Gladius.location("textures/entity/frostmancer/frostmancer.png");

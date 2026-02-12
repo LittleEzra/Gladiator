@@ -1,4 +1,4 @@
-package com.feliscape.gladius.content.entity;
+package com.feliscape.gladius.content.entity.enemy.frostmancer;
 
 import com.feliscape.gladius.content.entity.projectile.IceBlockProjectile;
 import com.feliscape.gladius.content.entity.misc.IceSpikeSpawner;

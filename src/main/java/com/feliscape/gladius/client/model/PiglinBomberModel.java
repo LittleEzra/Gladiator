@@ -1,12 +1,16 @@
 package com.feliscape.gladius.client.model;
 
+import com.feliscape.gladius.content.entity.enemy.piglin.bomber.PiglinBomber;
+import com.feliscape.gladius.registry.GladiusItems;
 import net.minecraft.client.model.PiglinModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 
-public class PiglinBomberModel extends PiglinModel<Piglin> {
+public class PiglinBomberModel extends PiglinModel<PiglinBomber> {
     public PiglinBomberModel(ModelPart modelPart) {
         super(modelPart);
     }
@@ -24,5 +28,16 @@ public class PiglinBomberModel extends PiglinModel<Piglin> {
                 PartPose.ZERO);
 
         return LayerDefinition.create(mesh, 96, 64);
+    }
+
+    @Override
+    public void setupAnim(PiglinBomber entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        if (!entity.isHolding(GladiusItems.BOMB.get())){
+            leftArm.xRot = Mth.PI;
+            rightArm.xRot = Mth.PI;
+            this.leftSleeve.copyFrom(this.leftArm);
+            this.rightSleeve.copyFrom(this.rightArm);
+        }
     }
 }

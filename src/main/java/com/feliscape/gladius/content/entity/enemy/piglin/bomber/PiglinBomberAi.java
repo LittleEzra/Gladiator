@@ -1,7 +1,5 @@
 package com.feliscape.gladius.content.entity.enemy.piglin.bomber;
 
-import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShamanAi;
-import com.feliscape.gladius.content.item.TorridStandardItem;
 import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import com.google.common.collect.ImmutableList;
@@ -19,10 +17,8 @@ import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.schedule.Activity;
-import net.minecraft.world.item.CrossbowItem;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 public class PiglinBomberAi extends PiglinAi {
     protected static Brain<?> makeBrain(PiglinBomber piglinBomber, Brain<PiglinBomber> brain) {
@@ -75,6 +71,7 @@ public class PiglinBomberAi extends PiglinAi {
                         StopAttackingIfTargetInvalid.<Mob>create(entity -> !isNearestValidAttackTarget(piglinBomber, entity)),
                         BehaviorBuilder.triggerIf(PiglinBomberAi::hasBombs, BackUpIfTooClose.create(5, 0.75F)),
                         new ThrowBomb<>(),
+                        new StareAtAttackTarget<>(),
                         SetWalkTargetFromAttackTargetIfTargetOutOfReach.create(1.0F),
                         MeleeAttack.create(20)
                 ),

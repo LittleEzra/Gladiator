@@ -1,4 +1,4 @@
-package com.feliscape.gladius.client.render.entity;
+package com.feliscape.gladius.client.render.entity.misc;
 
 import com.feliscape.gladius.content.entity.misc.MagmaPool;
 import com.mojang.blaze3d.vertex.PoseStack;
