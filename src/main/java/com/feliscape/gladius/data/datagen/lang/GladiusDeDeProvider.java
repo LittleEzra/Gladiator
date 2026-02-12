@@ -98,6 +98,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.FLASHED, "Geblitzt");
         this.addMobEffect(GladiusMobEffects.FREEZING, "Frieren");
         this.addMobEffect(GladiusMobEffects.FROST_RESISTANCE, "Frostresistenz");
+        this.addMobEffect(GladiusMobEffects.STABILITY, "Stabilität");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Betäubung");
 
@@ -144,6 +145,11 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Wurftrank der Frostresistenz");
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Verweiltrank der Frostresistenz");
         this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Pfeil der Frostresistenz");
+
+        this.addPotion(GladiusPotions.STABILITY, "Trank der Stabilität");
+        this.addSplashPotion(GladiusPotions.STABILITY, "Wurftrank der Stabilität");
+        this.addLingeringPotion(GladiusPotions.STABILITY, "Verweiltrank der Stabilität");
+        this.addTippedArrow(GladiusPotions.STABILITY, "Pfeil der Stabilität");
 
         this.addAttribute(GladiusAttributes.USING_SPEED_MODIFIER, "Geschwindigkeit bei Verwendung");
 

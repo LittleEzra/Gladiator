@@ -96,6 +96,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.FLASHED, "Flashed");
         this.addMobEffect(GladiusMobEffects.FREEZING, "Freezing");
         this.addMobEffect(GladiusMobEffects.FROST_RESISTANCE, "Frost Resistance");
+        this.addMobEffect(GladiusMobEffects.STABILITY, "Stability");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Stunning");
 
@@ -141,6 +142,11 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Splash Potion of Frost Resistance");
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Lingering Potion of Frost Resistance");
         this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Arrow of Frost Resistance");
+
+        this.addPotion(GladiusPotions.STABILITY, "Potion of Stability");
+        this.addSplashPotion(GladiusPotions.STABILITY, "Splash Potion of Stability");
+        this.addLingeringPotion(GladiusPotions.STABILITY, "Lingering Potion of Stability");
+        this.addTippedArrow(GladiusPotions.STABILITY, "Arrow of Stability");
 
         this.addAttribute(GladiusAttributes.USING_SPEED_MODIFIER, "Speed while Using");
 

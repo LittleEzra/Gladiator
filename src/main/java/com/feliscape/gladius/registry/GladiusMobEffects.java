@@ -38,6 +38,9 @@ public class GladiusMobEffects {
     public static final DeferredHolder<MobEffect, FrostResistanceMobEffect> FROST_RESISTANCE = MOB_EFFECTS.register(
             "frost_resistance", () -> new FrostResistanceMobEffect(MobEffectCategory.BENEFICIAL, 0xa2adca)
     );
+    public static final DeferredHolder<MobEffect, StabilityMobEffect> STABILITY = MOB_EFFECTS.register(
+            "stability", () -> new StabilityMobEffect(MobEffectCategory.BENEFICIAL, 0xdc2752)
+    );
 
     public static boolean hasEffectEitherSide(LivingEntity living, Holder<MobEffect> effect){
         return living.hasEffect(effect) || living.getData(ClientMobEffectData.type()).hasEffect(effect);
