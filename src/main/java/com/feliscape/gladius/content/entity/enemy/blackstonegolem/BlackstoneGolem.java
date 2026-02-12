@@ -2,6 +2,7 @@ package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.data.damage.GladiusDamageSources;
+import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.feliscape.gladius.registry.GladiusParticles;
 import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
@@ -67,7 +68,7 @@ public class BlackstoneGolem extends PathfinderMob {
                 .add(Attributes.STEP_HEIGHT, 1.2D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
                 .add(Attributes.FOLLOW_RANGE, 24.0)
-                .add(Attributes.MAX_HEALTH, 125.0);
+                .add(Attributes.MAX_HEALTH, 200.0);
     }
 
     public Optional<LivingEntity> getHurtBy() {
@@ -166,6 +167,16 @@ public class BlackstoneGolem extends PathfinderMob {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        var pos = source.getSourcePosition();
+        if (pos == null || GladiusMobEffects.hasEffectEitherSide(this, GladiusMobEffects.STUN) ||
+                (pos.y > this.getY(0.5D) && pos.y < this.getY(0.8D))){
+            return super.hurt(source, amount);
+        }
+        return false;
     }
 
     @Override
