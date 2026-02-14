@@ -43,17 +43,19 @@ public class MistParticle extends TextureSheetParticle {
             this.move(this.xd, this.yd, this.zd);
 
             if (speedUpWhenBlocked) {
+                double velocity = Math.sqrt(this.xd * this.xd + this.yd * this.yd + this.zd * this.zd);
+                double angle = random.nextDouble() * Math.TAU;
                 if (Math.abs(this.yd) > 0.01D && this.x == this.xo) {
-                    this.yd *= 1.2D;
-                    this.zd *= 1.2D;
+                    this.zd = Math.cos(angle) * velocity * 1.2D;
+                    this.yd = Math.sin(angle) * velocity * 1.2D;
                 }
                 if (Math.abs(this.yd) > 0.01D && this.y == this.yo) {
-                    this.xd *= 1.2D;
-                    this.zd *= 1.2D;
+                    this.xd = Math.cos(angle) * velocity * 1.2D;
+                    this.zd = Math.sin(angle) * velocity * 1.2D;
                 }
                 if (Math.abs(this.yd) > 0.01D && this.z == this.zo) {
-                    this.xd *= 1.2D;
-                    this.yd *= 1.2D;
+                    this.xd = Math.cos(angle) * velocity * 1.2D;
+                    this.zd = Math.sin(angle) * velocity * 1.2D;
                 }
             }
 

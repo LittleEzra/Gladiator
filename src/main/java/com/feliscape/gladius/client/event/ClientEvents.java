@@ -46,7 +46,7 @@ public class ClientEvents {
         event.registerItem(new ClaymoreClientExtensions(), GladiusItems.CLAYMORE);
 
         ItemAnimatorManager.register(new BattleStandardAnimator(), GladiusItems.TORRID_STANDARD);
-        ItemAnimatorManager.register(new TwoHandedSwordAnimator(), GladiusItems.CLAYMORE, GladiusItems.FLAMBERGE);
+        //ItemAnimatorManager.register(new TwoHandedSwordAnimator(), GladiusItems.CLAYMORE, GladiusItems.FLAMBERGE);
 
         /*event.registerItem(new SmallArmorClientExtension(),
                 GladiusItems.ARCHER_CAP,
