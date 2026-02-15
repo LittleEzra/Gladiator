@@ -60,6 +60,8 @@ public class GladiusParticles {
             () -> new SimpleParticleType(false));
     public static final Supplier<SimpleParticleType> BURNING_SMOKE = PARTICLE_TYPES.register("burning_smoke",
             () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> SMALL_BURNING_SMOKE = PARTICLE_TYPES.register("small_burning_smoke",
+            () -> new SimpleParticleType(false));
 
     public static final Supplier<SimpleParticleType> ASH = PARTICLE_TYPES.register("ash",
             () -> new SimpleParticleType(false));
@@ -90,6 +92,7 @@ public class GladiusParticles {
         event.registerSpriteSet(GladiusParticles.ICE_EXPLOSION.get(), SnowflakeParticle.ExplosionProvider::new);
         event.registerSpriteSet(GladiusParticles.MIST.get(), MistParticle.Provider::new);
         event.registerSpriteSet(GladiusParticles.BURNING_SMOKE.get(), MistParticle.FireProvider::new);
+        event.registerSpriteSet(GladiusParticles.SMALL_BURNING_SMOKE.get(), MistParticle.SmallFireProvider::new);
 
         event.registerSpriteSet(GladiusParticles.ASH.get(), AshParticle.Provider::new);
         event.registerSpriteSet(GladiusParticles.MAGMA_PUDDLE.get(), MagmaPuddleParticle.Provider::new);

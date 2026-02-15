@@ -115,4 +115,22 @@ public class MistParticle extends TextureSheetParticle {
             return particle;
         }
     }
+    @OnlyIn(Dist.CLIENT)
+    public static class SmallFireProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
+
+        public SmallFireProvider(SpriteSet sprites) {
+            this.sprites = sprites;
+        }
+
+        @Nullable
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            var particle = new MistParticle(level, sprites, level.random.nextInt(5) + 20, x, y, z, xSpeed, ySpeed, zSpeed);
+            particle.scale(0.5F);
+            particle.friction = 0.95F;
+            particle.alwaysLit = true;
+            particle.speedUpWhenBlocked = true;
+            return particle;
+        }
+    }
 }

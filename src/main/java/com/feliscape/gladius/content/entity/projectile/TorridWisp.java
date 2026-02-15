@@ -113,7 +113,7 @@ public class TorridWisp extends Entity implements TraceableEntity {
         if (level().isClientSide){
             if (tickCount > getAttackDelay()){
                 for (int i = 0; i < 2; i++) {
-                    level().addParticle(ParticleTypes.FLAME,
+                    level().addParticle(random.nextInt(3) == 0 ? GladiusParticles.SMALL_BURNING_SMOKE.get() : ParticleTypes.FLAME,
                             this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D),
                             Math.sin(random.nextDouble() * Math.TAU) * 0.02D,
                             Math.sin(random.nextDouble() * Math.TAU) * 0.02D,
