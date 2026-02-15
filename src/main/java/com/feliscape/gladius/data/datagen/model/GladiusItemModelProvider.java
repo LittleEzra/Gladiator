@@ -50,6 +50,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         handheldItem(GladiusItems.GOLDEN_WAND.get());
         handheldItem(GladiusItems.FROZEN_WAND.get());
         basicItem(GladiusItems.FLAMEWALKERS.get());
+        basicItem(GladiusItems.NIGHTWALKER_HOOD.get());
 
         gauntlets(GladiusItems.POWER_GAUNTLETS.get());
         gauntlets(GladiusItems.LEATHER_GAUNTLETS.get());

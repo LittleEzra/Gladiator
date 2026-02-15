@@ -4,7 +4,6 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusClient;
 import com.feliscape.gladius.client.extension.BattleStandardAnimator;
 import com.feliscape.gladius.client.extension.ClaymoreClientExtensions;
-import com.feliscape.gladius.client.extension.TwoHandedSwordAnimator;
 import com.feliscape.gladius.client.extension.animation.CustomItemAnimator;
 import com.feliscape.gladius.client.extension.animation.ItemAnimatorManager;
 import com.feliscape.gladius.client.hud.BloodLayer;
@@ -13,6 +12,7 @@ import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
 import com.feliscape.gladius.client.render.entity.misc.*;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
+import com.feliscape.gladius.content.item.NightwalkerArmorItem;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
 import com.feliscape.gladius.registry.*;
 import com.mojang.math.Axis;
@@ -66,6 +66,14 @@ public class ClientEvents {
         var renderer = ((LivingEntityRenderer<E, M>) event.getRenderer(entityType));
         if (renderer == null) return;
         renderer.addLayer(layer.apply(renderer));
+    }
+
+    @SubscribeEvent
+    public static void hideNightwalkingEntities(RenderLivingEvent.Pre<?, ?> event){
+        LivingEntity entity = event.getEntity();
+        if (NightwalkerArmorItem.isInStealth(entity) && (!(entity instanceof Player player) || player != Minecraft.getInstance().player)){
+            event.setCanceled(true);
+        }
     }
 
     @SubscribeEvent

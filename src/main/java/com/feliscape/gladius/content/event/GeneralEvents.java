@@ -9,14 +9,12 @@ import com.feliscape.gladius.content.entity.ai.ReturnArrowGoal;
 import com.feliscape.gladius.content.entity.enemy.piglin.bomber.PiglinBomber;
 import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
 import com.feliscape.gladius.content.entity.misc.FireWake;
+import com.feliscape.gladius.content.item.NightwalkerArmorItem;
 import com.feliscape.gladius.content.item.WandItem;
 import com.feliscape.gladius.registry.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -26,6 +24,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
@@ -45,11 +45,28 @@ public class GeneralEvents {
         event.add(EntityType.PLAYER, GladiusAttributes.USING_SPEED_MODIFIER, 1.0D);
     }
 
+    @SubscribeEvent
+    public static void modifyVisibility(LivingEvent.LivingVisibilityEvent event){
+        if (NightwalkerArmorItem.isInStealth(event.getEntity())){
+            event.modifyVisibility(0.0D);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEntityChangeTarget(LivingChangeTargetEvent event){
+        if (NightwalkerArmorItem.isInStealth(event.getNewAboutToBeSetTarget())){
+            event.setCanceled(true);
+        }
+    }
 
     @SubscribeEvent
     public static void onEntityTick(EntityTickEvent.Post event){
         Level level = event.getEntity().level();
         if (event.getEntity() instanceof LivingEntity living){
+            if (living instanceof Mob mob && NightwalkerArmorItem.isInStealth(mob.getTarget())){
+                mob.setTarget(null);
+            }
+
             ItemStack boots = living.getItemBySlot(EquipmentSlot.FEET);
             if (living.onGround() && boots.is(GladiusItems.FLAMEWALKERS)){
                 if (!level.isClientSide) {

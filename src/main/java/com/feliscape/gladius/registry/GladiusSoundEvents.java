@@ -14,6 +14,7 @@ public class GladiusSoundEvents {
 
     public static final Supplier<SoundEvent> CLAYMORE_BLOCK = registerVariable("item.claymore.block");
     public static final Supplier<SoundEvent> GILDED_DAGGER_STAB = registerVariable("item.gilded_dagger.stab");
+    public static final Supplier<SoundEvent> WINGED_ARROW_HIT = registerVariable("entity.winged_arrow.hit");
     public static final Supplier<SoundEvent> FIREBRAND_LIGHT = registerVariable("entity.firebrand.light"); // range: 6.0F
     public static final Supplier<SoundEvent> FLASH_POWDER_CRACKLE = registerVariable("item.flash_powder.crackle"); // range: 12.0F
     public static final Supplier<SoundEvent> HEARTH_STONE_USE = registerVariable("item.hearth_stone.use");

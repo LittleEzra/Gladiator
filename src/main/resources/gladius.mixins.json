@@ -19,6 +19,7 @@
     "client.HumanoidModelMixin",
     "client.ItemInHandRendererMixin",
     "client.LevelRendererMixin",
+    "client.PlayerRendererMixin",
     "client.ScreenEffectRendererMixin"
   ],
   "injectors": {

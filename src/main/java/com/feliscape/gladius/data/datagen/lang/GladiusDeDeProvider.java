@@ -59,6 +59,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FROZEN_WAND, "Gefrorener Zauberstab");
         this.addItem(GladiusItems.TORRID_STANDARD, "Flammende Standarte");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flammenläufer");
+        this.addItem(GladiusItems.NIGHTWALKER_HOOD, "Nachtläufer Kapuze");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Macht-Handschuhe");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Lederhandschuhe");
         this.add("item.gladius.tooltip.two_handed", "Beidhändig");
@@ -104,6 +105,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore pariert");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Vergoldeter Dolch sticht");
+        this.addSubtitle(GladiusSoundEvents.WINGED_ARROW_HIT, "Geflügelter Pfeil trifft");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Feuerstock entzündet Feuer");
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Feuerwake bricht aus");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Blitzpulver knistert");

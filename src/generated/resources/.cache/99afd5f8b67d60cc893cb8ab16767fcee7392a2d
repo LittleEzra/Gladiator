@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-11T10:47:35.839791	Item Models: gladius
+// 1.21.1	2026-02-15T13:18:40.3873336	Item Models: gladius
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gladius/models/item/blackstone_golem_spawn_egg.json
 6de42e37e536ac74fe8005d164682ec50fc4a93a assets/gladius/models/item/blazing_heart.json
 9a858e780377c0febd7e1fbe2b55b52cba7f98e8 assets/gladius/models/item/bomb.json
@@ -17,6 +17,7 @@ d8902c57608449ed189d49e0a341c5e965e32845 assets/gladius/models/item/gilded_dagge
 6aece715bb25d1afe8941e9ca3f390b263f94257 assets/gladius/models/item/hearth_stone.json
 66f43708238b29e95119eb2ead670a9054774dbc assets/gladius/models/item/ice_bomb.json
 b449093db806757206f1cdef747a1a8ad1fe573e assets/gladius/models/item/leather_gauntlets.json
+d3c8c02774398d5226ed41f93e0423e5d661e64a assets/gladius/models/item/nightwalker_hood.json
 5df739a457936ae3d0ca9ee2b63189c2a0be74bd assets/gladius/models/item/oil_bottle.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gladius/models/item/piglin_bomber_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/gladius/models/item/piglin_shaman_spawn_egg.json

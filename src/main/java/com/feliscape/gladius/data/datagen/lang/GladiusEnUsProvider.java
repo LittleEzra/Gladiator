@@ -58,6 +58,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FROZEN_WAND, "Frozen Wand");
         this.addItem(GladiusItems.TORRID_STANDARD, "Torrid Standard");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flamewalkers");
+        this.addItem(GladiusItems.NIGHTWALKER_HOOD, "Nightwalker Hood");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Power Gauntlets");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Leather Gauntlets");
         this.add("item.gladius.tooltip.two_handed", "Two-Handed");
@@ -102,6 +103,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore blocks");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Gilded Dagger stabs");
+        this.addSubtitle(GladiusSoundEvents.WINGED_ARROW_HIT, "Winged Arrow hits");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Firebrand lights fire");
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Fire Wake erupts");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Flash Powder crackles");
