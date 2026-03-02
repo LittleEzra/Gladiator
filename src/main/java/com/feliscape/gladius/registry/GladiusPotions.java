@@ -25,10 +25,19 @@ public class GladiusPotions {
     public static final Holder<Potion> LONG_FROST_RESISTANCE = POTIONS.register("long_frost_resistance", name -> new Potion(
             "frost_resistance", new MobEffectInstance(GladiusMobEffects.FROST_RESISTANCE, 9600)
     ));
+    public static final Holder<Potion> STABILITY = POTIONS.register("stability", name -> new Potion(
+            "stability", new MobEffectInstance(GladiusMobEffects.STABILITY, 9600)
+    ));
+    public static final Holder<Potion> LONG_STABILITY = POTIONS.register("long_stability", name -> new Potion(
+            "stability", new MobEffectInstance(GladiusMobEffects.STABILITY, 19200)
+    ));
 
     @SubscribeEvent
     public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event){
         PotionBrewing.Builder builder = event.getBuilder();
+
+        builder.addStartMix(Items.NETHER_WART_BLOCK, GladiusPotions.STABILITY);
+        builder.addMix(GladiusPotions.STABILITY, Items.REDSTONE, GladiusPotions.LONG_STABILITY);
 
         builder.addStartMix(GladiusItems.FRIGID_SHARD.get(), GladiusPotions.FROST_RESISTANCE);
         builder.addMix(GladiusPotions.FROST_RESISTANCE, Items.REDSTONE, GladiusPotions.LONG_FROST_RESISTANCE);

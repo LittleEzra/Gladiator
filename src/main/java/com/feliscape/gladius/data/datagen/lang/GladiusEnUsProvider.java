@@ -58,6 +58,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FROZEN_WAND, "Frozen Wand");
         this.addItem(GladiusItems.TORRID_STANDARD, "Torrid Standard");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flamewalkers");
+        this.addItem(GladiusItems.NIGHTWALKER_HOOD, "Nightwalker Hood");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Power Gauntlets");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Leather Gauntlets");
         this.add("item.gladius.tooltip.two_handed", "Two-Handed");
@@ -96,11 +97,13 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.FLASHED, "Flashed");
         this.addMobEffect(GladiusMobEffects.FREEZING, "Freezing");
         this.addMobEffect(GladiusMobEffects.FROST_RESISTANCE, "Frost Resistance");
+        this.addMobEffect(GladiusMobEffects.STABILITY, "Stability");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Stunning");
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore blocks");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Gilded Dagger stabs");
+        this.addSubtitle(GladiusSoundEvents.WINGED_ARROW_HIT, "Winged Arrow hits");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Firebrand lights fire");
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Fire Wake erupts");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Flash Powder crackles");
@@ -141,6 +144,11 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Splash Potion of Frost Resistance");
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Lingering Potion of Frost Resistance");
         this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Arrow of Frost Resistance");
+
+        this.addPotion(GladiusPotions.STABILITY, "Potion of Stability");
+        this.addSplashPotion(GladiusPotions.STABILITY, "Splash Potion of Stability");
+        this.addLingeringPotion(GladiusPotions.STABILITY, "Lingering Potion of Stability");
+        this.addTippedArrow(GladiusPotions.STABILITY, "Arrow of Stability");
 
         this.addAttribute(GladiusAttributes.USING_SPEED_MODIFIER, "Speed while Using");
 

@@ -59,6 +59,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FROZEN_WAND, "Gefrorener Zauberstab");
         this.addItem(GladiusItems.TORRID_STANDARD, "Flammende Standarte");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flammenläufer");
+        this.addItem(GladiusItems.NIGHTWALKER_HOOD, "Nachtläufer Kapuze");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Macht-Handschuhe");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Lederhandschuhe");
         this.add("item.gladius.tooltip.two_handed", "Beidhändig");
@@ -98,11 +99,13 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.FLASHED, "Geblitzt");
         this.addMobEffect(GladiusMobEffects.FREEZING, "Frieren");
         this.addMobEffect(GladiusMobEffects.FROST_RESISTANCE, "Frostresistenz");
+        this.addMobEffect(GladiusMobEffects.STABILITY, "Stabilität");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Betäubung");
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore pariert");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Vergoldeter Dolch sticht");
+        this.addSubtitle(GladiusSoundEvents.WINGED_ARROW_HIT, "Geflügelter Pfeil trifft");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Feuerstock entzündet Feuer");
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Feuerwake bricht aus");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Blitzpulver knistert");
@@ -144,6 +147,11 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Wurftrank der Frostresistenz");
         this.addLingeringPotion(GladiusPotions.FROST_RESISTANCE, "Verweiltrank der Frostresistenz");
         this.addTippedArrow(GladiusPotions.FROST_RESISTANCE, "Pfeil der Frostresistenz");
+
+        this.addPotion(GladiusPotions.STABILITY, "Trank der Stabilität");
+        this.addSplashPotion(GladiusPotions.STABILITY, "Wurftrank der Stabilität");
+        this.addLingeringPotion(GladiusPotions.STABILITY, "Verweiltrank der Stabilität");
+        this.addTippedArrow(GladiusPotions.STABILITY, "Pfeil der Stabilität");
 
         this.addAttribute(GladiusAttributes.USING_SPEED_MODIFIER, "Geschwindigkeit bei Verwendung");
 

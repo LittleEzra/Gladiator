@@ -43,17 +43,19 @@ public class MistParticle extends TextureSheetParticle {
             this.move(this.xd, this.yd, this.zd);
 
             if (speedUpWhenBlocked) {
+                double velocity = Math.sqrt(this.xd * this.xd + this.yd * this.yd + this.zd * this.zd);
+                double angle = random.nextDouble() * Math.TAU;
                 if (Math.abs(this.yd) > 0.01D && this.x == this.xo) {
-                    this.yd *= 1.2D;
-                    this.zd *= 1.2D;
+                    this.zd = Math.cos(angle) * velocity * 1.2D;
+                    this.yd = Math.sin(angle) * velocity * 1.2D;
                 }
                 if (Math.abs(this.yd) > 0.01D && this.y == this.yo) {
-                    this.xd *= 1.2D;
-                    this.zd *= 1.2D;
+                    this.xd = Math.cos(angle) * velocity * 1.2D;
+                    this.zd = Math.sin(angle) * velocity * 1.2D;
                 }
                 if (Math.abs(this.yd) > 0.01D && this.z == this.zo) {
-                    this.xd *= 1.2D;
-                    this.yd *= 1.2D;
+                    this.xd = Math.cos(angle) * velocity * 1.2D;
+                    this.zd = Math.sin(angle) * velocity * 1.2D;
                 }
             }
 
@@ -107,6 +109,24 @@ public class MistParticle extends TextureSheetParticle {
         @Nullable
         public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             var particle = new MistParticle(level, sprites, level.random.nextInt(5) + 20, x, y, z, xSpeed, ySpeed, zSpeed);
+            particle.friction = 0.95F;
+            particle.alwaysLit = true;
+            particle.speedUpWhenBlocked = true;
+            return particle;
+        }
+    }
+    @OnlyIn(Dist.CLIENT)
+    public static class SmallFireProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
+
+        public SmallFireProvider(SpriteSet sprites) {
+            this.sprites = sprites;
+        }
+
+        @Nullable
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            var particle = new MistParticle(level, sprites, level.random.nextInt(5) + 20, x, y, z, xSpeed, ySpeed, zSpeed);
+            particle.scale(0.5F);
             particle.friction = 0.95F;
             particle.alwaysLit = true;
             particle.speedUpWhenBlocked = true;

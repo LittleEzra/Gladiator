@@ -3,13 +3,17 @@ package com.feliscape.gladius.content.entity.projectile;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
 import com.feliscape.gladius.registry.GladiusItems;
+import com.feliscape.gladius.registry.GladiusSoundEvents;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -21,7 +25,9 @@ import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -60,6 +66,44 @@ public class WingedArrow extends AbstractArrow {
     }
 
     @Override
+    protected double getDefaultGravity() {
+        double velocity = this.getDeltaMovement().length();
+        return (1.0D - Mth.clamp(velocity / 2.0D, 0.0D, 1.0D)) * super.getDefaultGravity();
+    }
+
+    @Override
+    protected void onHitBlock(BlockHitResult result) {
+        if (bouncesLeft <= 0) return;
+
+        Vec3 v = this.getDeltaMovement();
+        Vec3 normal = new Vec3(result.getDirection().getStepX(), result.getDirection().getStepY(), result.getDirection().getStepZ());
+        Vec3 r = normal.scale(v.dot(normal)).scale(-2.0D).add(v).scale(0.8D);
+
+        this.setDeltaMovement(r);
+
+        if (r.length() > 0.5D){
+            bouncesLeft--;
+            this.playSound(this.getHitGroundSoundEvent(), 2.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+            return;
+        }
+        bouncesLeft = 0;
+
+        super.onHitBlock(result);
+    }
+
+    public void tick() {
+        super.tick();
+        if (this.level().isClientSide && !this.inGround) {
+            this.level().addParticle(ParticleTypes.END_ROD, this.getX(), this.getY(), this.getZ(), (double)0.0F, (double)0.0F, (double)0.0F);
+        }
+    }
+
+    @Override
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
+        return GladiusSoundEvents.WINGED_ARROW_HIT.get();
+    }
+
+    /*@Override
     protected void doPostHurtEffects(LivingEntity target) {
         Entity owner = this.getOwner();
 
@@ -98,7 +142,7 @@ public class WingedArrow extends AbstractArrow {
         if (bouncesLeft <= 0){
             this.discard();
         }
-    }
+    }*/
 
     @Override
     protected ItemStack getDefaultPickupItem() {

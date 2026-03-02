@@ -94,6 +94,9 @@ public class GladiusItems {
     public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
             p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p.stacksTo(1)
                     .component(GladiusComponents.HEAT, FlamewalkersHeat.create(20))));
+    public static final DeferredItem<NightwalkerArmorItem> NIGHTWALKER_HOOD = ITEMS.registerItem("nightwalker_hood",
+            p -> new NightwalkerArmorItem(GladiusArmorMaterials.NIGHTWALKER, ArmorItem.Type.HELMET, p.stacksTo(1)
+            ));
 
     public static final DeferredItem<PowerGauntletsItem> POWER_GAUNTLETS = ITEMS.registerItem("power_gauntlets",
             p -> new PowerGauntletsItem(p.attributes(PowerGauntletsItem.createAttributes())));

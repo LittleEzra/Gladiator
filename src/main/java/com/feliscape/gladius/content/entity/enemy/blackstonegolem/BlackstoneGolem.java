@@ -170,16 +170,6 @@ public class BlackstoneGolem extends PathfinderMob {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        var pos = source.getSourcePosition();
-        if (pos == null || GladiusMobEffects.hasEffectEitherSide(this, GladiusMobEffects.STUN) ||
-                (pos.y > this.getY(0.5D) && pos.y < this.getY(0.8D))){
-            return super.hurt(source, amount);
-        }
-        return false;
-    }
-
-    @Override
     public void push(Entity entity) {
         if (this.getGolemPose() == BlackstoneGolemPose.CHARGING) return;
 
@@ -299,29 +289,5 @@ public class BlackstoneGolem extends PathfinderMob {
     }
     public void setChargeTime(int chargeTime){
         this.entityData.set(DATA_CHARGE_TIME, chargeTime);
-    }
-
-    public int getStepDelay(){
-        return 10;
-    }
-
-    public static class BlackstoneGolemMoveControl extends MoveControl {
-
-        private final BlackstoneGolem blackstoneGolem;
-        private int stepDelay;
-        private int stepDuration = 10;
-
-        public BlackstoneGolemMoveControl(BlackstoneGolem blackstoneGolem) {
-            super(blackstoneGolem);
-            this.blackstoneGolem = blackstoneGolem;
-        }
-
-        @Override
-        public void tick() {
-            if (--stepDelay <= 0){
-                stepDelay = blackstoneGolem.getStepDelay() + stepDuration;
-                super.tick();
-            }
-        }
     }
 }

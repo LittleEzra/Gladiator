@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractArrowMixin",
+    "AbstractPiglinMixin",
     "BrainMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
@@ -18,6 +19,7 @@
     "client.HumanoidModelMixin",
     "client.ItemInHandRendererMixin",
     "client.LevelRendererMixin",
+    "client.PlayerRendererMixin",
     "client.ScreenEffectRendererMixin"
   ],
   "injectors": {
