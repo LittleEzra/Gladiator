@@ -1,5 +1,6 @@
 package com.feliscape.gladius.content.world.invasion;
 
+import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
 import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.google.common.collect.Maps;
@@ -109,10 +110,16 @@ public class PiglinInvasion {
                 var invader = invaderType.entityTypeSupplier.get().create(this.level);
                 if (invader == null) break;
 
-                // apply stability
+                invader.addEffect(new MobEffectInstance(GladiusMobEffects.STABILITY, 12 * 60 * 20));
 
-
+                this.level.addFreshEntity(invader);
             }
+        }
+
+        if (wave == numGroups - 1){
+            BlackstoneGolem golem = GladiusEntityTypes.BLACKSTONE_GOLEM.get().create(this.level);
+            if (golem != null)
+                this.level.addFreshEntity(golem);
         }
     }
     private int getDefaultNumSpawns(InvaderType raiderType, int wave, boolean shouldSpawnBonusGroup) {
