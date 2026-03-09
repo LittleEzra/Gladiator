@@ -1,10 +1,8 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.content.attachment.ClientMobEffectData;
-import com.feliscape.gladius.content.attachment.ExplosiveChargeData;
-import com.feliscape.gladius.content.attachment.GauntletData;
-import com.feliscape.gladius.content.attachment.PowerGauntletData;
+import com.feliscape.gladius.content.attachment.*;
+import com.feliscape.gladius.content.entity.team.Alliance;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
@@ -23,6 +21,13 @@ public class GladiusDataAttachments {
             () -> AttachmentType.builder(() -> new ClientMobEffectData(List.of())).build());
     public static final Supplier<AttachmentType<Direction>> GRAVITY_DIRECTION = ATTACHMENT_TYPES.register("gravity_direction",
             () -> AttachmentType.builder(() -> Direction.DOWN).serialize(Direction.CODEC).sync(Direction.STREAM_CODEC).build());
+
+    public static final Supplier<AttachmentType<Alliance>> ALLIANCE = ATTACHMENT_TYPES.register("alliance",
+            () -> AttachmentType.builder(AllianceData::getDefault)
+                    .serialize(AllianceData.ALLIANCE_CODEC)
+                    .sync(AllianceData.ALLIANCE_STREAM_CODEC)
+                    .build());
+
     public static final Supplier<AttachmentType<ExplosiveChargeData>> EXPLOSIVE_CHARGES = ATTACHMENT_TYPES.register("explosive_charges",
             () -> AttachmentType.builder(ExplosiveChargeData::getInstance)
                     .serialize(ExplosiveChargeData.CODEC)

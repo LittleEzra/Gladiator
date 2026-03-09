@@ -92,10 +92,7 @@ public class TorridStandardItem extends ProjectileWeaponItem {
                         else if (e.isAlliedTo(livingEntity)) return false;
                         else if (e instanceof Enemy) return true;
 
-                        if (e.getTeam() != null && !e.isAlliedTo(livingEntity)){
-                            return true;
-                        }
-                        return false;
+                        return e.getTeam() != null && !e.isAlliedTo(livingEntity);
                     });
                     List<LivingEntity> targets = level.getNearbyEntities(LivingEntity.class, conditions, livingEntity,
                             livingEntity.getBoundingBox().inflate(8.0D, 4.0d, 8.0D));

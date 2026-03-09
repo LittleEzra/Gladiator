@@ -41,6 +41,9 @@ public class GladiusMobEffects {
     public static final DeferredHolder<MobEffect, StabilityMobEffect> STABILITY = MOB_EFFECTS.register(
             "stability", () -> new StabilityMobEffect(MobEffectCategory.BENEFICIAL, 0xdc2752)
     );
+    public static final DeferredHolder<MobEffect, BattleCryMobEffect> BATTLE_CRY = MOB_EFFECTS.register(
+            "battle_cry", () -> new BattleCryMobEffect(MobEffectCategory.BENEFICIAL, 0x7b3427)
+    );
 
     public static boolean hasEffectEitherSide(LivingEntity living, Holder<MobEffect> effect){
         return living.hasEffect(effect) || living.getData(ClientMobEffectData.type()).hasEffect(effect);

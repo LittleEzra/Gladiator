@@ -45,6 +45,7 @@ public class Gladius {
         GladiusDataAttachments.register(modEventBus);
         GladiusMobEffects.register(modEventBus);
         GladiusPotions.register(modEventBus);
+        GladiusAlliances.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(GladiusCreativeModeTabs::addToVanilla);
