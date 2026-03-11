@@ -58,11 +58,14 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.GOLDEN_WAND, "Goldener Zauberstab");
         this.addItem(GladiusItems.FROZEN_WAND, "Gefrorener Zauberstab");
         this.addItem(GladiusItems.TORRID_STANDARD, "Flammende Standarte");
+        this.addItem(GladiusItems.HOGLIN_TUSK, "Hoglin Tusk");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flammenläufer");
         this.addItem(GladiusItems.NIGHTWALKER_HOOD, "Nachtläufer Kapuze");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Macht-Handschuhe");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Lederhandschuhe");
         this.add("item.gladius.tooltip.two_handed", "Beidhändig");
+
+        this.addInstrument(GladiusInstruments.HOGLIN_TUSK, "Kampfschrei");
 
         this.addAspect(GladiusAspects.FIRE, "🔥 Feuer");
         this.addAspect(GladiusAspects.MAGIC, "🧪 Magie");

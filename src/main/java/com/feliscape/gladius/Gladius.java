@@ -34,6 +34,7 @@ public class Gladius {
         GladiusArmorMaterials.register(modEventBus);
 
         GladiusSoundEvents.register(modEventBus);
+        GladiusInstruments.register(modEventBus);
         GladiusParticles.register(modEventBus);
 
         GladiusActivities.register(modEventBus);

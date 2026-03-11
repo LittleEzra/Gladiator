@@ -1,0 +1,17 @@
+## Added:
+### Entities:
+- Blackstone Golem
+- Piglin Warlord
+- Piglin Bomber
+- Piglin Shaman
+### Items & Blocks:
+- Flame Trap
+- Mist Trap
+- Torrid Standard
+- Bomb
+- Hoglin Tusk
+## Changes:
+- Ice Block Projectiles now disappear when their target dies
+- Blazes no longer drop Blazing Hearts
+## Fixes:
+- Flamewalkers no longer stack

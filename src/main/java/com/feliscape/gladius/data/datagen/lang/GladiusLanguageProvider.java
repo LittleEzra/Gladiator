@@ -15,6 +15,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Instrument;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -64,6 +65,12 @@ public abstract class GladiusLanguageProvider extends LanguageProvider {
             add(translatable.getKey(), title);
         if (advancement.getDescription().getContents() instanceof TranslatableContents translatable)
             add(translatable.getKey(), description);
+    }
+    protected void addInstrument(Holder<Instrument> key, String name) {
+        addInstrument(key.getKey(), name);
+    }
+    protected void addInstrument(ResourceKey<Instrument> key, String name) {
+        add(Util.makeDescriptionId("instrument", key.location()), name);
     }
     protected void addAspect(ResourceKey<Aspect> key, String name) {
         add(Util.makeDescriptionId("aspect", key.location()), name);

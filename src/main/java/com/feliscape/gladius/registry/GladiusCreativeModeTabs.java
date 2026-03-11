@@ -41,6 +41,7 @@ public class GladiusCreativeModeTabs {
             before(shield, GladiusItems.GOLDEN_WAND, event);
             before(shield, GladiusItems.FROZEN_WAND, event);
             before(shield, GladiusItems.TORRID_STANDARD, event);
+            before(shield, GladiusItems.HOGLIN_TUSK, event);
 
             after(turtleHelmet, GladiusItems.FLAMEWALKERS, event);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS){

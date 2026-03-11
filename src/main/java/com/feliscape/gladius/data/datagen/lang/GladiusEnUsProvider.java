@@ -57,11 +57,14 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.GOLDEN_WAND, "Golden Wand");
         this.addItem(GladiusItems.FROZEN_WAND, "Frozen Wand");
         this.addItem(GladiusItems.TORRID_STANDARD, "Torrid Standard");
+        this.addItem(GladiusItems.HOGLIN_TUSK, "Hoglin Tusk");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flamewalkers");
         this.addItem(GladiusItems.NIGHTWALKER_HOOD, "Nightwalker Hood");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Power Gauntlets");
         this.addItem(GladiusItems.LEATHER_GAUNTLETS, "Leather Gauntlets");
         this.add("item.gladius.tooltip.two_handed", "Two-Handed");
+
+        this.addInstrument(GladiusInstruments.HOGLIN_TUSK, "Battle Cry");
 
         this.addAspect(GladiusAspects.FIRE, "🔥 Fire");
         this.addAspect(GladiusAspects.MAGIC, "🧪 Magic");
@@ -103,6 +106,8 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore blocks");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Gilded Dagger stabs");
+        this.addSubtitle(GladiusSoundEvents.HOGLIN_TUSK_CALL, "Hoglin Tusk calls");
+
         this.addSubtitle(GladiusSoundEvents.WINGED_ARROW_HIT, "Winged Arrow hits");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Firebrand lights fire");
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Fire Wake erupts");
@@ -161,6 +166,15 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addAdvancement(GladiusAdvancements.POCKET_SAND,
                 "Pocket Sand!",
                 "Toss Flash Powder into the air to confuse your enemies");
+
+        this.add("commands.gladius.alliance.remove.failure.no_valid_entities", "No valid entities in selection");
+        this.add("commands.gladius.alliance.remove.success.single", "Removed Alliance of %1$s");
+        this.add("commands.gladius.alliance.remove.success.multiple", "Removed Alliance from %1$s entities");
+
+        this.add("commands.gladius.alliance.remove.failure.invalid_id", "Alliance %1$s does not exist");
+        this.add("commands.gladius.alliance.remove.failure.no_valid_entities", "No valid entities in selection");
+        this.add("commands.gladius.alliance.remove.success.single", "Set Alliance of %1$s to %2$s");
+        this.add("commands.gladius.alliance.remove.success.multiple", "Set Alliance of %1$s entities to %2$s");
 
         this.addConfigSection("effects", "Effects");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.stunTrailResolution, "Stun Trail Resolution");

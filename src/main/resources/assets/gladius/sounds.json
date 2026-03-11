@@ -12,6 +12,12 @@
     ],
     "subtitle": "subtitle.gladius.item.gilded_dagger.stab"
   },
+  "item.hoglin_tusk.sound": {
+    "sounds": [
+      { "name": "gladius:item/hoglin_tusk_call" }
+    ],
+    "subtitle": "subtitle.gladius.item.hoglin_tusk.sound"
+  },
   "entity.winged_arrow.hit": {
     "sounds": [
       "block/amethyst/step1",

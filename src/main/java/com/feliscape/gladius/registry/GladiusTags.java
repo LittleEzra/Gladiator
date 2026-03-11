@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Instrument;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -61,6 +62,13 @@ public class GladiusTags {
 
         private static TagKey<Biome> create(String name){
             return TagKey.create(Registries.BIOME, Gladius.location(name));
+        }
+    }
+    public static class Instruments{
+        public static final TagKey<Instrument> HOGLIN_TUSK = create("hoglin_tusk");
+
+        private static TagKey<Instrument> create(String name){
+            return TagKey.create(Registries.INSTRUMENT, Gladius.location(name));
         }
     }
 }

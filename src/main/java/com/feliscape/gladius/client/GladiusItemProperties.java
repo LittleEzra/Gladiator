@@ -6,6 +6,7 @@ import com.feliscape.gladius.foundation.MobEffectRenderers;
 import com.feliscape.gladius.registry.GladiusComponents;
 import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.GladiusMobEffects;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -26,6 +27,8 @@ public class GladiusItemProperties {
         ItemProperties.register(GladiusItems.GILDED_DAGGER.asItem(), BLOOD,
                 ((stack, level, entity, seed) ->
                         (float) stack.getOrDefault(GladiusComponents.BLOOD, 0) / 5.0F));
+        ItemProperties.register(GladiusItems.HOGLIN_TUSK.asItem(), ResourceLocation.withDefaultNamespace("tooting"),
+                ((stack, level, entity, seed) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F));
         ItemProperties.register(GladiusItems.FLAMBERGE.asItem(), HAS_FIRE_ASPECT,
                 ((stack, level, entity, seed) -> {
                     if (level == null) return 0.0F;

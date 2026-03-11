@@ -91,6 +91,8 @@ public class GladiusItems {
                     .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.FIRE, false))
                     .attributes(TorridStandardItem.createAttributes())
             ));
+    public static final DeferredItem<HoglinTuskItem> HOGLIN_TUSK = ITEMS.registerItem("hoglin_tusk",
+            p -> new HoglinTuskItem(p.stacksTo(1)));
     public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
             p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p.stacksTo(1)
                     .component(GladiusComponents.HEAT, FlamewalkersHeat.create(20))));

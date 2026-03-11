@@ -43,6 +43,7 @@ public class DataGenerators {
         generator.addProvider(true, new GladiusMobEffectTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(true, new GladiusDamageTypeTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(true, new GladiusBiomeTagGenerator(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(true, new GladiusInstrumentTagProvider(packOutput, lookupProvider, existingFileHelper));
 
         generator.addProvider(true, new GladiusDataMapProvider(packOutput, lookupProvider));
 
