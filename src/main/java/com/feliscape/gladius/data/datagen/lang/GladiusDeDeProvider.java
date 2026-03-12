@@ -32,6 +32,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Schwarzsteingolem-Spawn-Ei");
         this.addItem(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG, "Piglin-Schamanen-Spawn-Ei");
         this.addItem(GladiusItems.PIGLIN_BOMBER_SPAWN_EGG, "Piglin-Bomber-Spawn-Ei");
+        this.addItem(GladiusItems.PIGLIN_WARLORD_SPAWN_EGG, "Piglin-Kriegsherr-Spawn-Ei");
 
         this.addItem(GladiusItems.BLAZING_HEART, "Loderndes Herz");
         this.addItem(GladiusItems.FRIGID_SEED, "Frostiger Samen");
@@ -91,6 +92,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Schwarzsteingolem");
         this.addEntityType(GladiusEntityTypes.PIGLIN_SHAMAN, "Piglin-Schamane");
         this.addEntityType(GladiusEntityTypes.PIGLIN_BOMBER, "Piglin-Bomber");
+        this.addEntityType(GladiusEntityTypes.PIGLIN_WARLORD, "Piglin-Kriegsherr");
 
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Blitzpulverwolke");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Kristallschmetterling");

@@ -31,6 +31,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG, "Blackstone Golem Spawn Egg");
         this.addItem(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG, "Piglin Shaman Spawn Egg");
         this.addItem(GladiusItems.PIGLIN_BOMBER_SPAWN_EGG, "Piglin Bomber Spawn Egg");
+        this.addItem(GladiusItems.PIGLIN_WARLORD_SPAWN_EGG, "Piglin Warlord Spawn Egg");
 
         this.addItem(GladiusItems.BLAZING_HEART, "Blazing Heart");
         this.addItem(GladiusItems.FRIGID_SEED, "Frigid Seed");
@@ -89,6 +90,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.BLACKSTONE_GOLEM, "Blackstone Golem");
         this.addEntityType(GladiusEntityTypes.PIGLIN_SHAMAN, "Piglin Shaman");
         this.addEntityType(GladiusEntityTypes.PIGLIN_BOMBER, "Piglin Bomber");
+        this.addEntityType(GladiusEntityTypes.PIGLIN_WARLORD, "Piglin Warlord");
 
         this.addEntityType(GladiusEntityTypes.FLASH_POWDER_CLOUD, "Flash Powder Cloud");
         this.addEntityType(GladiusEntityTypes.CRYSTAL_BUTTERFLY, "Crystal Butterfly");
@@ -171,10 +173,10 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.add("commands.gladius.alliance.remove.success.single", "Removed Alliance of %1$s");
         this.add("commands.gladius.alliance.remove.success.multiple", "Removed Alliance from %1$s entities");
 
-        this.add("commands.gladius.alliance.remove.failure.invalid_id", "Alliance %1$s does not exist");
-        this.add("commands.gladius.alliance.remove.failure.no_valid_entities", "No valid entities in selection");
-        this.add("commands.gladius.alliance.remove.success.single", "Set Alliance of %1$s to %2$s");
-        this.add("commands.gladius.alliance.remove.success.multiple", "Set Alliance of %1$s entities to %2$s");
+        this.add("commands.gladius.alliance.set.failure.invalid_id", "Alliance %1$s does not exist");
+        this.add("commands.gladius.alliance.set.failure.no_valid_entities", "No valid entities in selection");
+        this.add("commands.gladius.alliance.set.success.single", "Set Alliance of %1$s to %2$s");
+        this.add("commands.gladius.alliance.set.success.multiple", "Set Alliance of %1$s entities to %2$s");
 
         this.addConfigSection("effects", "Effects");
         this.addConfigValue("client", GladiusClientConfig.CONFIG.stunTrailResolution, "Stun Trail Resolution");

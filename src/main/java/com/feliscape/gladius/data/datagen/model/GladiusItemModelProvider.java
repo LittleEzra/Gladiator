@@ -28,6 +28,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         spawnEggItem(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG.get());
         spawnEggItem(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG.get());
         spawnEggItem(GladiusItems.PIGLIN_BOMBER_SPAWN_EGG.get());
+        spawnEggItem(GladiusItems.PIGLIN_WARLORD_SPAWN_EGG.get());
 
         basicItem(GladiusItems.BLAZING_HEART.get());
         basicItem(GladiusItems.FRIGID_SEED.get());

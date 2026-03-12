@@ -8,6 +8,7 @@ import com.feliscape.gladius.content.entity.ai.RetrieveArrowGoal;
 import com.feliscape.gladius.content.entity.ai.ReturnArrowGoal;
 import com.feliscape.gladius.content.entity.enemy.piglin.bomber.PiglinBomber;
 import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
+import com.feliscape.gladius.content.entity.enemy.piglin.warlord.PiglinWarlord;
 import com.feliscape.gladius.content.entity.misc.FireWake;
 import com.feliscape.gladius.content.item.NightwalkerArmorItem;
 import com.feliscape.gladius.content.item.WandItem;
@@ -38,6 +39,7 @@ public class GeneralEvents {
         event.put(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolem.createAttributes().build());
         event.put(GladiusEntityTypes.PIGLIN_SHAMAN.get(), PiglinShaman.createAttributes().build());
         event.put(GladiusEntityTypes.PIGLIN_BOMBER.get(), PiglinBomber.createAttributes().build());
+        event.put(GladiusEntityTypes.PIGLIN_WARLORD.get(), PiglinWarlord.createAttributes().build());
     }
 
     @SubscribeEvent

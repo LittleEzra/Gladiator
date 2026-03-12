@@ -1,5 +1,6 @@
 package com.feliscape.gladius.client.model;
 
+import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.PiglinModel;
 import net.minecraft.client.model.geom.LayerDefinitions;
@@ -8,7 +9,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 
-public class PiglinShamanModel extends PiglinModel<Piglin> {
+public class PiglinShamanModel extends PiglinModel<PiglinShaman> {
     public PiglinShamanModel(ModelPart modelPart) {
         super(modelPart);
     }

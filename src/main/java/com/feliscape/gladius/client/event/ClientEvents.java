@@ -101,6 +101,7 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_SHAMAN.get(), PiglinShamanRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_BOMBER.get(), PiglinBomberRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_WARLORD.get(), PiglinWarlordRenderer::new);
 
         event.registerEntityRenderer(GladiusEntityTypes.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PRISMARINE_ARROW.get(), PrismarineArrowRenderer::new);

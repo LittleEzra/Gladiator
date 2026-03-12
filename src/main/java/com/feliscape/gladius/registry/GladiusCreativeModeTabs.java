@@ -63,6 +63,7 @@ public class GladiusCreativeModeTabs {
             event.accept(GladiusItems.BLACKSTONE_GOLEM_SPAWN_EGG);
             event.accept(GladiusItems.PIGLIN_SHAMAN_SPAWN_EGG);
             event.accept(GladiusItems.PIGLIN_BOMBER_SPAWN_EGG);
+            event.accept(GladiusItems.PIGLIN_WARLORD_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
             ItemStack crafter = Items.CRAFTER.getDefaultInstance();
             after(crafter, GladiusBlocks.MIST_TRAP, event);
