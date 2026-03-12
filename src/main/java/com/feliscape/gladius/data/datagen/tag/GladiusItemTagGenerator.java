@@ -31,6 +31,7 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
                 .add(GladiusItems.GILDED_DAGGER.get())
                 .add(GladiusItems.CLAYMORE.get())
                 .add(GladiusItems.FLAMBERGE.get())
+                .add(GladiusItems.GOLDEN_SCIMITAR.get())
         ;
         this.tag(GladiusTags.Items.BLOCKING_ENCHANTABLE)
                 .add(Items.SHIELD)

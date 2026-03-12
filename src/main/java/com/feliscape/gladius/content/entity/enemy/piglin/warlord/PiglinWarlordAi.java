@@ -49,7 +49,9 @@ public class PiglinWarlordAi extends PiglinAi {
             MemoryModuleType.PATH,
             MemoryModuleType.ANGRY_AT,
             MemoryModuleType.NEAREST_VISIBLE_NEMESIS,
-            MemoryModuleType.HOME
+            MemoryModuleType.HOME,
+
+            GladiusMemoryModuleTypes.TOOT_HORN_DELAY.get()
     );
 
     protected static Brain<?> makeBrain(PiglinWarlord piglinWarlord, Brain<PiglinWarlord> brain) {
@@ -76,7 +78,7 @@ public class PiglinWarlordAi extends PiglinAi {
                         new MoveToTargetSink(),
                         InteractWithDoor.create(),
                         StopBeingAngryIfTargetDead.create(),
-                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.BOMB_THROW_DELAY.get())
+                        new CountDownCooldownTicks(GladiusMemoryModuleTypes.TOOT_HORN_DELAY.get())
                 )
         );
     }
@@ -101,6 +103,7 @@ public class PiglinWarlordAi extends PiglinAi {
                 ImmutableList.of(
                         StopAttackingIfTargetInvalid.<Mob>create(entity -> !isNearestValidAttackTarget(piglinWarlord, entity)),
                         SetWalkTargetFromAttackTargetIfTargetOutOfReach.create(1.0F),
+                        new TootHorn<>(),
                         MeleeAttack.create(20)
                 ),
                 MemoryModuleType.ATTACK_TARGET

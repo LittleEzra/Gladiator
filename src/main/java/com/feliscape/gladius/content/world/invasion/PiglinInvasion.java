@@ -122,8 +122,8 @@ public class PiglinInvasion {
                 this.level.addFreshEntity(golem);
         }
     }
-    private int getDefaultNumSpawns(InvaderType raiderType, int wave, boolean shouldSpawnBonusGroup) {
-        return raiderType.spawnsPerWaveBeforeBonus[wave];
+    private int getDefaultNumSpawns(InvaderType invaderType, int wave, boolean shouldSpawnBonusGroup) {
+        return invaderType.spawnsPerWaveBeforeBonus[wave];
     }
 
     private boolean shouldSpawnGroup() {

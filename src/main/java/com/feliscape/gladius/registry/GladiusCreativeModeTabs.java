@@ -38,6 +38,7 @@ public class GladiusCreativeModeTabs {
             before(shield, GladiusItems.GILDED_DAGGER, event);
             before(shield, GladiusItems.CLAYMORE, event);
             before(shield, GladiusItems.FLAMBERGE, event);
+            before(shield, GladiusItems.GOLDEN_SCIMITAR, event);
             before(shield, GladiusItems.GOLDEN_WAND, event);
             before(shield, GladiusItems.FROZEN_WAND, event);
             before(shield, GladiusItems.TORRID_STANDARD, event);

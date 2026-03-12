@@ -56,6 +56,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.GILDED_DAGGER, "Vergoldeter Dolch");
         this.addItem(GladiusItems.CLAYMORE, "Claymore");
         this.addItem(GladiusItems.FLAMBERGE, "Flammenschwert");
+        this.addItem(GladiusItems.GOLDEN_SCIMITAR, "Goldenes Säbel");
         this.addItem(GladiusItems.GOLDEN_WAND, "Goldener Zauberstab");
         this.addItem(GladiusItems.FROZEN_WAND, "Gefrorener Zauberstab");
         this.addItem(GladiusItems.TORRID_STANDARD, "Flammende Standarte");

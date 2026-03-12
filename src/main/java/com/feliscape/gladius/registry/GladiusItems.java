@@ -78,6 +78,10 @@ public class GladiusItems {
                     .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.FIRE, true))
                     .component(GladiusComponents.TWO_HANDED, Unit.INSTANCE)
             ));
+    public static final DeferredItem<SwordItem> GOLDEN_SCIMITAR = ITEMS.registerItem("golden_scimitar",
+            p -> new SwordItem(Tiers.GOLD, p.rarity(Rarity.UNCOMMON)
+                    .attributes(SwordItem.createAttributes(Tiers.GOLD, 4, -1.9F))
+            ));
     public static final DeferredItem<WandItem> GOLDEN_WAND = ITEMS.registerItem("golden_wand",
             p -> new WandItem(p.stacksTo(1)
                     .component(GladiusComponents.ASPECT, AspectComponent.of(GladiusAspects.MAGIC, false))

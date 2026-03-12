@@ -1,0 +1,6 @@
+{
+	"parent": "gladius:item/large_handheld_sword_rotated",
+	"textures": {
+		"layer0": "gladius:item/golden_scimitar_in_hand"
+	}
+}

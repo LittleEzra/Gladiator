@@ -55,6 +55,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.GILDED_DAGGER, "Gilded Dagger");
         this.addItem(GladiusItems.CLAYMORE, "Claymore");
         this.addItem(GladiusItems.FLAMBERGE, "Flamberge");
+        this.addItem(GladiusItems.GOLDEN_SCIMITAR, "Golden Scimitar");
         this.addItem(GladiusItems.GOLDEN_WAND, "Golden Wand");
         this.addItem(GladiusItems.FROZEN_WAND, "Frozen Wand");
         this.addItem(GladiusItems.TORRID_STANDARD, "Torrid Standard");
