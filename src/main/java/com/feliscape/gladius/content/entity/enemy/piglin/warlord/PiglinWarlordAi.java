@@ -152,6 +152,7 @@ public class PiglinWarlordAi extends PiglinAi {
     }
 
     private static Optional<? extends LivingEntity> findNearestValidAttackTarget(AbstractPiglin piglinBrute) {
+
         Optional<LivingEntity> optional = BehaviorUtils.getLivingEntityFromUUIDMemory(piglinBrute, MemoryModuleType.ANGRY_AT);
         if (optional.isPresent() && Sensor.isEntityAttackableIgnoringLineOfSight(piglinBrute, optional.get())) {
             return optional;

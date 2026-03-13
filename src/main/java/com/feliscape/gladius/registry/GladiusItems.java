@@ -12,6 +12,7 @@ import com.feliscape.gladius.content.item.projectile.arrow.ExplosiveArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.PrismarineArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.WingedArrowItem;
 import com.feliscape.gladius.data.registry.GladiusAspects;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Unit;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -98,7 +99,8 @@ public class GladiusItems {
                     .attributes(TorridStandardItem.createAttributes())
             ));
     public static final DeferredItem<HoglinTuskItem> HOGLIN_TUSK = ITEMS.registerItem("hoglin_tusk",
-            p -> new HoglinTuskItem(p.stacksTo(1)));
+            p -> new HoglinTuskItem(p.stacksTo(1)
+                    .component(DataComponents.INSTRUMENT, GladiusInstruments.HOGLIN_TUSK)));
     public static final DeferredItem<FlamewalkersItem> FLAMEWALKERS = ITEMS.registerItem("flamewalkers",
             p -> new FlamewalkersItem(GladiusArmorMaterials.FLAMEWALKERS, ArmorItem.Type.BOOTS, p.stacksTo(1)
                     .component(GladiusComponents.HEAT, FlamewalkersHeat.create(20))));

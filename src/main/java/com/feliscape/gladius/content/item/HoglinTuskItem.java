@@ -29,7 +29,7 @@ public class HoglinTuskItem extends InstrumentItem {
 
     @Override
     public void onUseTick(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration) {
-        if (remainingUseDuration == getUseDuration(stack, livingEntity) - 20){
+        if (remainingUseDuration == getUseDuration(stack, livingEntity) - 1){
             List<LivingEntity> nearbyAllies = level.getEntitiesOfClass(LivingEntity.class,
                     livingEntity.getBoundingBox().inflate(12.0D, 8.0D, 12.0D),
                     entity -> validateAlly(entity, livingEntity));
@@ -61,7 +61,7 @@ public class HoglinTuskItem extends InstrumentItem {
         if (entity == user) return true;
 
         if (EntityUtil.areAllied(entity, user)) return true;
-        else if (entity instanceof Player) return true;
+        else if (user instanceof Player && entity instanceof Player) return true;
         else if (entity instanceof OwnableEntity ownable) return validateAllyOwner(ownable.getOwner(), user);
         return false;
     }
@@ -73,7 +73,7 @@ public class HoglinTuskItem extends InstrumentItem {
         if (entity == user) return true;
 
         if (EntityUtil.areAllied(entity, user)) return true;
-        else if (entity instanceof Player) return true;
+        else if (user instanceof Player && entity instanceof Player) return true;
         return false;
     }
 }

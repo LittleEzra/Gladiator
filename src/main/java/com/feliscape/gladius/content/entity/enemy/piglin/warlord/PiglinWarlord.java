@@ -102,6 +102,7 @@ public class PiglinWarlord extends AbstractPiglin {
 
     @Override
     public PiglinArmPose getArmPose() {
+        if (this.isUsingItem()) return PiglinArmPose.ADMIRING_ITEM;
         return this.isAggressive() && this.isHoldingMeleeWeapon() ? PiglinArmPose.ATTACKING_WITH_MELEE_WEAPON : PiglinArmPose.DEFAULT;
     }
 
