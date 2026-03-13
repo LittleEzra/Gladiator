@@ -102,8 +102,8 @@ public class PiglinWarlordAi extends PiglinAi {
                 10,
                 ImmutableList.of(
                         StopAttackingIfTargetInvalid.<Mob>create(entity -> !isNearestValidAttackTarget(piglinWarlord, entity)),
-                        SetWalkTargetFromAttackTargetIfTargetOutOfReach.create(1.0F),
                         new TootHorn<>(),
+                        SetWalkTargetFromAttackTargetIfTargetOutOfReach.create(1.0F),
                         MeleeAttack.create(20)
                 ),
                 MemoryModuleType.ATTACK_TARGET

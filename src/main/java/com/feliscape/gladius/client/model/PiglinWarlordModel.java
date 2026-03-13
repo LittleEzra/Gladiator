@@ -7,7 +7,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 
-public class PiglinWarlordModel extends PiglinModel<PiglinWarlord> {
+public class PiglinWarlordModel extends ExtendedPiglinModel<PiglinWarlord> {
     public PiglinWarlordModel(ModelPart modelPart) {
         super(modelPart);
     }

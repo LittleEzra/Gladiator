@@ -37,6 +37,14 @@ public class GladiusEntityTypeTagGenerator extends EntityTypeTagsProvider {
         this.tag(Tags.EntityTypes.BOSSES)
                 .add(GladiusEntityTypes.BLACKSTONE_GOLEM.get())
         ;
+        this.tag(GladiusTags.EntityTypes.PIGLIN_ALLIES)
+                .add(GladiusEntityTypes.BLACKSTONE_GOLEM.get())
+                .add(EntityType.PIGLIN)
+                .add(EntityType.PIGLIN_BRUTE)
+                .add(GladiusEntityTypes.PIGLIN_BOMBER.get())
+                .add(GladiusEntityTypes.PIGLIN_SHAMAN.get())
+                .add(GladiusEntityTypes.PIGLIN_WARLORD.get())
+        ;
 
         this.tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)
                 .add(GladiusEntityTypes.FROSTMANCER.get())

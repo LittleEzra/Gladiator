@@ -32,6 +32,7 @@ public class GladiusTags {
         public static final TagKey<EntityType<?>> STAB_IMMUNE = create("stab_immune");
 
         public static final TagKey<EntityType<?>> BLEEDING_IMMUNE = create("bleeding_immune");
+        public static final TagKey<EntityType<?>> PIGLIN_ALLIES = create("piglin_allies");
 
         private static TagKey<EntityType<?>> create(String name){
             return TagKey.create(Registries.ENTITY_TYPE, Gladius.location(name));

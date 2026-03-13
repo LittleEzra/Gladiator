@@ -30,12 +30,12 @@ public class AllianceCommand {
                                         ))
                                 )
                                 .then(Commands.literal("set")
-                                        .then(Commands.argument("id", ResourceLocationArgument.id())
+                                        .then(Commands.argument("id", AllianceArgument.alliance())
                                                 .executes(
                                                         context -> set(
                                                                 context.getSource(),
                                                                 EntityArgument.getEntities(context, "targets"),
-                                                                ResourceLocationArgument.getId(context, "id")
+                                                                AllianceArgument.getAlliance(context, "id")
                                                         )
                                                 )
                                         )
@@ -73,15 +73,7 @@ public class AllianceCommand {
 
         return targets.size();
     }
-    private static int set(CommandSourceStack source, Collection<? extends Entity> targets, ResourceLocation id) {
-        Alliance alliance = source.registryAccess().registryOrThrow(GladiusRegistries.Keys.ALLIANCES).get(id);
-        if (alliance == null){
-            source.sendFailure(
-                    Component.translatable("commands.gladius.alliance.set.failure.invalid_id", id.toString())
-            );
-            return 0;
-        }
-
+    private static int set(CommandSourceStack source, Collection<? extends Entity> targets, Alliance alliance) {
         var validEntities = targets.stream().filter(e -> e instanceof LivingEntity).collect(Collectors.toSet());
         if (validEntities.isEmpty()){
             source.sendFailure(
@@ -94,17 +86,21 @@ public class AllianceCommand {
         for (Entity entity : targets) {
             entity.setData(AllianceData.type(), alliance);
         }
+        var registry = source.registryAccess().registryOrThrow(GladiusRegistries.Keys.ALLIANCES);
+        var id = registry.getKey(alliance);
 
         if (targets.size() == 1) {
             source.sendSuccess(
                     () -> Component.translatable(
-                            "commands.gladius.alliance.set.success.single", targets.iterator().next().getDisplayName(), id.toString()
+                            "commands.gladius.alliance.set.success.single", targets.iterator().next().getDisplayName(),
+                            id == null ? "unknown alliance" : id.toString()
                     ),
                     true
             );
         } else {
             source.sendSuccess(
-                    () -> Component.translatable("commands.gladius.alliance.set.success.multiple", targets.size(), id.toString()), true
+                    () -> Component.translatable("commands.gladius.alliance.set.success.multiple", targets.size(),
+                            id == null ? "unknown alliance" :  id.toString()), true
             );
         }
 

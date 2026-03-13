@@ -40,8 +40,8 @@ public class TootHorn<E extends Mob> extends Behavior<E> {
     }
 
     protected boolean checkExtraStartConditions(ServerLevel level, E owner) {
-
         LivingEntity livingentity = getAttackTarget(owner);
+        if (livingentity == null) return false;
         return owner.getItemBySlot(EquipmentSlot.OFFHAND).has(DataComponents.INSTRUMENT) &&
                 BehaviorUtils.canSee(owner, livingentity) && livingentity.closerThan(owner, 8);
     }
@@ -71,6 +71,10 @@ public class TootHorn<E extends Mob> extends Behavior<E> {
         if (!owner.isUsingItem()) {
             owner.startUsingItem(InteractionHand.OFF_HAND);
         }
+
+        if (owner.getBrain().hasMemoryValue(MemoryModuleType.WALK_TARGET)){
+            owner.getBrain().eraseMemory(MemoryModuleType.WALK_TARGET);
+        }
     }
 
     protected void stop(ServerLevel level, E entity, long gameTime) {
@@ -84,6 +88,6 @@ public class TootHorn<E extends Mob> extends Behavior<E> {
     }
 
     private static LivingEntity getAttackTarget(LivingEntity shooter) {
-        return (LivingEntity)shooter.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).get();
+        return shooter.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).orElse(null);
     }
 }

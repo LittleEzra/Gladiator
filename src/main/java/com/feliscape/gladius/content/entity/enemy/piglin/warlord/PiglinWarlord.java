@@ -1,5 +1,7 @@
 package com.feliscape.gladius.content.entity.enemy.piglin.warlord;
 
+import com.feliscape.gladius.content.entity.enemy.piglin.ExtendedPiglin;
+import com.feliscape.gladius.content.entity.enemy.piglin.ExtendedPiglinArmPose;
 import com.feliscape.gladius.content.entity.enemy.piglin.bomber.PiglinBomberAi;
 import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
 import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShamanAi;
@@ -29,7 +31,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public class PiglinWarlord extends AbstractPiglin {
+public class PiglinWarlord extends ExtendedPiglin {
     public PiglinWarlord(EntityType<? extends AbstractPiglin> entityType, Level level) {
         super(entityType, level);
     }
@@ -101,8 +103,14 @@ public class PiglinWarlord extends AbstractPiglin {
     }
 
     @Override
+    public ExtendedPiglinArmPose getExtendedPose() {
+        if (this.isUsingItem()) return ExtendedPiglinArmPose.TOOT_HORN;
+        return super.getExtendedPose();
+    }
+
+    @Override
     public PiglinArmPose getArmPose() {
-        if (this.isUsingItem()) return PiglinArmPose.ADMIRING_ITEM;
+        if (isUsingItem()) return PiglinArmPose.DEFAULT;
         return this.isAggressive() && this.isHoldingMeleeWeapon() ? PiglinArmPose.ATTACKING_WITH_MELEE_WEAPON : PiglinArmPose.DEFAULT;
     }
 

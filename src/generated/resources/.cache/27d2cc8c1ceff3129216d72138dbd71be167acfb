@@ -1,6 +1,7 @@
-// 1.21.1	2026-01-17T11:06:59.9516161	Tags for minecraft:entity_type mod id gladius
+// 1.21.1	2026-03-13T08:49:00.3687054	Tags for minecraft:entity_type mod id gladius
 fbd7638522ea1161d48d67d68011804254644d0d data/c/tags/entity_type/bosses.json
 1468aeb82c2ba13bc893364d422d85e93d822234 data/gladius/tags/entity_type/bleeding_immune.json
+79f7a51307bc9b6392c8b240dcf3d20023ee0b85 data/gladius/tags/entity_type/piglin_allies.json
 6d5fac15fdbdd172a48665720857f3e7cd52ea07 data/gladius/tags/entity_type/stab_immune.json
 0bd42505f1a38d27b5161da104200852765a77af data/gladius/tags/entity_type/stun_immune.json
 08d2dbd87ccfa31d4acdac0b21815e02466fb2a3 data/minecraft/tags/entity_type/freeze_immune_entity_types.json

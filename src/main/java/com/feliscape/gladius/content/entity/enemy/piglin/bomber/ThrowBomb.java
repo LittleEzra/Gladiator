@@ -31,6 +31,7 @@ public class ThrowBomb<E extends Mob> extends Behavior<E> {
 
     protected boolean checkExtraStartConditions(ServerLevel level, E owner) {
         LivingEntity livingentity = getAttackTarget(owner);
+        if (livingentity == null) return false;
         return owner.isHolding((is) -> is.getItem() instanceof BombItem) && BehaviorUtils.canSee(owner, livingentity) && livingentity.closerThan(owner, 8);
     }
 
@@ -64,10 +65,11 @@ public class ThrowBomb<E extends Mob> extends Behavior<E> {
     }
 
     private void lookAtTarget(Mob shooter, LivingEntity target) {
+        if (target == null) return;
         shooter.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, new EntityTracker(target, true));
     }
 
     private static LivingEntity getAttackTarget(LivingEntity shooter) {
-        return (LivingEntity)shooter.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).get();
+        return (LivingEntity)shooter.getBrain().getMemory(MemoryModuleType.ATTACK_TARGET).orElse(null);
     }
 }

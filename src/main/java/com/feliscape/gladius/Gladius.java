@@ -1,5 +1,6 @@
 package com.feliscape.gladius;
 
+import com.feliscape.gladius.content.command.GladiusCommands;
 import com.feliscape.gladius.registry.*;
 import com.feliscape.gladius.registry.entity.GladiusActivities;
 import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
@@ -32,6 +33,8 @@ public class Gladius {
         GladiusItems.register(modEventBus);
         GladiusComponents.register(modEventBus);
         GladiusArmorMaterials.register(modEventBus);
+
+        GladiusCommands.ArgumentTypes.register(modEventBus);
 
         GladiusSoundEvents.register(modEventBus);
         GladiusInstruments.register(modEventBus);

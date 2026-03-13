@@ -1,6 +1,7 @@
 package com.feliscape.gladius.content.event;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.content.attachment.AllianceData;
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.enemy.frostmancer.Frostmancer;
@@ -10,21 +11,26 @@ import com.feliscape.gladius.content.entity.enemy.piglin.bomber.PiglinBomber;
 import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
 import com.feliscape.gladius.content.entity.enemy.piglin.warlord.PiglinWarlord;
 import com.feliscape.gladius.content.entity.misc.FireWake;
+import com.feliscape.gladius.content.entity.team.Alliance;
 import com.feliscape.gladius.content.item.NightwalkerArmorItem;
 import com.feliscape.gladius.content.item.WandItem;
 import com.feliscape.gladius.registry.*;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
@@ -113,6 +119,14 @@ public class GeneralEvents {
         if (entity.isAlive() && event.getEntity() instanceof Wolf wolf){
             wolf.goalSelector.addGoal(4, new ReturnArrowGoal(wolf));
             wolf.goalSelector.addGoal(6, new RetrieveArrowGoal(wolf));
+        }
+    }
+
+    @SubscribeEvent
+    public static void finalizeSpawn(FinalizeSpawnEvent event){
+        var entity = event.getEntity();
+        if (entity.getType().is(GladiusTags.EntityTypes.PIGLIN_ALLIES) || entity instanceof AbstractPiglin){
+            entity.setData(AllianceData.type(), GladiusAlliances.PIGLINS.get());
         }
     }
 
