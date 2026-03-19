@@ -112,6 +112,27 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
     public void prepareMobModel(BlackstoneGolem blackstoneGolem, float limbSwing, float limbSwingAmount, float partialTick) {
         this.resetPose();
 
+        if (blackstoneGolem.isDeadOrDying()){
+            float time = (blackstoneGolem.deathTime + partialTick) / 20.0F;
+            this.head.y *= (1.0F - (time - 0.1F) * (time - 0.1F) * (time - 0.1F)) * 2.0F - 1.0F;
+            this.core.y *= (1.0F - time * time * time) * 4.0F - 3.0F;
+            this.core.z -= (time + 0.3F) * 12.0F;
+
+            float rot = Mth.HALF_PI * time;
+            this.rightLeg.xRot = -rot;
+            this.rightLeg.z += Mth.sin(rot) * 24.0F;
+            this.rightLeg.y -= Mth.cos(rot) * 24.0F - 24.0F;
+            this.leftLeg.xRot = -(rot - 0.1F);
+            this.leftLeg.z += Mth.sin(rot - 0.1F) * 24.0F;
+            this.leftLeg.y -= Mth.cos(rot - 0.1F) * 24.0F - 24.0F;
+
+            float armRot = Math.max(time - 0.2F, 0.0F);
+            this.rightArm.xRot = -armRot;
+            this.rightArm.y += Mth.sin(armRot) * 24.0F;
+            this.rightArm.z += Mth.cos(armRot) * 24.0F;
+            return;
+        }
+
         var pose = blackstoneGolem.getGolemPose();
         switch (pose){
             case VANILLA -> {

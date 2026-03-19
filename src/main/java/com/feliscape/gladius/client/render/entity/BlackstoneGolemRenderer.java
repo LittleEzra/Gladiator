@@ -16,6 +16,11 @@ public class BlackstoneGolemRenderer extends MobRenderer<BlackstoneGolem, Blacks
     }
 
     @Override
+    protected float getFlipDegrees(BlackstoneGolem livingEntity) {
+        return 0;
+    }
+
+    @Override
     public ResourceLocation getTextureLocation(BlackstoneGolem blackstoneGolem) {
         return BLACKSTONE_GOLEM;
     }
