@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "minecraft:blackstone"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "item": "minecraft:blaze_powder"
+    }
+  },
+  "pattern": [
+    "###",
+    "SRS",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gladius:flame_trap"
+  }
+}

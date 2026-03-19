@@ -150,5 +150,24 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .define('R', Tags.Items.DUSTS_REDSTONE)
                 .unlockedBy(getHasName(GladiusItems.FRIGID_SHARD), has(GladiusItems.FRIGID_SHARD))
                 .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, GladiusBlocks.FLAME_TRAP.get())
+                .pattern("###")
+                .pattern("SRS")
+                .pattern("###")
+                .define('S', Items.BLAZE_POWDER)
+                .define('#', Items.BLACKSTONE)
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .unlockedBy(getHasName(Items.BLAZE_POWDER), has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusBlocks.BLACKSTONE_GOLEM_HEART.get())
+                .pattern("#B#")
+                .pattern("BBB")
+                .pattern("#B#")
+                .define('B', Items.BLAZE_POWDER)
+                .define('#', Items.BLACKSTONE)
+                .unlockedBy(getHasName(Items.BLAZE_POWDER), has(Items.BLAZE_POWDER))
+                .save(recipeOutput);
     }
 }

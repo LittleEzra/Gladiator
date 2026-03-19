@@ -1,4 +1,5 @@
-// 1.21.1	2026-02-11T10:47:35.8267675	Recipes
+// 1.21.1	2026-03-19T09:29:30.3878292	Recipes
+aff03e0ee18f5dcdb2325cc87e56ff702b929bf4 data/gladius/advancement/recipes/combat/blackstone_golem_heart.json
 afba2aba580ec4de987663e7c3ba1fe1976c515f data/gladius/advancement/recipes/combat/bomb.json
 aeec702d6cf959ae9ec6b01f084eb7d38793f775 data/gladius/advancement/recipes/combat/claymore.json
 41a0ced1f4fbe98b1a4b2749ddb8a3bfe848fb5f data/gladius/advancement/recipes/combat/explosive_arrow.json
@@ -13,8 +14,10 @@ b3b82afaef28719e79bcacd8d559b7dba35f35d4 data/gladius/advancement/recipes/combat
 007fc8f24eed71ae3a7ea17f2f534f13fa1e0343 data/gladius/advancement/recipes/combat/winged_arrow.json
 ddf9c41e70bec0f1c876e95735e8fc4b5e31daec data/gladius/advancement/recipes/misc/blazing_heart_into_blaze_powder.json
 0ed479f1e0ce16a79851f8b02d36f5735be78703 data/gladius/advancement/recipes/misc/hearth_stone.json
+33d15ce649c3488b808eeb7240e18d0d5da98694 data/gladius/advancement/recipes/redstone/flame_trap.json
 f604a48cca05e1a1b5464585476db8150d59b948 data/gladius/advancement/recipes/redstone/mist_trap.json
 ad17342afa1b886c29403c622b1a8e78780fc66a data/gladius/advancement/recipes/tools/crystal_butterfly.json
+d42272e8c93891b0d2d55bf12ec21b06a7d93637 data/gladius/recipe/blackstone_golem_heart.json
 76691c20ce5e89c1d7abebb6bbb68fd44317a4ff data/gladius/recipe/blazing_heart_into_blaze_powder.json
 c9fb5fdaf95a21cdba62dad8db9980aae1c5f6ce data/gladius/recipe/bomb.json
 d331b81e3f276e25dd76d656816d494188303d3e data/gladius/recipe/claymore.json
@@ -23,6 +26,7 @@ aff7a8ba614b47d42685384d6a203d29de92fba3 data/gladius/recipe/explosive_arrow.jso
 fdbf8498de7ea6f4597a23b76fac3b9a73a399ed data/gladius/recipe/firebrand.json
 ad1d9af8819b38bd2f27134cdbb21760bdc26729 data/gladius/recipe/flamberge.json
 d9e561b03913a00fbda4c7d3d56492bfbc558f66 data/gladius/recipe/flamewalkers.json
+864444f9b6102117ce82965545cb803d6882930e data/gladius/recipe/flame_trap.json
 c4f9ced55a230c518bc444b3a82c9993e601f663 data/gladius/recipe/flash_powder.json
 fd710d2d4793d2d913248bbeaa9cee5c2fc9dbb7 data/gladius/recipe/gilded_dagger.json
 c645bdbef9bf21211ec06928b2c74a9e70529593 data/gladius/recipe/golden_wand.json

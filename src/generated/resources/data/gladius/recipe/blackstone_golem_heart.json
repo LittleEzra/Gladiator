@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:blackstone"
+    },
+    "B": {
+      "item": "minecraft:blaze_powder"
+    }
+  },
+  "pattern": [
+    "#B#",
+    "BBB",
+    "#B#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gladius:blackstone_golem_heart"
+  }
+}
