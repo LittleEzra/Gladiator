@@ -113,8 +113,24 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
         this.resetPose();
 
         if (blackstoneGolem.isDeadOrDying()){
-            float time = (blackstoneGolem.deathTime + partialTick) / 20.0F;
-            this.head.y *= (1.0F - (time - 0.1F) * (time - 0.1F) * (time - 0.1F)) * 2.0F - 1.0F;
+            float time = (blackstoneGolem.deathTime + partialTick) / 40.0F;
+
+            float kneel = FloatEasings.easeInQuad(Math.min(time + 0.5F, 1.0F));
+
+            this.rightLeg.z -= (kneel) * 8.0F;
+            this.rightLeg.xRot = kneel * 0.25F;
+            this.leftLeg.xRot = kneel;
+            this.leftLeg.y += (Mth.sin(this.leftLeg.xRot)) * 12.0F;
+
+            float drop = FloatEasings.easeInQuad(Math.min(time + 0.25F, 1.0F));
+
+            this.body.xRot = drop;
+            this.body.y += drop * 8.0F;
+            this.head.y += drop * 4.0F;
+            this.rightArm.xRot -= this.body.xRot + drop * 0.1F;
+            this.leftArm.xRot -= this.body.xRot + drop * 0.4F;
+
+            /*this.head.y *= (1.0F - (time - 0.1F) * (time - 0.1F) * (time - 0.1F)) * 2.0F - 1.0F;
             this.core.y *= (1.0F - time * time * time) * 4.0F - 3.0F;
             this.core.z -= (time + 0.3F) * 12.0F;
 
@@ -129,7 +145,7 @@ public class BlackstoneGolemModel extends EntityModel<BlackstoneGolem> {
             float armRot = Math.max(time - 0.2F, 0.0F);
             this.rightArm.xRot = -armRot;
             this.rightArm.y += Mth.sin(armRot) * 24.0F;
-            this.rightArm.z += Mth.cos(armRot) * 24.0F;
+            this.rightArm.z += Mth.cos(armRot) * 24.0F;*/
             return;
         }
 
