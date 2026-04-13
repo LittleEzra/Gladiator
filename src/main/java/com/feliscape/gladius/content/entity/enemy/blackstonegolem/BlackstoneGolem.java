@@ -2,7 +2,7 @@ package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.data.damage.GladiusDamageSources;
-import com.feliscape.gladius.registry.GladiusMobEffects;
+import com.feliscape.gladius.networking.payload.ShakeScreenPayload;
 import com.feliscape.gladius.registry.GladiusParticles;
 import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
@@ -18,7 +18,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -26,14 +25,11 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.breeze.Breeze;
-import net.minecraft.world.entity.monster.breeze.BreezeAi;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -141,6 +137,11 @@ public class BlackstoneGolem extends PathfinderMob {
     @Override
     protected void tickDeath() {
         ++this.deathTime;
+        if (deathTime == 35 && !level().isClientSide()){
+            PacketDistributor.sendToAllPlayers(
+                    new ShakeScreenPayload(new Vec3(this.getX(), this.getY(0.5D), this.getZ()), 8.0F, 1.3F, 25)
+            );
+        }
         if (this.deathTime >= 40 && !this.level().isClientSide() && !this.isRemoved()) {
             this.level().broadcastEntityEvent(this, (byte)60);
             this.remove(RemovalReason.KILLED);

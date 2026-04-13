@@ -1,21 +1,15 @@
 package com.feliscape.gladius.content.entity.enemy.blackstonegolem;
 
-import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.networking.payload.ShakeScreenPayload;
 import com.feliscape.gladius.registry.GladiusMobEffects;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.BlockPosTracker;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
-import net.minecraft.world.entity.ai.memory.WalkTarget;
-import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -65,7 +59,9 @@ public class Charge extends Behavior<BlackstoneGolem> {
                     owner.setDeltaMovement(owner.getDeltaMovement().scale(-0.8D).add(0.0D, 0.4D, 0.0D));
 
                     owner.addEffect(new MobEffectInstance(GladiusMobEffects.STUN, 4 * 20));
-                    PacketDistributor.sendToAllPlayers(new ShakeScreenPayload(1.0F, 40));
+                    PacketDistributor.sendToAllPlayers(
+                            new ShakeScreenPayload(new Vec3(owner.getX(), owner.getY(0.5D), owner.getZ()), 16.0F, 2.0F, 40)
+                    );
                 }
 
             }
