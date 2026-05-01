@@ -19,6 +19,7 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
         super(output, lookupProvider, blockTags, Gladius.MOD_ID, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(ItemTags.ARROWS)
@@ -55,6 +56,9 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
                 .add(Items.LEATHER_LEGGINGS)
                 .add(Items.LEATHER_BOOTS)
                 .add(Items.LEATHER_HORSE_ARMOR)
+        ;
+        this.tag(GladiusTags.Items.SPREADS_FLASH_POWDER)
+                .addTags(ItemTags.SHOVELS)
         ;
     }
 }

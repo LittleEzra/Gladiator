@@ -2,9 +2,15 @@ package com.feliscape.gladius.content.event;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusClientConfig;
+import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.GladiusMobEffects;
+import com.feliscape.gladius.registry.GladiusSoundEvents;
+import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.client.Minecraft;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -17,16 +23,32 @@ import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
 import net.minecraft.world.entity.ai.util.RandomPos;
 import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.stream.Stream;
 
 @EventBusSubscriber(modid = Gladius.MOD_ID)
 public class FlashedHandler {
+    @SubscribeEvent
+    public static void onHurt(LivingDamageEvent.Pre event){
+        DamageSource source = event.getSource();
+        LivingEntity entity = event.getEntity();
+        if (source.getDirectEntity() instanceof LivingEntity living && source.getWeaponItem() != null && source.getWeaponItem().is(GladiusTags.Items.SPREADS_FLASH_POWDER)){
+            ItemStack offhand = living.getOffhandItem();
+            if (offhand.is(GladiusItems.FLASH_POWDER)){
+                offhand.consume(1, living);
+                entity.addEffect(new MobEffectInstance(GladiusMobEffects.FLASHED, 15 * 20));
+                living.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), GladiusSoundEvents.FLASH_POWDER_CRACKLE.get(), SoundSource.MASTER);
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof PathfinderMob mob){

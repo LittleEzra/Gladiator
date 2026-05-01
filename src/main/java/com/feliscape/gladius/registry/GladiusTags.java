@@ -46,6 +46,8 @@ public class GladiusTags {
 
         public static final TagKey<Item> TORRID_STANDARD_AMMO = create("torrid_standard_ammo");
 
+        public static final TagKey<Item> SPREADS_FLASH_POWDER = create("spreads_flash_powder");
+
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Gladius.location(name));
         }
