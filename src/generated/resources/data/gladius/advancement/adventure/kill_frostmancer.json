@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:adventure/kill_a_mob",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "gladius:frostmancer"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gladius.adventure.kill_frostmancer.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "gladius:frozen_wand"
+    },
+    "title": {
+      "translate": "advancements.gladius.adventure.kill_frostmancer.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

@@ -61,7 +61,8 @@ public class HoglinTuskItem extends InstrumentItem {
         if (entity == user) return true;
 
         if (EntityUtil.areAllied(entity, user)) return true;
-        else if (user instanceof Player && entity instanceof Player) return true;
+        else if (entity.isAlliedTo(user)) return true;
+        else if (entity instanceof Player && entity.getTeam() == null && user instanceof Player && user.getTeam() == null) return true;
         else if (entity instanceof OwnableEntity ownable) return validateAllyOwner(ownable.getOwner(), user);
         return false;
     }
@@ -73,7 +74,7 @@ public class HoglinTuskItem extends InstrumentItem {
         if (entity == user) return true;
 
         if (EntityUtil.areAllied(entity, user)) return true;
-        else if (user instanceof Player && entity instanceof Player) return true;
+        else if (entity.getTeam() == null || entity.getTeam().isAlliedTo(user.getTeam())) return true;
         return false;
     }
 }

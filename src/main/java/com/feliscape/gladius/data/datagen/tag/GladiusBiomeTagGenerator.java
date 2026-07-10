@@ -6,6 +6,7 @@ import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
@@ -25,6 +26,9 @@ public class GladiusBiomeTagGenerator extends BiomeTagsProvider {
                 .add(Biomes.JAGGED_PEAKS)
                 .add(Biomes.SNOWY_SLOPES)
                 .add(Biomes.GROVE)
+        ;
+        this.tag(GladiusTags.Biomes.HAS_PIGLIN_CAMP)
+                .addTag(BiomeTags.HAS_BASTION_REMNANT)
         ;
     }
 }

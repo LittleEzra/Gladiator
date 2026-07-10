@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:nether/obtain_blaze_rod",
+  "criteria": {
+    "0": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "gladius:blackstone_golem"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.gladius.nether.kill_blackstone_golem.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "gladius:blackstone_golem_heart"
+    },
+    "title": {
+      "translate": "advancements.gladius.nether.kill_blackstone_golem.title"
+    }
+  },
+  "requirements": [
+    [
+      "0"
+    ]
+  ]
+}

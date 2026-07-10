@@ -74,7 +74,7 @@ public class IceSpikeSpawner extends Entity implements TraceableEntity {
                 }
 
                 for (int i = 0; i < 2; i++){
-                    theta += random.nextDouble() * 0.7D + 0.7D;
+                    theta += random.nextDouble() * 0.2D + 0.7D;
                     double distance = 0.5D + (totalIceSpikes - iceSpikesLeft) * 0.15D;
                     Vec3 location = this.position().add(Math.cos(theta) * distance, 0.0D, Math.sin(theta) * distance);
                     Double yOffset = findYOffset(location);

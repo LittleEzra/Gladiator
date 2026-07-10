@@ -14,6 +14,7 @@ import java.util.List;
 
 public class GladiusStructureSets {
     public static final ResourceKey<StructureSet> FROSTMANCER_TOWER = createKey("frostmancer_tower");
+    public static final ResourceKey<StructureSet> PIGLIN_CAMP = createKey("piglin_camp");
 
     public static void bootstrap(BootstrapContext<StructureSet> context){
         HolderGetter<Structure> structureGetter = context.lookup(Registries.STRUCTURE);
@@ -25,6 +26,15 @@ public class GladiusStructureSets {
                                 StructureSet.entry(structureGetter.getOrThrow(GladiusStructures.FROSTMANCER_TOWER))
                         ),
                         new RandomSpreadStructurePlacement(25, 8, RandomSpreadType.LINEAR, 12358943)
+                )
+        );
+        context.register(
+                PIGLIN_CAMP,
+                new StructureSet(
+                        List.of(
+                                StructureSet.entry(structureGetter.getOrThrow(GladiusStructures.PIGLIN_CAMP))
+                        ),
+                        new RandomSpreadStructurePlacement(21, 12, RandomSpreadType.LINEAR, 2568049)
                 )
         );
     }

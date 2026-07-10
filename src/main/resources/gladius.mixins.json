@@ -6,6 +6,7 @@
     "AbstractArrowMixin",
     "AbstractPiglinMixin",
     "BrainMixin",
+    "EntityMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "MobMixin",

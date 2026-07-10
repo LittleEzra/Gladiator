@@ -21,9 +21,4 @@ public class NightwalkerArmorItem extends ArmorItem {
         if (living == null) return false;
         return (living.getPose() == Pose.CROUCHING || living.isShiftKeyDown()) && living.getItemBySlot(EquipmentSlot.HEAD).is(GladiusItems.NIGHTWALKER_HOOD);
     }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("item.gladius.wip").withStyle(ChatFormatting.GRAY));
-    }
 }

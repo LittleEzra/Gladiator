@@ -10,8 +10,12 @@
 - Torrid Standard
 - Bomb
 - Hoglin Tusk
+### Structures:
+- Piglin Camp
 ## Changes:
 - Ice Block Projectiles now disappear when their target dies
 - Blazes no longer drop Blazing Hearts
+- Removed /alliance command, on account of the alliance system being far from finished
 ## Fixes:
 - Flamewalkers no longer stack
+- Should work on servers now (probably)

@@ -45,7 +45,8 @@ public class ThrownOilBottle extends ThrowableItemProjectile {
         super.onHit(result);
 
         if (isInLiquid()){
-            PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.OIL_BOTTLE_SPLASH_WATER, this.position()));
+            if (!level().isClientSide)
+                PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.OIL_BOTTLE_SPLASH_WATER, this.position()));
             this.discard();
             return;
         }

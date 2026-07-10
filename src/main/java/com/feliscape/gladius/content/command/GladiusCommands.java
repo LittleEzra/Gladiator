@@ -19,7 +19,7 @@ public class GladiusCommands {
 
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event){
-        AllianceCommand.register(event.getDispatcher());
+        //AllianceCommand.register(event.getDispatcher());
     }
 
     public static class ArgumentTypes{

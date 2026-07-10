@@ -62,6 +62,7 @@ public class GladiusTags {
     }
     public static class Biomes{
         public static final TagKey<Biome> HAS_FROSTMANCER_TOWER = create("has_structure/frostmancer_tower");
+        public static final TagKey<Biome> HAS_PIGLIN_CAMP = create("has_structure/piglin_camp");
 
         private static TagKey<Biome> create(String name){
             return TagKey.create(Registries.BIOME, Gladius.location(name));

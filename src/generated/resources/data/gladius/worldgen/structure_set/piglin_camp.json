@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 2568049,
+    "separation": 12,
+    "spacing": 21
+  },
+  "structures": [
+    {
+      "structure": "gladius:piglin_camp",
+      "weight": 1
+    }
+  ]
+}

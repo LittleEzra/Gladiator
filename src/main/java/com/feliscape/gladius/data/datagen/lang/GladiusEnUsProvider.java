@@ -104,6 +104,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.FREEZING, "Freezing");
         this.addMobEffect(GladiusMobEffects.FROST_RESISTANCE, "Frost Resistance");
         this.addMobEffect(GladiusMobEffects.STABILITY, "Stability");
+        this.addMobEffect(GladiusMobEffects.BATTLE_CRY, "Battle Cry");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Stunning");
 
@@ -169,6 +170,13 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addAdvancement(GladiusAdvancements.POCKET_SAND,
                 "Pocket Sand!",
                 "Toss Flash Powder into the air to confuse your enemies");
+
+        this.addAdvancement(GladiusAdvancements.KILL_FROSTMANCER,
+                "Out Cold",
+                "Defeat a Frostmancer, an illager with the goal of using the cold itself as a weapon");
+        this.addAdvancement(GladiusAdvancements.KILL_BLACKSTONE_GOLEM,
+                "A Terrible Machine",
+                "Destroy the Blackstone Golem, a construct of a long gone civilization modified by the piglins");
 
         this.add("commands.gladius.alliance.remove.failure.no_valid_entities", "No valid entities in selection");
         this.add("commands.gladius.alliance.remove.success.single", "Removed Alliance of %1$s");

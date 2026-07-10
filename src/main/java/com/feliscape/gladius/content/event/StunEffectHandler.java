@@ -54,7 +54,8 @@ public class StunEffectHandler {
                 if (itemStack.is(GladiusItems.CLAYMORE)){
                     Vec3 attackerPosition = livingAttacker.position().add(0.0D, livingAttacker.getBbHeight() * 0.65D, 0.0D);
                     Vec3 offset = entity.position().subtract(attackerPosition).normalize().scale(livingAttacker.getBbWidth() * 0.5D);
-                    PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.CLAYMORE_BLOCK, attackerPosition.add(offset)));
+                    if (!livingAttacker.level().isClientSide)
+                        PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.CLAYMORE_BLOCK, attackerPosition.add(offset)));
                 }
                 event.setCanceled(true);
             }

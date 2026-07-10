@@ -54,7 +54,8 @@ public class Firebrand extends ThrowableItemProjectile {
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
-        PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.FIREBRAND_LIGHT, this.position()));
+        if (!level().isClientSide)
+            PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.FIREBRAND_LIGHT, this.position()));
 
         if (!GladiusServerConfig.CONFIG.firebrandMakesFire.getAsBoolean()) return;
 
@@ -76,7 +77,8 @@ public class Firebrand extends ThrowableItemProjectile {
         Entity entity = result.getEntity();
         if (!entity.fireImmune()){
             entity.igniteForSeconds(8.0F);
-            PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.FIREBRAND_LIGHT, this.position()));
+            if (!level().isClientSide)
+                PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.FIREBRAND_LIGHT, this.position()));
         }
     }
 

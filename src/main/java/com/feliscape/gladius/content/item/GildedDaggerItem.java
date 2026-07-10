@@ -63,8 +63,10 @@ public class GildedDaggerItem extends SwordItem {
                     usedItem.set(GladiusComponents.BLOOD, blood + 1);
                 }
                 player.getCooldowns().addCooldown(this, 40);
-                PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.STAB_EFFECTS,
-                        interactionTarget.position().add(0.0D, interactionTarget.getBbHeight() * 0.5D, 0.0D)));
+                if (!player.level().isClientSide) {
+                    PacketDistributor.sendToAllPlayers(new GladiusLevelEventPayload(GladiusLevelEvents.STAB_EFFECTS,
+                            interactionTarget.position().add(0.0D, interactionTarget.getBbHeight() * 0.5D, 0.0D)));
+                }
 
                 return InteractionResult.SUCCESS;
             }

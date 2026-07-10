@@ -3,6 +3,7 @@ package com.feliscape.gladius.registry;
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
 import com.feliscape.gladius.content.mobeffect.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
@@ -49,7 +50,7 @@ public class GladiusMobEffects {
         return living.hasEffect(effect) || living.getData(ClientMobEffectData.type()).hasEffect(effect);
     }
     public static boolean hasEffectClient(LivingEntity living, Holder<MobEffect> effect){
-        return (living instanceof Player) ? living.hasEffect(effect) : living.getData(ClientMobEffectData.type()).hasEffect(effect);
+        return living.getData(ClientMobEffectData.type()).hasEffect(effect);
     }
 
     public static void register(IEventBus eventBus){

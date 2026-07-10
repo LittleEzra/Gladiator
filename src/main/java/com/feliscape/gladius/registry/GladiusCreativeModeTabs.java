@@ -45,6 +45,7 @@ public class GladiusCreativeModeTabs {
             before(shield, GladiusItems.HOGLIN_TUSK, event);
 
             after(turtleHelmet, GladiusItems.FLAMEWALKERS, event);
+            after(turtleHelmet, GladiusItems.NIGHTWALKER_HOOD, event);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             ItemStack blazeRod = Items.BLAZE_ROD.getDefaultInstance();
 

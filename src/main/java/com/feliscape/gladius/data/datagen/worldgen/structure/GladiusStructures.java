@@ -20,10 +20,12 @@ import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class GladiusStructures {
     public static final ResourceKey<Structure> FROSTMANCER_TOWER = createKey("frostmancer_tower");
+    public static final ResourceKey<Structure> PIGLIN_CAMP = createKey("piglin_camp");
 
     public static void bootstrap(BootstrapContext<Structure> context){
         HolderGetter<Biome> biomeGetter = context.lookup(Registries.BIOME);
@@ -40,6 +42,20 @@ public class GladiusStructures {
                         ConstantHeight.of(VerticalAnchor.absolute(0)),
                         false,
                         Heightmap.Types.WORLD_SURFACE_WG
+                )
+        );
+        context.register(
+                PIGLIN_CAMP,
+                new JigsawStructure(
+                        new Structure.StructureSettings.Builder(biomeGetter.getOrThrow(GladiusTags.Biomes.HAS_PIGLIN_CAMP))
+                                .generationStep(GenerationStep.Decoration.SURFACE_STRUCTURES)
+                                .terrainAdapation(TerrainAdjustment.BEARD_THIN)
+                                .spawnOverrides(Map.of())
+                                .build(),
+                        poolGetter.getOrThrow(GladiusTemplatePools.PIGLIN_CAMP_MAIN),
+                        4,
+                        UniformHeight.of(VerticalAnchor.absolute(33), VerticalAnchor.absolute(70)),
+                        false
                 )
         );
     }

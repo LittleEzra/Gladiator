@@ -1,6 +1,8 @@
 package com.feliscape.gladius.data.datagen.advancement;
 
 import com.feliscape.gladius.data.advancement.CustomAdvancement;
+import com.feliscape.gladius.registry.GladiusBlocks;
+import com.feliscape.gladius.registry.GladiusEntityTypes;
 import com.feliscape.gladius.registry.GladiusItems;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.critereon.*;
@@ -41,6 +43,22 @@ public class GladiusAdvancements implements AdvancementProvider.AdvancementGener
             .type(CustomAdvancement.Type.STANDARD)
             .after(placeholder("minecraft:adventure/kill_a_mob"))
             .consumeItem(GladiusItems.FLASH_POWDER)
+    ),
+
+    KILL_FROSTMANCER = create("adventure/kill_frostmancer",b -> b
+            .icon(GladiusItems.FROZEN_WAND)
+            .type(CustomAdvancement.Type.GOAL)
+            .after(placeholder("minecraft:adventure/kill_a_mob"))
+            .killedEntity(GladiusEntityTypes.FROSTMANCER.get())
+    ),
+
+    // Nether
+
+    KILL_BLACKSTONE_GOLEM = create("nether/kill_blackstone_golem",b -> b
+            .icon(GladiusBlocks.BLACKSTONE_GOLEM_HEART)
+            .type(CustomAdvancement.Type.GOAL)
+            .after(placeholder("minecraft:nether/obtain_blaze_rod"))
+            .killedEntity(GladiusEntityTypes.BLACKSTONE_GOLEM.get())
     ),
 
     END = null;

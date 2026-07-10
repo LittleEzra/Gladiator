@@ -106,6 +106,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.FREEZING, "Frieren");
         this.addMobEffect(GladiusMobEffects.FROST_RESISTANCE, "Frostresistenz");
         this.addMobEffect(GladiusMobEffects.STABILITY, "Stabilität");
+        this.addMobEffect(GladiusMobEffects.BATTLE_CRY, "Schlachtruf");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Betäubung");
 
@@ -170,6 +171,13 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addAdvancement(GladiusAdvancements.POCKET_SAND,
                 "Taschen-Sand!",
                 "Werfe Blitzpulver in die Luft, um deine Feinde abzulenken");
+
+        this.addAdvancement(GladiusAdvancements.KILL_FROSTMANCER,
+                "Kalt gemacht",
+                "Besiege einen Frostmagier, ein Illager, der Macht in Kälte sucht");
+        this.addAdvancement(GladiusAdvancements.KILL_BLACKSTONE_GOLEM,
+                "Eine schreckliche Maschine",
+                "Zerstöre den Schwarzsteingolem, ein Konstrukt einer längst untergegangenen Zivilisation, das von den Piglins umgestaltet wurde");
     }
 
     /*

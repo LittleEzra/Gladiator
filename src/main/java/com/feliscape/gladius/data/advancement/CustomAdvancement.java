@@ -8,14 +8,12 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.ConsumeItemTrigger;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.PlayerTrigger;
+import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -207,6 +205,12 @@ public class CustomAdvancement {
         }
         public Builder consumeItem(ItemLike item) {
             return trigger(ConsumeItemTrigger.TriggerInstance.usedItem(item.asItem()));
+        }
+        public Builder killedEntity(EntityType<?> type) {
+            return killedEntity(EntityPredicate.Builder.entity().of(type));
+        }
+        public Builder killedEntity(EntityPredicate.Builder predicate) {
+            return trigger(KilledTrigger.TriggerInstance.playerKilledEntity(predicate));
         }
 
         public Builder registryTrigger(Function<HolderLookup.Provider, Criterion<?>> trigger) {

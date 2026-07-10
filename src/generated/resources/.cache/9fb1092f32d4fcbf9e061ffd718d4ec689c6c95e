@@ -1,4 +1,4 @@
-// 1.21.1	2026-03-19T09:29:30.3878292	Recipes
+// 1.21.1	2026-07-10T15:38:11.5529598	Recipes
 aff03e0ee18f5dcdb2325cc87e56ff702b929bf4 data/gladius/advancement/recipes/combat/blackstone_golem_heart.json
 afba2aba580ec4de987663e7c3ba1fe1976c515f data/gladius/advancement/recipes/combat/bomb.json
 aeec702d6cf959ae9ec6b01f084eb7d38793f775 data/gladius/advancement/recipes/combat/claymore.json
@@ -10,6 +10,7 @@ cf03417de2beb892320c44b1bfc5335ae4e565f4 data/gladius/advancement/recipes/combat
 01a0ae14b9c7817003fbe09f8f01c65f44e7fbf5 data/gladius/advancement/recipes/combat/gilded_dagger.json
 6de92ac0bcbb133429702b8e8e05d26aabb32e3a data/gladius/advancement/recipes/combat/golden_wand.json
 b3b82afaef28719e79bcacd8d559b7dba35f35d4 data/gladius/advancement/recipes/combat/ice_bomb.json
+90595524eef5e3ef17ef9d8d0e61b36aad245086 data/gladius/advancement/recipes/combat/nightwalker_hood.json
 94653d7ade93d480f8bb2d5fe7a4ee62a6eb90a1 data/gladius/advancement/recipes/combat/prismarine_arrow.json
 007fc8f24eed71ae3a7ea17f2f534f13fa1e0343 data/gladius/advancement/recipes/combat/winged_arrow.json
 ddf9c41e70bec0f1c876e95735e8fc4b5e31daec data/gladius/advancement/recipes/misc/blazing_heart_into_blaze_powder.json
@@ -33,5 +34,6 @@ c645bdbef9bf21211ec06928b2c74a9e70529593 data/gladius/recipe/golden_wand.json
 0ae4cd79b3f30596945669eea4df36b892c778c2 data/gladius/recipe/hearth_stone.json
 948a82f0fb0717737daead4c6f5f5806d5f62331 data/gladius/recipe/ice_bomb.json
 65c3b1e6c7527f4127011a4b381f47cc8a0bc3f7 data/gladius/recipe/mist_trap.json
+e320c24e3a383c0703984b2d249ad50c425a739a data/gladius/recipe/nightwalker_hood.json
 413d7f407a78a382b789217180c86bdd8ea9442d data/gladius/recipe/prismarine_arrow.json
 ef6ab158a400c0083e45c89bdecfec23ae954daf data/gladius/recipe/winged_arrow.json

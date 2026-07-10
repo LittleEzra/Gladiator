@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-07T10:13:28.7301133	Registries
+// 1.21.1	2026-07-10T14:14:35.1309287	Registries
 ada27dca5b91f09254dd880193507bbe50b8f236 data/gladius/damage_type/blackstone_golem_charging.json
 acac2ca9be3f1e5d9b3e0dff1db765ad79e56ca5 data/gladius/damage_type/bleeding.json
 da6b9cf45e45bd6aef6aab3e0f74dda487efe4b8 data/gladius/damage_type/indirect_skewering.json
@@ -12,5 +12,13 @@ da6b9cf45e45bd6aef6aab3e0f74dda487efe4b8 data/gladius/damage_type/indirect_skewe
 c18e1daa9d98a1e097b57bbbe84e19d0841470ed data/gladius/gladius/aspect/poison.json
 ceae8354fc0c09188e92e7af0d7dd57fba36c3f6 data/gladius/worldgen/processor_list/crack_20_percent.json
 5ac4b051c4acee0be1de3a3b4e84e720f84f40f9 data/gladius/worldgen/structure/frostmancer_tower.json
+da7936ced972a25c1d1e2b8f97345195351de4ed data/gladius/worldgen/structure/piglin_camp.json
 06cb868cfec0a60dc21cbb45d5b3e234938771b4 data/gladius/worldgen/structure_set/frostmancer_tower.json
+bfc6619ba29a34bd7ec7e759b6e12e502f57fd44 data/gladius/worldgen/structure_set/piglin_camp.json
 88d8266274eb5b58c39c740a09d02610920af6ce data/gladius/worldgen/template_pool/frostmancer_tower.json
+7636b17a3df634b15561850fdb908afc8877de68 data/gladius/worldgen/template_pool/piglin_camp/building.json
+bfdfde565f44e5b0879d529cef7045005b631691 data/gladius/worldgen/template_pool/piglin_camp/decoration.json
+e2180682b4c9d5510e24d8466f490108530ab7bb data/gladius/worldgen/template_pool/piglin_camp/main.json
+4d23d3128cc284610bce60351fce1b27ab6fd277 data/gladius/worldgen/template_pool/piglin_camp/mobs/piglin.json
+d8b6d695cca69e9906e80ef1e823e827fd095339 data/gladius/worldgen/template_pool/piglin_camp/mobs/piglin_shaman.json
+2850aa79e4a5345f61fc68768d9a60eeea0dc81d data/gladius/worldgen/template_pool/piglin_camp/mobs/piglin_warlord.json

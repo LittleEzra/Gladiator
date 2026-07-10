@@ -120,6 +120,14 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(GladiusItems.BLAZING_HEART), has(GladiusItems.BLAZING_HEART))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusItems.NIGHTWALKER_HOOD.get())
+                .pattern(" # ")
+                .pattern("#H#")
+                .define('#', Items.PHANTOM_MEMBRANE)
+                .define('H', Items.LEATHER_HELMET)
+                .unlockedBy(getHasName(Items.PHANTOM_MEMBRANE), has(Items.PHANTOM_MEMBRANE))
+                .save(recipeOutput);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, GladiusItems.FIREBRAND.get(), 4)
                 .requires(Tags.Items.RODS_WOODEN)
                 .requires(Items.FIRE_CHARGE)
