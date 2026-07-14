@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
@@ -67,6 +68,28 @@ public class GladiusDamageSources {
     public static DamageSource blackstoneGolemCharging(Level level, Entity entity){
         return new DamageSource(
                 getDamageType(level, GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING), entity
+        );
+    }
+
+    public static DamageSource indirectElectrocution(Level level){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.INDIRECT_ELECTROCUTION)
+        );
+    }
+
+    public static DamageSource electrocution(Level level){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.ELECTROCUTION)
+        );
+    }
+    public static DamageSource electrocution(Level level, Entity entity){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.ELECTROCUTION), entity
+        );
+    }
+    public static DamageSource electrocution(Level level, Entity direct, Entity causing){
+        return new DamageSource(
+                getDamageType(level, GladiusDamageTypes.ELECTROCUTION), direct, causing
         );
     }
 

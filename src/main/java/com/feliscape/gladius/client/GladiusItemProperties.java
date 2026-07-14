@@ -2,6 +2,7 @@ package com.feliscape.gladius.client;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
+import com.feliscape.gladius.content.item.RodBowItem;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
 import com.feliscape.gladius.registry.GladiusComponents;
 import com.feliscape.gladius.registry.GladiusItems;
@@ -9,6 +10,8 @@ import com.feliscape.gladius.registry.GladiusMobEffects;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.api.distmarker.Dist;
@@ -36,5 +39,32 @@ public class GladiusItemProperties {
                     var holder = level.registryAccess().holderOrThrow(Enchantments.FIRE_ASPECT);
                     return stack.getEnchantmentLevel(holder) > 0 ? 1.0F : 0.0F;
                 }));
+        ItemProperties.register(
+                GladiusItems.ROD_BOW.asItem(), Gladius.location("pulling"),
+                (stack, level, entity, seed) -> entity != null
+                        && entity.isUsingItem()
+                        && entity.getUseItem() == stack
+                        && !CrossbowItem.isCharged(stack)
+                        ? 1.0F
+                        : 0.0F
+        );
+        ItemProperties.register(
+                GladiusItems.ROD_BOW.asItem(), Gladius.location("pull"),
+                (stack, level, entity, seed) -> {
+                    if (entity == null) {
+                        return 0.0F;
+                    } else {
+                        return RodBowItem.isCharged(stack)
+                                ? 0.0F
+                                : (float)(stack.getUseDuration(entity) - entity.getUseItemRemainingTicks())
+                                / (float)RodBowItem.getChargeDuration(stack, entity);
+                    }
+                }
+        );
+        ItemProperties.register(
+                GladiusItems.ROD_BOW.asItem(),
+                Gladius.location("charged"),
+                (stack, level, entity, seed) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F
+        );
     }
 }

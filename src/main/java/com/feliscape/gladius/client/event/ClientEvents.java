@@ -4,6 +4,7 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.GladiusClient;
 import com.feliscape.gladius.client.extension.BattleStandardAnimator;
 import com.feliscape.gladius.client.extension.ClaymoreClientExtensions;
+import com.feliscape.gladius.client.extension.RodBowClientExtensions;
 import com.feliscape.gladius.client.extension.animation.CustomItemAnimator;
 import com.feliscape.gladius.client.extension.animation.ItemAnimatorManager;
 import com.feliscape.gladius.client.hud.BloodLayer;
@@ -11,6 +12,9 @@ import com.feliscape.gladius.client.hud.FlamewalkersHeatLayer;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
 import com.feliscape.gladius.client.render.entity.misc.*;
+import com.feliscape.gladius.client.render.layer.ShockSkeletonLayer;
+import com.feliscape.gladius.client.render.layer.StuckRodsLayer;
+import com.feliscape.gladius.client.render.layer.WolfPickedUpArrowLayer;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
 import com.feliscape.gladius.content.item.NightwalkerArmorItem;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
@@ -18,15 +22,22 @@ import com.feliscape.gladius.registry.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.WolfModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -43,6 +54,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event)
     {
+        event.registerItem(new RodBowClientExtensions(), GladiusItems.ROD_BOW);
         event.registerItem(new ClaymoreClientExtensions(), GladiusItems.CLAYMORE);
 
         ItemAnimatorManager.register(new BattleStandardAnimator(), GladiusItems.TORRID_STANDARD);
@@ -58,9 +70,17 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void addLayers(EntityRenderersEvent.AddLayers event){
+        var entityModels = event.getEntityModels();
+
+        for (PlayerSkin.Model skin : event.getSkins()) {
+            if (event.getSkin(skin) instanceof PlayerRenderer playerRenderer){
+                playerRenderer.addLayer(new ShockSkeletonLayer(playerRenderer, entityModels));
+                playerRenderer.addLayer(new StuckRodsLayer<>(event.getContext(), playerRenderer));
+            }
+        }
+
         //ClientEvents.<Wolf, WolfModel<Wolf>>addLayer(EntityType.WOLF, event, r -> new WolfPickedUpArrowLayer(r, event.getContext().getItemRenderer()));
     }
-
     public static <E extends LivingEntity, M extends EntityModel<E>>
     void addLayer(EntityType<E> entityType, EntityRenderersEvent.AddLayers event, Function<RenderLayerParent<E, M>, RenderLayer<E, M>> layer){
         var renderer = ((LivingEntityRenderer<E, M>) event.getRenderer(entityType));
@@ -96,6 +116,8 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
+        event.registerEntityRenderer(GladiusEntityTypes.LIGHTNING_ARC.get(), NoopRenderer::new);
+
         event.registerEntityRenderer(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterflyRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FROSTMANCER.get(), FrostmancerRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolemRenderer::new);
@@ -108,6 +130,13 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.WINGED_ARROW.get(), WingedArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.OIL_BOTTLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FIREBRAND.get(), FirebrandRenderer::new);
+
+        event.registerEntityRenderer(GladiusEntityTypes.COPPER_ROD.get(), context ->
+                new GenericArrowRenderer<>(context, Gladius.location("textures/entity/projectile/rod/copper_rod.png")));
+        event.registerEntityRenderer(GladiusEntityTypes.IRON_ROD.get(), context ->
+                new GenericArrowRenderer<>(context, Gladius.location("textures/entity/projectile/rod/iron_rod.png")));
+        event.registerEntityRenderer(GladiusEntityTypes.SERRATED_ROD.get(), context ->
+                new GenericArrowRenderer<>(context, Gladius.location("textures/entity/projectile/rod/serrated_rod.png")));
 
         event.registerEntityRenderer(GladiusEntityTypes.MAGMA_POOL.get(), MagmaPoolRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FIRE_WAKE.get(), NoopRenderer::new);

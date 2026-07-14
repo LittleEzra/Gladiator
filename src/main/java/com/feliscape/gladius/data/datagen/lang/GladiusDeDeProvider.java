@@ -38,12 +38,18 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FRIGID_SEED, "Frostiger Samen");
         this.addItemTooltip(GladiusItems.FRIGID_SEED, "Kann in Blaueis gepflanzt werden");
         this.addItem(GladiusItems.FRIGID_SHARD, "Frostige Scherbe");
+        this.addItem(GladiusItems.LIGHTNING_MOTE, "Blitzkörnchen");
         this.addItem(GladiusItems.HEARTH_STONE, "Herdstein");
 
         this.addItem(GladiusItems.EXPLOSIVE_ARROW, "Explosiver Pfeil");
         this.add("item.nuanced_combat.explosive_arrow.power", "Kraft: %1$s");
         this.addItem(GladiusItems.PRISMARINE_ARROW, "Prismarinpfeil");
         this.addItem(GladiusItems.WINGED_ARROW, "Geflügelter Pfeil");
+
+        this.addItem(GladiusItems.ROD_BOW, "Stabbrust");
+        this.addItem(GladiusItems.COPPER_ROD, "Kupferstab");
+        this.addItem(GladiusItems.IRON_ROD, "Eisenstab");
+        this.addItem(GladiusItems.SERRATED_ROD, "Gezackter Stab");
 
         this.addItem(GladiusItems.OIL_BOTTLE, "Ölflasche");
         this.addItem(GladiusItems.FIREBRAND, "Feuerstock");
@@ -78,6 +84,9 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.EXPLOSIVE_ARROW, "Explosiver Pfeil");
         this.addEntityType(GladiusEntityTypes.PRISMARINE_ARROW, "Prismarinpfeil");
         this.addEntityType(GladiusEntityTypes.WINGED_ARROW, "Geflügelter Pfeil");
+        this.addEntityType(GladiusEntityTypes.COPPER_ROD, "Kupferstab");
+        this.addEntityType(GladiusEntityTypes.IRON_ROD, "Eisenstab");
+        this.addEntityType(GladiusEntityTypes.SERRATED_ROD, "Gezackter Stab");
         this.addEntityType(GladiusEntityTypes.OIL_BOTTLE, "Ölflasche");
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Feuerstock");
 

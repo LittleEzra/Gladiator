@@ -11,6 +11,9 @@ import com.feliscape.gladius.content.item.projectile.OilBottleItem;
 import com.feliscape.gladius.content.item.projectile.arrow.ExplosiveArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.PrismarineArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.WingedArrowItem;
+import com.feliscape.gladius.content.item.projectile.rod.CopperRodItem;
+import com.feliscape.gladius.content.item.projectile.rod.IronRodItem;
+import com.feliscape.gladius.content.item.projectile.rod.SerratedRodItem;
 import com.feliscape.gladius.data.registry.GladiusAspects;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Unit;
@@ -39,6 +42,7 @@ public class GladiusItems {
     public static final DeferredItem<FrigidSeedItem> FRIGID_SEED = ITEMS.registerItem("frigid_seed",
             p -> new FrigidSeedItem(p.rarity(Rarity.RARE)));
     public static final DeferredItem<Item> FRIGID_SHARD = ITEMS.registerSimpleItem("frigid_shard");
+    public static final DeferredItem<Item> LIGHTNING_MOTE = ITEMS.registerSimpleItem("lightning_mote");
 
     public static final DeferredItem<HearthStoneItem> HEARTH_STONE = ITEMS.registerItem("hearth_stone",
             p -> new HearthStoneItem(p.stacksTo(16)));
@@ -49,6 +53,16 @@ public class GladiusItems {
             PrismarineArrowItem::new);
     public static final DeferredItem<WingedArrowItem> WINGED_ARROW = ITEMS.registerItem("winged_arrow",
             WingedArrowItem::new);
+
+    public static final DeferredItem<RodBowItem> ROD_BOW = ITEMS.registerItem("rod_bow",
+            RodBowItem::new);
+
+    public static final DeferredItem<CopperRodItem> COPPER_ROD = ITEMS.registerItem("copper_rod",
+            CopperRodItem::new);
+    public static final DeferredItem<IronRodItem> IRON_ROD = ITEMS.registerItem("iron_rod",
+            IronRodItem::new);
+    public static final DeferredItem<SerratedRodItem> SERRATED_ROD = ITEMS.registerItem("serrated_rod",
+            SerratedRodItem::new);
 
     public static final DeferredItem<OilBottleItem> OIL_BOTTLE = ITEMS.registerItem("oil_bottle",
             p -> new OilBottleItem(p.stacksTo(16)));

@@ -27,6 +27,14 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
                 .add(GladiusItems.PRISMARINE_ARROW.get())
                 .add(GladiusItems.WINGED_ARROW.get())
         ;
+        this.tag(GladiusTags.Items.RODS)
+                .add(GladiusItems.COPPER_ROD.get())
+                .add(GladiusItems.IRON_ROD.get())
+                .add(GladiusItems.SERRATED_ROD.get())
+        ;
+        this.tag(GladiusTags.Items.CONDUCTING_ROD)
+                .add(GladiusItems.COPPER_ROD.get())
+        ;
 
         this.tag(ItemTags.SWORDS)
                 .add(GladiusItems.GILDED_DAGGER.get())

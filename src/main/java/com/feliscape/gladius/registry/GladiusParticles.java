@@ -70,6 +70,9 @@ public class GladiusParticles {
     public static final Supplier<SimpleParticleType> MAGMA_TRAIL = PARTICLE_TYPES.register("magma_trail",
             () -> new SimpleParticleType(false));
 
+    public static final Supplier<SimpleParticleType> SMALL_SPARK = PARTICLE_TYPES.register("small_spark",
+            () -> new SimpleParticleType(false));
+
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event)
     {
@@ -97,6 +100,8 @@ public class GladiusParticles {
         event.registerSpriteSet(GladiusParticles.ASH.get(), AshParticle.Provider::new);
         event.registerSpriteSet(GladiusParticles.MAGMA_PUDDLE.get(), MagmaPuddleParticle.Provider::new);
         event.registerSpriteSet(GladiusParticles.MAGMA_TRAIL.get(), MagmaTrailParticle.Provider::new);
+
+        event.registerSpriteSet(GladiusParticles.SMALL_SPARK.get(), SparkParticle.Provider::new);
     }
 
     private static <T extends ParticleOptions> Supplier<ParticleType<T>> register(

@@ -44,7 +44,7 @@ public class GauntletsItem extends Item {
                         attackDamage,
                         AttributeModifier.Operation.ADD_VALUE
                 ), EquipmentSlotGroup.MAINHAND)
-                .add(Attributes.ENTITY_INTERACTION_RANGE, new AttributeModifier(
+                .add(Attributes.ATTACK_SPEED, new AttributeModifier(
                         BASE_ATTACK_SPEED_ID,
                         attackSpeed,
                         AttributeModifier.Operation.ADD_VALUE
@@ -56,6 +56,7 @@ public class GauntletsItem extends Item {
                 ), EquipmentSlotGroup.MAINHAND)
                 .build();
     }
+
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         return true;
     }

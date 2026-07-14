@@ -37,12 +37,18 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.FRIGID_SEED, "Frigid Seed");
         this.addItemTooltip(GladiusItems.FRIGID_SEED, "Can be planted inside of Blue Ice");
         this.addItem(GladiusItems.FRIGID_SHARD, "Frigid Shard");
+        this.addItem(GladiusItems.LIGHTNING_MOTE, "Lightning Mote");
         this.addItem(GladiusItems.HEARTH_STONE, "Hearth Stone");
 
         this.addItem(GladiusItems.EXPLOSIVE_ARROW, "Explosive Arrow");
         this.add("item.nuanced_combat.explosive_arrow.power", "Power: %1$s");
         this.addItem(GladiusItems.PRISMARINE_ARROW, "Prismarine Arrow");
         this.addItem(GladiusItems.WINGED_ARROW, "Winged Arrow");
+
+        this.addItem(GladiusItems.ROD_BOW, "Rod Bow");
+        this.addItem(GladiusItems.COPPER_ROD, "Copper Rod");
+        this.addItem(GladiusItems.IRON_ROD, "Iron Rod");
+        this.addItem(GladiusItems.SERRATED_ROD, "Serrated Rod");
 
         this.addItem(GladiusItems.OIL_BOTTLE, "Oil Bottle");
         this.addItem(GladiusItems.FIREBRAND, "Firebrand");
@@ -77,6 +83,9 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.EXPLOSIVE_ARROW, "Explosive Arrow");
         this.addEntityType(GladiusEntityTypes.PRISMARINE_ARROW, "Prismarine Arrow");
         this.addEntityType(GladiusEntityTypes.WINGED_ARROW, "Winged Arrow");
+        this.addEntityType(GladiusEntityTypes.COPPER_ROD, "Copper Rod");
+        this.addEntityType(GladiusEntityTypes.IRON_ROD, "Iron Rod");
+        this.addEntityType(GladiusEntityTypes.SERRATED_ROD, "Serrated Rod");
         this.addEntityType(GladiusEntityTypes.OIL_BOTTLE, "Oil Bottle");
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Firebrand");
 
@@ -148,6 +157,12 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addDeathMessage(GladiusDamageTypes.TORRID_WISP, "%1$s was seared");
         this.addDeathMessagePlayer(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING, "%1$s was crushed in flames by %2$s");
         this.addDeathMessage(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING, "%1$s was crushed in flames");
+
+        this.addDeathMessagePlayer(GladiusDamageTypes.ELECTROCUTION, "%1$s was electrocuted by %2$s");
+        this.addDeathMessage(GladiusDamageTypes.ELECTROCUTION, "%1$s was electrocuted");
+
+        this.addDeathMessagePlayer(GladiusDamageTypes.INDIRECT_ELECTROCUTION, "%1$s was too conductive");
+        this.addDeathMessage(GladiusDamageTypes.INDIRECT_ELECTROCUTION, "%1$s was too conductive");
 
         this.addPotion(GladiusPotions.FROST_RESISTANCE, "Potion of Frost Resistance");
         this.addSplashPotion(GladiusPotions.FROST_RESISTANCE, "Splash Potion of Frost Resistance");

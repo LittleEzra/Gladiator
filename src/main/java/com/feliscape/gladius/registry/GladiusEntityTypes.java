@@ -1,6 +1,7 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.content.entity.LightningArc;
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
@@ -10,6 +11,9 @@ import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
 import com.feliscape.gladius.content.entity.enemy.piglin.warlord.PiglinWarlord;
 import com.feliscape.gladius.content.entity.misc.*;
 import com.feliscape.gladius.content.entity.projectile.*;
+import com.feliscape.gladius.content.entity.projectile.rod.CopperRodProjectile;
+import com.feliscape.gladius.content.entity.projectile.rod.IronRodProjectile;
+import com.feliscape.gladius.content.entity.projectile.rod.SerratedRodProjectile;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -20,6 +24,13 @@ import java.util.function.Supplier;
 public class GladiusEntityTypes {
     public static final DeferredEntityTypeRegister ENTITY_TYPES =
             DeferredEntityTypeRegister.create(Gladius.MOD_ID);
+
+    public static final Supplier<EntityType<LightningArc>> LIGHTNING_ARC = ENTITY_TYPES.registerEntityType("lightning_arc",
+            LightningArc::new, MobCategory.MISC, b -> b
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(10)
+                    .updateInterval(Integer.MAX_VALUE)
+    );
 
     public static final Supplier<EntityType<FlashPowderCloud>> FLASH_POWDER_CLOUD = ENTITY_TYPES.registerEntityType("flash_powder_cloud",
             FlashPowderCloud::new, MobCategory.MISC, b -> b
@@ -76,6 +87,30 @@ public class GladiusEntityTypes {
                     .clientTrackingRange(4)
                     .updateInterval(20)
     );
+
+    public static final Supplier<EntityType<CopperRodProjectile>> COPPER_ROD = ENTITY_TYPES.registerEntityType("copper_rod",
+            CopperRodProjectile::new, MobCategory.MISC, b -> b
+                    .sized(0.5F, 0.5F)
+                    .eyeHeight(0.13F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+    );
+    public static final Supplier<EntityType<IronRodProjectile>> IRON_ROD = ENTITY_TYPES.registerEntityType("iron_rod",
+            IronRodProjectile::new, MobCategory.MISC, b -> b
+                    .sized(0.5F, 0.5F)
+                    .eyeHeight(0.13F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+    );
+    public static final Supplier<EntityType<SerratedRodProjectile>> SERRATED_ROD = ENTITY_TYPES.registerEntityType("serrated_rod",
+            SerratedRodProjectile::new, MobCategory.MISC, b -> b
+                    .sized(0.5F, 0.5F)
+                    .eyeHeight(0.13F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+    );
+
+
     public static final Supplier<EntityType<ThrownOilBottle>> OIL_BOTTLE = ENTITY_TYPES.registerEntityType("oil_bottle",
             ThrownOilBottle::new, MobCategory.MISC, b -> b
                     .sized(0.25F, 0.25F)

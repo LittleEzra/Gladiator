@@ -22,6 +22,8 @@ public class GladiusTags {
     public static class DamageTypes{
         public static final TagKey<DamageType> IS_MAGIC = create("is_magic");
         public static final TagKey<DamageType> IS_ATTACK = create("is_attack");
+        public static final TagKey<DamageType> IS_ELECTRICITY = create("is_electricity");
+        public static final TagKey<DamageType> IS_SPREADING_ELECTRICITY = create("is_spreading_electricity");
 
         private static TagKey<DamageType> create(String name){
             return TagKey.create(Registries.DAMAGE_TYPE, Gladius.location(name));
@@ -47,6 +49,9 @@ public class GladiusTags {
         public static final TagKey<Item> TORRID_STANDARD_AMMO = create("torrid_standard_ammo");
 
         public static final TagKey<Item> SPREADS_FLASH_POWDER = create("spreads_flash_powder");
+
+        public static final TagKey<Item> RODS = create("rods");
+        public static final TagKey<Item> CONDUCTING_ROD = create("conducting_rod");
 
         private static TagKey<Item> create(String name){
             return TagKey.create(Registries.ITEM, Gladius.location(name));

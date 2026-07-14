@@ -34,7 +34,19 @@ public class GladiusDamageTypeTagGenerator extends DamageTypeTagsProvider {
                 .add(DamageTypes.MOB_ATTACK_NO_AGGRO)
                 .add(DamageTypes.PLAYER_ATTACK)
         ;
+        this.tag(GladiusTags.DamageTypes.IS_ELECTRICITY)
+                .add(GladiusDamageTypes.INDIRECT_ELECTROCUTION)
+                .addTag(GladiusTags.DamageTypes.IS_SPREADING_ELECTRICITY)
+        ;
+        this.tag(GladiusTags.DamageTypes.IS_SPREADING_ELECTRICITY)
+                .add(GladiusDamageTypes.ELECTROCUTION)
+                .addTag(DamageTypeTags.IS_LIGHTNING)
+        ;
 
+        this.tag(DamageTypeTags.IS_LIGHTNING)
+                .add(GladiusDamageTypes.TORRID_WISP)
+                .add(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING)
+        ;
         this.tag(DamageTypeTags.IS_FIRE)
                 .add(GladiusDamageTypes.TORRID_WISP)
                 .add(GladiusDamageTypes.BLACKSTONE_GOLEM_CHARGING)

@@ -28,6 +28,16 @@ public class GladiusDataAttachments {
                     .sync(AllianceData.ALLIANCE_STREAM_CODEC)
                     .build());
 
+    public static final Supplier<AttachmentType<RodData>> RODS = ATTACHMENT_TYPES.register("rods",
+            () -> AttachmentType.builder(RodData::getInstance)
+                    .serialize(new RodData.Serializer())
+                    .sync(new RodData.SyncHandler())
+                    .build());
+    public static final Supplier<AttachmentType<ShockData>> SHOCK = ATTACHMENT_TYPES.register("shock",
+            () -> AttachmentType.builder(ShockData::getInstance)
+                    .serialize(ShockData.CODEC)
+                    .sync(ShockData.STREAM_CODEC)
+                    .build());
     public static final Supplier<AttachmentType<ExplosiveChargeData>> EXPLOSIVE_CHARGES = ATTACHMENT_TYPES.register("explosive_charges",
             () -> AttachmentType.builder(ExplosiveChargeData::getInstance)
                     .serialize(ExplosiveChargeData.CODEC)

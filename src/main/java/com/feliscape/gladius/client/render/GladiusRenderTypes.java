@@ -28,4 +28,22 @@ public class GladiusRenderTypes {
     public static RenderType iceSpike(ResourceLocation location) {
         return ICE_SPIKE.apply(location);
     }
+
+
+    public static final Function<ResourceLocation, RenderType> ENTITY_CUTOUT_OVERLAY = Util.memoize(
+            p_286173_ -> {
+                RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder()
+                        .setShaderState(RenderStateShard.RENDERTYPE_ENTITY_CUTOUT_SHADER)
+                        .setTextureState(new RenderStateShard.TextureStateShard(p_286173_, false, false))
+                        .setTransparencyState(RenderStateShard.NO_TRANSPARENCY)
+                        .setLightmapState(RenderStateShard.LIGHTMAP)
+                        .setOverlayState(RenderStateShard.OVERLAY)
+                        .setLayeringState(RenderStateShard.VIEW_OFFSET_Z_LAYERING)
+                        .createCompositeState(true);
+                return RenderType.create("entity_cutout_overlay", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 1536, true, false, rendertype$compositestate);
+            }
+    );
+    public static RenderType entityCutoutOverlay(ResourceLocation location) {
+        return ENTITY_CUTOUT_OVERLAY.apply(location);
+    }
 }

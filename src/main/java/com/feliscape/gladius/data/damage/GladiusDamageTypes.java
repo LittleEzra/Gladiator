@@ -12,11 +12,19 @@ public class GladiusDamageTypes {
     public static final ResourceKey<DamageType> MAGIC_PROJECTILE = key("magic_projectile");
     public static final ResourceKey<DamageType> SKEWERING = key("skewering");
     public static final ResourceKey<DamageType> INDIRECT_SKEWERING = key("indirect_skewering");
+    public static final ResourceKey<DamageType> ELECTROCUTION = key("electrocution");
+    public static final ResourceKey<DamageType> INDIRECT_ELECTROCUTION = key("indirect_electrocution");
 
     public static final ResourceKey<DamageType> TORRID_WISP = key("torrid_wisp");
     public static final ResourceKey<DamageType> BLACKSTONE_GOLEM_CHARGING = key("blackstone_golem_charging");
 
     public static void bootstrap(BootstrapContext<DamageType> context){
+        context.register(ELECTROCUTION, new DamageType(ELECTROCUTION.location().toString(),
+                0.2F, CustomDamageEffects.electrocution())
+        );
+        context.register(INDIRECT_ELECTROCUTION, new DamageType(INDIRECT_ELECTROCUTION.location().toString(),
+                0.2F, CustomDamageEffects.electrocution())
+        );
         context.register(BLEEDING, new DamageType(BLEEDING.location().toString(),
                 0.2F, DamageEffects.HURT)
         );

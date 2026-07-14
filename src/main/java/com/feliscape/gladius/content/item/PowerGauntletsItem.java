@@ -2,10 +2,13 @@ package com.feliscape.gladius.content.item;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.attachment.PowerGauntletData;
+import com.feliscape.gladius.registry.GladiusMobEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -23,7 +26,19 @@ public class PowerGauntletsItem extends GauntletsItem {
     }
 
     public static ItemAttributeModifiers createAttributes() {
-        return createAttributes(3.0D, 1.0D, -0.75D);
+        return createAttributes(3.0D, 2.0D, -0.5D);
+    }
+
+    @Override
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        double x = target.getX() - attacker.getX();
+        double z = target.getZ() - attacker.getZ();
+        double l = Math.sqrt(x * x + z * z);
+        double d = target.getBbWidth() * -1.0D;
+
+        attacker.teleportTo(target.getX() + (x / l) * d, target.getY(), target.getZ() + (z / l) * d);
+
+        target.addEffect(new MobEffectInstance(GladiusMobEffects.STUN, 10));
     }
 
     @Override
@@ -31,7 +46,7 @@ public class PowerGauntletsItem extends GauntletsItem {
         return !player.isCreative();
     }
 
-    @Override
+    /*@Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
         if (stack.is(this)){
             if (entity instanceof Player player){
@@ -63,5 +78,5 @@ public class PowerGauntletsItem extends GauntletsItem {
             return true;
         }
         return false;
-    }
+    }*/
 }

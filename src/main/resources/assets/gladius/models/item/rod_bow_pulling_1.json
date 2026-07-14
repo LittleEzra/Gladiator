@@ -1,0 +1,6 @@
+{
+    "parent": "gladius:item/rod_bow",
+    "textures": {
+        "layer0": "gladius:item/rod_bow_pulling1"
+    }
+}

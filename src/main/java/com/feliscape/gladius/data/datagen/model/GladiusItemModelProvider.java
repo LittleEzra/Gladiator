@@ -33,11 +33,16 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         basicItem(GladiusItems.BLAZING_HEART.get());
         basicItem(GladiusItems.FRIGID_SEED.get());
         basicItem(GladiusItems.FRIGID_SHARD.get());
+        basicItem(GladiusItems.LIGHTNING_MOTE.get());
         basicItem(GladiusItems.HEARTH_STONE.get());
 
         basicItem(GladiusItems.EXPLOSIVE_ARROW.get());
         basicItem(GladiusItems.PRISMARINE_ARROW.get());
         basicItem(GladiusItems.WINGED_ARROW.get());
+
+        basicItem(GladiusItems.COPPER_ROD.get());
+        basicItem(GladiusItems.IRON_ROD.get());
+        basicItem(GladiusItems.SERRATED_ROD.get());
 
         basicItem(GladiusItems.OIL_BOTTLE.get());
         basicItem(GladiusItems.CRYSTAL_BUTTERFLY.get());
@@ -56,6 +61,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         gauntlets(GladiusItems.POWER_GAUNTLETS.get());
         gauntlets(GladiusItems.LEATHER_GAUNTLETS.get());
     }
+
 
     public ItemModelBuilder potionBundleItem(Item item) {
         ResourceLocation location = Objects.requireNonNull(BuiltInRegistries.ITEM.getKey(item));

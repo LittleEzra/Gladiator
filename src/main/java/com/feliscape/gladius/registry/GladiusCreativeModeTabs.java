@@ -26,15 +26,21 @@ public class GladiusCreativeModeTabs {
             ItemStack shield = Items.SHIELD.getDefaultInstance();
             ItemStack turtleHelmet = Items.TURTLE_HELMET.getDefaultInstance();
 
+            before(arrow, GladiusItems.COPPER_ROD, event);
+            before(arrow, GladiusItems.IRON_ROD, event);
+            before(arrow, GladiusItems.SERRATED_ROD, event);
+
             before(arrow, GladiusItems.EXPLOSIVE_ARROW, event);
             before(arrow, GladiusItems.PRISMARINE_ARROW, event);
             before(arrow, GladiusItems.WINGED_ARROW, event);
+
             before(bow, GladiusItems.OIL_BOTTLE, event);
             before(bow, GladiusItems.FIREBRAND, event);
             before(bow, GladiusItems.ICE_BOMB, event);
             before(bow, GladiusItems.BOMB, event);
             before(bow, GladiusItems.FLASH_POWDER, event);
             before(bow, GladiusItems.CRYSTAL_BUTTERFLY, event);
+            after(bow, GladiusItems.ROD_BOW, event);
             before(shield, GladiusItems.GILDED_DAGGER, event);
             before(shield, GladiusItems.CLAYMORE, event);
             before(shield, GladiusItems.FLAMBERGE, event);
@@ -52,6 +58,7 @@ public class GladiusCreativeModeTabs {
             before(blazeRod, GladiusItems.BLAZING_HEART, event);
             after(blazeRod, GladiusItems.FRIGID_SEED, event);
             after(blazeRod, GladiusItems.FRIGID_SHARD, event);
+            after(blazeRod, GladiusItems.LIGHTNING_MOTE, event);
         } else if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES){
             ItemStack fireCharge = Items.FIRE_CHARGE.getDefaultInstance();
 

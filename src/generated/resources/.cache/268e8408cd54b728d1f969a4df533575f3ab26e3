@@ -1,7 +1,10 @@
-// 1.21.1	2026-02-07T10:18:08.2243255	Tags for minecraft:damage_type mod id gladius
+// 1.21.1	2026-07-14T18:48:55.448591	Tags for minecraft:damage_type mod id gladius
 9e0eb113ed8fb1ef28a725276aa30cb1ab050b9b data/gladius/tags/damage_type/is_attack.json
+d54ba7a4c0a7b9eea1a4434b290b815658265ec4 data/gladius/tags/damage_type/is_electricity.json
 a7f061b176b8d5cb20f8655a56f8193eca049bb4 data/gladius/tags/damage_type/is_magic.json
+13353762f44eb9300e256c3428074cde361600a4 data/gladius/tags/damage_type/is_spreading_electricity.json
 aeaa872c44cf53788f332e2c03599a8bdbc69ca7 data/minecraft/tags/damage_type/bypasses_enchantments.json
 b95ad7941c6b5c7d006bd3f1e30b03350b00dbb8 data/minecraft/tags/damage_type/is_fire.json
+b95ad7941c6b5c7d006bd3f1e30b03350b00dbb8 data/minecraft/tags/damage_type/is_lightning.json
 aeaa872c44cf53788f332e2c03599a8bdbc69ca7 data/minecraft/tags/damage_type/no_impact.json
 39416e27921edc20ec577524cd7e79c47b7be6ca data/minecraft/tags/damage_type/no_knockback.json

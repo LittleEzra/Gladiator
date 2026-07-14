@@ -17,6 +17,15 @@
         "class": "com/feliscape/gladius/client/extension/BattleStandardClientExtensions$EnumParams",
         "field": "BATTLE_STANDARD"
       }
+    },
+    {
+      "enum": "net/minecraft/world/damagesource/DamageEffects",
+      "name": "GLADIUS_ELECTROCUTION",
+      "constructor": "(Ljava/lang/String;Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "com/feliscape/gladius/data/damage/CustomDamageEffects",
+        "field": "ELECTROCUTION"
+      }
     }
   ]
 }
