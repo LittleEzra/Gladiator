@@ -1,7 +1,6 @@
 package com.feliscape.gladius.data.enchantment;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.Util;
 import net.minecraft.core.HolderGetter;
@@ -14,13 +13,14 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 import java.util.Optional;
 
 public class GladiusEnchantments {
     public static final ResourceKey<Enchantment> STUNNING = createKey("stunning");
+    public static final ResourceKey<Enchantment> AUTOMATIC = createKey("automatic");
+
     public static void bootstrap(BootstrapContext<Enchantment> context){
         HolderGetter<Item> itemHolderGetter = context.lookup(Registries.ITEM);
         context.register(STUNNING,
@@ -40,6 +40,24 @@ public class GladiusEnchantments {
                         DataComponentMap.builder()
                                 .build()
                         )
+        );
+        context.register(AUTOMATIC,
+                new Enchantment(
+                        Component.translatable(Util.makeDescriptionId("enchantment", AUTOMATIC.location())),
+                        new Enchantment.EnchantmentDefinition(
+                                itemHolderGetter.getOrThrow(GladiusTags.Items.ROD_BOW_ENCHANTABLE),
+                                Optional.empty(),
+                                30,
+                                1,
+                                new Enchantment.Cost(4, 2),
+                                new Enchantment.Cost(5, 3),
+                                4,
+                                List.of(EquipmentSlotGroup.OFFHAND, EquipmentSlotGroup.MAINHAND)
+                        ),
+                        HolderSet.empty(),
+                        DataComponentMap.builder()
+                                .build()
+                )
         );
 
     }

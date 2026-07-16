@@ -168,6 +168,15 @@ public class GladiusRecipeProvider extends RecipeProvider {
                 .define('R', Tags.Items.DUSTS_REDSTONE)
                 .unlockedBy(getHasName(Items.BLAZE_POWDER), has(Items.BLAZE_POWDER))
                 .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, GladiusBlocks.OIL_TRAP.get())
+                .pattern("###")
+                .pattern("SRS")
+                .pattern("###")
+                .define('S', GladiusItems.OIL_BOTTLE)
+                .define('#', Items.POLISHED_DEEPSLATE)
+                .define('R', Tags.Items.DUSTS_REDSTONE)
+                .unlockedBy(getHasName(GladiusItems.OIL_BOTTLE), has(GladiusItems.OIL_BOTTLE))
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, GladiusBlocks.BLACKSTONE_GOLEM_HEART.get())
                 .pattern("#B#")

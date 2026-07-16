@@ -29,6 +29,7 @@ public class GladiusCreativeModeTabs {
             before(arrow, GladiusItems.COPPER_ROD, event);
             before(arrow, GladiusItems.IRON_ROD, event);
             before(arrow, GladiusItems.SERRATED_ROD, event);
+            before(arrow, GladiusItems.ELECTRIFIED_ROD, event);
 
             before(arrow, GladiusItems.EXPLOSIVE_ARROW, event);
             before(arrow, GladiusItems.PRISMARINE_ARROW, event);
@@ -75,8 +76,9 @@ public class GladiusCreativeModeTabs {
             event.accept(GladiusItems.PIGLIN_WARLORD_SPAWN_EGG);
         } else if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
             ItemStack crafter = Items.CRAFTER.getDefaultInstance();
-            after(crafter, GladiusBlocks.MIST_TRAP, event);
+            after(crafter, GladiusBlocks.OIL_TRAP, event);
             after(crafter, GladiusBlocks.FLAME_TRAP, event);
+            after(crafter, GladiusBlocks.MIST_TRAP, event);
         } else if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
             ItemStack lodestone = Items.LODESTONE.getDefaultInstance();
             after(lodestone, GladiusBlocks.BLACKSTONE_GOLEM_HEART, event);

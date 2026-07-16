@@ -1,0 +1,110 @@
+{
+  "variants": {
+    "orientation=down_east,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 90,
+      "y": 90
+    },
+    "orientation=down_east,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 90,
+      "y": 90
+    },
+    "orientation=down_north,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 90
+    },
+    "orientation=down_north,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 90
+    },
+    "orientation=down_south,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 90,
+      "y": 180
+    },
+    "orientation=down_south,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 90,
+      "y": 180
+    },
+    "orientation=down_west,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 90,
+      "y": 270
+    },
+    "orientation=down_west,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 90,
+      "y": 270
+    },
+    "orientation=east_up,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "y": 90
+    },
+    "orientation=east_up,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "y": 90
+    },
+    "orientation=north_up,triggered=false": {
+      "model": "gladius:block/oil_trap"
+    },
+    "orientation=north_up,triggered=true": {
+      "model": "gladius:block/oil_trap_on"
+    },
+    "orientation=south_up,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "y": 180
+    },
+    "orientation=south_up,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "y": 180
+    },
+    "orientation=up_east,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 270,
+      "y": 270
+    },
+    "orientation=up_east,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 270,
+      "y": 270
+    },
+    "orientation=up_north,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 270,
+      "y": 180
+    },
+    "orientation=up_north,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 270,
+      "y": 180
+    },
+    "orientation=up_south,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 270
+    },
+    "orientation=up_south,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 270
+    },
+    "orientation=up_west,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "x": 270,
+      "y": 90
+    },
+    "orientation=up_west,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "x": 270,
+      "y": 90
+    },
+    "orientation=west_up,triggered=false": {
+      "model": "gladius:block/oil_trap",
+      "y": 270
+    },
+    "orientation=west_up,triggered=true": {
+      "model": "gladius:block/oil_trap_on",
+      "y": 270
+    }
+  }
+}

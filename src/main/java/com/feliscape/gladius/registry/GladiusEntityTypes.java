@@ -12,6 +12,7 @@ import com.feliscape.gladius.content.entity.enemy.piglin.warlord.PiglinWarlord;
 import com.feliscape.gladius.content.entity.misc.*;
 import com.feliscape.gladius.content.entity.projectile.*;
 import com.feliscape.gladius.content.entity.projectile.rod.CopperRodProjectile;
+import com.feliscape.gladius.content.entity.projectile.rod.ElectrifiedRodProjectile;
 import com.feliscape.gladius.content.entity.projectile.rod.IronRodProjectile;
 import com.feliscape.gladius.content.entity.projectile.rod.SerratedRodProjectile;
 import com.feliscape.gladius.registry.foundation.DeferredEntityTypeRegister;
@@ -45,6 +46,13 @@ public class GladiusEntityTypes {
                     .updateInterval(Integer.MAX_VALUE)
     );
 
+    public static final Supplier<EntityType<OilBlob>> OIL_BLOB = ENTITY_TYPES.registerEntityType("oil_blob",
+            OilBlob::new, MobCategory.MISC, b -> b
+                    .sized(0.75F, 0.75F)
+                    .eyeHeight(0.375F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+    );
     public static final Supplier<EntityType<MagicOrb>> MAGIC_ORB = ENTITY_TYPES.registerEntityType("magic_orb",
             MagicOrb::new, MobCategory.MISC, b -> b
                     .sized(0.25F, 0.25F)
@@ -104,6 +112,13 @@ public class GladiusEntityTypes {
     );
     public static final Supplier<EntityType<SerratedRodProjectile>> SERRATED_ROD = ENTITY_TYPES.registerEntityType("serrated_rod",
             SerratedRodProjectile::new, MobCategory.MISC, b -> b
+                    .sized(0.5F, 0.5F)
+                    .eyeHeight(0.13F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+    );
+    public static final Supplier<EntityType<ElectrifiedRodProjectile>> ELECTRIFIED_ROD = ENTITY_TYPES.registerEntityType("electrified_roll",
+            ElectrifiedRodProjectile::new, MobCategory.MISC, b -> b
                     .sized(0.5F, 0.5F)
                     .eyeHeight(0.13F)
                     .clientTrackingRange(4)

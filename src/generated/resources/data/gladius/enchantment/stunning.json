@@ -16,6 +16,6 @@
     "offhand",
     "mainhand"
   ],
-  "supported_items": "#gladius:blocking_enchantable",
+  "supported_items": "#gladius:enchantable/blocking",
   "weight": 30
 }

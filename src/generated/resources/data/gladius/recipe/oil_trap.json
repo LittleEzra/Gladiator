@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "minecraft:polished_deepslate"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "item": "gladius:oil_bottle"
+    }
+  },
+  "pattern": [
+    "###",
+    "SRS",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gladius:oil_trap"
+  }
+}

@@ -9,19 +9,18 @@
     "EntityMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
-    "MobMixin",
-    "client.ClientPacketListenerMixin",
-    "client.ItemInHandLayerMixin"
+    "MobMixin"
   ],
   "client": [
     "client.EntityRenderDispatcherMixin",
     "client.FogRendererMixin",
-    "client.HumanoidArmorLayerMixin",
     "client.HumanoidModelMixin",
     "client.ItemInHandRendererMixin",
     "client.LevelRendererMixin",
     "client.PlayerRendererMixin",
-    "client.ScreenEffectRendererMixin"
+    "client.ScreenEffectRendererMixin",
+    "client.ClientPacketListenerMixin",
+    "client.ItemInHandLayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

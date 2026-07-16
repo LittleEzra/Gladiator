@@ -11,9 +11,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipProvider;
 import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -41,6 +43,13 @@ public abstract class ItemStackMixin implements DataComponentHolder {
 
         if (!ModList.get().isLoaded("bettercombat") && has(GladiusComponents.TWO_HANDED)) {
             list.add(Component.translatable("item.gladius.tooltip.two_handed").withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    @Inject(method = "isEnchantable", at = @At("HEAD"), cancellable = true)
+    public void makeShieldsEnchantable(CallbackInfoReturnable<Boolean> cir){
+        if (getItem() instanceof ShieldItem){
+            cir.setReturnValue(true);
         }
     }
 }

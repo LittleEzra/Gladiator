@@ -1,7 +1,9 @@
 package com.feliscape.gladius.content.entity.projectile.rod;
 
 import com.feliscape.gladius.content.attachment.RodData;
+import com.feliscape.gladius.registry.GladiusSoundEvents;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -30,21 +32,28 @@ public abstract class RodProjectile extends AbstractArrow {
     }
 
     @Override
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
+        return GladiusSoundEvents.ROD_HIT.get();
+    }
+
+    protected DamageSource createDamageSource(@Nullable Entity owner){
+        return this.damageSources().arrow(this, (owner != null ? owner : this));
+    }
+
+    @Override
     protected void onHitEntity(EntityHitResult result) {
-        Entity owner = this.getOwner();
 
         Entity entity = result.getEntity();
         float velocity = (float)this.getDeltaMovement().length();
         double damage = this.getBaseDamage();
-        Entity entity1 = this.getOwner();
-        DamageSource damagesource = this.damageSources().arrow(this, (Entity)(entity1 != null ? entity1 : this));
+        Entity owner = this.getOwner();
+        DamageSource damageSource = this.createDamageSource(owner);
         if (this.getWeaponItem() != null) {
             if (this.level() instanceof ServerLevel serverlevel) {
-                damage = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damagesource, (float)damage);
+                damage = EnchantmentHelper.modifyDamage(serverlevel, this.getWeaponItem(), entity, damageSource, (float)damage);
             }
         }
         int finalDamage = Mth.ceil(Mth.clamp((double)velocity * damage, 0.0, 2.147483647E9));
-        DamageSource damageSource = this.damageSources().arrow(this, (Entity)(owner != null ? owner : this));
 
         if (entity.hurt(damageSource, finalDamage)) {
             if (entity.getType() == EntityType.ENDERMAN) {
@@ -52,15 +61,15 @@ public abstract class RodProjectile extends AbstractArrow {
             }
 
             if (this.level() instanceof ServerLevel serverLevel) {
-                EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damagesource, this.getWeaponItem());
+                EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, entity, damageSource, this.getWeaponItem());
             }
 
             if (entity instanceof LivingEntity living) {
-                this.doKnockback(living, damagesource);
+                this.doKnockback(living, damageSource);
                 this.doPostHurtEffects(living);
 
                 if (!level().isClientSide && !living.isInvulnerableTo(damageSource)) {
-                    RodData.addRod(living, this, 20 * 5);
+                    RodData.addRod(living, this, 20 * 15);
                 }
                 living.setLastHurtMob(entity);
                 this.discard();

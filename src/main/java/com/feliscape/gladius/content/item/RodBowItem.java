@@ -2,10 +2,12 @@ package com.feliscape.gladius.content.item;
 
 import com.feliscape.gladius.content.entity.projectile.rod.RodProjectile;
 import com.feliscape.gladius.content.item.projectile.rod.ProjectileRodItem;
+import com.feliscape.gladius.data.enchantment.GladiusEnchantments;
 import com.feliscape.gladius.registry.GladiusItems;
 import com.feliscape.gladius.registry.GladiusTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -19,7 +21,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ChargedProjectiles;
@@ -27,6 +28,7 @@ import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -40,6 +42,7 @@ public class RodBowItem extends ProjectileWeaponItem {
 
     private boolean startSoundPlayed = false;
     private boolean midLoadSoundPlayed = false;
+    private boolean shotAutomatically = false;
     private static final CrossbowItem.ChargingSounds DEFAULT_SOUNDS = new CrossbowItem.ChargingSounds(
             Optional.of(SoundEvents.CROSSBOW_LOADING_START), Optional.of(SoundEvents.CROSSBOW_LOADING_MIDDLE), Optional.of(SoundEvents.CROSSBOW_LOADING_END)
     );
@@ -222,6 +225,7 @@ public class RodBowItem extends ProjectileWeaponItem {
             if (f < 0.2F) {
                 this.startSoundPlayed = false;
                 this.midLoadSoundPlayed = false;
+                this.shotAutomatically = false;
             }
 
             if (f >= 0.2F && !this.startSoundPlayed) {
@@ -243,12 +247,42 @@ public class RodBowItem extends ProjectileWeaponItem {
                                 )
                         );
             }
+
+            if (isAutomatic(stack, livingEntity)) {
+                if (f >= 1.0F && !isCharged(stack)){
+                    if (tryLoadProjectiles(livingEntity, stack)){
+                        crossbowitem$chargingsounds.end()
+                                .ifPresent(
+                                        p_352852_ -> level.playSound(
+                                                null,
+                                                livingEntity.getX(),
+                                                livingEntity.getY(),
+                                                livingEntity.getZ(),
+                                                p_352852_.value(),
+                                                livingEntity.getSoundSource(),
+                                                1.0F,
+                                                1.0F / (level.getRandom().nextFloat() * 0.5F + 1.0F) + 0.2F
+                                        )
+                                );
+                    } else{
+                        shotAutomatically = true;
+                    }
+                } else if (f >= 1.2F && !shotAutomatically){
+                    shotAutomatically = true;
+                    livingEntity.releaseUsingItem();
+                }
+            }
         }
+    }
+
+    public static boolean isAutomatic(ItemStack stack, LivingEntity entity){
+        var lookup = entity.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        return stack.getEnchantmentLevel(lookup.getOrThrow(GladiusEnchantments.AUTOMATIC)) > 0;
     }
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return getChargeDuration(stack, entity) + 3;
+        return getChargeDuration(stack, entity) + (isAutomatic(stack, entity) ? 10 : 3);
     }
 
     public static int getChargeDuration(ItemStack stack, LivingEntity shooter) {

@@ -2,7 +2,10 @@ package com.feliscape.gladius.data.datagen.model;
 
 import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.block.MistTrapBlock;
+import com.feliscape.gladius.content.block.OilTrapBlock;
 import com.feliscape.gladius.registry.GladiusBlocks;
+import com.feliscape.gladius.registry.GladiusItems;
+import net.minecraft.core.Direction;
 import net.minecraft.core.FrontAndTop;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -28,10 +31,31 @@ public class GladiusBlockModelProvider extends BlockStateProvider {
         blockWithItem(GladiusBlocks.FRIGID_ICE);
         mistTrap(GladiusBlocks.MIST_TRAP.get());
         flameTrap(GladiusBlocks.FLAME_TRAP.get());
+        oilTrap(GladiusBlocks.OIL_TRAP.get());
 
         blockWithItem(GladiusBlocks.BLACKSTONE_GOLEM_HEART);
     }
 
+    private void oilTrap(Block block){
+        var deepslate = ResourceLocation.withDefaultNamespace("block/polished_deepslate");
+        var unpoweredModel = cubeSeparateFaces(block, "", deepslate);
+        var breathingModel = cubeSeparateFaces(block, "_on", deepslate);
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    var powered = state.getValue(OilTrapBlock.TRIGGERED);
+                    var orientation = state.getValue(OilTrapBlock.ORIENTATION);
+
+                    var model = unpoweredModel;
+                    if (powered){
+                        model = breathingModel;
+                    }
+
+                    return applyRotation(orientation, ConfiguredModel.builder().modelFile(model)).build();
+                })
+        ;
+        simpleBlockItem(block, unpoweredModel);
+    }
     private void flameTrap(Block block){
         var magmaBlock = ResourceLocation.withDefaultNamespace("block/magma");
         var unpoweredModel = cubeSeparateFaces(block, "", magmaBlock);

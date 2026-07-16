@@ -12,12 +12,14 @@ import com.feliscape.gladius.content.item.projectile.arrow.ExplosiveArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.PrismarineArrowItem;
 import com.feliscape.gladius.content.item.projectile.arrow.WingedArrowItem;
 import com.feliscape.gladius.content.item.projectile.rod.CopperRodItem;
+import com.feliscape.gladius.content.item.projectile.rod.ElectrifiedRodItem;
 import com.feliscape.gladius.content.item.projectile.rod.IronRodItem;
 import com.feliscape.gladius.content.item.projectile.rod.SerratedRodItem;
 import com.feliscape.gladius.data.registry.GladiusAspects;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.Unit;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -55,7 +57,7 @@ public class GladiusItems {
             WingedArrowItem::new);
 
     public static final DeferredItem<RodBowItem> ROD_BOW = ITEMS.registerItem("rod_bow",
-            RodBowItem::new);
+            p -> new RodBowItem(p.stacksTo(1).durability(465).component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)));
 
     public static final DeferredItem<CopperRodItem> COPPER_ROD = ITEMS.registerItem("copper_rod",
             CopperRodItem::new);
@@ -63,6 +65,8 @@ public class GladiusItems {
             IronRodItem::new);
     public static final DeferredItem<SerratedRodItem> SERRATED_ROD = ITEMS.registerItem("serrated_rod",
             SerratedRodItem::new);
+    public static final DeferredItem<ElectrifiedRodItem> ELECTRIFIED_ROD = ITEMS.registerItem("electrified_rod",
+            ElectrifiedRodItem::new);
 
     public static final DeferredItem<OilBottleItem> OIL_BOTTLE = ITEMS.registerItem("oil_bottle",
             p -> new OilBottleItem(p.stacksTo(16)));

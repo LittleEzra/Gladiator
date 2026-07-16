@@ -15,6 +15,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -152,6 +153,25 @@ public record GladiusLevelEventPayload(int id, double x, double y, double z, int
                             random.nextGaussian() * 0.03,
                             random.nextGaussian() * 0.03
                     );
+                }
+                break;
+            }
+            case 1006:{
+                Direction direction = Direction.from3DDataValue(payload.data);
+                for (int i = 0; i < 30; i++){
+                    double v = random.nextDouble() * 0.25D + 0.05D;
+
+                    int stepX = direction.getStepX();
+                    int stepY = direction.getStepY();
+                    int stepZ = direction.getStepZ();
+                    double px = x + (stepX == 0 ? Mth.nextDouble(level.random, -0.3F, 0.3F) : (double)stepX * 0.5D);
+                    double py = y + (stepY == 0 ? Mth.nextDouble(level.random, -0.3F, 0.3F) : (double)stepY * 0.5D);
+                    double pz = z + (stepZ == 0 ? Mth.nextDouble(level.random, -0.3F, 0.3F) : (double)stepZ * 0.5D);
+                    double vx = stepX == 0 ? (double) v * Math.sin(random.nextDouble() * Math.TAU) * 0.1D : v * stepX;
+                    double vy = stepY == 0 ? (double) v * Math.sin(random.nextDouble() * Math.TAU) * 0.1D : v * stepY;
+                    double vz = stepZ == 0 ? (double) v * Math.sin(random.nextDouble() * Math.TAU) * 0.1D : v * stepZ;
+
+                    level.addParticle(GladiusParticles.BIG_OIL_DROPLET.get(), px, py, pz, vx, vy + random.nextDouble() * 0.2D, vz);
                 }
                 break;
             }

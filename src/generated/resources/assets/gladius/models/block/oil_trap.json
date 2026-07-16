@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "gladius:block/oil_trap_bottom",
+    "east": "gladius:block/oil_trap_east",
+    "north": "gladius:block/oil_trap_north",
+    "particle": "minecraft:block/polished_deepslate",
+    "south": "gladius:block/oil_trap_south",
+    "up": "gladius:block/oil_trap_top",
+    "west": "gladius:block/oil_trap_west"
+  }
+}

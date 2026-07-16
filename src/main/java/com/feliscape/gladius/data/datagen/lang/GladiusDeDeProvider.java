@@ -25,6 +25,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frostiges Eis");
         this.addBlock(GladiusBlocks.MIST_TRAP, "Nebelfalle");
         this.addBlock(GladiusBlocks.FLAME_TRAP, "Flammenfalle");
+        this.addBlock(GladiusBlocks.OIL_TRAP, "Ölfalle");
 
         this.addBlock(GladiusBlocks.BLACKSTONE_GOLEM_HEART, "Schwarzsteingolemherz");
 
@@ -50,6 +51,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.COPPER_ROD, "Kupferstab");
         this.addItem(GladiusItems.IRON_ROD, "Eisenstab");
         this.addItem(GladiusItems.SERRATED_ROD, "Gezackter Stab");
+        this.addItem(GladiusItems.ELECTRIFIED_ROD, "Elektrifizierter Stab");
 
         this.addItem(GladiusItems.OIL_BOTTLE, "Ölflasche");
         this.addItem(GladiusItems.FIREBRAND, "Feuerstock");
@@ -66,7 +68,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.GOLDEN_WAND, "Goldener Zauberstab");
         this.addItem(GladiusItems.FROZEN_WAND, "Gefrorener Zauberstab");
         this.addItem(GladiusItems.TORRID_STANDARD, "Flammende Standarte");
-        this.addItem(GladiusItems.HOGLIN_TUSK, "Hoglin Tusk");
+        this.addItem(GladiusItems.HOGLIN_TUSK, "Hoglinstoßzahn");
         this.addItem(GladiusItems.FLAMEWALKERS, "Flammenläufer");
         this.addItem(GladiusItems.NIGHTWALKER_HOOD, "Nachtläufer Kapuze");
         this.addItem(GladiusItems.POWER_GAUNTLETS, "Macht-Handschuhe");
@@ -80,6 +82,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addAspect(GladiusAspects.ICE, "❄ Eis");
         this.addAspect(GladiusAspects.POISON, "☠ Gift");
 
+        this.addEntityType(GladiusEntityTypes.OIL_BLOB, "Öltropfen");
         this.addEntityType(GladiusEntityTypes.MAGIC_ORB, "Magische Kugel");
         this.addEntityType(GladiusEntityTypes.EXPLOSIVE_ARROW, "Explosiver Pfeil");
         this.addEntityType(GladiusEntityTypes.PRISMARINE_ARROW, "Prismarinpfeil");
@@ -87,6 +90,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.COPPER_ROD, "Kupferstab");
         this.addEntityType(GladiusEntityTypes.IRON_ROD, "Eisenstab");
         this.addEntityType(GladiusEntityTypes.SERRATED_ROD, "Gezackter Stab");
+        this.addEntityType(GladiusEntityTypes.ELECTRIFIED_ROD, "Elektrifizierter Stab");
         this.addEntityType(GladiusEntityTypes.OIL_BOTTLE, "Ölflasche");
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Feuerstock");
 
@@ -118,10 +122,14 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.BATTLE_CRY, "Schlachtruf");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Betäubung");
+        this.addEnchantment(GladiusEnchantments.AUTOMATIC, "Automatisch");
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore pariert");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Vergoldeter Dolch sticht");
+        this.addSubtitle(GladiusSoundEvents.HOGLIN_TUSK_CALL, "Hoglinstoßzahn ruft");
+
         this.addSubtitle(GladiusSoundEvents.WINGED_ARROW_HIT, "Geflügelter Pfeil trifft");
+        this.addSubtitle(GladiusSoundEvents.ROD_HIT, "Metallstab trifft");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Feuerstock entzündet Feuer");
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Feuerwake bricht aus");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Blitzpulver knistert");
@@ -142,6 +150,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_BURN, "Flammenfalle brennt");
         this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_STOP, "Flammenfalle brennt aus");
         this.addSubtitle(GladiusSoundEvents.MIST_TRAP_BREATH, "Nebelfalle atmet");
+        this.addSubtitle(GladiusSoundEvents.OIL_TRAP_BURST, "Ölfalle bricht aus");
 
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s verblutete");

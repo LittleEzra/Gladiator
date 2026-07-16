@@ -24,6 +24,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addBlock(GladiusBlocks.FRIGID_ICE, "Frigid Ice");
         this.addBlock(GladiusBlocks.MIST_TRAP, "Mist Trap");
         this.addBlock(GladiusBlocks.FLAME_TRAP, "Flame Trap");
+        this.addBlock(GladiusBlocks.OIL_TRAP, "Oil Trap");
 
         this.addBlock(GladiusBlocks.BLACKSTONE_GOLEM_HEART, "Blackstone Golem Heart");
 
@@ -49,6 +50,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addItem(GladiusItems.COPPER_ROD, "Copper Rod");
         this.addItem(GladiusItems.IRON_ROD, "Iron Rod");
         this.addItem(GladiusItems.SERRATED_ROD, "Serrated Rod");
+        this.addItem(GladiusItems.ELECTRIFIED_ROD, "Electrified Rod");
 
         this.addItem(GladiusItems.OIL_BOTTLE, "Oil Bottle");
         this.addItem(GladiusItems.FIREBRAND, "Firebrand");
@@ -79,6 +81,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addAspect(GladiusAspects.ICE, "❄ Ice");
         this.addAspect(GladiusAspects.POISON, "☠ Poison");
 
+        this.addEntityType(GladiusEntityTypes.OIL_BLOB, "Oil Blob");
         this.addEntityType(GladiusEntityTypes.MAGIC_ORB, "Magic Orb");
         this.addEntityType(GladiusEntityTypes.EXPLOSIVE_ARROW, "Explosive Arrow");
         this.addEntityType(GladiusEntityTypes.PRISMARINE_ARROW, "Prismarine Arrow");
@@ -86,6 +89,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addEntityType(GladiusEntityTypes.COPPER_ROD, "Copper Rod");
         this.addEntityType(GladiusEntityTypes.IRON_ROD, "Iron Rod");
         this.addEntityType(GladiusEntityTypes.SERRATED_ROD, "Serrated Rod");
+        this.addEntityType(GladiusEntityTypes.ELECTRIFIED_ROD, "Electrified Rod");
         this.addEntityType(GladiusEntityTypes.OIL_BOTTLE, "Oil Bottle");
         this.addEntityType(GladiusEntityTypes.FIREBRAND, "Firebrand");
 
@@ -116,12 +120,14 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addMobEffect(GladiusMobEffects.BATTLE_CRY, "Battle Cry");
 
         this.addEnchantment(GladiusEnchantments.STUNNING, "Stunning");
+        this.addEnchantment(GladiusEnchantments.AUTOMATIC, "Automatic");
 
         this.addSubtitle(GladiusSoundEvents.CLAYMORE_BLOCK, "Claymore blocks");
         this.addSubtitle(GladiusSoundEvents.GILDED_DAGGER_STAB, "Gilded Dagger stabs");
         this.addSubtitle(GladiusSoundEvents.HOGLIN_TUSK_CALL, "Hoglin Tusk calls");
 
         this.addSubtitle(GladiusSoundEvents.WINGED_ARROW_HIT, "Winged Arrow hits");
+        this.addSubtitle(GladiusSoundEvents.ROD_HIT, "Metal Rod hits");
         this.addSubtitle(GladiusSoundEvents.FIREBRAND_LIGHT, "Firebrand lights fire");
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Fire Wake erupts");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Flash Powder crackles");
@@ -142,6 +148,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_BURN, "Flame Trap burns");
         this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_STOP, "Flame Trap stops burning");
         this.addSubtitle(GladiusSoundEvents.MIST_TRAP_BREATH, "Mist Trap breathes");
+        this.addSubtitle(GladiusSoundEvents.OIL_TRAP_BURST, "Oil Trap bursts");
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s bled out");
 

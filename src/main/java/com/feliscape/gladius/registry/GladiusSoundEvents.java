@@ -17,10 +17,12 @@ public class GladiusSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> GILDED_DAGGER_STAB = registerVariable("item.gilded_dagger.stab");
     public static final DeferredHolder<SoundEvent, SoundEvent> HOGLIN_TUSK_CALL = registerVariable("item.hoglin_tusk.sound");
     public static final DeferredHolder<SoundEvent, SoundEvent> WINGED_ARROW_HIT = registerVariable("entity.winged_arrow.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ROD_HIT = registerVariable("entity.rod.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> FIREBRAND_LIGHT = registerVariable("entity.firebrand.light"); // range: 6.0F
     public static final DeferredHolder<SoundEvent, SoundEvent> FLASH_POWDER_CRACKLE = registerVariable("item.flash_powder.crackle"); // range: 12.0F
     public static final DeferredHolder<SoundEvent, SoundEvent> HEARTH_STONE_USE = registerVariable("item.hearth_stone.use");
     public static final DeferredHolder<SoundEvent, SoundEvent> FIRE_WAKE_ERUPT = registerVariable("entity.fire_wake.erupt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> OIL_BLOB_SPLASH = registerVariable("entity.oil_blob.splash");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SPELL = registerSoundEvent("item.spell", 12.0F);
 
@@ -39,6 +41,7 @@ public class GladiusSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_TRAP_BURN = registerVariable("block.flame_trap.burn");
     public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_TRAP_STOP = registerVariable("block.flame_trap.stop");
     public static final DeferredHolder<SoundEvent, SoundEvent> MIST_TRAP_BREATH = registerVariable("block.mist_trap.breath");
+    public static final DeferredHolder<SoundEvent, SoundEvent> OIL_TRAP_BURST = registerVariable("block.oil_trap.burst");
 
     public static void register(IEventBus eventBus)
     {

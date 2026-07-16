@@ -43,6 +43,7 @@ public class GladiusItemModelProvider extends ItemModelProvider {
         basicItem(GladiusItems.COPPER_ROD.get());
         basicItem(GladiusItems.IRON_ROD.get());
         basicItem(GladiusItems.SERRATED_ROD.get());
+        basicItem(GladiusItems.ELECTRIFIED_ROD.get());
 
         basicItem(GladiusItems.OIL_BOTTLE.get());
         basicItem(GladiusItems.CRYSTAL_BUTTERFLY.get());

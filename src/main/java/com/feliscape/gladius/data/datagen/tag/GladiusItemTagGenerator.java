@@ -31,9 +31,17 @@ public class GladiusItemTagGenerator extends ItemTagsProvider {
                 .add(GladiusItems.COPPER_ROD.get())
                 .add(GladiusItems.IRON_ROD.get())
                 .add(GladiusItems.SERRATED_ROD.get())
+                .add(GladiusItems.ELECTRIFIED_ROD.get())
         ;
         this.tag(GladiusTags.Items.CONDUCTING_ROD)
                 .add(GladiusItems.COPPER_ROD.get())
+                .add(GladiusItems.ELECTRIFIED_ROD.get())
+        ;
+        this.tag(GladiusTags.Items.ROD_BOW_ENCHANTABLE)
+                .add(GladiusItems.ROD_BOW.get())
+        ;
+        this.tag(ItemTags.CROSSBOW_ENCHANTABLE)
+                .add(GladiusItems.ROD_BOW.get())
         ;
 
         this.tag(ItemTags.SWORDS)

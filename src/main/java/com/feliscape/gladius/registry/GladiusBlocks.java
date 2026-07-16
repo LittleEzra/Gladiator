@@ -1,10 +1,7 @@
 package com.feliscape.gladius.registry;
 
 import com.feliscape.gladius.Gladius;
-import com.feliscape.gladius.content.block.BlackstoneGolemHeartBlock;
-import com.feliscape.gladius.content.block.FlameTrapBlock;
-import com.feliscape.gladius.content.block.FrigidIceBlock;
-import com.feliscape.gladius.content.block.MistTrapBlock;
+import com.feliscape.gladius.content.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -47,6 +44,13 @@ public class GladiusBlocks {
     public static final DeferredBlock<FlameTrapBlock> FLAME_TRAP = registerBlockWithItem("flame_trap",
             p -> new FlameTrapBlock(p
                     .mapColor(MapColor.COLOR_BLACK)
+                    .strength(3.5F, 6.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)
+            ));
+    public static final DeferredBlock<OilTrapBlock> OIL_TRAP = registerBlockWithItem("oil_trap",
+            p -> new OilTrapBlock(p
+                    .mapColor(MapColor.DEEPSLATE)
                     .strength(3.5F, 6.0F)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.STONE)

@@ -41,7 +41,7 @@ public class GladiusTags {
         }
     }
     public static class Items{
-        public static final TagKey<Item> BLOCKING_ENCHANTABLE = create("blocking_enchantable");
+        public static final TagKey<Item> BLOCKING_ENCHANTABLE = create("enchantable/blocking");
         public static final TagKey<Item> INNATE_STUN = create("innate_stun");
         public static final TagKey<Item> NO_OIL_PROTECTION = create("no_oil_protection");
         public static final TagKey<Item> GAUNTLETS = create("gauntlets");
@@ -50,6 +50,7 @@ public class GladiusTags {
 
         public static final TagKey<Item> SPREADS_FLASH_POWDER = create("spreads_flash_powder");
 
+        public static final TagKey<Item> ROD_BOW_ENCHANTABLE = create("enchantable/rod_bow");
         public static final TagKey<Item> RODS = create("rods");
         public static final TagKey<Item> CONDUCTING_ROD = create("conducting_rod");
 

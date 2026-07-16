@@ -98,6 +98,12 @@
     ],
     "subtitle": "subtitle.gladius.entity.torrid_wisp.spawn"
   },
+  "entity.rod.hit": {
+    "sounds": [
+      "gladius:entity/rod_hit"
+    ],
+    "subtitle": "subtitle.gladius.entity.rod.hit"
+  },
   "item.hearth_stone.use": {
     "sounds": [
       "mob/ghast/fireball4"
@@ -136,5 +142,17 @@
       "gladius:block/mist_trap/breath"
     ],
     "subtitle": "subtitle.gladius.block.mist_trap.breath"
+  },
+  "block.oil_trap.burst": {
+    "sounds": [
+      "gladius:block/oil_trap/burst"
+    ],
+    "subtitle": "subtitle.gladius.block.oil_trap.burst"
+  },
+  "entity.oil_blob.splash": {
+    "sounds": [
+      "gladius:entity/large_splash"
+    ],
+    "subtitle": "subtitle.gladius.entity.oil_blob.splash"
   }
 }

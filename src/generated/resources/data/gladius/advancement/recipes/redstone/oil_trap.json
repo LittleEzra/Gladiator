@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oil_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "gladius:oil_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gladius:oil_trap"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_oil_bottle"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gladius:oil_trap"
+    ]
+  }
+}

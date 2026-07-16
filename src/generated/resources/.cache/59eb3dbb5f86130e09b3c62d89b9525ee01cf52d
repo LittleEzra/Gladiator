@@ -1,8 +1,9 @@
-// 1.21.1	2026-07-10T11:30:56.0093421	Loot Tables
+// 1.21.1	2026-07-15T10:45:26.3832627	Loot Tables
 3e806363637f0b1289b1bae9190abceeb9ce73c7 data/gladius/loot_table/blocks/blackstone_golem_heart.json
 86dcf3166795cdc1507dc7502973d53d7270f0a0 data/gladius/loot_table/blocks/flame_trap.json
 3f77b92e80546abc208dbf087a7bbdde42a3b08d data/gladius/loot_table/blocks/frigid_ice.json
 053796003a28a197ea2698cd62a744ee7fe475d1 data/gladius/loot_table/blocks/mist_trap.json
+a05b2a36579060bab3b840cadc5079a893ebb526 data/gladius/loot_table/blocks/oil_trap.json
 ff66a4bf144a9ef4cdae9837943453f6a2d84b19 data/gladius/loot_table/chests/frostmancer_tower.json
 dc62a2fce382ee7b642b8ff06e29bebcbb6d204f data/gladius/loot_table/chests/piglin_camp/common.json
 ac2ace12144ffaad770b33bf523a8b1281c69a6a data/gladius/loot_table/chests/piglin_camp/food.json

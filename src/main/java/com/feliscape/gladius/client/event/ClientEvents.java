@@ -137,6 +137,8 @@ public class ClientEvents {
                 new GenericArrowRenderer<>(context, Gladius.location("textures/entity/projectile/rod/iron_rod.png")));
         event.registerEntityRenderer(GladiusEntityTypes.SERRATED_ROD.get(), context ->
                 new GenericArrowRenderer<>(context, Gladius.location("textures/entity/projectile/rod/serrated_rod.png")));
+        event.registerEntityRenderer(GladiusEntityTypes.ELECTRIFIED_ROD.get(), context ->
+                new GenericArrowRenderer<>(context, Gladius.location("textures/entity/projectile/rod/electrified_rod.png")));
 
         event.registerEntityRenderer(GladiusEntityTypes.MAGMA_POOL.get(), MagmaPoolRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.FIRE_WAKE.get(), NoopRenderer::new);
@@ -148,6 +150,7 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.ICE_SPIKE.get(), IceSpikeRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_BLOCK.get(), IceBlockRenderer::new);
 
+        event.registerEntityRenderer(GladiusEntityTypes.OIL_BLOB.get(), OilBlobRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.MAGIC_ORB.get(), MagicOrbRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.ICE_CHARGE.get(), NoopRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.TORRID_WISP.get(), NoopRenderer::new);
