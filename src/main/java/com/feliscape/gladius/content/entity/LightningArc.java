@@ -4,8 +4,11 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.attachment.ShockData;
 import com.feliscape.gladius.data.damage.GladiusDamageSources;
 import com.feliscape.gladius.registry.GladiusEntityTypes;
+import com.feliscape.gladius.registry.GladiusParticles;
 import com.feliscape.gladius.registry.entity.GladiusEntityDataSerializers;
+import com.feliscape.gladius.util.EntityUtil;
 import com.feliscape.gladius.util.RandomUtil;
+import com.feliscape.gladius.util.VectorUtil;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -29,20 +32,25 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.joml.Quaterniond;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class LightningArc extends Entity implements TraceableEntity {
-    private final static EntityDataAccessor<List<Vec3>> POINTS = SynchedEntityData.defineId(LightningArc.class,
+    private static final EntityDataAccessor<List<Vec3>> POINTS = SynchedEntityData.defineId(LightningArc.class,
             GladiusEntityDataSerializers.VECTORS_3.get());
+    private static final EntityDataAccessor<Float> DISTANCE_TRAVELED = SynchedEntityData.defineId(LightningArc.class, EntityDataSerializers.FLOAT);
 
     @Nullable
     private UUID ownerUUID;
     @Nullable
     private Entity cachedOwner;
+
+    private AABB pointsBoundingBox;
 
     public LightningArc(EntityType<?> entityType, Level level) {
         super(entityType, level);
@@ -75,36 +83,57 @@ public class LightningArc extends Entity implements TraceableEntity {
 
     @Override
     public void tick() {
-        if (firstTick){
-            Vec3 lastPoint = this.position();
-            var points = getPoints();
-            if (level().isClientSide){
-                for (Vec3 point : points){
-                    double distance = lastPoint.distanceTo(point);
-                    int particleCount = Mth.floor(distance / 0.2D);
-                    for (int i = 0; i < particleCount; i++){
-                        double d = 0.2D * i;
-                        Vec3 velocity = RandomUtil.randomPositionOnSphereGaussian(random, 0.5D);
-                        level().addParticle(
-                                ParticleTypes.ELECTRIC_SPARK,
-                                ((point.x - lastPoint.x) / distance) * d + lastPoint.x,
-                                ((point.y - lastPoint.y) / distance) * d + lastPoint.y,
-                                ((point.z - lastPoint.z) / distance) * d + lastPoint.z,
-                                velocity.x, velocity.y, velocity.z
-                        );
-                    }
+        super.tick();
 
-                    lastPoint = point;
+        float distanceTraveled = getDistanceTraveled();
+        float maxDistance = getMaxDistance();
+        if (distanceTraveled >= maxDistance){
+            if (!level().isClientSide()){
+                this.level().broadcastEntityEvent(this, (byte) 3);
+                this.discard();
+            }
+        } else{
+            LinePart lastPoint = null;
+            LinePart firstPoint = null;
+            for (int i = 0; i < 20; i++){
+                var p = getPosition((double) distanceTraveled);
+                if (firstPoint == null) {
+                    firstPoint = p;
                 }
-            } else{
-                for (Vec3 point : points){
-                    var boundingBox = new AABB(lastPoint, point);
 
-                    List<Entity> entities = level().getEntitiesOfClass(Entity.class, boundingBox);
-                    for (Entity e : entities){
-                        var clipResult = e.getBoundingBox().inflate(0.1D).clip(lastPoint, point);
-                        if (clipResult.isPresent()){
-                            e.hurt(GladiusDamageSources.electrocution(level()), 2.0F);
+                if (level().isClientSide) {
+                    Vec3 velocity = RandomUtil.randomPositionOnSphereGaussian(random, 0.02D);
+
+                    double theta = distanceTraveled * 4.0D;
+                    Vec3 localX = p.j.scale(Math.cos(theta) * 0.1D);
+                    Vec3 localY = p.k.scale(Math.sin(theta) * 0.1D);
+
+                    level().addParticle(
+                            GladiusParticles.LIGHTNING_SPARK.get(),
+                            p.position.x + localX.x + localY.x,
+                            p.position.y + localX.y + localY.y,
+                            p.position.z + localX.z + localY.z,
+                            velocity.x, velocity.y, velocity.z
+                    );
+                }
+
+                distanceTraveled += 0.2F;
+                setDistanceTraveled(distanceTraveled);
+                if (distanceTraveled > maxDistance){
+                    break;
+                }
+
+                lastPoint = p;
+            }
+
+            if (!level().isClientSide() && firstPoint != null && lastPoint != null){
+                var boundingBox = new AABB(firstPoint.position, lastPoint.position).inflate(0.2D);
+
+                List<Entity> entities = level().getEntitiesOfClass(Entity.class, boundingBox);
+                for (Entity e : entities){
+                    var clipResult = e.getBoundingBox().inflate(0.3D).clip(firstPoint.position, lastPoint.position);
+                    if (clipResult.isPresent()){
+                        if (e.hurt(GladiusDamageSources.electrocution(level()), 2.0F)){
                             if (e instanceof LivingEntity living){
                                 ShockData.shock(living, 5);
                             }
@@ -112,18 +141,70 @@ public class LightningArc extends Entity implements TraceableEntity {
                             e.push(knockback);
                         }
                     }
-
-                    lastPoint = point;
                 }
             }
         }
-        super.tick();
-        if (tickCount > 2)
-            this.discard();
+    }
+
+    private LinePart getPosition(double distance){
+        double traveledDistance = 0.0D;
+        var p = this.position();
+        List<Vec3> points = getPoints();
+        for (Vec3 point : points) {
+            double d = ((float) p.distanceTo(point));
+            if (traveledDistance + d > distance) {
+                Vec3 pos = p.lerp(point, (distance - traveledDistance) / d);
+                Vec3 direction = point.subtract(p).normalize();
+                return new LinePart(pos, direction);
+            }
+            traveledDistance += d;
+            p = point;
+        }
+        Vec3 direction = p.subtract(points.get(points.size() - 2)).normalize();
+        return new LinePart(p, direction);
+    }
+    private float getMaxDistance(){
+        float distance = 0.0F;
+        var p = this.position();
+        for (var point : getPoints()){
+            distance += ((float) p.distanceTo(point));
+            p = point;
+        }
+        return distance;
+    }
+
+    public void setDistanceTraveled(float distanceTraveled){
+        this.entityData.set(DISTANCE_TRAVELED, distanceTraveled);
+    }
+
+    public float getDistanceTraveled(){
+        return this.entityData.get(DISTANCE_TRAVELED);
     }
 
     public void setPoints(List<Vec3> points){
         this.entityData.set(POINTS, points);
+    }
+
+    @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> key) {
+        super.onSyncedDataUpdated(key);
+        if (key == POINTS){
+            createPointsBoundingBox();
+        }
+    }
+
+    private void createPointsBoundingBox(){
+        var points = getPoints();
+        pointsBoundingBox = this.getBoundingBox();
+        for (Vec3 p : points){
+            pointsBoundingBox = EntityUtil.growToInclude(pointsBoundingBox, p);
+        }
+        setBoundingBox(pointsBoundingBox);
+    }
+
+    @Override
+    public AABB getBoundingBoxForCulling() {
+        return pointsBoundingBox;
     }
 
     public List<Vec3> getPoints(){
@@ -131,8 +212,27 @@ public class LightningArc extends Entity implements TraceableEntity {
     }
 
     @Override
+    public void handleEntityEvent(byte id) {
+        if (id == (byte) 3){
+            for (int i = 0; i < 12; i++){
+                Vec3 velocity = RandomUtil.randomPositionOnSphereGaussian(random, random.nextDouble() * 0.15D);
+
+                Vec3 p = getPoints().getLast();
+                level().addParticle(
+                        GladiusParticles.FALLING_LIGHTNING_SPARK.get(),
+                        p.x, p.y, p.z,
+                        velocity.x, velocity.y + 0.1D, velocity.z
+                );
+            }
+        } else{
+            super.handleEntityEvent(id);
+        }
+    }
+
+    @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(POINTS, List.of());
+        builder.define(DISTANCE_TRAVELED, 0.0F);
     }
 
     @Override
@@ -147,6 +247,7 @@ public class LightningArc extends Entity implements TraceableEntity {
             tag.add(Vec3.CODEC.encodeStart(NbtOps.INSTANCE, v).getOrThrow());
         }
         compoundTag.put("Points", tag);
+        compoundTag.putFloat("DistanceTraveled", getDistanceTraveled());
     }
 
     @Override
@@ -163,5 +264,70 @@ public class LightningArc extends Entity implements TraceableEntity {
             points.add(v);
         }
         setPoints(points);
+        setDistanceTraveled(compoundTag.getFloat("DistanceTraveled"));
+
+    }
+
+    private static final class LinePart {
+        private static Vec3 UP = new Vec3(0.0001, 1, 0);
+        private final Vec3 position;
+        private final Vec3 i;
+        private final Vec3 j;
+        private final Vec3 k;
+
+        private LinePart(Vec3 position, Vec3 i, Vec3 j, Vec3 k) {
+            this.position = position;
+            this.i = i;
+            this.j = j;
+            this.k = k;
+        }
+
+        LinePart(Vec3 position, Vec3 direction) {
+            this.position = position;
+            this.i = direction;
+            this.j = VectorUtil.arbitraryPerpendicular(i);
+            this.k = j.cross(i);
+        }
+
+        public Vec3 position() {
+            return position;
+        }
+
+        public Vec3 i() {
+            return i;
+        }
+
+        public Vec3 j() {
+            return j;
+        }
+
+        public Vec3 k() {
+            return k;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            var that = (LinePart) obj;
+            return Objects.equals(this.position, that.position) &&
+                    Objects.equals(this.i, that.i) &&
+                    Objects.equals(this.j, that.j) &&
+                    Objects.equals(this.k, that.k);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(position, i, j, k);
+        }
+
+        @Override
+        public String toString() {
+            return "LinePart[" +
+                    "position=" + position + ", " +
+                    "i=" + i + ", " +
+                    "j=" + j + ", " +
+                    "k=" + k + ']';
+        }
     }
 }

@@ -75,12 +75,16 @@ public class OilTrapBlock extends Block {
 
     protected void dispenseFrom(ServerLevel level, BlockState state, BlockPos pos) {
         var direction = state.getValue(ORIENTATION).front();
-        PacketDistributor.sendToPlayersInDimension(level, new GladiusLevelEventPayload(1006, pos.getCenter(), direction.get3DDataValue()));
 
         level.playSound(null, pos, GladiusSoundEvents.OIL_TRAP_BURST.get(), SoundSource.BLOCKS,
                 1.2F, 0.9F + level.random.nextFloat() * 0.2F);
+        BlockPos p = pos.relative(direction);
+        if (level.getBlockState(pos.relative(direction)).isCollisionShapeFullBlock(level, p)){
+            pos = p;
+        }
 
-        Vec3 position = getDispensePosition(level, state, pos, 0.85D, direction.getAxis() == Direction.Axis.Y ? Vec3.ZERO : new Vec3(0.0D, -0.325D, 0.0D));
+        PacketDistributor.sendToPlayersInDimension(level, new GladiusLevelEventPayload(1006, pos.getCenter(), direction.get3DDataValue()));
+        Vec3 position = getDispensePosition(level, state, pos, 0.5D, direction.getAxis() == Direction.Axis.Y ? Vec3.ZERO : new Vec3(0.0D, -0.325D, 0.0D));
         OilBlob blob = new OilBlob(level, position.x, position.y, position.z);
         blob.shoot(direction.getStepX(), direction.getStepY() + 0.5D, direction.getStepZ(), direction == Direction.UP ? 0.35F : 0.22f, 0.1F);
         level.addFreshEntity(blob);

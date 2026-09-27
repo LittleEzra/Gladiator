@@ -94,9 +94,9 @@ public class GladiusDamageSources {
     }
 
     private static Holder<DamageType> getDamageType(Level level, ResourceKey<DamageType> key){
-        return level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(GladiusDamageTypes.SKEWERING);
+        return level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(key);
     }
     private static Holder<DamageType> getDamageType(RegistryAccess registryAccess, ResourceKey<DamageType> key){
-        return registryAccess.lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(GladiusDamageTypes.SKEWERING);
+        return registryAccess.lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(key);
     }
 }

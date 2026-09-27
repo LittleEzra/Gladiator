@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 public class GladiusTags {
     public static class Blocks{
         public static final TagKey<Block> FRIGID_ICE_SPREADABLE = create("frigid_ice_spreadable");
+        public static final TagKey<Block> SLIPPERY = create("slippery");
 
         private static TagKey<Block> create(String name){
             return TagKey.create(Registries.BLOCK, Gladius.location(name));

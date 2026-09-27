@@ -9,35 +9,34 @@ import com.feliscape.gladius.client.extension.animation.CustomItemAnimator;
 import com.feliscape.gladius.client.extension.animation.ItemAnimatorManager;
 import com.feliscape.gladius.client.hud.BloodLayer;
 import com.feliscape.gladius.client.hud.FlamewalkersHeatLayer;
+import com.feliscape.gladius.client.hud.GripStrengthLayer;
 import com.feliscape.gladius.client.render.effect.StunEffectRenderer;
 import com.feliscape.gladius.client.render.entity.*;
 import com.feliscape.gladius.client.render.entity.misc.*;
 import com.feliscape.gladius.client.render.layer.ShockSkeletonLayer;
 import com.feliscape.gladius.client.render.layer.StuckRodsLayer;
-import com.feliscape.gladius.client.render.layer.WolfPickedUpArrowLayer;
 import com.feliscape.gladius.content.attachment.ClientMobEffectData;
+import com.feliscape.gladius.content.attachment.AcrobaticsData;
 import com.feliscape.gladius.content.item.NightwalkerArmorItem;
 import com.feliscape.gladius.foundation.MobEffectRenderers;
+import com.feliscape.gladius.networking.payload.MidairJumpInputPayload;
+import com.feliscape.gladius.networking.payload.UpdateServerInputPayload;
 import com.feliscape.gladius.registry.*;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.Options;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.WolfModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.core.Direction;
-import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Wolf;
-import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -45,6 +44,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.function.Function;
 
@@ -125,6 +125,9 @@ public class ClientEvents {
         event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_BOMBER.get(), PiglinBomberRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PIGLIN_WARLORD.get(), PiglinWarlordRenderer::new);
 
+        event.registerEntityRenderer(GladiusEntityTypes.CLOUD_PIERCER.get(), CloudPiercerRenderer::new);
+        event.registerEntityRenderer(GladiusEntityTypes.CLOUD_PIERCER_SEGMENT.get(), CloudPiercerSegmentRenderer::new);
+
         event.registerEntityRenderer(GladiusEntityTypes.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.PRISMARINE_ARROW.get(), PrismarineArrowRenderer::new);
         event.registerEntityRenderer(GladiusEntityTypes.WINGED_ARROW.get(), WingedArrowRenderer::new);
@@ -162,6 +165,7 @@ public class ClientEvents {
     public static void registerGuiLayers(RegisterGuiLayersEvent event)
     {
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, BloodLayer.LOCATION, new BloodLayer());
+        event.registerAbove(VanillaGuiLayers.CROSSHAIR, GripStrengthLayer.LOCATION, new GripStrengthLayer());
         event.registerBelow(VanillaGuiLayers.HOTBAR, FlamewalkersHeatLayer.LOCATION, new FlamewalkersHeatLayer());
     }
     @SubscribeEvent
@@ -201,6 +205,19 @@ public class ClientEvents {
         }
     }
 
+    private static boolean jumpWasDown;
+    @SubscribeEvent
+    public static void clientTick(ClientTickEvent.Pre event){
+        Options options = Minecraft.getInstance().options;
+        if (options.keyJump.isDown()){
+            if (!jumpWasDown)
+                PacketDistributor.sendToServer(new MidairJumpInputPayload());
+            jumpWasDown = true;
+        } else{
+            jumpWasDown = false;
+        }
+    }
+
     @SubscribeEvent
     public static void inputUpdate(MovementInputUpdateEvent event){
         Player player = event.getEntity();
@@ -212,6 +229,20 @@ public class ClientEvents {
         if (usingSpeedModifier != 1.0F && !player.isPassenger() && player.isUsingItem()){
             input.forwardImpulse *= usingSpeedModifier;
             input.leftImpulse *= usingSpeedModifier;
+        }
+
+        PacketDistributor.sendToServer(new UpdateServerInputPayload(input.up, input.down, input.left, input.right));
+
+        if (AcrobaticsData.canDoAcrobatics(player)) {
+            var data = event.getEntity().getData(AcrobaticsData.TYPE);
+            if (data.isClinging()) {
+                input.up = false;
+                input.left = false;
+                input.down = false;
+                input.right = false;
+                input.forwardImpulse = 0.0F;
+                input.leftImpulse = 0.0F;
+            }
         }
     }
 

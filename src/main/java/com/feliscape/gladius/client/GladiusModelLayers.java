@@ -22,6 +22,8 @@ public class GladiusModelLayers {
     public static final ModelLayerLocation CRYSTAL_BUTTERFLY = register("crystal_butterfly");
     public static final ModelLayerLocation FROSTMANCER = register("frostmancer");
     public static final ModelLayerLocation BLACKSTONE_GOLEM = register("blackstone_golem");
+    public static final ModelLayerLocation CLOUD_PIERCER = register("cloud_piercer");
+    public static final ModelLayerLocation CLOUD_PIERCER_SEGMENT = register("cloud_piercer", "segment");
 
     public static final ModelLayerLocation PIGLIN_SHAMAN = register("piglin_shaman");
     public static final ModelLayerLocation PIGLIN_SHAMAN_INNER_ARMOR = registerInnerArmor("piglin_shaman");
@@ -85,6 +87,9 @@ public class GladiusModelLayers {
         event.registerLayerDefinition(GladiusModelLayers.CRYSTAL_BUTTERFLY, CrystalButterflyModel::createBodyLayer);
         event.registerLayerDefinition(GladiusModelLayers.FROSTMANCER, FrostmancerModel::createBodyLayer);
         event.registerLayerDefinition(GladiusModelLayers.BLACKSTONE_GOLEM, BlackstoneGolemModel::createBodyLayer);
+
+        event.registerLayerDefinition(GladiusModelLayers.CLOUD_PIERCER, CloudPiercerModel::createBodyLayer);
+        event.registerLayerDefinition(GladiusModelLayers.CLOUD_PIERCER_SEGMENT, CloudPiercerSegmentModel::createBodyLayer);
 
         event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN, PiglinShamanModel::createBodyLayer);
         event.registerLayerDefinition(GladiusModelLayers.PIGLIN_SHAMAN_OUTER_ARMOR, () -> outerArmorLayer);

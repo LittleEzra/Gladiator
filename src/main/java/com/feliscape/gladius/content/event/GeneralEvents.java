@@ -4,6 +4,7 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.content.attachment.AllianceData;
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
+import com.feliscape.gladius.content.entity.enemy.cloudpiercer.CloudPiercer;
 import com.feliscape.gladius.content.entity.enemy.frostmancer.Frostmancer;
 import com.feliscape.gladius.content.entity.ai.RetrieveArrowGoal;
 import com.feliscape.gladius.content.entity.ai.ReturnArrowGoal;
@@ -41,6 +42,7 @@ public class GeneralEvents {
     @SubscribeEvent
     public static void createEntityAttributes(EntityAttributeCreationEvent event){
         event.put(GladiusEntityTypes.CRYSTAL_BUTTERFLY.get(), CrystalButterfly.createAttributes().build());
+        event.put(GladiusEntityTypes.CLOUD_PIERCER.get(), CloudPiercer.createAttributes().build());
         event.put(GladiusEntityTypes.FROSTMANCER.get(), Frostmancer.createAttributes().build());
         event.put(GladiusEntityTypes.BLACKSTONE_GOLEM.get(), BlackstoneGolem.createAttributes().build());
         event.put(GladiusEntityTypes.PIGLIN_SHAMAN.get(), PiglinShaman.createAttributes().build());

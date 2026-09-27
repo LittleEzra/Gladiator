@@ -5,6 +5,8 @@ import com.feliscape.gladius.content.entity.LightningArc;
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.CrystalButterfly;
 import com.feliscape.gladius.content.entity.FlashPowderCloud;
+import com.feliscape.gladius.content.entity.enemy.cloudpiercer.CloudPiercer;
+import com.feliscape.gladius.content.entity.enemy.cloudpiercer.CloudPiercerSegment;
 import com.feliscape.gladius.content.entity.enemy.frostmancer.Frostmancer;
 import com.feliscape.gladius.content.entity.enemy.piglin.bomber.PiglinBomber;
 import com.feliscape.gladius.content.entity.enemy.piglin.shaman.PiglinShaman;
@@ -181,6 +183,22 @@ public class GladiusEntityTypes {
                     .sized(1.5F, 0.65F)
                     .clientTrackingRange(4)
                     .updateInterval(1)
+    );
+
+    public static final Supplier<EntityType<CloudPiercer>> CLOUD_PIERCER = ENTITY_TYPES.registerEntityType("cloud_piercer",
+            CloudPiercer::new, MobCategory.MONSTER, b -> b
+                    .sized(1.0F, 1.0F).passengerAttachments(0.5F)
+                    .eyeHeight(0.5F)
+                    .clientTrackingRange(8)
+                    .updateInterval(2)
+    );
+    public static final Supplier<EntityType<CloudPiercerSegment>> CLOUD_PIERCER_SEGMENT = ENTITY_TYPES.registerEntityType("cloud_piercer_segment",
+            CloudPiercerSegment::new, MobCategory.MONSTER, b -> b
+                    .sized(1.0F, 1.0F).passengerAttachments(0.5F)
+                    .eyeHeight(0.5F)
+                    .clientTrackingRange(8)
+                    .updateInterval(2)
+                    .noSave()
     );
 
     public static final Supplier<EntityType<Frostmancer>> FROSTMANCER = ENTITY_TYPES.registerEntityType("frostmancer",

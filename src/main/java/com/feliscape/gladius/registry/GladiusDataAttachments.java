@@ -22,6 +22,15 @@ public class GladiusDataAttachments {
     public static final Supplier<AttachmentType<Direction>> GRAVITY_DIRECTION = ATTACHMENT_TYPES.register("gravity_direction",
             () -> AttachmentType.builder(() -> Direction.DOWN).serialize(Direction.CODEC).sync(Direction.STREAM_CODEC).build());
 
+    public static final Supplier<AttachmentType<AcrobaticsData>> ACROBATICS = ATTACHMENT_TYPES.register("acrobatics",
+            () -> AttachmentType.builder(AcrobaticsData::new)
+                    .serialize(AcrobaticsData.CODEC)
+                    .sync(AcrobaticsData.STREAM_CODEC)
+                    .build());
+    public static final Supplier<AttachmentType<ServerInputData>> SERVER_INPUT = ATTACHMENT_TYPES.register("server_input",
+            () -> AttachmentType.builder(ServerInputData::new)
+                    .build());
+
     public static final Supplier<AttachmentType<Alliance>> ALLIANCE = ATTACHMENT_TYPES.register("alliance",
             () -> AttachmentType.builder(AllianceData::getDefault)
                     .serialize(AllianceData.ALLIANCE_CODEC)

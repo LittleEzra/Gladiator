@@ -95,12 +95,12 @@ public class OilBlob extends Projectile {
     @Override
     public void handleEntityEvent(byte id) {
         if (id == (byte) 3){
-            for (int i = 0; i < 30; i++){
+            for (int i = 0; i < 42; i++){
                 Vec3 direction = RandomUtil.randomPositionOnSphereGaussian(this.random, 0.2D);
                 this.level().addParticle(GladiusParticles.BIG_OIL_DROPLET.get(), getX(), getY(0.5D), getZ(),
-                        direction.x, direction.y, direction.z);
+                        direction.x, direction.y + 0.1D, direction.z);
             }
-            for (int i = 0; i < 15; i++){
+            for (int i = 0; i < 25; i++){
                 double theta = random.nextDouble() * Math.TAU;
                 double dx = Math.cos(theta) * getBbWidth() * random.nextDouble();
                 double dz = Math.sin(theta) * getBbWidth() * random.nextDouble();

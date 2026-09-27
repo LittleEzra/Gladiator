@@ -149,6 +149,7 @@ public class GladiusEnUsProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.FLAME_TRAP_STOP, "Flame Trap stops burning");
         this.addSubtitle(GladiusSoundEvents.MIST_TRAP_BREATH, "Mist Trap breathes");
         this.addSubtitle(GladiusSoundEvents.OIL_TRAP_BURST, "Oil Trap bursts");
+        this.addSubtitle(GladiusSoundEvents.OIL_BLOB_SPLASH, "Oil Blob splashes");
 
         this.addDeathMessage(GladiusDamageTypes.BLEEDING, "%1$s bled out");
 

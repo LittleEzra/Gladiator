@@ -72,6 +72,10 @@ public class GladiusParticles {
 
     public static final Supplier<SimpleParticleType> SMALL_SPARK = PARTICLE_TYPES.register("small_spark",
             () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> LIGHTNING_SPARK = PARTICLE_TYPES.register("lightning_spark",
+            () -> new SimpleParticleType(false));
+    public static final Supplier<SimpleParticleType> FALLING_LIGHTNING_SPARK = PARTICLE_TYPES.register("falling_lightning_spark",
+            () -> new SimpleParticleType(false));
 
     @SubscribeEvent
     public static void registerParticleProviders(RegisterParticleProvidersEvent event)
@@ -102,6 +106,8 @@ public class GladiusParticles {
         event.registerSpriteSet(GladiusParticles.MAGMA_TRAIL.get(), MagmaTrailParticle.Provider::new);
 
         event.registerSpriteSet(GladiusParticles.SMALL_SPARK.get(), SparkParticle.Provider::new);
+        event.registerSpriteSet(GladiusParticles.LIGHTNING_SPARK.get(), LightningSparkParticle.Provider::new);
+        event.registerSpriteSet(GladiusParticles.FALLING_LIGHTNING_SPARK.get(), LightningSparkParticle.FallingProvider::new);
     }
 
     private static <T extends ParticleOptions> Supplier<ParticleType<T>> register(

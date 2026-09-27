@@ -43,5 +43,15 @@ public class GladiusPayloads {
                 SyncPowerGauntletDataPayload.STREAM_CODEC,
                 SyncPowerGauntletDataPayload::handle
         );
+        registrar.playToServer(
+                UpdateServerInputPayload.TYPE,
+                UpdateServerInputPayload.STREAM_CODEC,
+                UpdateServerInputPayload::handle
+        );
+        registrar.playToServer(
+                MidairJumpInputPayload.TYPE,
+                MidairJumpInputPayload.STREAM_CODEC,
+                MidairJumpInputPayload::handle
+        );
     }
 }

@@ -16,6 +16,8 @@ public class GladiusMemoryModuleTypes {
             Registries.MEMORY_MODULE_TYPE, Gladius.MOD_ID
     );
 
+    public static final Supplier<MemoryModuleType<Integer>> THUNDER_DELAY = register("thunder_delay", Codec.INT);
+
     public static final Supplier<MemoryModuleType<Integer>> CHARGE_DELAY = register("charge_delay", Codec.INT);
     public static final Supplier<MemoryModuleType<Integer>> CHARGE_TELEGRAPH = register("charge_telegraph", Codec.INT);
     public static final Supplier<MemoryModuleType<Boolean>> CHARGING = register("charging", Codec.BOOL);

@@ -134,6 +134,7 @@ public class GladiusDeDeProvider extends GladiusLanguageProvider{
         this.addSubtitle(GladiusSoundEvents.FIRE_WAKE_ERUPT, "Feuerwake bricht aus");
         this.addSubtitle(GladiusSoundEvents.FLASH_POWDER_CRACKLE, "Blitzpulver knistert");
         this.addSubtitle(GladiusSoundEvents.HEARTH_STONE_USE, "Herdstein entzündet");
+        this.addSubtitle(GladiusSoundEvents.OIL_BLOB_SPLASH, "Öltropfen spritzt");
 
         this.addSubtitle(GladiusSoundEvents.ICE_BOMB_THROW, "Eisbombe fliegt");
         this.addSubtitle(GladiusSoundEvents.ICE_BOMB_SHATTER, "Eisbombe explodiert");
