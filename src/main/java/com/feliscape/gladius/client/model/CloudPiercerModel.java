@@ -22,10 +22,14 @@ public class CloudPiercerModel extends EntityModel<CloudPiercer> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create().texOffs(0, 0).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 16.0F, 16.0F, new CubeDeformation(0.0F))
-		.texOffs(64, 0).addBox(-8.0F, -16.0F, -8.0F, 16.0F, 16.0F, 16.0F, new CubeDeformation(0.5F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create()
+						.texOffs(0, 0).addBox(-8.0F, -16.0F, -6.0F, 16.0F, 16.0F, 12.0F, new CubeDeformation(0.0F))
+						.texOffs(72, 8).addBox(-8.0F, -16.0F, -6.0F, 16.0F, 16.0F, 8.0F, new CubeDeformation(0.5F)),
+				PartPose.offset(0.0F, 24.0F, 0.0F));
 
-		PartDefinition head_1 = root.addOrReplaceChild("head_1", CubeListBuilder.create().texOffs(0, 32).addBox(-9.0F, -10.0F, -3.0F, 18.0F, 18.0F, 6.0F, new CubeDeformation(0.49F)), PartPose.offsetAndRotation(0.7F, -7.3F, -5.0F, 0.0F, 0.0F, -0.7854F));
+		PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create()
+						.texOffs(0, 32).addBox(-9.0F, -10.0F, -3.0F, 18.0F, 18.0F, 6.0F, new CubeDeformation(0.49F)),
+				PartPose.offsetAndRotation(0.7F, -7.3F, -5.0F, 0.0F, 0.0F, -0.7854F));
 
 		return LayerDefinition.create(meshdefinition, 128, 64);
 	}

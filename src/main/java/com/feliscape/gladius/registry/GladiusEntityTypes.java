@@ -187,14 +187,14 @@ public class GladiusEntityTypes {
 
     public static final Supplier<EntityType<CloudPiercer>> CLOUD_PIERCER = ENTITY_TYPES.registerEntityType("cloud_piercer",
             CloudPiercer::new, MobCategory.MONSTER, b -> b
-                    .sized(1.0F, 1.0F).passengerAttachments(0.5F)
+                    .sized(0.85F, 1.0F).passengerAttachments(0.5F)
                     .eyeHeight(0.5F)
                     .clientTrackingRange(8)
                     .updateInterval(2)
     );
     public static final Supplier<EntityType<CloudPiercerSegment>> CLOUD_PIERCER_SEGMENT = ENTITY_TYPES.registerEntityType("cloud_piercer_segment",
             CloudPiercerSegment::new, MobCategory.MONSTER, b -> b
-                    .sized(1.0F, 1.0F).passengerAttachments(0.5F)
+                    .sized(0.75F, 0.75F).passengerAttachments(0.5F)
                     .eyeHeight(0.5F)
                     .clientTrackingRange(8)
                     .updateInterval(2)

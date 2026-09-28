@@ -33,6 +33,7 @@ public class CloudPiercerSegmentRenderer extends EntityRenderer<CloudPiercerSegm
         poseStack.pushPose();
         poseStack.mulPose(Axis.YP.rotationDegrees(-entityYaw));
         poseStack.mulPose(Axis.XP.rotationDegrees(Mth.wrapDegrees(segment.getXRot())));
+        poseStack.scale(-1.0F, -1.0F, 1.0F);
         var buffer = bufferSource.getBuffer(RenderType.entityCutout(TEXTURE));
         model.renderToBuffer(poseStack, buffer, packedLight, OverlayTexture.pack(0, OverlayTexture.v(segment.isDying())));
         poseStack.popPose();
