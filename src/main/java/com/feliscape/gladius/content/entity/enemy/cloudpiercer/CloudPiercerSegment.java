@@ -26,6 +26,7 @@ import java.util.function.BiFunction;
 
 public class CloudPiercerSegment extends Entity {
     private static final EntityDataAccessor<Boolean> IS_DYING = SynchedEntityData.defineId(CloudPiercerSegment.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> HURT_TIME = SynchedEntityData.defineId(CloudPiercerSegment.class, EntityDataSerializers.INT);
 
     protected int lerpSteps;
     protected double lerpX;
@@ -53,6 +54,14 @@ public class CloudPiercerSegment extends Entity {
         this.entityData.set(IS_DYING, dying);
     }
 
+    public int getHurtTime(){
+        return this.entityData.get(HURT_TIME);
+    }
+
+    public void setHurtTime(int hurtTime){
+        this.entityData.set(HURT_TIME, hurtTime);
+    }
+
     public void setHasPhysics(boolean hasPhysics){
         this.hasPhysics = hasPhysics;
     }
@@ -70,7 +79,17 @@ public class CloudPiercerSegment extends Entity {
             }
         }
 
+        if (getHurtTime() > 0){
+            setHurtTime(getHurtTime() - 1);
+        }
+
         tickLerp();
+    }
+
+    @Override
+    public void kill() {
+        //drop loot
+        super.kill();
     }
 
     private void tickLerp() {
@@ -179,6 +198,7 @@ public class CloudPiercerSegment extends Entity {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         builder.define(IS_DYING, false);
+        builder.define(HURT_TIME, 0);
     }
 
     @Override

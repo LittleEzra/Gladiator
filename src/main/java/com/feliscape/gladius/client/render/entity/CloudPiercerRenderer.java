@@ -4,6 +4,9 @@ import com.feliscape.gladius.Gladius;
 import com.feliscape.gladius.client.GladiusModelLayers;
 import com.feliscape.gladius.client.model.CloudPiercerModel;
 import com.feliscape.gladius.content.entity.enemy.cloudpiercer.CloudPiercer;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +16,14 @@ public class CloudPiercerRenderer extends MobRenderer<CloudPiercer, CloudPiercer
 
     public CloudPiercerRenderer(EntityRendererProvider.Context context) {
         super(context, new CloudPiercerModel(context.bakeLayer(GladiusModelLayers.CLOUD_PIERCER)), 0.0F);
+    }
+
+    @Override
+    public void render(CloudPiercer entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+        poseStack.pushPose();
+        poseStack.mulPose(Axis.XP.rotationDegrees(entity.getViewXRot(partialTicks)));
+        super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
+        poseStack.popPose();
     }
 
     @Override

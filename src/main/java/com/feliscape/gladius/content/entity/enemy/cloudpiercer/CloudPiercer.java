@@ -123,10 +123,20 @@ public class CloudPiercer extends PathfinderMob {
     }
 
     @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (super.hurt(source, amount)){
+            for (CloudPiercerSegment segment : segments){
+                segment.setHurtTime(this.hurtTime);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void aiStep() {
         super.aiStep();
         if (tickCount % 100 == 0){
-            Gladius.LOGGER.debug("Moving randomly...");
             this.moveControl.setWantedPosition(
                     getX() + Math.cos((getYRot() + random.nextFloat() * 16.0F - 8.0F) * (Mth.PI / 180.0F)),
                     getY() + random.nextFloat() * 10.0F - 5.0F,
@@ -140,13 +150,13 @@ public class CloudPiercer extends PathfinderMob {
     protected void tickDeath() {
         ++this.deathTime;
         if (!segments.isEmpty()) {
-            int i = deathTime / Math.max(40 / segments.size(), 1);
+            int i = deathTime / Math.max(30 / segments.size(), 1);
             i = segments.size() - 1 - i;
             if (i >= 0 && i < segments.size() && !segments.get(i).isRemoved()) {
-                segments.get(i).remove(RemovalReason.KILLED);
+                segments.get(i).kill();
             }
         }
-        if (this.deathTime >= 40 && !this.level().isClientSide() && !this.isRemoved()) {
+        if (this.deathTime >= 30 && !this.level().isClientSide() && !this.isRemoved()) {
             this.remove(RemovalReason.KILLED);
         }
     }
@@ -185,7 +195,6 @@ public class CloudPiercer extends PathfinderMob {
         for (CloudPiercerSegment segment : segments){
             var direction = lastSegment.position().subtract(segment.position()).normalize();
             Vec3 v = lastSegment.position().add(direction.scale(-1.5D));
-
             segment.setPos(v);
             segment.lookAtSegment(lastSegment);
 
