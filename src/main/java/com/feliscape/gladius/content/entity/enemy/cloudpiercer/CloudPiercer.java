@@ -14,6 +14,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.ClipContext;
@@ -35,10 +36,12 @@ public class CloudPiercer extends PathfinderMob {
     public CloudPiercer(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
         this.moveControl = new CloudPiercerMoveControl(this);
+        this.lookControl = new CloudPiercerLookControl(this);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.3)
                 .add(Attributes.FOLLOW_RANGE, 24.0)
                 .add(Attributes.MAX_HEALTH, 120.0);
@@ -225,8 +228,24 @@ public class CloudPiercer extends PathfinderMob {
 
                 var deltaYaw = (Math.atan2(dz, dx) * 180.0D / Math.PI) * 0.15D;
                 var deltaPitch = (-Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180.0D / Math.PI) * 0.15D;
+                Gladius.LOGGER.debug("Turning by {} and {}", deltaYaw, deltaPitch);
                 cloudPiercer.turn(deltaYaw, deltaPitch);
+                var look = cloudPiercer.getLookAngle();
+                Gladius.LOGGER.debug("x: {}, y: {}, look: {}, {}, {}", cloudPiercer.getXRot(), cloudPiercer.getYRot(), look.x, look.y, look.z);
+
             }
+        }
+    }
+
+    private static class CloudPiercerLookControl extends LookControl{
+
+        public CloudPiercerLookControl(Mob mob) {
+            super(mob);
+        }
+
+        @Override
+        protected boolean resetXRotOnTick() {
+            return false;
         }
     }
 }

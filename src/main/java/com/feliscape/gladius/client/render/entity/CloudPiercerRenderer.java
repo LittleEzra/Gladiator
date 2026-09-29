@@ -20,10 +20,13 @@ public class CloudPiercerRenderer extends MobRenderer<CloudPiercer, CloudPiercer
 
     @Override
     public void render(CloudPiercer entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
-        poseStack.pushPose();
-        poseStack.mulPose(Axis.XP.rotationDegrees(entity.getViewXRot(partialTicks)));
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
-        poseStack.popPose();
+    }
+
+    @Override
+    protected void setupRotations(CloudPiercer entity, PoseStack poseStack, float bob, float yBodyRot, float partialTick, float scale) {
+        super.setupRotations(entity, poseStack, bob, yBodyRot, partialTick, scale);
+        poseStack.mulPose(Axis.XP.rotationDegrees(-entity.getViewXRot(partialTick)));
     }
 
     @Override
