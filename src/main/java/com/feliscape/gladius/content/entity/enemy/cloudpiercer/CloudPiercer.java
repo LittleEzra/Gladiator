@@ -1,17 +1,24 @@
 package com.feliscape.gladius.content.entity.enemy.cloudpiercer;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
+import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolemAi;
+import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.LookControl;
@@ -19,8 +26,11 @@ import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -47,6 +57,19 @@ public class CloudPiercer extends PathfinderMob {
                 .add(Attributes.MAX_HEALTH, 120.0);
     }
 
+    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+    }
+
+    @Override
+    protected void applyGravity() {
+
+    }
+
+    @Override
+    public float getWalkTargetValue(BlockPos pos, LevelReader level) {
+        return level.getBlockState(pos).isAir() ? 10.0F : 0.0F;
+    }
+
     public void addSegment(CloudPiercerSegment segment){
         segments.add(segment);
         segment.setDamageCallback(this::hurt);
@@ -58,6 +81,7 @@ public class CloudPiercer extends PathfinderMob {
         for (int i = 0; i < 8; i++){
             var segment = new CloudPiercerSegment(this.level(), this);
             addSegment(segment);
+            segment.moveTo(this.position().subtract(Math.sin(i * 1.1D) * 1.10D, 0.0D, (i + 1) * 1.2D));
             level.addFreshEntity(segment);
         }
         adjustSegmentPositions();
@@ -90,7 +114,6 @@ public class CloudPiercer extends PathfinderMob {
 
         if (compound.contains("Segments")) {
             ListTag segmentsTag = compound.getList("Segments", Tag.TAG_COMPOUND);
-            int i = 0;
             for (int j = 0; j < segmentsTag.size(); j++) {
                 CompoundTag t = segmentsTag.getCompound(j);
 
@@ -99,7 +122,6 @@ public class CloudPiercer extends PathfinderMob {
                     addSegment(segment);
                     level().addFreshEntity(segment);
                 }
-                i++;
             }
         }
     }
@@ -111,9 +133,9 @@ public class CloudPiercer extends PathfinderMob {
 
     @Override
     public void tick() {
-        if (isDeadOrDying() && !wasDeadOrDying){
+        if (isDeadOrDying() != wasDeadOrDying){
             for (CloudPiercerSegment segment : segments){
-                segment.setDying(true);
+                segment.setDying(isDeadOrDying());
             }
         }
 
@@ -137,6 +159,32 @@ public class CloudPiercer extends PathfinderMob {
     }
 
     @Override
+    protected Brain<?> makeBrain(Dynamic<?> dynamic) {
+        return CloudPiercerAi.makeBrain(this, this.brainProvider().makeBrain(dynamic));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Brain<CloudPiercer> getBrain() {
+        return (Brain<CloudPiercer>)super.getBrain();
+    }
+
+    @Override
+    protected Brain.Provider<CloudPiercer> brainProvider() {
+        return Brain.provider(CloudPiercerAi.MEMORY_TYPES, CloudPiercerAi.SENSOR_TYPES);
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        this.level().getProfiler().push("cloudPiercerBrain");
+        this.getBrain().tick((ServerLevel)this.level(), this);
+        this.level().getProfiler().popPush("cloudPiercerActivityUpdate");
+        CloudPiercerAi.updateActivity(this);
+        this.level().getProfiler().pop();
+        super.customServerAiStep();
+    }
+
+    /*@Override
     public void aiStep() {
         super.aiStep();
         if (tickCount % 100 == 0){
@@ -147,7 +195,7 @@ public class CloudPiercer extends PathfinderMob {
                     1.0D
             );
         }
-    }
+    }*/
 
     @Override
     protected void tickDeath() {
@@ -198,7 +246,7 @@ public class CloudPiercer extends PathfinderMob {
         for (CloudPiercerSegment segment : segments){
             var direction = lastSegment.position().subtract(segment.position()).normalize();
             Vec3 v = lastSegment.position().add(direction.scale(-1.5D));
-            segment.setPos(v);
+            segment.moveTo(v);
             segment.lookAtSegment(lastSegment);
 
             lastSegment = segment;
@@ -228,11 +276,8 @@ public class CloudPiercer extends PathfinderMob {
 
                 var deltaYaw = (Math.atan2(dz, dx) * 180.0D / Math.PI) * 0.15D;
                 var deltaPitch = (-Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180.0D / Math.PI) * 0.15D;
-                Gladius.LOGGER.debug("Turning by {} and {}", deltaYaw, deltaPitch);
                 cloudPiercer.turn(deltaYaw, deltaPitch);
                 var look = cloudPiercer.getLookAngle();
-                Gladius.LOGGER.debug("x: {}, y: {}, look: {}, {}, {}", cloudPiercer.getXRot(), cloudPiercer.getYRot(), look.x, look.y, look.z);
-
             }
         }
     }
