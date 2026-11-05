@@ -66,6 +66,10 @@ public class CloudPiercerSegment extends Entity {
         this.hasPhysics = hasPhysics;
     }
 
+    public Vec3 getCenterPosition(){
+        return new Vec3(getX(), getY(0.5D), getZ());
+    }
+
     @Override
     public void tick() {
         super.tick();

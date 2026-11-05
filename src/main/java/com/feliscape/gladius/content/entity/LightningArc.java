@@ -58,7 +58,13 @@ public class LightningArc extends Entity implements TraceableEntity {
 
     public LightningArc(Level level, Vec3... points) {
         this(GladiusEntityTypes.LIGHTNING_ARC.get(), level);
+        moveTo(points[0]);
         this.setPoints(List.of(points));
+    }
+    public LightningArc(Level level, List<Vec3> points) {
+        this(GladiusEntityTypes.LIGHTNING_ARC.get(), level);
+        moveTo(points.getFirst());
+        this.setPoints(points);
     }
 
     public void setOwner(@Nullable Entity owner) {

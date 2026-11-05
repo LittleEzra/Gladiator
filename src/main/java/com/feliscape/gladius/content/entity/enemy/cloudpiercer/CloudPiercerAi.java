@@ -10,6 +10,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -27,6 +28,8 @@ import net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities;
 import net.minecraft.world.entity.ai.memory.WalkTarget;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.entity.ai.util.RandomPos;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.phys.Vec3;
 
@@ -74,15 +77,17 @@ public class CloudPiercerAi {
     }
 
     private static void initIdleActivity(Brain<CloudPiercer> brain) {
-        brain.addActivity(
+        brain.addActivityWithConditions(
                 Activity.IDLE,
-                10,
                 ImmutableList.of(
-                        StartAttacking.create(cloudPiercer -> cloudPiercer.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER)),
-                        new RunOne<>(ImmutableList.of(
+                        Pair.of(10, StartAttacking.create(cloudPiercer -> cloudPiercer.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER))),
+                        Pair.of(11, new RunOne<>(ImmutableList.of(
                                 Pair.of(new DoNothing(40, 60), 1),
                                 Pair.of(RandomStroll.fly(0.6F), 2)
-                        ))
+                        )))
+                ),
+                ImmutableSet.of(
+                        Pair.of(MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_ABSENT)
                 )
         );
     }
@@ -91,7 +96,8 @@ public class CloudPiercerAi {
                 Activity.FIGHT,
                 ImmutableList.of(
                         Pair.of(0, StopAttackingIfTargetInvalid.create(entity -> !Sensor.isEntityAttackable(cloudPiercer, entity))),
-                        Pair.of(4, CircleAttackTarget.create(1.0F, 8.0D))
+                        Pair.of(1, CloudPiercerLightningBolt.create(50)),
+                        Pair.of(4, SetWalkTargetFromAttackTargetIfTargetOutOfReach.create(1.0F))
                 ),
                 ImmutableSet.of(
                         Pair.of(MemoryModuleType.ATTACK_TARGET, MemoryStatus.VALUE_PRESENT)
@@ -135,12 +141,14 @@ public class CloudPiercerAi {
                         if (optional.isPresent() && (optional.get()).contains(target) && BehaviorUtils.isWithinAttackRange(cloudPiercer, target, 1)) {
                             walkTarget.erase();
                         } else {
-                            var angle = Mth.lerp(0.5F, cloudPiercer.getYRot(), Mth.atan2(target.getZ() - cloudPiercer.getZ(), target.getX() - cloudPiercer.getX())) * (Math.PI / 180.0D);
+                            var pos = RandomPos.generateRandomPosTowardDirection(cloudPiercer, 14, level.getRandom(), target.blockPosition());
+                            walkTarget.set(new WalkTarget(new BlockPosTracker(pos), speedModifier.apply(cloudPiercer), 0));
+                            /*var angle = gameTime * 0.2D;
                             walkTarget.set(new WalkTarget(new BlockPosTracker(target.position().add(
                                     Math.cos(angle) * orbitDistance,
                                     cloudPiercer.getRandom().nextDouble() * 6.0D + 4.0D,
                                     Math.sin(angle) * orbitDistance
-                            )), speedModifier.apply(cloudPiercer), 0));
+                            )), speedModifier.apply(cloudPiercer), 0));*/
                         }
 
                         return true;

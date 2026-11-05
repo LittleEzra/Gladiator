@@ -1,9 +1,12 @@
 package com.feliscape.gladius.content.entity.enemy.cloudpiercer;
 
 import com.feliscape.gladius.Gladius;
+import com.feliscape.gladius.content.entity.LightningArc;
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolem;
 import com.feliscape.gladius.content.entity.enemy.blackstonegolem.BlackstoneGolemAi;
+import com.feliscape.gladius.data.damage.GladiusDamageTypes;
 import com.feliscape.gladius.registry.entity.GladiusMemoryModuleTypes;
+import com.feliscape.gladius.util.RandomUtil;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
@@ -15,6 +18,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -23,6 +27,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.LookControl;
 import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -37,6 +43,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CloudPiercer extends PathfinderMob {
     private List<CloudPiercerSegment> segments = new ArrayList<>();
@@ -47,13 +54,14 @@ public class CloudPiercer extends PathfinderMob {
         super(entityType, level);
         this.moveControl = new CloudPiercerMoveControl(this);
         this.lookControl = new CloudPiercerLookControl(this);
+        this.getNavigation().setCanFloat(true);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.3)
-                .add(Attributes.FOLLOW_RANGE, 24.0)
+                .add(Attributes.FOLLOW_RANGE, 40.0)
                 .add(Attributes.MAX_HEALTH, 120.0);
     }
 
@@ -67,12 +75,25 @@ public class CloudPiercer extends PathfinderMob {
 
     @Override
     public float getWalkTargetValue(BlockPos pos, LevelReader level) {
-        return level.getBlockState(pos).isAir() ? 10.0F : 0.0F;
+        var surrounding = level.getBlockStatesIfLoaded(new AABB(pos).inflate(2.0D)).collect(Collectors.toSet());
+        float f = level.getBlockState(pos).isAir() ? 10.0F : 0.0F;
+        for (BlockState state : surrounding){
+            if (!state.isAir()) f -= 1.0F;
+        }
+
+        return f;
     }
 
     public void addSegment(CloudPiercerSegment segment){
         segments.add(segment);
         segment.setDamageCallback(this::hurt);
+    }
+
+    @Override
+    protected PathNavigation createNavigation(Level level) {
+        FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, level);
+        flyingpathnavigation.setCanOpenDoors(false);
+        return flyingpathnavigation;
     }
 
     @SuppressWarnings("deprecation")
@@ -180,6 +201,7 @@ public class CloudPiercer extends PathfinderMob {
         this.getBrain().tick((ServerLevel)this.level(), this);
         this.level().getProfiler().popPush("cloudPiercerActivityUpdate");
         CloudPiercerAi.updateActivity(this);
+
         this.level().getProfiler().pop();
         super.customServerAiStep();
     }
@@ -274,12 +296,42 @@ public class CloudPiercer extends PathfinderMob {
                     return;
                 }
 
-                var deltaYaw = (Math.atan2(dz, dx) * 180.0D / Math.PI) * 0.15D;
-                var deltaPitch = (-Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180.0D / Math.PI) * 0.15D;
+                double turnSpeed = 0.25D;
+                var deltaYaw = (Math.atan2(dz, dx) * 180.0D / Math.PI) * turnSpeed;
+                var deltaPitch = (-Math.atan2(dy, Math.sqrt(dx * dx + dz * dz)) * 180.0D / Math.PI) * turnSpeed;
                 cloudPiercer.turn(deltaYaw, deltaPitch);
                 var look = cloudPiercer.getLookAngle();
             }
         }
+    }
+
+    public void arcTowards(ServerLevel serverLevel, Vec3 source, Vec3 target){
+        List<Vec3> points = new ArrayList<>();
+        int pointCount = (int)target.distanceTo(source);
+        points.add(source);
+        for (int i = 1; i < pointCount; i++){
+            var wiggle = RandomUtil.randomPositionOnSphereGaussian(random, random.nextDouble() * 0.2D);
+            points.add(source.lerp(target, i / (double)pointCount).add(wiggle));
+        }
+        points.add(target);
+
+        LightningArc arc = new LightningArc(serverLevel, points);
+        arc.setOwner(this);
+        serverLevel.addFreshEntity(arc);
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource source) {
+        if (source.is(GladiusDamageTypes.ELECTROCUTION)) return true;
+        return super.isInvulnerableTo(source);
+    }
+
+    public CloudPiercerSegment getRandomSegment(RandomSource source){
+        return segments.get(source.nextInt(segments.size()));
+    }
+
+    public List<CloudPiercerSegment> getSegments(){
+        return segments;
     }
 
     private static class CloudPiercerLookControl extends LookControl{
